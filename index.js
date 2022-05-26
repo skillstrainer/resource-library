@@ -1,1 +1,3 @@
-module.exports = require("./dist/index");
+const exportable = require("./dist/index");
+
+module.exports = exportable;
