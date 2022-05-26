@@ -1,6 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Button } from "./lib";
+import lib from "./lib";
+
+const { Button } = lib;
 
 function App() {
   return (
