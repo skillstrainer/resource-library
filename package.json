@@ -7,8 +7,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "compile-css": "rm -rf ./dist/css && postcss ./src/lib/styles.css --dir ./dist/css",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files && npm run compile-css",
+    "build": "bash build.sh",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

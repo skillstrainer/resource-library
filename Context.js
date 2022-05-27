@@ -1,53 +1,33 @@
 "use strict";
 
-require("core-js/modules/web.dom-collections.iterator.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "CourseCard", {
-  enumerable: true,
-  get: function get() {
-    return _CourseCard.default;
-  }
-});
-Object.defineProperty(exports, "CourseModal", {
-  enumerable: true,
-  get: function get() {
-    return _CourseModal.default;
-  }
-});
-Object.defineProperty(exports, "Modal", {
-  enumerable: true,
-  get: function get() {
-    return _Modal.default;
-  }
-});
-Object.defineProperty(exports, "STRLContextProvider", {
-  enumerable: true,
-  get: function get() {
-    return _Context.STRLContextProvider;
-  }
-});
-Object.defineProperty(exports, "STRLService", {
-  enumerable: true,
-  get: function get() {
-    return _Context.default;
-  }
-});
+exports.STRLContextProvider = STRLContextProvider;
+exports.default = void 0;
 
-require("./styles.css");
+require("core-js/modules/web.dom-collections.iterator.js");
 
-var _Modal = _interopRequireDefault(require("./components/shared/Modal"));
+var _react = _interopRequireWildcard(require("react"));
 
-var _CourseCard = _interopRequireDefault(require("./components/course/CourseCard"));
+var _course = _interopRequireDefault(require("./services/course"));
 
-var _CourseModal = _interopRequireDefault(require("./components/course/CourseModal"));
-
-var _Context = _interopRequireWildcard(require("./Context"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const STRLService = {};
+const STRLContext = /*#__PURE__*/(0, _react.createContext)();
+
+function STRLContextProvider(props) {
+  const s = STRLService;
+  const [courseServices, courseElements] = (0, _course.default)();
+  s.course = courseServices;
+  const elements = [...courseElements];
+  return /*#__PURE__*/_react.default.createElement(STRLContext.Provider, null, props.children, elements);
+}
+
+var _default = STRLService;
+exports.default = _default;
