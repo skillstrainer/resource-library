@@ -52,7 +52,7 @@ function useCourseService() {
 
   const getCoursePurchaseURL = courseId => "".concat(_config.webappHost, "/buy-course/").concat(courseId);
 
-  const courseFormatter = res => res.map(obj => ({
+  const courseFormatter = obj => ({
     categoryName: obj.course_category.name,
     categoryId: obj.course_category.id,
     category: obj.course_category,
@@ -71,16 +71,14 @@ function useCourseService() {
     discount: obj.discount,
     modules: obj.modules,
     partners: obj.partners
-  }));
+  });
 
-  const catFormatter = res => {
-    return res.map(obj => ({
-      numOfCourses: obj.count,
-      categoryName: obj.name,
-      id: obj.id,
-      image: obj.image_url
-    }));
-  };
+  const catFormatter = obj => ({
+    numOfCourses: obj.count,
+    categoryName: obj.name,
+    id: obj.id,
+    image: obj.image_url
+  });
 
   module.exports = {
     courseFormatter,
