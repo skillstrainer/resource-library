@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import CourseModal from "../components/course/CourseModal";
 import { webappHost } from "../config";
 

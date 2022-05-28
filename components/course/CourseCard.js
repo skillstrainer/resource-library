@@ -9,8 +9,6 @@ exports.default = CourseCard;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _CourseModal = _interopRequireDefault(require("./CourseModal"));
-
 var _dom = require("../../utils/dom");
 
 var _Context = _interopRequireDefault(require("../../Context"));
