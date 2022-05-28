@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import CourseModal from "./CourseModal";
 import { stopPropagation } from "../../utils/dom";
 import STRLService from "../../Context";
 
