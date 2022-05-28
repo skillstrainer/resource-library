@@ -36,8 +36,6 @@ Object.defineProperty(exports, "STRLService", {
   }
 });
 
-require("./styles.css");
-
 var _Modal = _interopRequireDefault(require("./components/shared/Modal"));
 
 var _CourseCard = _interopRequireDefault(require("./components/course/CourseCard"));

@@ -1,5 +1,3 @@
-import "./styles.css";
-
 // Basic
 import Modal from "./components/shared/Modal";
 
