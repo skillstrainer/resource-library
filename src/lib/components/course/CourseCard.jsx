@@ -15,6 +15,7 @@ export default function CourseCard(props) {
       liveClassDuration,
       nsqf_lvl,
     },
+    goToDetailPage,
     goToCategoryPage,
   } = props;
 
@@ -35,7 +36,13 @@ export default function CourseCard(props) {
   return (
     <div
       className="relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2"
-      onClick={() => STRLService.course.toggleCourseModal({ data: props.data })}
+      onClick={() =>
+        STRLService.course.toggleCourseModal({
+          data: props.data,
+          goToCategoryPage,
+          goToDetailPage,
+        })
+      }
     >
       <div>
         <div className="relative">

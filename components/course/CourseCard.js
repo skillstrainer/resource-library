@@ -32,6 +32,7 @@ function CourseCard(props) {
       liveClassDuration,
       nsqf_lvl
     },
+    goToDetailPage,
     goToCategoryPage
   } = props;
   let course_type = "";
@@ -51,7 +52,9 @@ function CourseCard(props) {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2",
     onClick: () => _Context.default.course.toggleCourseModal({
-      data: props.data
+      data: props.data,
+      goToCategoryPage,
+      goToDetailPage
     })
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "relative"
