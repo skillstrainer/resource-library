@@ -16,19 +16,6 @@
   box-sizing: inherit;
 }
 
-html {
-  font-size: 62.5%;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 1.4rem;
-  overflow-x: hidden;
-  position: relative;
-}
-
 .content {
   width: 80%;
   max-width: 1250px;
