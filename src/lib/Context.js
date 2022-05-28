@@ -2,18 +2,25 @@ import React, { createContext, useState } from "react";
 import useCourseService from "./services/course";
 
 const STRLService = {};
-const STRLContext = createContext();
+export const STRLContext = createContext();
 
 export function STRLContextProvider(props) {
   const s = STRLService;
 
-  const [courseServices, courseElements] = useCourseService();
+  const [config, setConfig] = useState({
+    auth: {},
+    course: {},
+  });
+  s.getConfig = () => config;
+  s.updateConfig = (delta = {}) => setConfig({ ...config, ...delta });
+
+  const [courseServices, courseElements] = useCourseService(config);
   s.course = courseServices;
 
   const elements = [...courseElements];
 
   return (
-    <STRLContext.Provider>
+    <STRLContext.Provider value={{ config }}>
       {props.children}
       {elements}
     </STRLContext.Provider>

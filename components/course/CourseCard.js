@@ -11,9 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _dom = require("../../utils/dom");
 
-var _Context = _interopRequireDefault(require("../../Context"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Context = _interopRequireWildcard(require("../../Context"));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -33,7 +31,10 @@ function CourseCard(props) {
       nsqf_lvl
     },
     goToDetailPage,
-    goToCategoryPage
+    goToCategoryPage,
+    // If course is purchased
+    isPurchased,
+    viewCourse = () => {}
   } = props;
   let course_type = "";
   let duration = "";
@@ -142,7 +143,10 @@ function CourseCard(props) {
     className: "flex item-center justify-center w-full"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-6 bottom-0 mb-4"
-  }, /*#__PURE__*/_react.default.createElement("a", {
+  }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
+    className: "w-full font-2xl bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
+    onClick: viewCourse
+  }, "View course") : /*#__PURE__*/_react.default.createElement("a", {
     href: _Context.default.course.getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"

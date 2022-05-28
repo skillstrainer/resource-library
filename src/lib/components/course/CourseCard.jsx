@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { stopPropagation } from "../../utils/dom";
-import STRLService from "../../Context";
+import STRLService, { STRLContext } from "../../Context";
 
 export default function CourseCard(props) {
   const {
@@ -17,6 +17,9 @@ export default function CourseCard(props) {
     },
     goToDetailPage,
     goToCategoryPage,
+    // If course is purchased
+    isPurchased,
+    viewCourse = () => {},
   } = props;
 
   let course_type = "";
@@ -143,18 +146,27 @@ export default function CourseCard(props) {
 
       <div className="flex item-center justify-center w-full">
         <div className="mt-6 bottom-0 mb-4">
-          <a
-            href={STRLService.course.getCoursePurchaseURL(courseId)}
-            onClick={stopPropagation}
-            target="_blank"
-          >
-            <button className="w-full font-2xl bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg">
-              <span>Get Enrolled for </span>
-              <span className="font-bold">
-                {cost == 0 ? "Free" : cost ? `₹ ${cost}` : "6,000"}
-              </span>
+          {isPurchased ? (
+            <button
+              className="w-full font-2xl bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
+              onClick={viewCourse}
+            >
+              View course
             </button>
-          </a>
+          ) : (
+            <a
+              href={STRLService.course.getCoursePurchaseURL(courseId)}
+              onClick={stopPropagation}
+              target="_blank"
+            >
+              <button className="w-full font-2xl bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg">
+                <span>Get Enrolled for </span>
+                <span className="font-bold">
+                  {cost == 0 ? "Free" : cost ? `₹ ${cost}` : "6,000"}
+                </span>
+              </button>
+            </a>
+          )}
         </div>
       </div>
     </div>
