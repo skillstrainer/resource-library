@@ -9,6 +9,8 @@ exports.default = useCourseService;
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
+require("core-js/modules/es.symbol.description.js");
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _CourseModal = _interopRequireDefault(require("../components/course/CourseModal"));
@@ -50,11 +52,47 @@ function useCourseService() {
 
   const getCoursePurchaseURL = courseId => "".concat(_config.webappHost, "/buy-course/").concat(courseId);
 
+  const courseFormatter = res => res.map(obj => ({
+    categoryName: obj.course_category.name,
+    categoryId: obj.course_category.id,
+    category: obj.course_category,
+    categoryImg: "",
+    courseId: obj.id,
+    shortName: obj.full_name,
+    displayName: obj.full_name,
+    description: obj.description,
+    courseImg: obj.image_url,
+    students_enrolled: obj.students_enrolled || 0,
+    digitalContentDuration: obj.duration,
+    liveClassDuration: obj.live_class_duration,
+    nsqf_lvl: obj.nsqf_level,
+    redirection_url: obj.moodle_course_url,
+    cost: obj.cost,
+    discount: obj.discount,
+    modules: obj.modules,
+    partners: obj.partners
+  }));
+
+  const catFormatter = res => {
+    return res.map(obj => ({
+      numOfCourses: obj.count,
+      categoryName: obj.name,
+      id: obj.id,
+      image: obj.image_url
+    }));
+  };
+
+  module.exports = {
+    courseFormatter,
+    catFormatter
+  };
   return [{
     // Course Modal
     toggleCourseModal,
     // Misc
-    getCoursePurchaseURL
+    getCoursePurchaseURL,
+    courseFormatter,
+    catFormatter
   }, [
   /*#__PURE__*/
   // Course modal
