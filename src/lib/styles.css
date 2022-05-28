@@ -16,19 +16,6 @@
   box-sizing: inherit;
 }
 
-.content {
-  width: 80%;
-  max-width: 1250px;
-}
-.content-nav {
-  width: 80%;
-  max-width: 1250px;
-}
-.content-left {
-  width: 90%;
-  margin-left: 10%;
-}
-
 .text {
   color: #4d5059;
 }
@@ -99,49 +86,6 @@
 }
 .btn-white:hover {
   background-color: rgb(255, 255, 255, 0.2);
-}
-
-.line-text {
-  line-height: 2.5rem;
-}
-
-.line {
-  line-height: 3.5rem;
-}
-
-.line-heading {
-  line-height: 4.5rem;
-}
-
-.outline {
-  outline: none !important;
-}
-
-.width-3 {
-  width: 30rem;
-}
-
-.margin-3vw {
-  margin-left: 3vw;
-}
-.margin-2vw {
-  margin: 0 2vw;
-}
-.height-career {
-  height: 22rem;
-  width: 30rem;
-}
-.height-career {
-  height: 17rem;
-  width: 25rem;
-}
-
-.select-width {
-  width: 20rem;
-}
-
-.shadow-even {
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
 }
 
 .scroll {
