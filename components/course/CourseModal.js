@@ -44,7 +44,7 @@ const CourseModal = props => {
       }
     }
   }, course && /*#__PURE__*/_react.default.createElement("div", {
-    className: "p-0 md:p-6 font-Poppins"
+    className: "p-0 md:p-3 font-Poppins"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex flex-between flex-col gap-8 md:flex-row"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -65,11 +65,11 @@ const CourseModal = props => {
       }
     }
   }, /*#__PURE__*/_react.default.createElement("span", {
-    class: "bg-white text-base rounded-lg p-2 shadow-lg border font-semibold"
+    class: "bg-white text-sm rounded-lg p-2 shadow-lg border font-semibold"
   }, categoryName))))), /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full md:w-1/2"
   }, /*#__PURE__*/_react.default.createElement("h2", {
-    className: "text-4xl font-semibold leading-10 text-japanese_indigo mb-6"
+    className: "text-3xl font-semibold leading-10 text-japanese_indigo mb-6"
   }, displayName), /*#__PURE__*/_react.default.createElement("div", {
     class: "flex flex-row justify-between mb-6"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -106,28 +106,28 @@ const CourseModal = props => {
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "red-dark mr-2"
   }, "NSQF"), /*#__PURE__*/_react.default.createElement("span", null, nsqf_lvl || "NA"))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-3xl mb-6"
+    className: "text-md mb-1"
   }, /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-medium mr-3 text-japanese_indigo"
+    className: "font-semibold mr-3 text-japanese_indigo"
   }, "Course Structure:", " "), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), digitalContentDuration && /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-3xl mb-6"
+    className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-medium mr-3 text-japanese_indigo"
+    className: "font-semibold mr-3 text-japanese_indigo"
   }, "Digital Content Duration:"), /*#__PURE__*/_react.default.createElement("span", null, digitalContentDuration, " hours")), liveClassDuration && /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-3xl mb-6"
+    className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-medium mr-3 "
+    className: "font-semibold mr-3 "
   }, "Live Class Duration:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration)), /*#__PURE__*/_react.default.createElement("a", {
     href: _Context.default.course.getCoursePurchaseURL(course.id),
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "bg-orange hover:opacity-90 text-white font-semibold rounded-lg p-5 mt-6 w-full md:w-auto"
+    className: "bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-6 w-full md:w-auto"
   }, "Get Enrolled for ", cost ? "\u20B9".concat(cost, " Only") : "Free")))), description && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
-    className: "text-4xl font-semibold leading-10 text-japanese_indigo mt-8 mb-4"
+    className: "text-2xl font-semibold leading-10 text-japanese_indigo mt-8 mb-1"
   }, "About the Course:"), /*#__PURE__*/_react.default.createElement("p", null, description)), /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex flex-col md:flex-row justify-center py-6 md:mt-3"
+    className: "flex flex-col md:flex-row justify-center pt-6 md:mt-3"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "bg-japanese_indigo-light text-japanese_indigo font-semibold py-4 px-8 mx-3 my-2 rounded-lg",
+    className: "bg-japanese_indigo-light text-japanese_indigo font-semibold py-3 px-6 mx-3 my-2 rounded-lg",
     onClick: onClose
   }, "Close"), /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => {
@@ -136,7 +136,7 @@ const CourseModal = props => {
         onClose();
       }
     },
-    className: "bg-japanese_indigo-light text-japanese_indigo font-semibold py-4 px-8 mx-3 my-2 rounded-lg w-full md:w-auto"
+    className: "bg-japanese_indigo-light text-japanese_indigo font-semibold py-3 px-6 mx-3 my-2 rounded-lg w-full md:w-auto"
   }, "See More Details"))));
 };
 

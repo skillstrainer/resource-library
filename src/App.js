@@ -1,4 +1,5 @@
 import "./App.css";
+import "./lib/styles.css";
 import { CourseCard } from "./lib";
 
 function App() {
@@ -76,7 +77,7 @@ function App() {
 
   return (
     <>
-      <div className="m-4 grid grid-cols-4">
+      <div className="m-4 grid grid-cols-3">
         <CourseCard data={courseData} />
       </div>
     </>

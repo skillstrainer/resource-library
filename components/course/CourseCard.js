@@ -64,7 +64,7 @@ function CourseCard(props) {
     src: courseImg && courseImg.url ? courseImg.url : courseImg,
     alt: "course-img"
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "absolute top-4 left-2"
+    className: "absolute top-2 left-2"
   }, /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       if (goToCategoryPage) {
@@ -72,16 +72,16 @@ function CourseCard(props) {
         goToCategoryPage();
       }
     },
-    className: "bg-white text-base rounded-lg p-2 shadow-lg border font-semibold"
+    className: "bg-white text-xs rounded-lg p-2 shadow-lg border font-semibold"
   }, categoryName)))), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex flex-col justify-between h-full p-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "h-full"
   }, /*#__PURE__*/_react.default.createElement("h1", {
-    className: "text-2xl mt-6 mb-6 font-semibold text-gray-600",
+    className: "text-lg mt-1 mb-6 font-bold text-gray-600",
     title: displayName
   }, displayName)), /*#__PURE__*/_react.default.createElement("div", {
-    className: "w-full text-xl mx-auto"
+    className: "w-full text-sm mx-auto"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex flex-row justify-between"
   }, /*#__PURE__*/_react.default.createElement("p", {
@@ -151,8 +151,8 @@ function CourseCard(props) {
     onClick: _dom.stopPropagation,
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full font-2xl bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
+    className: "w-full font-xl bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost == 0 ? "Free" : cost ? "\u20B9 ".concat(cost) : "6,000"))))));
+  }, cost == 0 ? "Free" : "\u20B9 ".concat(cost || "6,000")))))));
 }

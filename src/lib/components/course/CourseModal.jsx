@@ -29,7 +29,7 @@ const CourseModal = (props) => {
       }}
     >
       {course && (
-        <div className="p-0 md:p-6 font-Poppins">
+        <div className="p-0 md:p-3 font-Poppins">
           <div className="flex flex-between flex-col gap-8 md:flex-row">
             <div className="w-full md:w-1/2">
               <div class="relative">
@@ -47,7 +47,7 @@ const CourseModal = (props) => {
                       }
                     }}
                   >
-                    <span class="bg-white text-base rounded-lg p-2 shadow-lg border font-semibold">
+                    <span class="bg-white text-sm rounded-lg p-2 shadow-lg border font-semibold">
                       {categoryName}
                     </span>
                   </button>
@@ -55,7 +55,7 @@ const CourseModal = (props) => {
               </div>
             </div>
             <div className="w-full md:w-1/2">
-              <h2 className="text-4xl font-semibold leading-10 text-japanese_indigo mb-6">
+              <h2 className="text-3xl font-semibold leading-10 text-japanese_indigo mb-6">
                 {displayName}
               </h2>
               <div class="flex flex-row justify-between mb-6">
@@ -92,8 +92,8 @@ const CourseModal = (props) => {
                   <span>{nsqf_lvl || "NA"}</span>
                 </a>
               </div>
-              <div className="text-3xl mb-6">
-                <span className="font-medium mr-3 text-japanese_indigo">
+              <div className="text-md mb-1">
+                <span className="font-semibold mr-3 text-japanese_indigo">
                   Course Structure:{" "}
                 </span>
                 <span>
@@ -103,16 +103,16 @@ const CourseModal = (props) => {
                 </span>
               </div>
               {digitalContentDuration && (
-                <div className="text-3xl mb-6">
-                  <span className="font-medium mr-3 text-japanese_indigo">
+                <div className="text-md mb-3">
+                  <span className="font-semibold mr-3 text-japanese_indigo">
                     Digital Content Duration:
                   </span>
                   <span>{digitalContentDuration} hours</span>
                 </div>
               )}
               {liveClassDuration && (
-                <div className="text-3xl mb-6">
-                  <span className="font-medium mr-3 ">
+                <div className="text-md mb-3">
+                  <span className="font-semibold mr-3 ">
                     Live Class Duration:
                   </span>
                   <span>{liveClassDuration}</span>
@@ -122,7 +122,7 @@ const CourseModal = (props) => {
                 href={STRLService.course.getCoursePurchaseURL(course.id)}
                 target="_blank"
               >
-                <button className="bg-orange hover:opacity-90 text-white font-semibold rounded-lg p-5 mt-6 w-full md:w-auto">
+                <button className="bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-6 w-full md:w-auto">
                   Get Enrolled for {cost ? `₹${cost} Only` : `Free`}
                 </button>
               </a>
@@ -130,15 +130,15 @@ const CourseModal = (props) => {
           </div>
           {description && (
             <div>
-              <h2 className="text-4xl font-semibold leading-10 text-japanese_indigo mt-8 mb-4">
+              <h2 className="text-2xl font-semibold leading-10 text-japanese_indigo mt-8 mb-1">
                 About the Course:
               </h2>
               <p>{description}</p>
             </div>
           )}
-          <div className="flex flex-col md:flex-row justify-center py-6 md:mt-3">
+          <div className="flex flex-col md:flex-row justify-center pt-6 md:mt-3">
             <button
-              className="bg-japanese_indigo-light text-japanese_indigo font-semibold py-4 px-8 mx-3 my-2 rounded-lg"
+              className="bg-japanese_indigo-light text-japanese_indigo font-semibold py-3 px-6 mx-3 my-2 rounded-lg"
               onClick={onClose}
             >
               Close
@@ -150,7 +150,7 @@ const CourseModal = (props) => {
                   onClose();
                 }
               }}
-              className="bg-japanese_indigo-light text-japanese_indigo font-semibold py-4 px-8 mx-3 my-2 rounded-lg w-full md:w-auto"
+              className="bg-japanese_indigo-light text-japanese_indigo font-semibold py-3 px-6 mx-3 my-2 rounded-lg w-full md:w-auto"
             >
               See More Details
             </button>

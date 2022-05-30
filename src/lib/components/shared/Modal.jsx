@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function Modal(props) {
   const { isOpen, onClose, children, noBody, innerContainer } = props;
@@ -64,6 +64,7 @@ export default function Modal(props) {
               viewBox="0 0 24 24"
               stroke="currentColor"
               onClick={onClose || (() => {})}
+              style={{ height: "1.5rem", width: "1.5rem" }}
             >
               <path
                 strokeLinecap="round"

@@ -49,11 +49,6 @@ export default function useCourseService() {
     image: obj.image_url,
   });
 
-  module.exports = {
-    courseFormatter,
-    catFormatter,
-  };
-
   return [
     {
       // Course Modal

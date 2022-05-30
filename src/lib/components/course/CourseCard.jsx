@@ -17,6 +17,7 @@ export default function CourseCard(props) {
     },
     goToDetailPage,
     goToCategoryPage,
+
     // If course is purchased
     isPurchased,
     viewCourse = () => {},
@@ -54,7 +55,7 @@ export default function CourseCard(props) {
             src={courseImg && courseImg.url ? courseImg.url : courseImg}
             alt="course-img"
           />
-          <div className="absolute top-4 left-2">
+          <div className="absolute top-2 left-2">
             <button
               onClick={(e) => {
                 if (goToCategoryPage) {
@@ -62,7 +63,7 @@ export default function CourseCard(props) {
                   goToCategoryPage();
                 }
               }}
-              className="bg-white text-base rounded-lg p-2 shadow-lg border font-semibold"
+              className="bg-white text-xs rounded-lg p-2 shadow-lg border font-semibold"
             >
               {categoryName}
             </button>
@@ -73,14 +74,14 @@ export default function CourseCard(props) {
       <div className="flex flex-col justify-between h-full p-2">
         <div className="h-full">
           <h1
-            className="text-2xl mt-6 mb-6 font-semibold text-gray-600"
+            className="text-lg mt-1 mb-6 font-bold text-gray-600"
             title={displayName}
           >
             {displayName}
           </h1>
         </div>
 
-        <div className="w-full text-xl mx-auto">
+        <div className="w-full text-sm mx-auto">
           <div className="flex flex-row justify-between">
             <p className="">{course_type}</p>
             <a
@@ -159,10 +160,10 @@ export default function CourseCard(props) {
               onClick={stopPropagation}
               target="_blank"
             >
-              <button className="w-full font-2xl bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg">
+              <button className="w-full font-xl bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
-                  {cost == 0 ? "Free" : cost ? `₹ ${cost}` : "6,000"}
+                  {cost == 0 ? "Free" : `₹ ${cost || "6,000"}`}
                 </span>
               </button>
             </a>
