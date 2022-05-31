@@ -8,6 +8,9 @@ import CourseModal from "./components/course/CourseModal";
 import CourseDetailPage from "./components/course/CourseDetailPage";
 
 // Multi lang
+import MultiLangContextProvider, {
+  MultiLangContext,
+} from "./components/multi-lang/MultiLangContext";
 import MultiLangBody from "./components/multi-lang/MultiLangBody";
 import MultiLangField from "./components/multi-lang/MultiLangField";
 import MultiLangFieldMd from "./components/multi-lang/MultiLangFieldMd";
@@ -26,6 +29,8 @@ export {
   CourseModal,
   CourseDetailPage,
   // Multi Lang
+  MultiLangContextProvider,
+  MultiLangContext,
   MultiLangBody,
   MultiLangField,
   MultiLangFieldMd,

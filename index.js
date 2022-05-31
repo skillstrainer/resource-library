@@ -35,6 +35,18 @@ Object.defineProperty(exports, "MultiLangBody", {
     return _MultiLangBody.default;
   }
 });
+Object.defineProperty(exports, "MultiLangContext", {
+  enumerable: true,
+  get: function get() {
+    return _MultiLangContext.MultiLangContext;
+  }
+});
+Object.defineProperty(exports, "MultiLangContextProvider", {
+  enumerable: true,
+  get: function get() {
+    return _MultiLangContext.default;
+  }
+});
 Object.defineProperty(exports, "MultiLangField", {
   enumerable: true,
   get: function get() {
@@ -75,6 +87,8 @@ var _CourseCard = _interopRequireDefault(require("./components/course/CourseCard
 var _CourseModal = _interopRequireDefault(require("./components/course/CourseModal"));
 
 var _CourseDetailPage = _interopRequireDefault(require("./components/course/CourseDetailPage"));
+
+var _MultiLangContext = _interopRequireWildcard(require("./components/multi-lang/MultiLangContext"));
 
 var _MultiLangBody = _interopRequireDefault(require("./components/multi-lang/MultiLangBody"));
 
