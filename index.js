@@ -11,6 +11,12 @@ Object.defineProperty(exports, "CourseCard", {
     return _CourseCard.default;
   }
 });
+Object.defineProperty(exports, "CourseDetailPage", {
+  enumerable: true,
+  get: function get() {
+    return _CourseDetailPage.default;
+  }
+});
 Object.defineProperty(exports, "CourseModal", {
   enumerable: true,
   get: function get() {
@@ -62,11 +68,13 @@ Object.defineProperty(exports, "STRLService", {
 
 var _Modal = _interopRequireDefault(require("./components/shared/Modal"));
 
+var _Context = _interopRequireWildcard(require("./Context"));
+
 var _CourseCard = _interopRequireDefault(require("./components/course/CourseCard"));
 
 var _CourseModal = _interopRequireDefault(require("./components/course/CourseModal"));
 
-var _Context = _interopRequireWildcard(require("./Context"));
+var _CourseDetailPage = _interopRequireDefault(require("./components/course/CourseDetailPage"));
 
 var _MultiLangBody = _interopRequireDefault(require("./components/multi-lang/MultiLangBody"));
 

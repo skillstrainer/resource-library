@@ -1,10 +1,11 @@
 // Basic
 import Modal from "./components/shared/Modal";
+import STRLService, { STRLContextProvider } from "./Context";
 
 // Course
 import CourseCard from "./components/course/CourseCard";
 import CourseModal from "./components/course/CourseModal";
-import STRLService, { STRLContextProvider } from "./Context";
+import CourseDetailPage from "./components/course/CourseDetailPage";
 
 // Multi lang
 import MultiLangBody from "./components/multi-lang/MultiLangBody";
@@ -23,6 +24,7 @@ export {
   // Course
   CourseCard,
   CourseModal,
+  CourseDetailPage,
   // Multi Lang
   MultiLangBody,
   MultiLangField,
