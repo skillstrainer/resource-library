@@ -5,13 +5,6 @@ import _ from "lodash";
 export const MultiLangBodyContext = createContext();
 
 export default function MultiLangBody(props) {
-  /*
-    If context exists: Act as a form
-      - Listen to submit signal
-      - Fetch data via key
-    Else: Act as a template
-      - Fetch data via props
-  */
   const { _key: key } = props;
 
   const {

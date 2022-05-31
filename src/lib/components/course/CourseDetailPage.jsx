@@ -18,7 +18,8 @@ import newLogo from "../../assets/image/newLogo.svg";
 
 function CourseDetailPage(props) {
   const {
-    data: courseData,
+    courseData,
+    multiLangData,
     multiLangKey = "",
     goToCategoryPage = () => {},
   } = props;
@@ -38,7 +39,7 @@ function CourseDetailPage(props) {
   } = courseData || {};
 
   return (
-    <MultiLangBody _key={multiLangKey}>
+    <MultiLangBody _key={multiLangKey} data={multiLangData}>
       <section>
         <div className="relative pt-56">
           <img

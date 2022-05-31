@@ -30,13 +30,6 @@ const MultiLangBodyContext = /*#__PURE__*/(0, _react.createContext)();
 exports.MultiLangBodyContext = MultiLangBodyContext;
 
 function MultiLangBody(props) {
-  /*
-    If context exists: Act as a form
-      - Listen to submit signal
-      - Fetch data via key
-    Else: Act as a template
-      - Fetch data via props
-  */
   const {
     _key: key
   } = props;

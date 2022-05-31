@@ -37,7 +37,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Images
 function CourseDetailPage(props) {
   const {
-    data: courseData,
+    courseData,
+    multiLangData,
     multiLangKey = "",
     goToCategoryPage = () => {}
   } = props;
@@ -55,7 +56,8 @@ function CourseDetailPage(props) {
     partners
   } = courseData || {};
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
-    _key: multiLangKey
+    _key: multiLangKey,
+    data: multiLangData
   }, /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "relative pt-56"
   }, /*#__PURE__*/_react.default.createElement("img", {
