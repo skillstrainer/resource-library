@@ -8,7 +8,28 @@ import { STRLContextProvider } from "./lib/Context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <STRLContextProvider>
+    <STRLContextProvider
+      multiLang={{
+        initialData: {
+          user1: {
+            key: "user1",
+            id: 1,
+            content: {
+              name: "Abhishek Challa",
+              age: "21",
+            },
+          },
+          user2: {
+            key: "user2",
+            id: 2,
+            content: {
+              name: "Abhishek Challa",
+              age: "21",
+            },
+          },
+        },
+      }}
+    >
       <App />
     </STRLContextProvider>
   </React.StrictMode>

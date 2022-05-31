@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { stopPropagation } from "../../utils/dom";
-import STRLService, { STRLContext } from "../../Context";
+import STRLService from "../../Context";
 
 export default function CourseCard(props) {
   const {

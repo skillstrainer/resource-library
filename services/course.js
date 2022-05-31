@@ -15,8 +15,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _CourseModal = _interopRequireDefault(require("../components/course/CourseModal"));
 
-var _config = require("../config");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -25,8 +23,11 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function useCourseService() {
-  // Course modal
+function useCourseService(config) {
+  const {
+    webappHost
+  } = config.request || {}; // Course modal
+
   const [courseModalConfig, setCourseModalConfig] = (0, _react.useState)();
   const [isCourseModalOpen, setIsCourseModalOpen] = (0, _react.useState)(false);
 
@@ -50,7 +51,7 @@ function useCourseService() {
   }; // Misc
 
 
-  const getCoursePurchaseURL = courseId => "".concat(_config.webappHost, "/buy-course/").concat(courseId);
+  const getCoursePurchaseURL = courseId => "".concat(webappHost, "/buy-course/").concat(courseId);
 
   const courseFormatter = obj => ({
     categoryName: obj.course_category.name,

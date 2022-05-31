@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3030 react-scripts start",
     "build": "bash build.sh",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -27,23 +27,28 @@
     ]
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "@headlessui/react": "^1.6.4",
+    "@heroicons/react": "^1.0.6",
+    "axios": "^0.27.2",
+    "lodash": "^4.17.21",
+    "react-markdown": "^8.0.3",
+    "rxjs": "^7.5.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.2",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.18.2",
-    "autoprefixer": "^10.4.7",
-    "cssnano": "^5.1.9",
-    "postcss-cli": "^9.1.0",
-    "tailwindcss": "^3.0.24",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-scripts": "5.0.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "autoprefixer": "^10.4.7",
+    "cssnano": "^5.1.9",
+    "postcss-cli": "^9.1.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-scripts": "5.0.1",
+    "tailwindcss": "^3.0.24",
     "web-vitals": "^2.1.4"
   }
 }

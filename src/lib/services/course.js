@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import CourseModal from "../components/course/CourseModal";
-import { webappHost } from "../config";
 
-export default function useCourseService() {
+export default function useCourseService(config) {
+  const { webappHost } = config.request || {};
+
   // Course modal
   const [courseModalConfig, setCourseModalConfig] = useState();
   const [isCourseModalOpen, setIsCourseModalOpen] = useState(false);

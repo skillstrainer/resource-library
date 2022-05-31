@@ -23,6 +23,30 @@ Object.defineProperty(exports, "Modal", {
     return _Modal.default;
   }
 });
+Object.defineProperty(exports, "MultiLangBody", {
+  enumerable: true,
+  get: function get() {
+    return _MultiLangBody.default;
+  }
+});
+Object.defineProperty(exports, "MultiLangField", {
+  enumerable: true,
+  get: function get() {
+    return _MultiLangField.default;
+  }
+});
+Object.defineProperty(exports, "MultiLangFieldImage", {
+  enumerable: true,
+  get: function get() {
+    return _MultiLangFieldImage.default;
+  }
+});
+Object.defineProperty(exports, "MultiLangFieldMd", {
+  enumerable: true,
+  get: function get() {
+    return _MultiLangFieldMd.default;
+  }
+});
 Object.defineProperty(exports, "STRLContextProvider", {
   enumerable: true,
   get: function get() {
@@ -43,6 +67,14 @@ var _CourseCard = _interopRequireDefault(require("./components/course/CourseCard
 var _CourseModal = _interopRequireDefault(require("./components/course/CourseModal"));
 
 var _Context = _interopRequireWildcard(require("./Context"));
+
+var _MultiLangBody = _interopRequireDefault(require("./components/multi-lang/MultiLangBody"));
+
+var _MultiLangField = _interopRequireDefault(require("./components/multi-lang/MultiLangField"));
+
+var _MultiLangFieldMd = _interopRequireDefault(require("./components/multi-lang/MultiLangFieldMd"));
+
+var _MultiLangFieldImage = _interopRequireDefault(require("./components/multi-lang/MultiLangFieldImage"));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 

@@ -1,6 +1,8 @@
 import "./App.css";
 import "./lib/styles.css";
 import { CourseCard } from "./lib";
+import MultiLangBody from "./lib/components/multi-lang/MultiLangBody";
+import MultiLangField from "./lib/components/multi-lang/MultiLangField";
 
 function App() {
   const courseData = {
@@ -76,11 +78,16 @@ function App() {
   };
 
   return (
-    <>
-      <div className="m-4 grid grid-cols-3">
-        <CourseCard data={courseData} />
-      </div>
-    </>
+    <div>
+      <MultiLangBody _key={"user1"}>
+        <li>
+          Name: <MultiLangField name="name" />
+        </li>
+        <li>
+          Age: <MultiLangField name="age" />
+        </li>
+      </MultiLangBody>
+    </div>
   );
 }
 
