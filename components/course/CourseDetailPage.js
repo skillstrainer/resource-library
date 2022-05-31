@@ -55,8 +55,7 @@ function CourseDetailPage(props) {
     partners
   } = courseData || {};
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
-    _key: multiLangKey,
-    data: courseData
+    _key: multiLangKey
   }, /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "relative pt-56"
   }, /*#__PURE__*/_react.default.createElement("img", {

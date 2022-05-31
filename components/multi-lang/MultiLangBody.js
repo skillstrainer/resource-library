@@ -55,7 +55,7 @@ function MultiLangBody(props) {
   const setData = (newData, action) => setAllData(key, newData, action);
 
   (0, _react.useEffect)(() => {
-    if (isInEditableMode) loadContent({
+    if (isInEditableMode && key) loadContent({
       key
     }).then(res => setData(res || {}, {
       key,
@@ -67,7 +67,7 @@ function MultiLangBody(props) {
 
   (0, _react.useEffect)(() => {
     // Re-subscribing with the updated function (with updated closure)
-    if (isInEditableMode) {
+    if (isInEditableMode && key) {
       if (subscriptionRef.current) subscriptionRef.current.unsubscribe();
       subscriptionRef.current = submitSignal.subscribe(() => submitContent(_objectSpread(_objectSpread({}, data), {}, {
         key

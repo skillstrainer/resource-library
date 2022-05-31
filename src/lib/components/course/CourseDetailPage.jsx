@@ -38,7 +38,7 @@ function CourseDetailPage(props) {
   } = courseData || {};
 
   return (
-    <MultiLangBody _key={multiLangKey} data={courseData}>
+    <MultiLangBody _key={multiLangKey}>
       <section>
         <div className="relative pt-56">
           <img

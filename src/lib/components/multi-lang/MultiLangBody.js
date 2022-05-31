@@ -29,7 +29,7 @@ export default function MultiLangBody(props) {
   const setData = (newData, action) => setAllData(key, newData, action);
 
   useEffect(() => {
-    if (isInEditableMode)
+    if (isInEditableMode && key)
       loadContent({ key }).then((res) =>
         setData(res || {}, {
           key,
@@ -41,7 +41,7 @@ export default function MultiLangBody(props) {
   // Subscribing to submission signal
   useEffect(() => {
     // Re-subscribing with the updated function (with updated closure)
-    if (isInEditableMode) {
+    if (isInEditableMode && key) {
       if (subscriptionRef.current) subscriptionRef.current.unsubscribe();
       subscriptionRef.current = submitSignal.subscribe(() =>
         submitContent({ ...data, key }).then(
