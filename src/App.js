@@ -570,8 +570,8 @@ function App() {
   };
 
   return (
-    <div>
-      <CourseDetailPage courseData={courseData} />
+    <div className="grid grid-cols-5 m-5">
+      <CourseCard data={courseData} />
     </div>
   );
 }

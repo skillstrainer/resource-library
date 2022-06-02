@@ -74,7 +74,7 @@ export default function CourseCard(props) {
       <div className="flex flex-col justify-between h-full p-2">
         <div className="h-full">
           <h1
-            className="text-lg mt-1 mb-6 font-bold text-gray-600"
+            className="text-lg mt-1 mb-6 font-semibold text-gray-600"
             title={displayName}
           >
             {displayName}
@@ -96,7 +96,7 @@ export default function CourseCard(props) {
           </div>
         </div>
 
-        <div className="flex flex-row my-2 justify-between">
+        <div className="flex flex-row my-2 justify-between text-sm">
           <p className="flex flex-row items-center justify-center">
             <svg
               stroke="currentColor"
@@ -142,14 +142,14 @@ export default function CourseCard(props) {
       </div>
 
       <div className="w-full text-right px-2">
-        <p className="text-japanese_indigo">See More Details &gt; </p>
+        <p className="text-japanese_indigo text-sm">See More Details &gt; </p>
       </div>
 
       <div className="flex item-center justify-center w-full">
         <div className="mt-6 bottom-0 mb-4">
           {isPurchased ? (
             <button
-              className="w-full font-2xl bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
+              className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
               onClick={viewCourse}
             >
               View course
@@ -160,7 +160,7 @@ export default function CourseCard(props) {
               onClick={stopPropagation}
               target="_blank"
             >
-              <button className="w-full font-xl bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+              <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
                   {cost == 0 ? "Free" : `₹ ${cost || "6,000"}`}

@@ -74,7 +74,7 @@ function CourseCard(props) {
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "h-full"
   }, /*#__PURE__*/_react.default.createElement("h1", {
-    className: "text-lg mt-1 mb-6 font-bold text-gray-600",
+    className: "text-lg mt-1 mb-6 font-semibold text-gray-600",
     title: displayName
   }, displayName)), /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full text-sm mx-auto"
@@ -90,7 +90,7 @@ function CourseCard(props) {
   }, "NSQF", " ", /*#__PURE__*/_react.default.createElement("span", {
     className: "text-black"
   }, nsqf_lvl ? nsqf_lvl : "NA")))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex flex-row my-2 justify-between"
+    className: "flex flex-row my-2 justify-between text-sm"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "flex flex-row items-center justify-center"
   }, /*#__PURE__*/_react.default.createElement("svg", {
@@ -134,20 +134,20 @@ function CourseCard(props) {
   })), students_enrolled ? students_enrolled : "34,455 Students"))), /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full text-right px-2"
   }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "text-japanese_indigo"
+    className: "text-japanese_indigo text-sm"
   }, "See More Details > ")), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex item-center justify-center w-full"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-6 bottom-0 mb-4"
   }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full font-2xl bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
     onClick: viewCourse
   }, "View course") : /*#__PURE__*/_react.default.createElement("a", {
     href: _Context.default.course.getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full font-xl bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
   }, cost == 0 ? "Free" : "\u20B9 ".concat(cost || "6,000")))))));

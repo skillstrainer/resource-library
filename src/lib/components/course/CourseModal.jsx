@@ -54,7 +54,7 @@ const CourseModal = (props) => {
                 </div>
               </div>
             </div>
-            <div className="w-full md:w-1/2">
+            <div className="w-full md:w-1/2 text-sm">
               <h2 className="text-3xl font-semibold leading-10 text-japanese_indigo mb-6">
                 {displayName}
               </h2>
@@ -122,7 +122,7 @@ const CourseModal = (props) => {
                 href={STRLService.course.getCoursePurchaseURL(course.id)}
                 target="_blank"
               >
-                <button className="bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-6 w-full md:w-auto">
+                <button className="bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg py-3 px-5 mt-6 w-full md:w-auto">
                   Get Enrolled for {cost ? `₹${cost} Only` : `Free`}
                 </button>
               </a>
@@ -136,7 +136,7 @@ const CourseModal = (props) => {
               <p>{description}</p>
             </div>
           )}
-          <div className="flex flex-col md:flex-row justify-center pt-6 md:mt-3">
+          <div className="flex flex-col md:flex-row justify-center pt-6 md:mt-3 text-sm">
             <button
               className="bg-japanese_indigo-light text-japanese_indigo font-semibold py-3 px-6 mx-3 my-2 rounded-lg"
               onClick={onClose}

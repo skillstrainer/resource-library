@@ -67,7 +67,7 @@ const CourseModal = props => {
   }, /*#__PURE__*/_react.default.createElement("span", {
     class: "bg-white text-sm rounded-lg p-2 shadow-lg border font-semibold"
   }, categoryName))))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "w-full md:w-1/2"
+    className: "w-full md:w-1/2 text-sm"
   }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-3xl font-semibold leading-10 text-japanese_indigo mb-6"
   }, displayName), /*#__PURE__*/_react.default.createElement("div", {
@@ -121,11 +121,11 @@ const CourseModal = props => {
     href: _Context.default.course.getCoursePurchaseURL(course.id),
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-6 w-full md:w-auto"
+    className: "bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg py-3 px-5 mt-6 w-full md:w-auto"
   }, "Get Enrolled for ", cost ? "\u20B9".concat(cost, " Only") : "Free")))), description && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-2xl font-semibold leading-10 text-japanese_indigo mt-8 mb-1"
   }, "About the Course:"), /*#__PURE__*/_react.default.createElement("p", null, description)), /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex flex-col md:flex-row justify-center pt-6 md:mt-3"
+    className: "flex flex-col md:flex-row justify-center pt-6 md:mt-3 text-sm"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "bg-japanese_indigo-light text-japanese_indigo font-semibold py-3 px-6 mx-3 my-2 rounded-lg",
     onClick: onClose
