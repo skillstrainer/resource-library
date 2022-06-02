@@ -56,6 +56,8 @@ function CourseCard(props) {
     duration = liveClassDuration;
   }
 
+  const url = getCoursePurchaseURL(courseId);
+  console.log(url);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2",
     onClick: () => toggleCourseModal({

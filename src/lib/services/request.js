@@ -3,7 +3,7 @@ import axios from "axios";
 import { consts } from "../config";
 
 export default function useRequestService(config) {
-  const [env, setEnvironment] = useState(config.env || "");
+  const [env, setEnvironment] = useState(config?.request?.env || "");
   const [jwtToken, setJwtToken] = useState();
   const [accessToken, setAccessToken] = useState();
 
@@ -13,7 +13,7 @@ export default function useRequestService(config) {
     Authorization: `Bearer ${jwtToken || ""}`,
   };
 
-  const vars = consts[env];
+  const vars = consts[env] || consts["dev"];
   const { apiUrl, adminApiUrl } = consts;
 
   const services = {
@@ -82,6 +82,8 @@ export default function useRequestService(config) {
       return { ...acc, [key]: networkRequests };
     }, {}),
   };
+
+  console.log(services);
 
   return [services];
 }

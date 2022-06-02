@@ -8,7 +8,12 @@ export const STRLContext = createContext();
 
 let config;
 export function STRLContextProvider(props) {
-  if (!config) config = props;
+  if (!config)
+    config = {
+      multiLang: props.multiLang,
+      course: props.course,
+      request: props.request,
+    };
   // Request services
   const [requestServices] = useRequestService(config);
   config.request = requestServices;

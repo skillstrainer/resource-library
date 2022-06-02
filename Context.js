@@ -35,7 +35,11 @@ exports.STRLContext = STRLContext;
 let config;
 
 function STRLContextProvider(props) {
-  if (!config) config = props; // Request services
+  if (!config) config = {
+    multiLang: props.multiLang,
+    course: props.course,
+    request: props.request
+  }; // Request services
 
   const [requestServices] = (0, _request.default)(config);
   config.request = requestServices; // Course services

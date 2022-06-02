@@ -28,7 +28,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function useRequestService(config) {
-  const [env, setEnvironment] = (0, _react.useState)(config.env || "");
+  var _config$request;
+
+  const [env, setEnvironment] = (0, _react.useState)((config === null || config === void 0 ? void 0 : (_config$request = config.request) === null || _config$request === void 0 ? void 0 : _config$request.env) || "");
   const [jwtToken, setJwtToken] = (0, _react.useState)();
   const [accessToken, setAccessToken] = (0, _react.useState)();
   const defaultHeaders = {
@@ -36,7 +38,7 @@ function useRequestService(config) {
     "jwt-token": jwtToken,
     Authorization: "Bearer ".concat(jwtToken || "")
   };
-  const vars = _config.consts[env];
+  const vars = _config.consts[env] || _config.consts["dev"];
   const {
     apiUrl,
     adminApiUrl
@@ -119,5 +121,6 @@ function useRequestService(config) {
     });
   }, {}));
 
+  console.log(services);
   return [services];
 }
