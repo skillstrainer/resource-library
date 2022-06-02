@@ -1,6 +1,6 @@
 // Basic
 import Modal from "./components/shared/Modal";
-import STRLService, { STRLContextProvider } from "./Context";
+import { STRLContextProvider } from "./Context";
 
 // Course
 import CourseCard from "./components/course/CourseCard";
@@ -19,8 +19,6 @@ import MultiLangFieldImage from "./components/multi-lang/MultiLangFieldImage";
 export {
   // Context
   STRLContextProvider,
-  // Service
-  STRLService,
   //
   // Basic
   Modal,

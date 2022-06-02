@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import CourseModal from "../components/course/CourseModal";
-import STRLService from "../Context";
 
 export default function useCourseService(config) {
-  const { webappHost } = STRLService.request;
+  const { webappUrl } = config.request;
 
   // Course modal
   const [courseModalConfig, setCourseModalConfig] = useState();
@@ -21,35 +20,7 @@ export default function useCourseService(config) {
 
   // Misc
   const getCoursePurchaseURL = (courseId) =>
-    `${webappHost}/buy-course/${courseId}`;
-
-  const courseFormatter = (obj) => ({
-    categoryName: obj.course_category.name,
-    categoryId: obj.course_category.id,
-    category: obj.course_category,
-    categoryImg: "",
-    courseId: obj.id,
-    shortName: obj.full_name,
-    displayName: obj.full_name,
-    description: obj.description,
-    courseImg: obj.image_url,
-    students_enrolled: obj.students_enrolled || 0,
-    digitalContentDuration: obj.duration,
-    liveClassDuration: obj.live_class_duration,
-    nsqf_lvl: obj.nsqf_level,
-    redirection_url: obj.moodle_course_url,
-    cost: obj.cost,
-    discount: obj.discount,
-    modules: obj.modules,
-    partners: obj.partners,
-  });
-
-  const catFormatter = (obj) => ({
-    numOfCourses: obj.count,
-    categoryName: obj.name,
-    id: obj.id,
-    image: obj.image_url,
-  });
+    `${webappUrl}/buy-course/${courseId}`;
 
   return [
     {
@@ -57,8 +28,6 @@ export default function useCourseService(config) {
       toggleCourseModal,
       // Misc
       getCoursePurchaseURL,
-      courseFormatter,
-      catFormatter,
     },
     [
       // Course modal

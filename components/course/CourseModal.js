@@ -1,5 +1,7 @@
 "use strict";
 
+require("core-js/modules/web.dom-collections.iterator.js");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -7,15 +9,24 @@ exports.default = void 0;
 
 require("core-js/modules/es.symbol.description.js");
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-var _Context = _interopRequireDefault(require("../../Context"));
+var _Context = require("../../Context");
 
 var _Modal = _interopRequireDefault(require("../shared/Modal"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 const CourseModal = props => {
+  const {
+    course: {
+      getCoursePurchaseURL
+    }
+  } = (0, _react.useContext)(_Context.STRLContext);
   const {
     isOpen,
     course,
@@ -118,7 +129,7 @@ const CourseModal = props => {
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold mr-3 "
   }, "Live Class Duration:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration)), /*#__PURE__*/_react.default.createElement("a", {
-    href: _Context.default.course.getCoursePurchaseURL(course.id),
+    href: getCoursePurchaseURL(course.id),
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg py-3 px-5 mt-6 w-full md:w-auto"

@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { consts } from "../config";
 
-export default function useRequestService(config, setConfig) {
-  const [env, setEnvironment] = useState("");
+export default function useRequestService(config) {
+  const [env, setEnvironment] = useState(config.env || "");
   const [jwtToken, setJwtToken] = useState();
   const [accessToken, setAccessToken] = useState();
 

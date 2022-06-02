@@ -1,8 +1,7 @@
 import React from "react";
-import STRLService from "../Context";
 
 export default function useMultiLangService(config) {
-  const { jwtToken, accessToken, adminApi } = STRLService.request;
+  const { jwtToken, accessToken, adminApi } = config.request;
 
   const services = {
     publishMarketingWebsite: () => {

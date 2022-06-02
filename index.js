@@ -71,16 +71,10 @@ Object.defineProperty(exports, "STRLContextProvider", {
     return _Context.STRLContextProvider;
   }
 });
-Object.defineProperty(exports, "STRLService", {
-  enumerable: true,
-  get: function get() {
-    return _Context.default;
-  }
-});
 
 var _Modal = _interopRequireDefault(require("./components/shared/Modal"));
 
-var _Context = _interopRequireWildcard(require("./Context"));
+var _Context = require("./Context");
 
 var _CourseCard = _interopRequireDefault(require("./components/course/CourseCard"));
 

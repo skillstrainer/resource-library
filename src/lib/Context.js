@@ -4,33 +4,30 @@ import useCourseService from "./services/course";
 import useMultiLangService from "./services/mutli-lang";
 import useRequestService from "./services/request";
 
-const STRLService = {};
 export const STRLContext = createContext();
 
+const config = {};
 export function STRLContextProvider(props) {
-  const s = STRLService;
-
-  const [config, setConfig] = useState({});
-
   // Request services
-  const [requestServices] = useRequestService(config, setConfig);
-  s.request = requestServices;
+  const [requestServices] = useRequestService(config);
+  config.request = requestServices;
 
   // Course services
-  const [courseServices, courseElements] = useCourseService(config, setConfig);
-  s.course = courseServices;
+  const [courseServices, courseElements] = useCourseService(config);
+  config.course = courseServices;
 
   // Multi lang services
-  const [multiLangServices, multiLangElements] = useMultiLangService(
-    config,
-    setConfig
-  );
-  s.multiLang = multiLangServices;
+  const [multiLangServices, multiLangElements] = useMultiLangService(config);
+  config.multiLang = multiLangServices;
 
   const elements = [...courseElements, ...multiLangElements];
 
   return (
-    <STRLContext.Provider value={{ config }}>
+    <STRLContext.Provider
+      value={{
+        ...config,
+      }}
+    >
       <MultiLangContextProvider {...(props.multiLang || {})}>
         {props.children}
         {elements}
@@ -38,5 +35,3 @@ export function STRLContextProvider(props) {
     </STRLContext.Provider>
   );
 }
-
-export default STRLService;

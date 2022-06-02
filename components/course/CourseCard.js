@@ -1,19 +1,29 @@
 "use strict";
 
+require("core-js/modules/web.dom-collections.iterator.js");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = CourseCard;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _dom = require("../../utils/dom");
 
-var _Context = _interopRequireDefault(require("../../Context"));
+var _Context = require("../../Context");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function CourseCard(props) {
+  const {
+    course: {
+      getCoursePurchaseURL,
+      toggleCourseModal
+    }
+  } = (0, _react.useContext)(_Context.STRLContext);
   const {
     data: {
       courseId,
@@ -48,7 +58,7 @@ function CourseCard(props) {
 
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2",
-    onClick: () => _Context.default.course.toggleCourseModal({
+    onClick: () => toggleCourseModal({
       data: props.data,
       goToCategoryPage,
       goToDetailPage
@@ -143,7 +153,7 @@ function CourseCard(props) {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
     onClick: viewCourse
   }, "View course") : /*#__PURE__*/_react.default.createElement("a", {
-    href: _Context.default.course.getCoursePurchaseURL(courseId),
+    href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {

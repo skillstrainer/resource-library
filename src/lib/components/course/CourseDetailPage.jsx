@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import STRLService from "../../Context";
+import { STRLContext } from "../../Context";
 import MultiLangBody from "../multi-lang/MultiLangBody";
 import MultiLangFieldMd from "../multi-lang/MultiLangFieldMd";
 import MultiLangFieldImage from "../multi-lang/MultiLangFieldImage";
@@ -17,6 +17,9 @@ import jobs from "../../assets/image/jobs.jpg";
 import newLogo from "../../assets/image/newLogo.svg";
 
 function CourseDetailPage(props) {
+  const {
+    course: { getCoursePurchaseURL },
+  } = useContext(STRLContext);
   const {
     courseData,
     multiLangData,
@@ -156,10 +159,7 @@ function CourseDetailPage(props) {
                         </MultiLangField>
                       </p>
                     </div>
-                    <a
-                      href={STRLService.course.getCoursePurchaseURL(courseId)}
-                      target="_blank"
-                    >
+                    <a href={getCoursePurchaseURL(courseId)} target="_blank">
                       <button className="bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-4 w-full md:w-auto">
                         Get Enrolled for {cost ? `₹${cost} Only` : "Free"}
                       </button>

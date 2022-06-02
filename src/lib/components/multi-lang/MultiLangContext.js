@@ -1,13 +1,22 @@
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Subject } from "rxjs";
 import _ from "lodash";
 import { resolveFileFields } from "./MultiLangFieldImage";
 import { defaultUploadFn } from "./utils/func";
-import STRLService from "../../Context";
+import { STRLContext } from "../../Context";
 
 export const MultiLangContext = createContext();
 
 export default function MultiLangContextProvider(props) {
+  const {
+    multiLang: { publishMarketingWebsite },
+  } = useContext(STRLContext);
   const {
     initialData,
     isInEditableMode,
@@ -130,7 +139,7 @@ export default function MultiLangContextProvider(props) {
         data,
         setData,
         changesSaved,
-        publishChanges: STRLService.multiLang.publishMarketingWebsite,
+        publishChanges: publishMarketingWebsite,
       }}
     >
       <div className={`toast loading ${submittingContent ? "show" : "hide"}`}>

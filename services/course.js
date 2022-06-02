@@ -9,13 +9,9 @@ exports.default = useCourseService;
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
-require("core-js/modules/es.symbol.description.js");
-
 var _react = _interopRequireWildcard(require("react"));
 
 var _CourseModal = _interopRequireDefault(require("../components/course/CourseModal"));
-
-var _Context = _interopRequireDefault(require("../Context"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,8 +23,8 @@ function _extends() { _extends = Object.assign ? Object.assign.bind() : function
 
 function useCourseService(config) {
   const {
-    webappHost
-  } = _Context.default.request; // Course modal
+    webappUrl
+  } = config.request; // Course modal
 
   const [courseModalConfig, setCourseModalConfig] = (0, _react.useState)();
   const [isCourseModalOpen, setIsCourseModalOpen] = (0, _react.useState)(false);
@@ -53,43 +49,13 @@ function useCourseService(config) {
   }; // Misc
 
 
-  const getCoursePurchaseURL = courseId => "".concat(webappHost, "/buy-course/").concat(courseId);
-
-  const courseFormatter = obj => ({
-    categoryName: obj.course_category.name,
-    categoryId: obj.course_category.id,
-    category: obj.course_category,
-    categoryImg: "",
-    courseId: obj.id,
-    shortName: obj.full_name,
-    displayName: obj.full_name,
-    description: obj.description,
-    courseImg: obj.image_url,
-    students_enrolled: obj.students_enrolled || 0,
-    digitalContentDuration: obj.duration,
-    liveClassDuration: obj.live_class_duration,
-    nsqf_lvl: obj.nsqf_level,
-    redirection_url: obj.moodle_course_url,
-    cost: obj.cost,
-    discount: obj.discount,
-    modules: obj.modules,
-    partners: obj.partners
-  });
-
-  const catFormatter = obj => ({
-    numOfCourses: obj.count,
-    categoryName: obj.name,
-    id: obj.id,
-    image: obj.image_url
-  });
+  const getCoursePurchaseURL = courseId => "".concat(webappUrl, "/buy-course/").concat(courseId);
 
   return [{
     // Course Modal
     toggleCourseModal,
     // Misc
-    getCoursePurchaseURL,
-    courseFormatter,
-    catFormatter
+    getCoursePurchaseURL
   }, [
   /*#__PURE__*/
   // Course modal

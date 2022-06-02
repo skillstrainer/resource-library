@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { stopPropagation } from "../../utils/dom";
-import STRLService from "../../Context";
+import { STRLContext } from "../../Context";
 
 export default function CourseCard(props) {
+  const {
+    course: { getCoursePurchaseURL, toggleCourseModal },
+  } = useContext(STRLContext);
   const {
     data: {
       courseId,
@@ -41,7 +44,7 @@ export default function CourseCard(props) {
     <div
       className="relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2"
       onClick={() =>
-        STRLService.course.toggleCourseModal({
+        toggleCourseModal({
           data: props.data,
           goToCategoryPage,
           goToDetailPage,
@@ -156,7 +159,7 @@ export default function CourseCard(props) {
             </button>
           ) : (
             <a
-              href={STRLService.course.getCoursePurchaseURL(courseId)}
+              href={getCoursePurchaseURL(courseId)}
               onClick={stopPropagation}
               target="_blank"
             >

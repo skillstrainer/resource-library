@@ -20,7 +20,7 @@ var _MultiLangFieldImage = require("./MultiLangFieldImage");
 
 var _func = require("./utils/func");
 
-var _Context = _interopRequireDefault(require("../../Context"));
+var _Context = require("../../Context");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38,6 +38,11 @@ const MultiLangContext = /*#__PURE__*/(0, _react.createContext)();
 exports.MultiLangContext = MultiLangContext;
 
 function MultiLangContextProvider(props) {
+  const {
+    multiLang: {
+      publishMarketingWebsite
+    }
+  } = (0, _react.useContext)(_Context.STRLContext);
   const {
     initialData,
     isInEditableMode,
@@ -177,7 +182,7 @@ function MultiLangContextProvider(props) {
       data,
       setData,
       changesSaved,
-      publishChanges: _Context.default.multiLang.publishMarketingWebsite
+      publishChanges: publishMarketingWebsite
     }
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "toast loading ".concat(submittingContent ? "show" : "hide")
