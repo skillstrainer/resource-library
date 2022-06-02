@@ -41,7 +41,7 @@ function CourseDetailPage(props) {
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
       <section>
-        <div className="relative pt-56">
+        <div className="relative pt-32">
           <img
             src={pageTopBg}
             className="absolute top-0"
@@ -50,8 +50,8 @@ function CourseDetailPage(props) {
           />
           <div className="content mx-auto bg-white" style={{ zIndex: "1" }}>
             <div className="flex justify-center">
-              <div className="px-6 py-16 md:px-16 shadow-2xl w-full">
-                <div className="flex flex-between flex-col gap-8 md:flex-row">
+              <div className="px-4 py-10 md:px-10 shadow-xl w-full">
+                <div className="flex flex-between flex-col gap-5 md:flex-row">
                   <div className="w-full md:w-2/5">
                     <div class="relative">
                       <img
@@ -61,7 +61,7 @@ function CourseDetailPage(props) {
                       />
                       <div class="absolute top-4 left-2 font-semibold">
                         <button
-                          className="bg-white text-sm rounded-lg p-2 shadow-lg border"
+                          className="bg-white text-xs font-semibold rounded-md p-1 shadow-lg border"
                           onClick={goToCategoryPage}
                         >
                           {categoryName}
@@ -70,12 +70,12 @@ function CourseDetailPage(props) {
                     </div>
                   </div>
                   <div className="w-full md:w-3/5">
-                    <h2 className="text-4xl font-semibold leading-10 text-japanese_indigo mb-6">
+                    <h2 className="text-2xl font-semibold leading-10 text-japanese_indigo mb-3">
                       <MultiLangField name="display_name">
                         {displayName}
                       </MultiLangField>
                     </h2>
-                    <div className="mb-6">
+                    <div className="mb-6 text-sm">
                       <div class="flex flex-row justify-between">
                         <div className="flex items-center">
                           <svg
@@ -118,7 +118,7 @@ function CourseDetailPage(props) {
                         </a>
                       </div>
                     </div>
-                    <div className="text-2xl mb-6">
+                    <div className="text-md mb-3">
                       <span className="font-semibold text-japanese_indigo mr-3 ">
                         Course structure:
                       </span>
@@ -130,16 +130,16 @@ function CourseDetailPage(props) {
                     </div>
                     {partners && (
                       <div>
-                        <span className="font-semibold text-japanese_indigo mr-3 text-2xl">
+                        <span className="font-semibold text-japanese_indigo mr-3 text-md">
                           Certification Partners:
                         </span>
-                        <div className="mx-2 flex flex-wrap mt-3 mb-8">
+                        <div className="mx-2 flex flex-wrap mt-3 mb-3">
                           {partners
                             .concat([{ logo: newLogo }])
                             .map(
                               (p) =>
                                 (p && p.logo && (
-                                  <img src={p.logo} className="h-10" />
+                                  <img src={p.logo} className="h-6" />
                                 )) ||
                                 null
                             )}
@@ -147,7 +147,7 @@ function CourseDetailPage(props) {
                       </div>
                     )}
                     <div>
-                      <div className="text-2xl font-semibold leading-10 text-japanese_indigo mt-8 mb-4">
+                      <div className="text-md font-semibold leading-10 text-japanese_indigo mt-3">
                         About the Course:
                       </div>
                       <p>
@@ -160,7 +160,7 @@ function CourseDetailPage(props) {
                       href={STRLService.course.getCoursePurchaseURL(courseId)}
                       target="_blank"
                     >
-                      <button className="bg-orange hover:opacity-90 text-white font-semibold rounded-lg p-5 mt-6 w-full md:w-auto">
+                      <button className="bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-4 w-full md:w-auto">
                         Get Enrolled for {cost ? `₹${cost} Only` : "Free"}
                       </button>
                     </a>
@@ -172,20 +172,20 @@ function CourseDetailPage(props) {
         </div>
       </section>
       <section>
-        <div className="content mx-auto bg-blue-grad px-6 py-16 md:px-16 mt-40">
+        <div className="content mx-auto bg-blue-grad px-4 py-10 md:px-10 mt-20">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div>
-              <h2 className="text-5xl text-center mb-10 blue-dark2 font-semibold">
+              <h2 className="text-3xl text-center mb-8 blue-dark2 font-semibold">
                 Course Modules
               </h2>
               {modules && (
-                <div className="w-full p-2 mx-auto rounded-2xl">
+                <div className="w-full p-2 mx-auto rounded-lg">
                   {modules.length > 0 &&
                     modules.map((module) => (
                       <Disclosure as="div">
                         {({ open }) => (
                           <>
-                            <Disclosure.Button className="flex justify-between w-full p-4 text-xl font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
+                            <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
                               <span
                                 className="text-japanese_indigo font-semibold"
                                 dangerouslySetInnerHTML={{
@@ -201,11 +201,11 @@ function CourseDetailPage(props) {
                               )}
                             </Disclosure.Button>
                             {module.modules?.length > 0 && (
-                              <Disclosure.Panel className="px-4 pt-4 pb-2 text-xl text-gray-500">
-                                <ul className="ml-4">
+                              <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
+                                <ul className="ml-3">
                                   {module.modules.map((item) => (
                                     <li
-                                      className="bg-white rounded-lg p-4 mb-4 text-black"
+                                      className="bg-white rounded-lg p-3 mb-1 text-black"
                                       style={{ listStyle: "disc" }}
                                       dangerouslySetInnerHTML={{
                                         __html: item.name,
@@ -223,7 +223,7 @@ function CourseDetailPage(props) {
               )}
             </div>
             <div>
-              <h2 className="text-5xl text-center mb-10 blue-dark2 font-semibold">
+              <h2 className="text-3xl text-center mb-8 blue-dark2 font-semibold">
                 Certificate You Will Get
               </h2>
               <div className="relative">
@@ -249,26 +249,28 @@ function CourseDetailPage(props) {
         </div>
       </section>
       <section>
-        <div className="content mx-auto px-6 py-16 pt-40 md:px-16 shadow-2xl flex justify-content w-full">
+        <div className="content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full">
           <div className="w-full md:w-1/2">
-            <h2 className="text-5xl font-semibold text-gray-800 blue-dark2 mb-10">
+            <h2 className="text-3xl font-semibold text-gray-800 blue-dark2 mb-5">
               Job / Work Opportunities:
             </h2>
-            <MultiLangFieldMd
-              name="job_opportunities"
-              defaultValue={
-                "Jobs and Opportunities are coming your way very soon. Stay tuned!\n"
-              }
-              editor={{
-                dims: {
-                  width: "calc(100% - 20px)",
-                  height: "calc(100% - 150px)",
-                },
-              }}
-            />
+            <div className="text-sm">
+              <MultiLangFieldMd
+                name="job_opportunities"
+                defaultValue={
+                  "Jobs and Opportunities are coming your way very soon. Stay tuned!\n"
+                }
+                editor={{
+                  dims: {
+                    width: "calc(100% - 20px)",
+                    height: "calc(100% - 150px)",
+                  },
+                }}
+              />
+            </div>
             <button
               disabled={true}
-              className="bg-orange opacity-60 text-white font-semibold rounded-lg p-5 mt-10 w-full md:w-auto"
+              className="bg-orange opacity-60 text-white font-semibold rounded-md text-sm p-3 mt-10 w-full md:w-auto"
             >
               View Jobs
             </button>
