@@ -55,7 +55,9 @@ function MultiLangFieldMd(props) {
       height: "auto"
     }, (editor === null || editor === void 0 ? void 0 : editor.dims) || {}) : {
       height: "0",
-      width: "0"
+      width: "0",
+      padding: "0",
+      border: "0"
     },
     ref: textareaRef
   }), /*#__PURE__*/_react.default.createElement("div", {

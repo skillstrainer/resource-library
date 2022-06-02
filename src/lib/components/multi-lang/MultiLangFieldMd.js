@@ -38,6 +38,8 @@ export default function MultiLangFieldMd(props) {
             : {
                 height: "0",
                 width: "0",
+                padding: "0",
+                border: "0",
               }
         }
         ref={textareaRef}

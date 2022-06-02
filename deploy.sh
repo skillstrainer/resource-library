@@ -6,7 +6,7 @@ WEBAPP_PATH='../webapp'
 ADMIN_PANEL_PATH='../admin'
 MARKETING_WEBSITE_PATH='../marketing-website/ui'
 
-if [ -z '$COMMIT_MESSAGE' ];
+if [ -z "$COMMIT_MESSAGE" ];
   then
     echo "Error: Please provide a commit message"
     echo "Usage: bash deploy.sh '<commit_message>'"
@@ -20,7 +20,7 @@ yarn build
 # Deploy
 echo "\n\n\nDeploying to git"
 git add .
-git commit -m '$COMMIT_MESSAGE'
+git commit -m "$COMMIT_MESSAGE"
 git push
 
 # Update in other repositories
