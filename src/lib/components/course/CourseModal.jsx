@@ -8,6 +8,7 @@ const CourseModal = (props) => {
   } = useContext(STRLContext);
   const { isOpen, course, onClose, goToCategoryPage, goToDetailPage } = props;
   const {
+    courseId,
     categoryName,
     displayName,
     courseImg,
@@ -121,7 +122,7 @@ const CourseModal = (props) => {
                   <span>{liveClassDuration}</span>
                 </div>
               )}
-              <a href={getCoursePurchaseURL(course.id)} target="_blank">
+              <a href={getCoursePurchaseURL(courseId)} target="_blank">
                 <button className="bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg py-3 px-5 mt-6 w-full md:w-auto">
                   Get Enrolled for {cost ? `₹${cost} Only` : `Free`}
                 </button>

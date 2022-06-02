@@ -6,8 +6,9 @@ import useRequestService from "./services/request";
 
 export const STRLContext = createContext();
 
-const config = {};
+let config;
 export function STRLContextProvider(props) {
+  if (!config) config = props;
   // Request services
   const [requestServices] = useRequestService(config);
   config.request = requestServices;

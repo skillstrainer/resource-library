@@ -13,10 +13,8 @@ export default function useRequestService(config) {
     Authorization: `Bearer ${jwtToken || ""}`,
   };
 
-  const [vars, setVars] = useState({});
+  const vars = consts[env];
   const { apiUrl, adminApiUrl } = consts;
-
-  useEffect(() => setVars(consts[env || "dev"] || consts["dev"]), [env]);
 
   const services = {
     // Config updater

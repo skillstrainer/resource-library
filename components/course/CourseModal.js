@@ -35,6 +35,7 @@ const CourseModal = props => {
     goToDetailPage
   } = props;
   const {
+    courseId,
     categoryName,
     displayName,
     courseImg,
@@ -129,7 +130,7 @@ const CourseModal = props => {
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold mr-3 "
   }, "Live Class Duration:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration)), /*#__PURE__*/_react.default.createElement("a", {
-    href: getCoursePurchaseURL(course.id),
+    href: getCoursePurchaseURL(courseId),
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg py-3 px-5 mt-6 w-full md:w-auto"

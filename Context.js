@@ -32,10 +32,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 const STRLContext = /*#__PURE__*/(0, _react.createContext)();
 exports.STRLContext = STRLContext;
-const config = {};
+let config;
 
 function STRLContextProvider(props) {
-  // Request services
+  if (!config) config = props; // Request services
+
   const [requestServices] = (0, _request.default)(config);
   config.request = requestServices; // Course services
 
