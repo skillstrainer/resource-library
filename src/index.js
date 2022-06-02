@@ -8,7 +8,7 @@ import TestApp from "./test";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <STRLContextProvider>
+    <STRLContextProvider request={{ env: "production" }}>
       <App />
     </STRLContextProvider>
     {/* <TestApp /> */}

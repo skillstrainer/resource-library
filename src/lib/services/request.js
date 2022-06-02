@@ -83,7 +83,5 @@ export default function useRequestService(config) {
     }, {}),
   };
 
-  console.log(services);
-
   return [services];
 }
