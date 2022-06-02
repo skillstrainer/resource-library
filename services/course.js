@@ -15,6 +15,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _CourseModal = _interopRequireDefault(require("../components/course/CourseModal"));
 
+var _Context = _interopRequireDefault(require("../Context"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -26,7 +28,7 @@ function _extends() { _extends = Object.assign ? Object.assign.bind() : function
 function useCourseService(config) {
   const {
     webappHost
-  } = config.request || {}; // Course modal
+  } = _Context.default.request; // Course modal
 
   const [courseModalConfig, setCourseModalConfig] = (0, _react.useState)();
   const [isCourseModalOpen, setIsCourseModalOpen] = (0, _react.useState)(false);

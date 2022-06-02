@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import CourseModal from "../components/course/CourseModal";
+import STRLService from "../Context";
 
 export default function useCourseService(config) {
-  const { webappHost } = config.request || {};
+  const { webappHost } = STRLService.request;
 
   // Course modal
   const [courseModalConfig, setCourseModalConfig] = useState();

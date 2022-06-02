@@ -41,7 +41,7 @@ function useRequestService(config, setConfig) {
     apiUrl,
     adminApiUrl
   } = _config.consts;
-  (0, _react.useEffect)(() => setVars(_config.consts[env]), [env]);
+  (0, _react.useEffect)(() => setVars(_config.consts[env || "dev"] || _config.consts["dev"]), [env]);
 
   const services = _objectSpread(_objectSpread({
     // Config updater

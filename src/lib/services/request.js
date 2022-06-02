@@ -16,7 +16,7 @@ export default function useRequestService(config, setConfig) {
   const [vars, setVars] = useState({});
   const { apiUrl, adminApiUrl } = consts;
 
-  useEffect(() => setVars(consts[env]), [env]);
+  useEffect(() => setVars(consts[env || "dev"] || consts["dev"]), [env]);
 
   const services = {
     // Config updater
