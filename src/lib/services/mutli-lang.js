@@ -9,7 +9,7 @@ export default function useMultiLangService(config) {
         alert(
           "Couldn't perform request. One of the tokens (JWT or Access Token) is missing"
         );
-      else
+      else {
         return adminApi
           .makeGetRequest(`publish_changes`)
           .then(
@@ -24,6 +24,7 @@ export default function useMultiLangService(config) {
               console.log(err) ||
               alert("An error occured while publishing changes")
           );
+      }
     },
   };
 

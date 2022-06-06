@@ -6,8 +6,8 @@ export default function useRequestService(config) {
   const reqConf = config?.request || {};
   const [env, setEnvironment] = useState(reqConf.env || "");
 
-  const [jwtToken, setJwtToken] = useState();
-  const [accessToken, setAccessToken] = useState();
+  const [jwtToken, setJwtToken] = useState(reqConf.jwtToken);
+  const [accessToken, setAccessToken] = useState(reqConf.accessToken);
   useEffect(() => {
     setJwtToken(reqConf.jwtToken);
     setAccessToken(reqConf.accessToken);

@@ -41,7 +41,6 @@ export default function CourseCard(props) {
   }
 
   const url = getCoursePurchaseURL(courseId);
-  console.log(url);
 
   return (
     <div

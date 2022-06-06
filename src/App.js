@@ -1,8 +1,7 @@
 import "./App.css";
 import "./lib/styles.css";
-import { CourseCard, CourseDetailPage } from "./lib";
-import MultiLangBody from "./lib/components/multi-lang/MultiLangBody";
-import MultiLangField from "./lib/components/multi-lang/MultiLangField";
+import { useContext } from "react";
+import { STRLContext } from "./lib/Context";
 
 function App() {
   const courseData = {
@@ -569,9 +568,13 @@ function App() {
     partners: [],
   };
 
+  const {
+    multiLang: { publishMarketingWebsite },
+  } = useContext(STRLContext);
+
   return (
     <div className="grid grid-cols-5 m-5">
-      <CourseCard data={courseData} />
+      <button onClick={publishMarketingWebsite}>Click me</button>
     </div>
   );
 }

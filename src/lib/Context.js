@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext } from "react";
 import MultiLangContextProvider from "./components/multi-lang/MultiLangContext";
 import useCourseService from "./services/course";
 import useMultiLangService from "./services/mutli-lang";
@@ -14,6 +14,7 @@ export function STRLContextProvider(props) {
       course: props.course,
       request: props.request,
     };
+
   // Request services
   const [requestServices] = useRequestService(config);
   config.request = requestServices;

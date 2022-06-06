@@ -17,12 +17,14 @@ function useMultiLangService(config) {
   } = config.request;
   const services = {
     publishMarketingWebsite: () => {
-      if (!jwtToken || !accessToken) alert("Couldn't perform request. One of the tokens (JWT or Access Token) is missing");else return adminApi.makeGetRequest("publish_changes").then(_ref => {
-        let {
-          data
-        } = _ref;
-        return data && alert("Change publishing triggered. It may take a few minutes for the changes to reflect.");
-      }).catch(err => console.log(err) || alert("An error occured while publishing changes"));
+      if (!jwtToken || !accessToken) alert("Couldn't perform request. One of the tokens (JWT or Access Token) is missing");else {
+        return adminApi.makeGetRequest("publish_changes").then(_ref => {
+          let {
+            data
+          } = _ref;
+          return data && alert("Change publishing triggered. It may take a few minutes for the changes to reflect.");
+        }).catch(err => console.log(err) || alert("An error occured while publishing changes"));
+      }
     }
   };
   return [services, [], {}];

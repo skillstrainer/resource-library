@@ -30,8 +30,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 function useRequestService(config) {
   const reqConf = (config === null || config === void 0 ? void 0 : config.request) || {};
   const [env, setEnvironment] = (0, _react.useState)(reqConf.env || "");
-  const [jwtToken, setJwtToken] = (0, _react.useState)();
-  const [accessToken, setAccessToken] = (0, _react.useState)();
+  const [jwtToken, setJwtToken] = (0, _react.useState)(reqConf.jwtToken);
+  const [accessToken, setAccessToken] = (0, _react.useState)(reqConf.accessToken);
   (0, _react.useEffect)(() => {
     setJwtToken(reqConf.jwtToken);
     setAccessToken(reqConf.accessToken);
