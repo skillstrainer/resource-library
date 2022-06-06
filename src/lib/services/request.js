@@ -3,9 +3,15 @@ import axios from "axios";
 import { consts } from "../config";
 
 export default function useRequestService(config) {
-  const [env, setEnvironment] = useState(config?.request?.env || "");
+  const reqConf = config?.request || {};
+  const [env, setEnvironment] = useState(reqConf.env || "");
+
   const [jwtToken, setJwtToken] = useState();
   const [accessToken, setAccessToken] = useState();
+  useEffect(() => {
+    setJwtToken(reqConf.jwtToken);
+    setAccessToken(reqConf.accessToken);
+  }, [reqConf.jwtToken, reqConf.accessToken]);
 
   const defaultHeaders = {
     "access-token": accessToken,

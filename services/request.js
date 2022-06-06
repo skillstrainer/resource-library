@@ -28,11 +28,14 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function useRequestService(config) {
-  var _config$request;
-
-  const [env, setEnvironment] = (0, _react.useState)((config === null || config === void 0 ? void 0 : (_config$request = config.request) === null || _config$request === void 0 ? void 0 : _config$request.env) || "");
+  const reqConf = (config === null || config === void 0 ? void 0 : config.request) || {};
+  const [env, setEnvironment] = (0, _react.useState)(reqConf.env || "");
   const [jwtToken, setJwtToken] = (0, _react.useState)();
   const [accessToken, setAccessToken] = (0, _react.useState)();
+  (0, _react.useEffect)(() => {
+    setJwtToken(reqConf.jwtToken);
+    setAccessToken(reqConf.accessToken);
+  }, [reqConf.jwtToken, reqConf.accessToken]);
   const defaultHeaders = {
     "access-token": accessToken,
     "jwt-token": jwtToken,
