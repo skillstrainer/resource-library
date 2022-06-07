@@ -20,7 +20,7 @@ function useMultiLangService(config) {
     publishMarketingWebsite: () => {
       if (!jwtToken || !accessToken) alert("Couldn't perform request. One of the tokens (JWT or Access Token) is missing");else {
         // return console.log(adminApiUrl);
-        return adminApi.makeGetRequest("/publish_changes1").then(_ref => {
+        return adminApi.makeGetRequest("/publish_changes").then(_ref => {
           let {
             data
           } = _ref;

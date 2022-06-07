@@ -12,7 +12,7 @@ export default function useMultiLangService(config) {
       else {
         // return console.log(adminApiUrl);
         return adminApi
-          .makeGetRequest(`/publish_changes1`)
+          .makeGetRequest(`/publish_changes`)
           .then(
             ({ data }) =>
               data &&
