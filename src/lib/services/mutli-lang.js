@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function useMultiLangService(config) {
-  const { jwtToken, accessToken, adminApi } = config.request;
+  const { jwtToken, accessToken, adminApi, adminApiUrl } = config.request;
 
   const services = {
     publishMarketingWebsite: () => {
@@ -10,9 +10,9 @@ export default function useMultiLangService(config) {
           "Couldn't perform request. One of the tokens (JWT or Access Token) is missing"
         );
       else {
-        // return console.log("Works!");
+        // return console.log(adminApiUrl);
         return adminApi
-          .makeGetRequest(`publish_changes`)
+          .makeGetRequest(`/publish_changes1`)
           .then(
             ({ data }) =>
               data &&

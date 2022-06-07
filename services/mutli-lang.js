@@ -13,13 +13,14 @@ function useMultiLangService(config) {
   const {
     jwtToken,
     accessToken,
-    adminApi
+    adminApi,
+    adminApiUrl
   } = config.request;
   const services = {
     publishMarketingWebsite: () => {
       if (!jwtToken || !accessToken) alert("Couldn't perform request. One of the tokens (JWT or Access Token) is missing");else {
-        // return console.log("Works!");
-        return adminApi.makeGetRequest("publish_changes").then(_ref => {
+        // return console.log(adminApiUrl);
+        return adminApi.makeGetRequest("/publish_changes1").then(_ref => {
           let {
             data
           } = _ref;

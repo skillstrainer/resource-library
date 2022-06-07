@@ -45,7 +45,7 @@ function useRequestService(config) {
   const {
     apiUrl,
     adminApiUrl
-  } = _config.consts;
+  } = vars;
 
   const services = _objectSpread(_objectSpread({
     // Config updater
@@ -67,6 +67,7 @@ function useRequestService(config) {
       key,
       baseURL
     } = _ref;
+    console.log(key, baseURL);
     const networkRequests = {
       makeGetRequest: (endPoint, headers) => {
         return _axios.default.get(baseURL + endPoint, {
@@ -124,5 +125,6 @@ function useRequestService(config) {
     });
   }, {}));
 
+  console.log(services);
   return [services];
 }
