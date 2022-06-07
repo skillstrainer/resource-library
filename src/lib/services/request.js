@@ -45,7 +45,6 @@ export default function useRequestService(config) {
         baseURL: adminApiUrl,
       },
     ].reduce((acc, { key, baseURL }) => {
-      console.log(key, baseURL);
       const networkRequests = {
         makeGetRequest: (endPoint, headers) => {
           return axios
@@ -89,8 +88,6 @@ export default function useRequestService(config) {
       return { ...acc, [key]: networkRequests };
     }, {}),
   };
-
-  console.log(services);
 
   return [services];
 }

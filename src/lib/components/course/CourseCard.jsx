@@ -16,6 +16,7 @@ export default function CourseCard(props) {
       students_enrolled,
       digitalContentDuration,
       liveClassDuration,
+      isLive,
       nsqf_lvl,
     },
     goToDetailPage,
@@ -29,10 +30,7 @@ export default function CourseCard(props) {
   let course_type = "";
   let duration = "";
 
-  if (digitalContentDuration && liveClassDuration) {
-    course_type = digitalContentDuration;
-    duration = liveClassDuration;
-  } else if (digitalContentDuration) {
+  if (!isLive) {
     course_type = "Self paced digital content";
     duration = digitalContentDuration;
   } else {
@@ -141,7 +139,7 @@ export default function CourseCard(props) {
                 d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24a5.98 5.98 0 010 7.52c.42.14.86.24 1.33.24zM9 13c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
               ></path>
             </svg>
-            {students_enrolled ? students_enrolled : "34,455 Students"}
+            {students_enrolled || 0}
           </p>
         </div>
       </div>

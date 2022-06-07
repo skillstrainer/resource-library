@@ -59,7 +59,7 @@ const CourseModal = (props) => {
               </div>
             </div>
             <div className="w-full md:w-1/2 text-sm">
-              <h2 className="text-3xl font-semibold leading-10 text-japanese_indigo mb-6">
+              <h2 className="text-2xl font-semibold leading-8 text-japanese_indigo mb-6">
                 {displayName}
               </h2>
               <div class="flex flex-row justify-between mb-6">
@@ -134,7 +134,7 @@ const CourseModal = (props) => {
               <h2 className="text-2xl font-semibold leading-10 text-japanese_indigo mt-8 mb-1">
                 About the Course:
               </h2>
-              <p>{description}</p>
+              <p className="text-sm">{description}</p>
             </div>
           )}
           <div className="flex flex-col md:flex-row justify-center pt-6 md:mt-3 text-sm">
