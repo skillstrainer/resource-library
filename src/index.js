@@ -9,6 +9,7 @@ const jwtToken =
   accessToken = "60f794e7-4663-3af7-be52-75fc2aca098e";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
     <STRLContextProvider request={{ env: "production", jwtToken, accessToken }}>

@@ -1,0 +1,54 @@
+- Form
+
+  - Props (essential)
+    - schema
+    - onSubmit
+    - initialValues
+    - plugins
+  - Design
+    - Routines
+      - [x] Resolve plugins
+        - Global plugins and custom plugins are used
+        - If there is a conflict between custom plugins and global plugins, then both of them are merged
+      - [x] Resolve preprocessors
+        - Global preprocessors or passed down preprocessors are used
+        - Preprocessors from plugins are deduced
+        - Order (For now)
+          - Plugins pp, then global / custom pp
+    - Events
+      - On load
+        - Plugins are re-resolved
+      - On change of values
+        - New validation schema is created
+        - New form structure is created
+        - Plugins are re re-resolved
+      - On submit
+        - Preprocessors process the form data
+          - They may/may not block the submission process
+          - They may/may not return a new set of values
+        - This data is set as the new form data
+        - This data is passed to the onSubmit method
+  - Features
+    - Form instance can be accessed using ref
+      - Call submit method using this ref (instead of using rxjs)
+  - Testing routine
+    - Basic
+      - [x] Form is rendered properly
+      - [x] Errors are shown properly
+    - Plugins
+      - [x] Set default plugins
+      - [x] Set global plugins
+      - [x] Inject through form
+    - Preprocessors
+      - [x] From plugins
+      - [x] Set global preprocessors
+      - [x] Inject through form
+
+- [x] Separate FileUpload plugin
+
+  - Create it as a separate plugin
+    - Component
+    - Preprocessor
+  - Remove it from Field.jsx and add it in default plugins
+
+- Implement form on webapp and test

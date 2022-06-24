@@ -16,16 +16,28 @@ import MultiLangField from "./components/multi-lang/MultiLangField";
 import MultiLangFieldMd from "./components/multi-lang/MultiLangFieldMd";
 import MultiLangFieldImage from "./components/multi-lang/MultiLangFieldImage";
 
+// Form
+import Form, {
+  getFormGlobalPlugins,
+  setFormGlobalPlugins,
+  getFormGlobalPreprocessors,
+  setFormGlobalPreprocessors,
+  getFormGlobalPostprocessors,
+  setFormGlobalPostprocessors,
+} from "./components/form-core";
+
 export {
   // Context
   STRLContextProvider,
   //
   // Basic
   Modal,
+  //
   // Course
   CourseCard,
   CourseModal,
   CourseDetailPage,
+  //
   // Multi Lang
   MultiLangContextProvider,
   MultiLangContext,
@@ -33,4 +45,13 @@ export {
   MultiLangField,
   MultiLangFieldMd,
   MultiLangFieldImage,
+  //
+  // Form
+  Form,
+  getFormGlobalPlugins,
+  setFormGlobalPlugins,
+  getFormGlobalPreprocessors,
+  setFormGlobalPreprocessors,
+  getFormGlobalPostprocessors,
+  setFormGlobalPostprocessors,
 };
