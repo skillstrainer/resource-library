@@ -200,7 +200,7 @@ export default (props) => {
         );
     }
 
-    return content;
+    return <div className="my-2">{content}</div>;
   });
 };
 

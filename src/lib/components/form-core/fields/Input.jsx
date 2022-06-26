@@ -1,17 +1,19 @@
 import { Field } from "formik";
+import _ from "lodash";
 import React from "react";
 import { createPlugin } from "../utils";
 
 export const Input = ({ type, name, className, ...fieldProps }) => {
   return (
-    <div key={name} className={`mx-4 ${className}`}>
-      <div className="mt-1 relative rounded-md shadow-sm">
+    <div key={name} className={`${className}`}>
+      <div className="relative rounded-md shadow-sm">
         <Field
+          style={{ boxSizing: "border-box" }}
+          {..._.omit(fieldProps, ["onChange"])}
           name={name}
           type={type}
           autoComplete="new-password"
-          {...fieldProps}
-          className={`focus:ring-indigo-500 focus:border-indigo-500 block w-full px-3 text-sm border-gray-300 rounded-md w-full`}
+          className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
         />
       </div>
     </div>

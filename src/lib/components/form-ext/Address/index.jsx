@@ -97,6 +97,23 @@ export function AddressField(props) {
   };
   const applyPincodeRes = () => onChange({ ...value, ...pincodeRes });
 
+  /*
+   *
+   *
+   * Reusable comp
+   *
+   *
+   */
+  const genField = (fieldName, placeholder) => (
+    <input
+      type="text"
+      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+      placeholder={placeholder}
+      onChange={wireEventValue(updateDetail(fieldName))}
+      value={(value && value[fieldName]) || ""}
+    />
+  );
+
   return (
     <>
       <label className="mx-4 block text-sm font-medium text-gray-700">
@@ -135,54 +152,14 @@ export function AddressField(props) {
             </div>
           )}
         </div>
-        {fields.includes("house_number") && (
-          <input
-            type="text"
-            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
-            placeholder="House no."
-            onChange={wireEventValue(updateDetail("house_number"))}
-            value={value?.house_number || ""}
-          />
-        )}
-        {fields.includes("location") && (
-          <input
-            type="text"
-            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
-            placeholder="Location"
-            onChange={wireEventValue(updateDetail("location"))}
-            value={value?.location || ""}
-          />
-        )}
-        {fields.includes("city_town") && (
-          <input
-            type="text"
-            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
-            placeholder="City/Town"
-            onChange={wireEventValue(updateDetail("city_town"))}
-            value={value?.city_town || ""}
-          />
-        )}
+        {fields.includes("house_number") && genField("house_number")}
+        {fields.includes("location") && genField("location")}
+        {fields.includes("city_town") && genField("city_town")}
         <div className="mt-1 relative rounded-md shadow-sm">
-          {fields.includes("district") && (
-            <input
-              type="text"
-              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 text-sm border-gray-300 rounded-md"
-              placeholder="District"
-              onChange={wireEventValue(updateDetail("district"))}
-              value={value?.district || ""}
-            />
-          )}
+          {fields.includes("district") && genField("district")}
         </div>
         <div className="mt-1 relative rounded-md shadow-sm">
-          {fields.includes("state") && (
-            <input
-              type="text"
-              className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 text-sm border-gray-300 rounded-md"
-              placeholder="State"
-              onChange={wireEventValue(updateDetail("state"))}
-              value={value?.state || ""}
-            />
-          )}
+          {fields.includes("state") && genField("state")}
         </div>
       </div>
     </>

@@ -16,12 +16,13 @@ export const MultiSelect = ({
     onChange(Array.isArray(e) ? e.map((x) => x.value) : []);
 
   return (
-    <div className={`col-span-6 sm:col-span-3 mx-4 ${className}`}>
+    <div className={`mt-1 col-span-6 sm:col-span-3 ${className}`}>
       <ReactSelect
+        style={{ boxSizing: "border-box" }}
         {...selectProps}
         isMulti
         options={options}
-        value={options.filter((obj) => value === obj.value)}
+        value={options.find((obj) => value === obj.value)}
         onChange={handleChange}
         className="basic-multi-select"
         classNamePrefix="select"

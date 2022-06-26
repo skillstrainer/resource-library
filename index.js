@@ -23,6 +23,12 @@ Object.defineProperty(exports, "CourseModal", {
     return _CourseModal.default;
   }
 });
+Object.defineProperty(exports, "Form", {
+  enumerable: true,
+  get: function get() {
+    return _formCore.default;
+  }
+});
 Object.defineProperty(exports, "Modal", {
   enumerable: true,
   get: function get() {
@@ -71,6 +77,42 @@ Object.defineProperty(exports, "STRLContextProvider", {
     return _Context.STRLContextProvider;
   }
 });
+Object.defineProperty(exports, "getFormGlobalPlugins", {
+  enumerable: true,
+  get: function get() {
+    return _formCore.getFormGlobalPlugins;
+  }
+});
+Object.defineProperty(exports, "getFormGlobalPostprocessors", {
+  enumerable: true,
+  get: function get() {
+    return _formCore.getFormGlobalPostprocessors;
+  }
+});
+Object.defineProperty(exports, "getFormGlobalPreprocessors", {
+  enumerable: true,
+  get: function get() {
+    return _formCore.getFormGlobalPreprocessors;
+  }
+});
+Object.defineProperty(exports, "setFormGlobalPlugins", {
+  enumerable: true,
+  get: function get() {
+    return _formCore.setFormGlobalPlugins;
+  }
+});
+Object.defineProperty(exports, "setFormGlobalPostprocessors", {
+  enumerable: true,
+  get: function get() {
+    return _formCore.setFormGlobalPostprocessors;
+  }
+});
+Object.defineProperty(exports, "setFormGlobalPreprocessors", {
+  enumerable: true,
+  get: function get() {
+    return _formCore.setFormGlobalPreprocessors;
+  }
+});
 
 var _Modal = _interopRequireDefault(require("./components/shared/Modal"));
 
@@ -91,6 +133,8 @@ var _MultiLangField = _interopRequireDefault(require("./components/multi-lang/Mu
 var _MultiLangFieldMd = _interopRequireDefault(require("./components/multi-lang/MultiLangFieldMd"));
 
 var _MultiLangFieldImage = _interopRequireDefault(require("./components/multi-lang/MultiLangFieldImage"));
+
+var _formCore = _interopRequireWildcard(require("./components/form-core"));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 

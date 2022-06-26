@@ -93,13 +93,23 @@ const FormComponent = (props, ref) => {
   };
   const resolvePreprocessors = () => {
     const plugins = resolvePlugins();
-    const pluginPreprocessors = Object.values(plugins).map((plugin) => {
-      return (...args) => plugin.preprocessor(...args, plugin);
-    });
+    const pluginPreprocessors = Object.values(plugins)
+      .map((plugin) => {
+        return (
+          typeof plugin.preprocessor === "function" &&
+          ((...args) => plugin.preprocessor(...args, plugin))
+        );
+      })
+      .filter((e) => e);
     return [...pluginPreprocessors, ...preProcessors];
   };
 
-  // Handle submission
+  // Submission trigger
+  const triggerSubmit = async () => {
+    setAttemptedSubmit(true);
+    return await formikSubmitFn.current();
+  };
+  // Submission logic
   const formikOnSubmit = async (values) => {
     setAttemptedSubmit(true);
 
@@ -164,7 +174,7 @@ const FormComponent = (props, ref) => {
   (function () {
     if (ref) {
       const refData = {
-        submit: formikSubmitFn.current,
+        submit: triggerSubmit,
       };
 
       if (typeof ref === "function") ref(refData);
@@ -173,7 +183,7 @@ const FormComponent = (props, ref) => {
   })();
 
   return (
-    <div className={`w-full ${className}`}>
+    <div className="w-full">
       {initValuesLoaded.current ? (
         <Formik
           initialValues={formValues}
@@ -217,7 +227,7 @@ const FormComponent = (props, ref) => {
             formikSetValuesFn.current = setValues;
 
             return (
-              <Form className="form-container justify-start">
+              <Form className={`justify-start ${className}`}>
                 {items && !hideForm && (
                   <FormSection
                     fields={items}
@@ -244,7 +254,7 @@ const FormComponent = (props, ref) => {
                   {!hideSubmit && (
                     <input
                       type="button"
-                      onClick={formikSubmitFn.current}
+                      onClick={triggerSubmit}
                       className={`button-primary ${
                         submitButton?.className || ""
                       }`}

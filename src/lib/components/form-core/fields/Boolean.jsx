@@ -10,7 +10,7 @@ export const Boolean = ({
   className,
 }) => {
   return (
-    <div key={name} className={`mx-4 my-1 ${className}`}>
+    <div key={name} className={`my-1 ${className}`}>
       <div className="flex items-center">
         <input
           type="checkbox"

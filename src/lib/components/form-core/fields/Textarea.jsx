@@ -1,16 +1,18 @@
 import { Field } from "formik";
+import _ from "lodash";
 import React from "react";
 import { createPlugin } from "../utils";
 
 export const TextArea = ({ name, className, ...fieldProps }) => {
   return (
-    <div key={name} lassName={`mx-4 ${className}`}>
-      <div className="mt-1">
+    <div key={name} className={className}>
+      <div>
         <Field
+          style={{ boxSizing: "border-box" }}
+          className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+          {..._.omit(fieldProps, ["onChange"])}
           name={name}
           as="textarea"
-          {...fieldProps}
-          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full text-sm border border-gray-300 rounded-md"
         />
       </div>
     </div>

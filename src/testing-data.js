@@ -106,6 +106,10 @@ function Sample(values) {
       },
       dob: {
         label: "Date of birth",
+        type: "date",
+      },
+      timeOfEvent: {
+        label: "Time of event",
         type: "date-time",
       },
       langauges: {
