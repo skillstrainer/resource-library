@@ -1,29 +1,18 @@
 import "./App.css";
 import "./lib/styles.css";
-import React, { useRef } from "react";
-import FormComponent from "./lib/components/form-core";
-import { formBuilders } from "./testing-data";
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Sidebar from "./lib/components/basic/Sidebar";
 
 function App() {
-  const formRef = useRef();
-
   return (
-    <div className="box-border w-screen p-4 flex flex-col items-center">
-      <FormComponent
-        formBuilder={formBuilders.Sample}
-        onSubmit={(values) => {
-          console.log("Final submit function", values);
-        }}
-        initValues={{
-          name: "Abhishek Challa",
-          age: 15,
-        }}
-        className="grid grid-cols-2 gap-x-4 w-full"
-        hideSubmit
-        ref={formRef}
-      />
-      <button onClick={() => formRef.submit()}>Submit</button>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/">
+          <Sidebar setSidebarItems={() => {}} />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 

@@ -1,6 +1,8 @@
 import React, { createContext } from "react";
+import { Router, Switch } from "react-router-dom";
 import MultiLangContextProvider from "./components/multi-lang/MultiLangContext";
 import useCourseService from "./services/course";
+import useDependencyService from "./services/dependency";
 import useMultiLangService from "./services/mutli-lang";
 import useRequestService from "./services/request";
 
@@ -13,7 +15,12 @@ export function STRLContextProvider(props) {
       multiLang: props.multiLang,
       course: props.course,
       request: props.request,
+      dependencies: props.dependencies,
     };
+
+  // Dependency services
+  const [dependencyServices] = useDependencyService(config);
+  config.dependency = dependencyServices;
 
   // Request services
   const [requestServices] = useRequestService(config);
