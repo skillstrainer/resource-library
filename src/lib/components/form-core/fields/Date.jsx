@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { createPlugin } from "../utils";
 
-export const DateComponent = ({
+export const DateField = ({
   name,
   value,
   onChange,
@@ -34,4 +34,4 @@ export const DateComponent = ({
   );
 };
 
-export default createPlugin({ Component: DateComponent });
+export default createPlugin({ Component: DateField });

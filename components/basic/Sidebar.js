@@ -1,26 +1,19 @@
 "use strict";
 
+require("core-js/modules/web.dom-collections.iterator.js");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.STRLContext = void 0;
-exports.STRLContextProvider = STRLContextProvider;
-
-require("core-js/modules/web.dom-collections.iterator.js");
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactRouterDom = require("react-router-dom");
+var _Context = require("../../Context");
 
-var _MultiLangContext = _interopRequireDefault(require("./components/multi-lang/MultiLangContext"));
+var _locationHooks = require("../../utils/hooks/locationHooks");
 
-var _course = _interopRequireDefault(require("./services/course"));
-
-var _dependency = _interopRequireDefault(require("./services/dependency"));
-
-var _mutliLang = _interopRequireDefault(require("./services/mutli-lang"));
-
-var _request = _interopRequireDefault(require("./services/request"));
+var _SidebarItem = _interopRequireDefault(require("./Sidebar/SidebarItem"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34,31 +27,74 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-const STRLContext = /*#__PURE__*/(0, _react.createContext)();
-exports.STRLContext = STRLContext;
-let config;
+const Sidebar = _ref => {
+  let {
+    setSidebarItems,
+    sidebarItems = {
+      items: [],
+      active: 0
+    }
+  } = _ref;
 
-function STRLContextProvider(props) {
-  if (!config) config = {
-    multiLang: props.multiLang,
-    course: props.course,
-    request: props.request,
-    dependencies: props.dependencies
-  }; // Dependency services
+  /*
+   *
+   * Loading dependencies
+   */
+  const strlContext = (0, _react.useContext)(_Context.STRLContext);
+  const {
+    dependency: {
+      dependencies
+    }
+  } = strlContext;
+  const {
+    useHistory,
+    useParams
+  } = dependencies || {};
+  if (typeof useHistory !== "function") throw Error({
+    msg: "Missing required dependencies: useHistory, useParams"
+  });
+  /*
+   * Main
+   */
 
-  const [dependencyServices] = (0, _dependency.default)(config);
-  config.dependency = dependencyServices; // Request services
+  const changeCurrentItem = index => setSidebarItems(_objectSpread(_objectSpread({}, sidebarItems), {}, {
+    active: index
+  }));
 
-  const [requestServices] = (0, _request.default)(config);
-  config.request = requestServices; // Course services
+  const {
+    sidebarActive
+  } = useParams();
+  const baseurl = (0, _locationHooks.useBasePath)();
+  const history = useHistory();
+  (0, _react.useEffect)(() => {
+    var changed = false;
 
-  const [courseServices, courseElements] = (0, _course.default)(config);
-  config.course = courseServices; // Multi lang services
+    for (var i = 0; i < sidebarItems.items.length; i++) {
+      if (sidebarItems.items[i].url === sidebarActive) {
+        changeCurrentItem(i);
+        changed = true;
+        break;
+      }
+    }
 
-  const [multiLangServices, multiLangElements] = (0, _mutliLang.default)(config);
-  config.multiLang = multiLangServices;
-  const elements = [...courseElements, ...multiLangElements];
-  return /*#__PURE__*/_react.default.createElement(STRLContext.Provider, {
-    value: _objectSpread({}, config)
-  }, /*#__PURE__*/_react.default.createElement(_MultiLangContext.default, props.multiLang || {}, props.children, elements));
-}
+    if (!changed) changeCurrentItem(0);
+  }, [sidebarActive, sidebarItems.items, history]);
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "w-80"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "mt-4"
+  }, sidebarItems.items.map((item, index) => !item.hidden ? /*#__PURE__*/_react.default.createElement(_SidebarItem.default, {
+    name: item.name,
+    Icon: item.icon,
+    key: index,
+    selected: index === sidebarItems.active,
+    className: "m-4",
+    linkTo: "".concat(baseurl, "/").concat(item.url),
+    onClick: () => {
+      changeCurrentItem(index);
+    }
+  }) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null))));
+};
+
+var _default = Sidebar;
+exports.default = _default;

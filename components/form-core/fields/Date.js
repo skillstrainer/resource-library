@@ -5,7 +5,7 @@ require("core-js/modules/es.object.assign.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.DateComponent = void 0;
+exports.default = exports.DateField = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -25,7 +25,7 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-const DateComponent = _ref => {
+const DateField = _ref => {
   let {
     name,
     value,
@@ -58,10 +58,10 @@ const DateComponent = _ref => {
   }, dateProps))));
 };
 
-exports.DateComponent = DateComponent;
+exports.DateField = DateField;
 
 var _default = (0, _utils.createPlugin)({
-  Component: DateComponent
+  Component: DateField
 });
 
 exports.default = _default;
