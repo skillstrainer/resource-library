@@ -15,17 +15,11 @@ import pageTopBg from "../../assets/image/page-top-bg.png";
 import emptyCertificate from "../../assets/image/certificate.jpg";
 import jobs from "../../assets/image/jobs.jpg";
 import newLogo from "../../assets/image/newLogo.svg";
-import CourseDetailPageStaging from "./CourseDetailPageStaging";
 
-function CourseDetailPage(props) {
+function CourseDetailPageStaging(props) {
   const {
-    request: { env },
     course: { getCoursePurchaseURL },
   } = useContext(STRLContext);
-
-  // To prevent new course detailing page from appearing in production
-  if (env !== "production") return <CourseDetailPageStaging {...props} />;
-
   const {
     courseData,
     multiLangData,
@@ -45,6 +39,7 @@ function CourseDetailPage(props) {
     nsqf_lvl,
     modules,
     partners,
+    videoUrl,
   } = courseData || {};
 
   return (
@@ -129,7 +124,7 @@ function CourseDetailPage(props) {
                     </div>
                     <div className="text-md mb-3">
                       <span className="font-semibold text-japanese_indigo mr-3 ">
-                        Course structure:
+                        Course Structure:
                       </span>
                       <span>
                         {liveClassDuration
@@ -155,16 +150,6 @@ function CourseDetailPage(props) {
                         </div>
                       </div>
                     )}
-                    <div>
-                      <div className="text-md font-semibold leading-10 text-japanese_indigo mt-3">
-                        About the Course:
-                      </div>
-                      <p>
-                        <MultiLangField name="description">
-                          {description}
-                        </MultiLangField>
-                      </p>
-                    </div>
                     <a href={getCoursePurchaseURL(courseId)} target="_blank">
                       <button className="bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-4 w-full md:w-auto">
                         Get Enrolled for {cost ? `₹${cost} Only` : "Free"}
@@ -174,6 +159,23 @@ function CourseDetailPage(props) {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      <section className="mt-12">
+        <div className="content mx-auto grid grid-cols-1 lg:grid-cols-2">
+          <div className="mr-5">
+            <div className="text-3xl blue-dark2 font-semibold leading-10 text-center mt-3">
+              About the Course
+            </div>
+            <p>
+              <MultiLangField name="description">{description}</MultiLangField>
+            </p>
+          </div>
+          <div className="ml-5">
+            <video autoPlay controls width="100%">
+              <source src={videoUrl} />
+            </video>
           </div>
         </div>
       </section>
@@ -297,4 +299,4 @@ function CourseDetailPage(props) {
   );
 }
 
-export default CourseDetailPage;
+export default CourseDetailPageStaging;

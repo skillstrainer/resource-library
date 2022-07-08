@@ -18,6 +18,7 @@ export const courseFormatter = (obj) => ({
   discount: obj.discount,
   modules: obj.modules,
   partners: obj.partners,
+  videoUrl: obj.video_url,
 });
 
 export const catFormatter = (obj) => ({

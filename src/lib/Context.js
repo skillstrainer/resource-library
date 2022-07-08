@@ -1,5 +1,4 @@
 import React, { createContext } from "react";
-import { Router, Switch } from "react-router-dom";
 import MultiLangContextProvider from "./components/multi-lang/MultiLangContext";
 import useCourseService from "./services/course";
 import useDependencyService from "./services/dependency";

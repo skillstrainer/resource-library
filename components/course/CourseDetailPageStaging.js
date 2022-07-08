@@ -33,8 +33,6 @@ var _jobs = _interopRequireDefault(require("../../assets/image/jobs.jpg"));
 
 var _newLogo = _interopRequireDefault(require("../../assets/image/newLogo.svg"));
 
-var _CourseDetailPageStaging = _interopRequireDefault(require("./CourseDetailPageStaging"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -43,17 +41,12 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 // Icons
 // Images
-function CourseDetailPage(props) {
+function CourseDetailPageStaging(props) {
   const {
-    request: {
-      env
-    },
     course: {
       getCoursePurchaseURL
     }
-  } = (0, _react.useContext)(_Context.STRLContext); // To prevent new course detailing page from appearing in production
-
-  if (env !== "production") return /*#__PURE__*/_react.default.createElement(_CourseDetailPageStaging.default, props);
+  } = (0, _react.useContext)(_Context.STRLContext);
   const {
     courseData,
     multiLangData,
@@ -71,7 +64,8 @@ function CourseDetailPage(props) {
     liveClassDuration,
     nsqf_lvl,
     modules,
-    partners
+    partners,
+    videoUrl
   } = courseData || {};
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
@@ -156,7 +150,7 @@ function CourseDetailPage(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
@@ -165,16 +159,30 @@ function CourseDetailPage(props) {
   }]).map(p => p && p.logo && /*#__PURE__*/_react.default.createElement("img", {
     src: p.logo,
     className: "h-6"
-  }) || null))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-md font-semibold leading-10 text-japanese_indigo mt-3"
-  }, "About the Course:"), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
-    name: "description"
-  }, description))), /*#__PURE__*/_react.default.createElement("a", {
+  }) || null))), /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-4 w-full md:w-auto"
-  }, "Get Enrolled for ", cost ? "\u20B9".concat(cost, " Only") : "Free"))))))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
+  }, "Get Enrolled for ", cost ? "\u20B9".concat(cost, " Only") : "Free"))))))))), /*#__PURE__*/_react.default.createElement("section", {
+    className: "mt-12"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "content mx-auto grid grid-cols-1 lg:grid-cols-2"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "mr-5"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "text-3xl blue-dark2 font-semibold leading-10 text-center mt-3"
+  }, "About the Course"), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
+    name: "description"
+  }, description))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "ml-5"
+  }, /*#__PURE__*/_react.default.createElement("video", {
+    autoPlay: true,
+    controls: true,
+    width: "100%"
+  }, /*#__PURE__*/_react.default.createElement("source", {
+    src: videoUrl
+  }))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto bg-blue-grad px-4 py-10 md:px-10 mt-20"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "grid grid-cols-1 gap-8 md:grid-cols-2"
@@ -256,5 +264,5 @@ function CourseDetailPage(props) {
   }))))));
 }
 
-var _default = CourseDetailPage;
+var _default = CourseDetailPageStaging;
 exports.default = _default;

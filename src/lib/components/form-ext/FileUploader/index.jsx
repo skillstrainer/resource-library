@@ -19,13 +19,13 @@ export default function FileUploader(props) {
     pluginContext: { services = {} } = {},
   } = props;
   const fileInputRef = useRef();
-  const fileCountRef = useRef(1);
   const getUrl = services?.getUrl || (async (val) => val);
 
   // State management resources
   const fileList = value || [],
     setFileList = (fileList) => onChange(fileList);
   // todo: reconsider the setting of id
+  const fileCountRef = useRef(1);
   useEffect(() => {
     setFileList(
       fileList.map((f) => ({ ...f, id: fileCountRef.current++ + "" }))
@@ -78,6 +78,7 @@ export default function FileUploader(props) {
           ref={fileInputRef}
           onChange={(e) => {
             if (e.target.files.length > 0) {
+              // logic seems flawed
               updateValueList([
                 ...(fileFieldProps.multiple ? fileList : []), // if only single file is allowed, then list should be replaced and not appended
                 ...Array.from(e.target.files),
@@ -187,6 +188,7 @@ export default function FileUploader(props) {
           <CapturePhoto
             onFinish={(images) => {
               const filename = "snapshot-" + fileCountRef.current;
+              // should there by a fieldProps.multiple check to prevent multiple images from being uploaded
               setFileList([
                 ...fileList,
                 ...images.map((imageDataBase64) => ({

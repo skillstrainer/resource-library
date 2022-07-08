@@ -26,7 +26,8 @@ const courseFormatter = obj => ({
   cost: obj.cost,
   discount: obj.discount,
   modules: obj.modules,
-  partners: obj.partners
+  partners: obj.partners,
+  videoUrl: obj.video_url
 });
 
 exports.courseFormatter = courseFormatter;

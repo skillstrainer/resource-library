@@ -43,13 +43,7 @@ export default function CourseCard(props) {
   return (
     <div
       className="relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2"
-      onClick={() =>
-        toggleCourseModal({
-          data: props.data,
-          goToCategoryPage,
-          goToDetailPage,
-        })
-      }
+      onClick={goToDetailPage}
     >
       <div>
         <div className="relative">

@@ -10,8 +10,6 @@ require("core-js/modules/web.dom-collections.iterator.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactRouterDom = require("react-router-dom");
-
 var _MultiLangContext = _interopRequireDefault(require("./components/multi-lang/MultiLangContext"));
 
 var _course = _interopRequireDefault(require("./services/course"));
