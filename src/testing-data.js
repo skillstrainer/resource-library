@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { rNumField, rStringField } from "./lib/components/form-core/presets";
+import * as yup from "yup";
 
 export const courses = [
   {
@@ -85,41 +86,19 @@ function Sample(values) {
 
   useEffect(() => {
     const schema = {
-      name: rStringField("Name", { required: true }),
-      age: rNumField("Age", { type: "number" }),
-      gender: rStringField("Gender", {
-        type: "select",
-        options: [
-          { label: "Male", value: "male" },
-          { label: "Female", value: "female" },
-        ],
-        required: true,
-      }),
-      description: {
-        label: "Description",
-        type: "textarea",
-        placeholder: "Your description",
-      },
-      dob: {
-        label: "Date of birth",
-        type: "date",
-      },
-      timeOfEvent: {
-        label: "Time of event",
-        type: "date-time",
-      },
-      langauges: {
-        label: "Languages you speak",
-        type: "multi-select",
-        options: [
-          { value: "hi", label: "Hindi" },
-          { value: "en", label: "English" },
-          { value: "tm", label: "Tamil" },
-        ],
-      },
-      married: {
-        label: "Are you married?",
-        type: "boolean",
+      name: {
+        type: "object",
+        fields: {
+          first: {
+            label: "First name",
+            schema: yup.string(),
+          },
+          last: {
+            label: "Last name",
+            schema: yup.string(),
+            required: true,
+          },
+        },
       },
     };
 
