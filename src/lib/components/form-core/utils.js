@@ -26,7 +26,11 @@ export const getSchema = (field) => {
       result[_f] = getSchema(field.fields[_f]);
     });
     result = yup.object().shape(result);
-  } else result = field.schema;
+  } else {
+    result = field.schema;
+    if (field.required && typeof result.required === "function")
+      result = result.required(`${field.label} is required`);
+  }
 
   if (field.repeat) return yup.array().of(result);
   else return result;

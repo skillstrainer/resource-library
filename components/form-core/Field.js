@@ -38,6 +38,7 @@ var _default = props => {
     type
   } = field;
   const plugin = type !== "object" && (plugins[type] || plugins.input);
+  const fieldErrors = _lodash.default.get(errors, key) || "";
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full"
   }, plugin && plugin.Component ? /*#__PURE__*/_react.default.createElement(plugin.Component, _extends({
@@ -54,9 +55,9 @@ var _default = props => {
     formProps: formProps,
     prefix: key,
     className: "input w-full"
-  }) : null), (touched[key] || attemptedSubmit) && errors[key] && /*#__PURE__*/_react.default.createElement("div", {
+  }) : null), (touched[key] || attemptedSubmit) && fieldErrors && typeof fieldErrors === "string" && /*#__PURE__*/_react.default.createElement("div", {
     className: "errors text-danger text-red-500"
-  }, errors[key]));
+  }, fieldErrors));
 };
 
 exports.default = _default;

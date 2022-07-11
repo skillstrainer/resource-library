@@ -12,6 +12,8 @@ export default (props) => {
   const { type } = field;
   const plugin = type !== "object" && (plugins[type] || plugins.input);
 
+  const fieldErrors = _.get(errors, key) || "";
+
   return (
     <>
       <div className="w-full">
@@ -35,9 +37,11 @@ export default (props) => {
           />
         ) : null}
       </div>
-      {(touched[key] || attemptedSubmit) && errors[key] && (
-        <div className="errors text-danger text-red-500">{errors[key]}</div>
-      )}
+      {(touched[key] || attemptedSubmit) &&
+        fieldErrors &&
+        typeof fieldErrors === "string" && (
+          <div className="errors text-danger text-red-500">{fieldErrors}</div>
+        )}
     </>
   );
 };
