@@ -28,6 +28,7 @@ export default (props) => {
       label,
       style,
       type,
+      required,
     } = resolveFieldProps(fieldProto, key, fieldValue);
 
     const labelComponent = useMemo(
@@ -37,7 +38,7 @@ export default (props) => {
             type === "object" ? "mt-3 small-title mb-2" : ""
           }`}
         >
-          {label}
+          {label} {required && <span className="text-red-600">*</span>}
         </div>
       ),
       [label, type]

@@ -37,7 +37,7 @@ var _default = props => {
   const {
     type
   } = field;
-  const plugin = plugins[type] || plugins.input;
+  const plugin = type !== "object" && (plugins[type] || plugins.input);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full"
   }, plugin && plugin.Component ? /*#__PURE__*/_react.default.createElement(plugin.Component, _extends({

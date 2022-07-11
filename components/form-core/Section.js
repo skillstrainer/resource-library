@@ -64,11 +64,14 @@ var _default = props => {
       className,
       label,
       style,
-      type
+      type,
+      required
     } = (0, _utils.resolveFieldProps)(fieldProto, key, fieldValue);
     const labelComponent = (0, _react.useMemo)(() => /*#__PURE__*/_react.default.createElement("div", {
       className: "block text-sm font-medium text-japanese_indigo ".concat(type === "object" ? "mt-3 small-title mb-2" : "")
-    }, label), [label, type]);
+    }, label, " ", required && /*#__PURE__*/_react.default.createElement("span", {
+      className: "text-red-600"
+    }, "*")), [label, type]);
     let content;
 
     if (repeat) {

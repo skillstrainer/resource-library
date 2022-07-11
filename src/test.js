@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import CourseCard from "./lib/components/course/CourseCard";
 import { STRLContext } from "./lib/Context";
-import { courses } from "./testing-data";
+import { courses, formBuilders } from "./testing-data";
 import { courseFormatter } from "./lib/utils/course";
+import { Form } from "./lib";
 
 export default function Test(props) {
   console.log("Test component");
@@ -15,10 +16,7 @@ export default function Test(props) {
 
   return (
     <div>
-      <CourseCard
-        data={courseFormatter(courses[0])}
-        goToDetailPage={() => history.push("/course-detail")}
-      />
+      <Form formBuilder={formBuilders.Sample} />
     </div>
   );
 }

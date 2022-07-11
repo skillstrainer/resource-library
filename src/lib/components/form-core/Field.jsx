@@ -10,7 +10,7 @@ export default (props) => {
   let value = _.get(values, key) || "";
 
   const { type } = field;
-  const plugin = plugins[type] || plugins.input;
+  const plugin = type !== "object" && (plugins[type] || plugins.input);
 
   return (
     <>
