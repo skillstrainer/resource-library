@@ -3,24 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.STRLContext = void 0;
-exports.STRLContextProvider = STRLContextProvider;
+exports.default = useDependencyService;
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
 var _react = _interopRequireWildcard(require("react"));
-
-var _MultiLangContext = _interopRequireDefault(require("./components/multi-lang/MultiLangContext"));
-
-var _course = _interopRequireDefault(require("./services/course"));
-
-var _dependency = _interopRequireDefault(require("./services/dependency"));
-
-var _mutliLang = _interopRequireDefault(require("./services/mutli-lang"));
-
-var _request = _interopRequireDefault(require("./services/request"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -32,31 +19,18 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-const STRLContext = /*#__PURE__*/(0, _react.createContext)();
-exports.STRLContext = STRLContext;
-let config;
+function useDependencyService(config) {
+  const providedDependencies = config.dependencies;
+  const [dependencies, setDependencies] = (0, _react.useState)(providedDependencies);
+  (0, _react.useEffect)(() => {
+    if (providedDependencies && typeof providedDependencies === "object") setDependencies(_objectSpread(_objectSpread({}, dependencies), providedDependencies));
+  }, [config.dependencies]);
 
-function STRLContextProvider(props) {
-  if (!config) config = {
-    multiLang: props.multiLang,
-    course: props.course,
-    request: props.request,
-    dependencies: props.dependencies
-  }; // Dependency services
+  const addDependency = partial => setDependencies(_objectSpread(_objectSpread({}, partial), dependencies));
 
-  const [dependencyServices] = (0, _dependency.default)(config);
-  config.dependency = dependencyServices; // Request services
-
-  const [requestServices] = (0, _request.default)(config);
-  config.request = requestServices; // Course services
-
-  const [courseServices, courseElements] = (0, _course.default)(config);
-  config.course = courseServices; // Multi lang services
-
-  const [multiLangServices, multiLangElements] = (0, _mutliLang.default)(config);
-  config.multiLang = multiLangServices;
-  const elements = [...courseElements, ...multiLangElements];
-  return /*#__PURE__*/_react.default.createElement(STRLContext.Provider, {
-    value: _objectSpread({}, config)
-  }, /*#__PURE__*/_react.default.createElement(_MultiLangContext.default, props.multiLang || {}, props.children, elements));
+  const services = {
+    dependencies,
+    addDependency
+  };
+  return [services];
 }

@@ -26,6 +26,14 @@ import Form, {
   setFormGlobalPostprocessors,
 } from "./components/form-core";
 
+import * as CoreFormFields from "./components/form-core/field-list";
+import * as ExtFormFields from "./components/form-ext/field-list";
+import { defaultPlugins as CoreFormPlugins } from "./components/form-core/config";
+import * as ExtFormPlugins from "./components/form-ext/plugin-list";
+
+const FormFields = { ...CoreFormFields, ...ExtFormFields };
+const FormPlugins = { ...CoreFormPlugins, ...ExtFormPlugins };
+
 export {
   // Context
   STRLContextProvider,
@@ -48,6 +56,8 @@ export {
   //
   // Form
   Form,
+  FormFields,
+  FormPlugins,
   getFormGlobalPlugins,
   setFormGlobalPlugins,
   getFormGlobalPreprocessors,

@@ -55,7 +55,6 @@ function FileUploader(props) {
     } = {}
   } = props;
   const fileInputRef = (0, _react.useRef)();
-  const fileCountRef = (0, _react.useRef)(1);
 
   const getUrl = (services === null || services === void 0 ? void 0 : services.getUrl) || (async val => val); // State management resources
 
@@ -64,6 +63,7 @@ function FileUploader(props) {
         setFileList = fileList => onChange(fileList); // todo: reconsider the setting of id
 
 
+  const fileCountRef = (0, _react.useRef)(1);
   (0, _react.useEffect)(() => {
     setFileList(fileList.map(f => _objectSpread(_objectSpread({}, f), {}, {
       id: fileCountRef.current++ + ""
@@ -111,6 +111,7 @@ function FileUploader(props) {
     ref: fileInputRef,
     onChange: e => {
       if (e.target.files.length > 0) {
+        // logic seems flawed
         updateValueList([...(fileFieldProps.multiple ? fileList : []), // if only single file is allowed, then list should be replaced and not appended
         ...Array.from(e.target.files)]);
       }
@@ -180,7 +181,8 @@ function FileUploader(props) {
     onClose: endCapturePhoto
   }, isCaptureWindowOpen && /*#__PURE__*/_react.default.createElement(_CapturePhoto.default, {
     onFinish: images => {
-      const filename = "snapshot-" + fileCountRef.current;
+      const filename = "snapshot-" + fileCountRef.current; // should there by a fieldProps.multiple check to prevent multiple images from being uploaded
+
       setFileList([...fileList, ...images.map(imageDataBase64 => ({
         ___file_uploader_component: true,
         id: fileCountRef.current++ + "",
