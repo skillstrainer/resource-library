@@ -68,7 +68,8 @@ function CourseDetailPage(props) {
     courseImg,
     cost,
     students_enrolled,
-    liveClassDuration,
+    duration,
+    isLive,
     nsqf_lvl,
     modules,
     partners
@@ -156,7 +157,11 @@ function CourseDetailPage(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+  }, "Course structure:"), /*#__PURE__*/_react.default.createElement("span", null, isLive ? "Live Classes" : "Self Paced Digital Content")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "text-md mb-3"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-semibold text-japanese_indigo mr-3 "
+  }, "Duration:"), /*#__PURE__*/_react.default.createElement("span", null, duration)), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"

@@ -34,7 +34,7 @@ export const courses = [
     image_url: null,
     short_name: null,
     moodle_course_id: "123",
-    duration: null,
+    duration: "3 hours",
     is_live_course: false,
     course_partner: null,
     video_url:

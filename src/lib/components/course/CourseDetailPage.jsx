@@ -41,7 +41,8 @@ function CourseDetailPage(props) {
     courseImg,
     cost,
     students_enrolled,
-    liveClassDuration,
+    duration,
+    isLive,
     nsqf_lvl,
     modules,
     partners,
@@ -132,10 +133,14 @@ function CourseDetailPage(props) {
                         Course structure:
                       </span>
                       <span>
-                        {liveClassDuration
-                          ? "Live Classes"
-                          : "Self Paced Digital Content"}
+                        {isLive ? "Live Classes" : "Self Paced Digital Content"}
                       </span>
+                    </div>
+                    <div className="text-md mb-3">
+                      <span className="font-semibold text-japanese_indigo mr-3 ">
+                        Duration:
+                      </span>
+                      <span>{duration}</span>
                     </div>
                     {partners && (
                       <div>
