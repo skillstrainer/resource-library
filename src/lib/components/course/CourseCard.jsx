@@ -14,10 +14,9 @@ export default function CourseCard(props) {
       courseImg,
       cost,
       students_enrolled,
-      digitalContentDuration,
-      liveClassDuration,
       isLive,
       nsqf_lvl,
+      duration,
     },
     goToDetailPage,
     goToCategoryPage,
@@ -26,17 +25,6 @@ export default function CourseCard(props) {
     isPurchased,
     viewCourse = () => {},
   } = props;
-
-  let course_type = "";
-  let duration = "";
-
-  if (!isLive) {
-    course_type = "Self paced digital content";
-    duration = digitalContentDuration;
-  } else {
-    course_type = "Live classes";
-    duration = liveClassDuration;
-  }
 
   const url = getCoursePurchaseURL(courseId);
 
@@ -80,7 +68,9 @@ export default function CourseCard(props) {
 
         <div className="w-full text-sm mx-auto">
           <div className="flex flex-row justify-between">
-            <p className="">{course_type}</p>
+            <p className="">
+              {isLive ? "Live Classes" : "Self Paced Digital Content"}
+            </p>
             <a
               href="https://www.youtube.com/watch?v=riE-VMMXMHI"
               target="_blank"

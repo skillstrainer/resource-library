@@ -32,10 +32,9 @@ function CourseCard(props) {
       courseImg,
       cost,
       students_enrolled,
-      digitalContentDuration,
-      liveClassDuration,
       isLive,
-      nsqf_lvl
+      nsqf_lvl,
+      duration
     },
     goToDetailPage,
     goToCategoryPage,
@@ -43,17 +42,6 @@ function CourseCard(props) {
     isPurchased,
     viewCourse = () => {}
   } = props;
-  let course_type = "";
-  let duration = "";
-
-  if (!isLive) {
-    course_type = "Self paced digital content";
-    duration = digitalContentDuration;
-  } else {
-    course_type = "Live classes";
-    duration = liveClassDuration;
-  }
-
   const url = getCoursePurchaseURL(courseId);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2",
@@ -87,7 +75,7 @@ function CourseCard(props) {
     className: "flex flex-row justify-between"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: ""
-  }, course_type), /*#__PURE__*/_react.default.createElement("a", {
+  }, isLive ? "Live Classes" : "Self Paced Digital Content"), /*#__PURE__*/_react.default.createElement("a", {
     href: "https://www.youtube.com/watch?v=riE-VMMXMHI",
     target: "_blank",
     rel: "noopener noreferrer",
