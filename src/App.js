@@ -1,6 +1,6 @@
 import "./App.css";
 import "./lib/styles.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Sidebar from "./lib/components/basic/Sidebar/Sidebar";
 import { AiOutlinePlus, AiTwotoneSetting } from "react-icons/ai";
@@ -12,6 +12,53 @@ import { Dropdown } from "./lib/components/dropdown/Dropdown";
 import Table from "./lib/components/basic/Table/Table";
 import DummyData from "./lib/components/basic/Table/DummyData";
 import { Link } from "react-router-dom";
+import * as yup from "yup";
+import { Form } from "./lib";
+
+const FormBuilder = (values) => {
+  const [schema, setSchema] = useState({});
+
+  useEffect(() => {
+    const schema = {
+      name: {
+        type: "object",
+        fields: {
+          first: {
+            schema: yup.string(),
+            required: true,
+            label: "First Name",
+            placeholder: "First Name",
+          },
+          last: {
+            schema: yup.string(),
+            required: true,
+            label: "Last Name",
+            placeholder: "Second Name",
+          },
+        },
+      },
+
+      email: {
+        type: "string",
+        label: "Email",
+        schema: yup.string(),
+        required: true,
+        placeholder: "Email",
+      },
+
+      partner: {
+        type: "select",
+        label: "Select Partner",
+        required: true,
+        placeholder: "",
+      },
+    };
+
+    setSchema(schema);
+  }, []);
+
+  return schema;
+};
 
 function App() {
   const selects = [
@@ -143,14 +190,25 @@ function App() {
             <div className="" id="sidenavbar">
               <Sidebar sidebarItems={items} setSidebarItems={setItems} />
             </div>
-            <div id="form_component"></div>
-            <div className="ml-4" id="table">
-              <Table
-                column={columns}
-                title={"Manage Courses"}
-                data={DummyData}
-              />
-            </div>
+            <Route path="/create_course">
+              <div id="form_component">
+                <h1 className="ml-4 mt-4 heading-primary">Create Trainee</h1>
+                <Form
+                  formBuilder={FormBuilder}
+                  className="ml-4"
+                  submitButton={{ text: "Submit", className: "btn-primary" }}
+                />
+              </div>
+            </Route>
+            <Route path="/manage_course">
+              <div className="ml-4" id="table">
+                <Table
+                  column={columns}
+                  title={"Manage Courses"}
+                  data={DummyData}
+                />
+              </div>
+            </Route>
           </div>
         </div>
       </Switch>

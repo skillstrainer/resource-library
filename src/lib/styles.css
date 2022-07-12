@@ -145,3 +145,7 @@
 .btn-secondary {
   @apply text-sm bg-japanese_indigo text-white font-semibold rounded-lg px-4 py-2;
 }
+
+.heading-primary {
+  @apply text-2xl font-poppins
+}
