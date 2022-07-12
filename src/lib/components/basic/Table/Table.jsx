@@ -97,7 +97,6 @@ const customStyles = {
 };
 
 const Table = (props) => {
-  console.log(props.data);
   return (
     <div className="Table font-poppins">
       <DataTable
