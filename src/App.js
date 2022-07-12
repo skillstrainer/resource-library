@@ -1,13 +1,13 @@
 import "./App.css";
 import "./lib/styles.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Sidebar from "./lib/components/basic/Sidebar/Sidebar";
-import { Dropdown } from "./lib/components/dropdown/Dropdown";
-import Table from "./lib/components/basic/Table/Table";
+import { Sidebar } from "./lib";
+import { Dropdown } from "./lib";
+import { Table } from "./lib";
+import { Form } from "./lib";
 import DummyData from "./Testing data/DummyData";
 import sidebardata from "./Testing data/sidebardata";
-import { Form } from "./lib";
 import columns from "./Testing data/tabletestingcolumns";
 import selects from "./Testing data/dropdowntestingdata";
 import FormBuilder from "./Testing data/formbuildertesting";
@@ -36,7 +36,7 @@ function App() {
             <Route path="/manage_course">
               <div className="ml-4" id="table">
                 <Table
-                  column={columns}
+                  columns={columns}
                   title={"Manage Courses"}
                   data={DummyData}
                 />

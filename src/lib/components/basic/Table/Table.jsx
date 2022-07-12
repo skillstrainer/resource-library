@@ -100,13 +100,14 @@ const Table = (props) => {
   return (
     <div className="Table font-poppins">
       <DataTable
-        //progressPending={}
+        {...props}
+        //progressPending={props.progressPending}
 
-        //paginationServer
+        // paginationServer={props.paginationServer}
 
         // paginationTotalRows={}
 
-        // selectableRowSelected={}}
+        // selectableRowSelected={}
         // selectableRows
 
         // paginationPerPage={10}
@@ -125,11 +126,8 @@ const Table = (props) => {
         // persistTableHead
 
         //expandableRows
-        //expandableRowsComponent=
+        //expandableRowsComponent={}
 
-        title={props.title}
-        columns={props.column}
-        data={props.data}
         defaultSortFieldId={1}
         sortIcon={<TiArrowSortedUp />}
         pagination
