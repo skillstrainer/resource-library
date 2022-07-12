@@ -28,7 +28,7 @@ export const getSchema = (field) => {
     result = yup.object().shape(result);
   } else {
     result = field.schema;
-    if (field.required && typeof result.required === "function")
+    if (field.required && result && typeof result.required === "function")
       result = result.required(`${field.label} is required`);
   }
 
