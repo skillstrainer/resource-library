@@ -42,7 +42,7 @@ function App() {
                 />
               </div>
 
-              <Dropdown selections={selects} />
+              <Dropdown selections={selects} title={"Hi User"} />
             </Route>
           </div>
         </div>

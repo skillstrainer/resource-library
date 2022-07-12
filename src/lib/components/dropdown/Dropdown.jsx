@@ -37,7 +37,7 @@ function Dropdown(props) {
   return (
     <div className="menu-container flex flex-col items-center w-32 h-6 p-2 rounded-md font-poppins hover:shadow-md ">
       <button onClick={onClick} className="">
-        <span className="menu-trigger rounded-md p-2 w-32 ">Hi User!</span>
+        <span className="menu-trigger rounded-md p-2 w-32 ">{props.title}</span>
       </button>
       <nav className={`menu mt-2 ${isActive ? "block" : "hidden"}`}>
         <ul className="">
