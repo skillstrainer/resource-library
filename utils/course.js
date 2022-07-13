@@ -26,7 +26,8 @@ const courseFormatter = obj => ({
   discount: obj.discount,
   modules: obj.modules,
   partners: obj.partners,
-  videoUrl: obj.video_url
+  videoUrl: obj.video_url,
+  isMoodleCourse: obj.is_moodle_course
 });
 
 exports.courseFormatter = courseFormatter;
