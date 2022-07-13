@@ -17,7 +17,9 @@ export default function CourseCard(props) {
       isLive,
       nsqf_lvl,
       duration,
-    },
+      isMoodleCourse
+
+          },
     goToDetailPage,
     goToCategoryPage,
 
