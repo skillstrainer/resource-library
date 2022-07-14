@@ -160,7 +160,7 @@ function CourseDetailPageStaging(props) {
                     )}
                    {isPurchased ? (
             <button
-              className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
+              className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto"
               onClick={viewCourse}
             >
               View course
@@ -171,7 +171,7 @@ function CourseDetailPageStaging(props) {
               stopPropagation(e);
               payNow();
             
-          }} className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+          }} className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
                 {cost > 0 ? `₹ ${cost}` :"Free" }
@@ -184,7 +184,7 @@ function CourseDetailPageStaging(props) {
               onClick={stopPropagation}
               target="_blank"
             >
-              <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+              <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
                 {cost > 0 ? `₹ ${cost}` :"Free" }

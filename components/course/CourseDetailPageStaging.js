@@ -166,14 +166,14 @@ function CourseDetailPageStaging(props) {
     src: p.logo,
     className: "h-6"
   }) || null))), isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto",
     onClick: viewCourse
   }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       stopPropagation(e);
       payNow();
     },
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
   }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
@@ -181,7 +181,7 @@ function CourseDetailPageStaging(props) {
     onClick: stopPropagation,
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
   }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")))))))))), /*#__PURE__*/_react.default.createElement("section", {

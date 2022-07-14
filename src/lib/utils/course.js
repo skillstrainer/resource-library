@@ -19,6 +19,8 @@ export const courseFormatter = (obj) => ({
   partners: obj.partners,
   videoUrl: obj.video_url,
   isMoodleCourse: obj.is_moodle_course,
+  is_subscription:obj.is_subscription,
+  is_taxable:obj.is_subscription
 });
 
 export const catFormatter = (obj) => ({
