@@ -42,6 +42,8 @@ function CourseDetailPageStaging(props) {
     videoUrl,
   } = courseData || {};
 
+  console.log("detsails staging",props)
+
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
       <section>

@@ -58,10 +58,7 @@ function CourseDetailPage(props) {
     courseData,
     multiLangData,
     multiLangKey = "",
-    goToCategoryPage = () => {},
-    isPurchased,
-    viewCourse,
-    payNow
+    goToCategoryPage = () => {}
   } = props;
   const {
     courseId,
@@ -75,10 +72,8 @@ function CourseDetailPage(props) {
     isLive,
     nsqf_lvl,
     modules,
-    partners,
-    isMoodleCourse
+    partners
   } = courseData || {};
-  console.log("details", props);
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
@@ -179,26 +174,12 @@ function CourseDetailPage(props) {
     className: "text-md font-semibold leading-10 text-japanese_indigo mt-3"
   }, "About the Course:"), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
     name: "description"
-  }, description))), isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
-    onClick: viewCourse
-  }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
-    onClick: e => {
-      stopPropagation(e);
-      payNow();
-    },
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-bold"
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
+  }, description))), /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
-    onClick: stopPropagation,
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-bold"
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")))))))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-4 w-full md:w-auto"
+  }, "Get Enrolled for ", cost ? "\u20B9".concat(cost, " Only") : "Free"))))))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto bg-blue-grad px-4 py-10 md:px-10 mt-20"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "grid grid-cols-1 gap-8 md:grid-cols-2"

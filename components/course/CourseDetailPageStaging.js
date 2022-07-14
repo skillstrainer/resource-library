@@ -67,6 +67,7 @@ function CourseDetailPageStaging(props) {
     partners,
     videoUrl
   } = courseData || {};
+  console.log("detsails staging", props);
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
