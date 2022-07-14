@@ -54,6 +54,8 @@ function CourseDetailPage(props) {
     
   } = courseData || {};
 
+  console.log("details",props)
+
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
       <section>
