@@ -25,6 +25,11 @@ function CourseDetailPageStaging(props) {
     multiLangData,
     multiLangKey = "",
     goToCategoryPage = () => {},
+    payNow,
+
+    // If course is purchased
+    isPurchased,
+    viewCourse = () => {},
   } = props;
 
   const {
@@ -40,6 +45,7 @@ function CourseDetailPageStaging(props) {
     modules,
     partners,
     videoUrl,
+    isMoodleCourse,
   } = courseData || {};
 
   console.log("detsails staging",props)
@@ -152,11 +158,40 @@ function CourseDetailPageStaging(props) {
                         </div>
                       </div>
                     )}
-                    <a href={getCoursePurchaseURL(courseId)} target="_blank">
-                      <button className="bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-4 w-full md:w-auto">
-                        Get Enrolled for {cost ? `₹${cost} Only` : "Free"}
-                      </button>
-                    </a>
+                   {isPurchased ? (
+            <button
+              className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
+              onClick={viewCourse}
+            >
+              View course
+            </button>
+          ) : isMoodleCourse==false ? 
+          <button onClick={(e) => {
+            
+              stopPropagation(e);
+              payNow();
+            
+          }} className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+                <span>Get Enrolled for </span>
+                <span className="font-bold">
+                {cost > 0 ? `₹ ${cost}` :"Free" }
+                </span>
+              </button>
+          :
+          (
+            <a
+              href={getCoursePurchaseURL(courseId)}
+              onClick={stopPropagation}
+              target="_blank"
+            >
+              <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+                <span>Get Enrolled for </span>
+                <span className="font-bold">
+                {cost > 0 ? `₹ ${cost}` :"Free" }
+                </span>
+              </button>
+            </a>
+          )}
                   </div>
                 </div>
               </div>

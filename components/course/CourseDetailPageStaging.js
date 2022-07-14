@@ -51,7 +51,11 @@ function CourseDetailPageStaging(props) {
     courseData,
     multiLangData,
     multiLangKey = "",
-    goToCategoryPage = () => {}
+    goToCategoryPage = () => {},
+    payNow,
+    // If course is purchased
+    isPurchased,
+    viewCourse = () => {}
   } = props;
   const {
     courseId,
@@ -65,7 +69,8 @@ function CourseDetailPageStaging(props) {
     nsqf_lvl,
     modules,
     partners,
-    videoUrl
+    videoUrl,
+    isMoodleCourse
   } = courseData || {};
   console.log("detsails staging", props);
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
@@ -160,12 +165,26 @@ function CourseDetailPageStaging(props) {
   }]).map(p => p && p.logo && /*#__PURE__*/_react.default.createElement("img", {
     src: p.logo,
     className: "h-6"
-  }) || null))), /*#__PURE__*/_react.default.createElement("a", {
+  }) || null))), isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
+    onClick: viewCourse
+  }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
+    onClick: e => {
+      stopPropagation(e);
+      payNow();
+    },
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-bold"
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
+    onClick: stopPropagation,
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-4 w-full md:w-auto"
-  }, "Get Enrolled for ", cost ? "\u20B9".concat(cost, " Only") : "Free"))))))))), /*#__PURE__*/_react.default.createElement("section", {
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-bold"
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")))))))))), /*#__PURE__*/_react.default.createElement("section", {
     className: "mt-12"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto grid grid-cols-1 lg:grid-cols-2"
