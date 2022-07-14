@@ -17,15 +17,17 @@ export default function CourseCard(props) {
       isLive,
       nsqf_lvl,
       duration,
-      isMoodleCourse
+      isMoodleCourse,
 
           },
     goToDetailPage,
     goToCategoryPage,
+    payNow,
 
     // If course is purchased
     isPurchased,
     viewCourse = () => {},
+    
   } = props;
 
   const url = getCoursePurchaseURL(courseId);
@@ -145,7 +147,15 @@ export default function CourseCard(props) {
             >
               View course
             </button>
-          ) : (
+          ) : isMoodleCourse ? 
+          <button onClick={payNow} className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+                <span>Get Enrolled for </span>
+                <span className="font-bold">
+                {cost > 0 ? `₹ ${cost}` :"Free" }
+                </span>
+              </button>
+          :
+          (
             <a
               href={getCoursePurchaseURL(courseId)}
               onClick={stopPropagation}
@@ -154,7 +164,7 @@ export default function CourseCard(props) {
               <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
-                  {cost == 0 ? "Free" : `₹ ${cost || "6,000"}`}
+                {cost > 0 ? `₹ ${cost}` :"Free" }
                 </span>
               </button>
             </a>
