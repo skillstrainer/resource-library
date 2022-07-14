@@ -18,7 +18,6 @@ export default function CourseCard(props) {
       nsqf_lvl,
       duration,
       isMoodleCourse,
-
           },
     goToDetailPage,
     goToCategoryPage,
