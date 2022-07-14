@@ -4,7 +4,6 @@ import { STRLContext } from "../../Context";
 
 export default function CourseCard(props) {
 
-  console.log("CourseCardss",props)
 
  
   const {
