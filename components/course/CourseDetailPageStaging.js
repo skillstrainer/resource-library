@@ -21,6 +21,8 @@ var _MultiLangFieldImage = _interopRequireDefault(require("../multi-lang/MultiLa
 
 var _MultiLangField = _interopRequireDefault(require("../multi-lang/MultiLangField"));
 
+var _dom = require("../../utils/dom");
+
 var _react2 = require("@headlessui/react");
 
 var _solid = require("@heroicons/react/solid");
@@ -170,7 +172,7 @@ function CourseDetailPageStaging(props) {
     onClick: viewCourse
   }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
-      stopPropagation(e);
+      (0, _dom.stopPropagation)(e);
       payNow();
     },
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
@@ -178,7 +180,7 @@ function CourseDetailPageStaging(props) {
     className: "font-bold"
   }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
-    onClick: stopPropagation,
+    onClick: _dom.stopPropagation,
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"

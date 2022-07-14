@@ -5,6 +5,7 @@ import MultiLangBody from "../multi-lang/MultiLangBody";
 import MultiLangFieldMd from "../multi-lang/MultiLangFieldMd";
 import MultiLangFieldImage from "../multi-lang/MultiLangFieldImage";
 import MultiLangField from "../multi-lang/MultiLangField";
+import { stopPropagation } from "../../utils/dom";
 
 // Icons
 import { Disclosure } from "@headlessui/react";
@@ -15,6 +16,7 @@ import pageTopBg from "../../assets/image/page-top-bg.png";
 import emptyCertificate from "../../assets/image/certificate.jpg";
 import jobs from "../../assets/image/jobs.jpg";
 import newLogo from "../../assets/image/newLogo.svg";
+
 
 function CourseDetailPageStaging(props) {
   const {
