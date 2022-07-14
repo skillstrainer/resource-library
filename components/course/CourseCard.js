@@ -138,12 +138,12 @@ function CourseCard(props) {
   }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
     onClick: viewCourse
-  }, "View course") : isMoodleCourse ? /*#__PURE__*/_react.default.createElement("button", {
+  }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: payNow,
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Freee")) : /*#__PURE__*/_react.default.createElement("a", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"

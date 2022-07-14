@@ -150,11 +150,11 @@ export default function CourseCard(props) {
             >
               View course
             </button>
-          ) : isMoodleCourse ? 
+          ) : isMoodleCourse==false ? 
           <button onClick={payNow} className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
-                {cost > 0 ? `₹ ${cost}` :"Freee" }
+                {cost > 0 ? `₹ ${cost}` :"Free" }
                 </span>
               </button>
           :
