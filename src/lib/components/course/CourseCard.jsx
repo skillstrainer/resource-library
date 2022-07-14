@@ -3,6 +3,8 @@ import { stopPropagation } from "../../utils/dom";
 import { STRLContext } from "../../Context";
 
 export default function CourseCard(props) {
+
+  console.log("data",props);
   const {
     course: { getCoursePurchaseURL, toggleCourseModal },
   } = useContext(STRLContext);
@@ -150,7 +152,7 @@ export default function CourseCard(props) {
           <button onClick={payNow} className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
-                {cost > 0 ? `₹ ${cost}` :"Free" }
+                {cost > 0 ? `₹ ${cost}` :"Freee" }
                 </span>
               </button>
           :
@@ -163,7 +165,7 @@ export default function CourseCard(props) {
               <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
-                {cost > 0 ? `₹ ${cost}` :"Free" }
+                {cost > 0 ? `₹ ${cost}` :"Freee" }
                 </span>
               </button>
             </a>
