@@ -4,6 +4,8 @@ import { STRLContext } from "../../Context";
 
 export default function CourseCard(props) {
 
+  console.log("CourseCardss",props)
+
  
   const {
     course: { getCoursePurchaseURL, toggleCourseModal },
@@ -20,7 +22,6 @@ export default function CourseCard(props) {
       nsqf_lvl,
       duration,
       isMoodleCourse,
-
           },
     goToDetailPage,
     goToCategoryPage,
@@ -153,7 +154,7 @@ export default function CourseCard(props) {
           <button onClick={payNow} className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
-                {cost > 0 ? `₹ ${cost}` :"Free" }
+                {cost > 0 ? `₹ ${cost}` :"Freee" }
                 </span>
               </button>
           :
