@@ -139,7 +139,10 @@ function CourseCard(props) {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
     onClick: viewCourse
   }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
-    onClick: payNow,
+    onClick: e => {
+      (0, _dom.stopPropagation)(e);
+      payNow();
+    },
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
