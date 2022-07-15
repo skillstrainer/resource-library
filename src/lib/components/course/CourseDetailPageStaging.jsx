@@ -17,7 +17,6 @@ import emptyCertificate from "../../assets/image/certificate.jpg";
 import jobs from "../../assets/image/jobs.jpg";
 import newLogo from "../../assets/image/newLogo.svg";
 
-
 function CourseDetailPageStaging(props) {
   const {
     course: { getCoursePurchaseURL },
@@ -49,9 +48,13 @@ function CourseDetailPageStaging(props) {
     partners,
     videoUrl,
     isMoodleCourse,
-  } = courseData || {};
 
-  console.log("detsails staging",props)
+    // Demo class
+    userHasRegisteredDemo,
+    onViewDemoDetails = () => {},
+    isDemoAvailable,
+    onBookDemo = () => {},
+  } = courseData || {};
 
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
@@ -161,38 +164,60 @@ function CourseDetailPageStaging(props) {
                         </div>
                       </div>
                     )}
-                   {isPurchased ? (
-            <button
-              className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto"
-              onClick={viewCourse}
-            >
-              View course
-            </button>
-          ) : isMoodleCourse==false ? 
-          <button onClick={(e) => {            
-              stopPropagation(e);
-              payNow();         
-          }} className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
-                <span>Get Enrolled for </span>
-                <span className="font-bold">
-                {cost > 0 ? `₹ ${cost}` :"Free" }
-                </span>
-              </button>
-          :
-          (
-            <a
-              href={getCoursePurchaseURL(courseId)}
-              onClick={stopPropagation}
-              target="_blank"
-            >
-              <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
-                <span>Get Enrolled for </span>
-                <span className="font-bold">
-                {cost > 0 ? `₹ ${cost}` :"Free" }
-                </span>
-              </button>
-            </a>
-          )}
+                    <div className="flex gap-3">
+                      {isPurchased ? (
+                        <button
+                          className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto"
+                          onClick={viewCourse}
+                        >
+                          View course
+                        </button>
+                      ) : isMoodleCourse == false ? (
+                        <button
+                          onClick={(e) => {
+                            stopPropagation(e);
+                            payNow();
+                          }}
+                          className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
+                        >
+                          <span>Get Enrolled for </span>
+                          <span className="font-bold">
+                            {cost > 0 ? `₹ ${cost}` : "Free"}
+                          </span>
+                        </button>
+                      ) : (
+                        <a
+                          href={getCoursePurchaseURL(courseId)}
+                          onClick={stopPropagation}
+                          target="_blank"
+                        >
+                          <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
+                            <span>Get Enrolled for </span>
+                            <span className="font-bold">
+                              {cost > 0 ? `₹ ${cost}` : "Free"}
+                            </span>
+                          </button>
+                        </a>
+                      )}
+                      {!isPurchased &&
+                        (userHasRegisteredDemo ? (
+                          <button
+                            onClick={() => onViewDemoDetails()}
+                            className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+                          >
+                            Show demo class details
+                          </button>
+                        ) : (
+                          isDemoAvailable && (
+                            <button
+                              onClick={() => onBookDemo()}
+                              className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+                            >
+                              Book demo
+                            </button>
+                          )
+                        ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -224,93 +249,93 @@ function CourseDetailPageStaging(props) {
               <h2 className="text-3xl text-center mb-8 blue-dark2 font-semibold">
                 Course Modules
               </h2>
-              {isMoodleCourse==false ? courseModuleTopic && (
-                <div className="w-full p-2 mx-auto rounded-lg">
-                  {courseModuleTopic.length > 0 &&
-                    courseModuleTopic.map((module) => (
-                      <Disclosure as="div">
-                        {({ open }) => (
-                          <>
-                            <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
-                              <span
-                                className="text-japanese_indigo font-semibold"
-                                dangerouslySetInnerHTML={{
-                                  __html: module.name,
-                                }}
-                              />
-                              {module.coursesec?.length > 0 && (
-                                <ChevronUpIcon
-                                  className={`${
-                                    open ? "transform rotate-180" : ""
-                                  } w-5 h-5`}
-                                />
-                              )}
-                            </Disclosure.Button>
-                            {module.coursesec?.length > 0 && (
-                              <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
-                                <ul className="ml-3">
-                                  {module.coursesec.map((item) => (
-                                    <li
-                                      className="bg-white rounded-lg p-3 mb-1 text-black"
-                                      style={{ listStyle: "disc" }}
-                                      dangerouslySetInnerHTML={{
-                                        __html: item.name,
-                                      }}
+              {isMoodleCourse == false
+                ? courseModuleTopic && (
+                    <div className="w-full p-2 mx-auto rounded-lg">
+                      {courseModuleTopic.length > 0 &&
+                        courseModuleTopic.map((module) => (
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
+                                  <span
+                                    className="text-japanese_indigo font-semibold"
+                                    dangerouslySetInnerHTML={{
+                                      __html: module.name,
+                                    }}
+                                  />
+                                  {module.coursesec?.length > 0 && (
+                                    <ChevronUpIcon
+                                      className={`${
+                                        open ? "transform rotate-180" : ""
+                                      } w-5 h-5`}
                                     />
-                                  ))}
-                                </ul>
-                              </Disclosure.Panel>
+                                  )}
+                                </Disclosure.Button>
+                                {module.coursesec?.length > 0 && (
+                                  <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
+                                    <ul className="ml-3">
+                                      {module.coursesec.map((item) => (
+                                        <li
+                                          className="bg-white rounded-lg p-3 mb-1 text-black"
+                                          style={{ listStyle: "disc" }}
+                                          dangerouslySetInnerHTML={{
+                                            __html: item.name,
+                                          }}
+                                        />
+                                      ))}
+                                    </ul>
+                                  </Disclosure.Panel>
+                                )}
+                              </>
                             )}
-                          </>
-                        )}
-                      </Disclosure>
-                    ))}
-                </div>
-              )     
-              
-              :modules && (
-                <div className="w-full p-2 mx-auto rounded-lg">
-                  {modules.length > 0 &&
-                    modules.map((module) => (
-                      <Disclosure as="div">
-                        {({ open }) => (
-                          <>
-                            <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
-                              <span
-                                className="text-japanese_indigo font-semibold"
-                                dangerouslySetInnerHTML={{
-                                  __html: module.name,
-                                }}
-                              />
-                              {module.modules?.length > 0 && (
-                                <ChevronUpIcon
-                                  className={`${
-                                    open ? "transform rotate-180" : ""
-                                  } w-5 h-5`}
-                                />
-                              )}
-                            </Disclosure.Button>
-                            {module.modules?.length > 0 && (
-                              <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
-                                <ul className="ml-3">
-                                  {module.modules.map((item) => (
-                                    <li
-                                      className="bg-white rounded-lg p-3 mb-1 text-black"
-                                      style={{ listStyle: "disc" }}
-                                      dangerouslySetInnerHTML={{
-                                        __html: item.name,
-                                      }}
+                          </Disclosure>
+                        ))}
+                    </div>
+                  )
+                : modules && (
+                    <div className="w-full p-2 mx-auto rounded-lg">
+                      {modules.length > 0 &&
+                        modules.map((module) => (
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
+                                  <span
+                                    className="text-japanese_indigo font-semibold"
+                                    dangerouslySetInnerHTML={{
+                                      __html: module.name,
+                                    }}
+                                  />
+                                  {module.modules?.length > 0 && (
+                                    <ChevronUpIcon
+                                      className={`${
+                                        open ? "transform rotate-180" : ""
+                                      } w-5 h-5`}
                                     />
-                                  ))}
-                                </ul>
-                              </Disclosure.Panel>
+                                  )}
+                                </Disclosure.Button>
+                                {module.modules?.length > 0 && (
+                                  <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
+                                    <ul className="ml-3">
+                                      {module.modules.map((item) => (
+                                        <li
+                                          className="bg-white rounded-lg p-3 mb-1 text-black"
+                                          style={{ listStyle: "disc" }}
+                                          dangerouslySetInnerHTML={{
+                                            __html: item.name,
+                                          }}
+                                        />
+                                      ))}
+                                    </ul>
+                                  </Disclosure.Panel>
+                                )}
+                              </>
                             )}
-                          </>
-                        )}
-                      </Disclosure>
-                    ))}
-                </div>
-              )}
+                          </Disclosure>
+                        ))}
+                    </div>
+                  )}
             </div>
             <div>
               <h2 className="text-3xl text-center mb-8 blue-dark2 font-semibold">

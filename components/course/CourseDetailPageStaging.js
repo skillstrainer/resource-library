@@ -73,9 +73,13 @@ function CourseDetailPageStaging(props) {
     modules,
     partners,
     videoUrl,
-    isMoodleCourse
+    isMoodleCourse,
+    // Demo class
+    userHasRegisteredDemo,
+    onViewDemoDetails = () => {},
+    isDemoAvailable,
+    onBookDemo = () => {}
   } = courseData || {};
-  console.log("detsails staging", props);
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
@@ -168,7 +172,9 @@ function CourseDetailPageStaging(props) {
   }]).map(p => p && p.logo && /*#__PURE__*/_react.default.createElement("img", {
     src: p.logo,
     className: "h-6"
-  }) || null))), isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
+  }) || null))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "flex gap-3"
+  }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto",
     onClick: viewCourse
   }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
@@ -187,7 +193,13 @@ function CourseDetailPageStaging(props) {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")))))))))), /*#__PURE__*/_react.default.createElement("section", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
+    onClick: () => onViewDemoDetails(),
+    className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+  }, "Show demo class details") : isDemoAvailable && /*#__PURE__*/_react.default.createElement("button", {
+    onClick: () => onBookDemo(),
+    className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+  }, "Book demo")))))))))), /*#__PURE__*/_react.default.createElement("section", {
     className: "mt-12"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto grid grid-cols-1 lg:grid-cols-2"

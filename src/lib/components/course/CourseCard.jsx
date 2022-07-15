@@ -3,9 +3,6 @@ import { stopPropagation } from "../../utils/dom";
 import { STRLContext } from "../../Context";
 
 export default function CourseCard(props) {
-
-
- 
   const {
     course: { getCoursePurchaseURL, toggleCourseModal },
   } = useContext(STRLContext);
@@ -21,7 +18,13 @@ export default function CourseCard(props) {
       nsqf_lvl,
       duration,
       isMoodleCourse,
-          },
+
+      // Demo sessions
+      userHasRegisteredDemo,
+      onViewDemoDetails = () => {},
+      isDemoAvailable,
+      onBookDemo = () => {},
+    },
     goToDetailPage,
     goToCategoryPage,
     payNow,
@@ -29,7 +32,6 @@ export default function CourseCard(props) {
     // If course is purchased
     isPurchased,
     viewCourse = () => {},
-    
   } = props;
 
   const url = getCoursePurchaseURL(courseId);
@@ -141,41 +143,60 @@ export default function CourseCard(props) {
       </div>
 
       <div className="flex item-center justify-center w-full">
-        <div className="mt-6 bottom-0 mb-4">
+        <div className="mt-6 bottom-0 mb-4 flex gap-3">
           {isPurchased ? (
             <button
-              className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
+              className="text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
               onClick={viewCourse}
             >
               View course
             </button>
-          ) : isMoodleCourse==false ? 
-          <button onClick={(e) => {
-            
-              stopPropagation(e);
-              payNow();
-            
-          }} className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
-                <span>Get Enrolled for </span>
-                <span className="font-bold">
-                {cost > 0 ? `₹ ${cost}` :"Free" }
-                </span>
-              </button>
-          :
-          (
+          ) : isMoodleCourse == false ? (
+            <button
+              onClick={(e) => {
+                stopPropagation(e);
+                payNow();
+              }}
+              className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+            >
+              <span>Get Enrolled for </span>
+              <span className="font-bold">
+                {cost > 0 ? `₹ ${cost}` : "Free"}
+              </span>
+            </button>
+          ) : (
             <a
               href={getCoursePurchaseURL(courseId)}
               onClick={stopPropagation}
               target="_blank"
             >
-              <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+              <button className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
-                {cost > 0 ? `₹ ${cost}` :"Free" }
+                  {cost > 0 ? `₹ ${cost}` : "Free"}
                 </span>
               </button>
             </a>
           )}
+          {/* Book demo button */}
+          {!isPurchased &&
+            (userHasRegisteredDemo ? (
+              <button
+                onClick={() => onViewDemoDetails()}
+                className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+              >
+                Show demo class details
+              </button>
+            ) : (
+              isDemoAvailable && (
+                <button
+                  onClick={() => onBookDemo()}
+                  className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+                >
+                  Book a demo
+                </button>
+              )
+            ))}
         </div>
       </div>
     </div>
