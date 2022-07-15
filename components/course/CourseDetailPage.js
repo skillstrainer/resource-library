@@ -74,6 +74,7 @@ function CourseDetailPage(props) {
     modules,
     partners
   } = courseData || {};
+  console.log("production", props);
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData

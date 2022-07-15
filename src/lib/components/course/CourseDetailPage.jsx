@@ -48,6 +48,9 @@ function CourseDetailPage(props) {
     partners,
   } = courseData || {};
 
+  console.log("production",props)
+
+
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
       <section>
