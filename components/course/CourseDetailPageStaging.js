@@ -55,6 +55,7 @@ function CourseDetailPageStaging(props) {
     multiLangKey = "",
     goToCategoryPage = () => {},
     payNow,
+    courseModuleTopic,
     // If course is purchased
     isPurchased,
     viewCourse = () => {}
@@ -210,16 +211,48 @@ function CourseDetailPageStaging(props) {
     className: "grid grid-cols-1 gap-8 md:grid-cols-2"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-3xl text-center mb-8 blue-dark2 font-semibold"
-  }, "Course Modules"), modules && /*#__PURE__*/_react.default.createElement("div", {
+  }, "Course Modules"), isMoodleCourse == false ? courseModuleTopic && /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full p-2 mx-auto rounded-lg"
-  }, modules.length > 0 && modules.map(module => /*#__PURE__*/_react.default.createElement(_react2.Disclosure, {
+  }, courseModuleTopic.length > 0 && courseModuleTopic.map(module => /*#__PURE__*/_react.default.createElement(_react2.Disclosure, {
     as: "div"
   }, _ref => {
-    var _module$modules, _module$modules2;
+    var _module$coursesec, _module$coursesec2;
 
     let {
       open
     } = _ref;
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Button, {
+      className: "flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "text-japanese_indigo font-semibold",
+      dangerouslySetInnerHTML: {
+        __html: module.name
+      }
+    }), ((_module$coursesec = module.coursesec) === null || _module$coursesec === void 0 ? void 0 : _module$coursesec.length) > 0 && /*#__PURE__*/_react.default.createElement(_solid.ChevronUpIcon, {
+      className: "".concat(open ? "transform rotate-180" : "", " w-5 h-5")
+    })), ((_module$coursesec2 = module.coursesec) === null || _module$coursesec2 === void 0 ? void 0 : _module$coursesec2.length) > 0 && /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Panel, {
+      className: "px-2 pt-2 pb-1 text-sm text-gray-500 pr-0"
+    }, /*#__PURE__*/_react.default.createElement("ul", {
+      className: "ml-3"
+    }, module.coursesec.map(item => /*#__PURE__*/_react.default.createElement("li", {
+      className: "bg-white rounded-lg p-3 mb-1 text-black",
+      style: {
+        listStyle: "disc"
+      },
+      dangerouslySetInnerHTML: {
+        __html: item.name
+      }
+    })))));
+  }))) : modules && /*#__PURE__*/_react.default.createElement("div", {
+    className: "w-full p-2 mx-auto rounded-lg"
+  }, modules.length > 0 && modules.map(module => /*#__PURE__*/_react.default.createElement(_react2.Disclosure, {
+    as: "div"
+  }, _ref2 => {
+    var _module$modules, _module$modules2;
+
+    let {
+      open
+    } = _ref2;
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Button, {
       className: "flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none"
     }, /*#__PURE__*/_react.default.createElement("span", {

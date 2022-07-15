@@ -28,6 +28,7 @@ function CourseDetailPageStaging(props) {
     multiLangKey = "",
     goToCategoryPage = () => {},
     payNow,
+    courseModuleTopic,
 
     // If course is purchased
     isPurchased,
@@ -168,11 +169,9 @@ function CourseDetailPageStaging(props) {
               View course
             </button>
           ) : isMoodleCourse==false ? 
-          <button onClick={(e) => {
-            
+          <button onClick={(e) => {            
               stopPropagation(e);
-              payNow();
-            
+              payNow();         
           }} className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
@@ -225,7 +224,51 @@ function CourseDetailPageStaging(props) {
               <h2 className="text-3xl text-center mb-8 blue-dark2 font-semibold">
                 Course Modules
               </h2>
-              {modules && (
+              {isMoodleCourse==false ? courseModuleTopic && (
+                <div className="w-full p-2 mx-auto rounded-lg">
+                  {courseModuleTopic.length > 0 &&
+                    courseModuleTopic.map((module) => (
+                      <Disclosure as="div">
+                        {({ open }) => (
+                          <>
+                            <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
+                              <span
+                                className="text-japanese_indigo font-semibold"
+                                dangerouslySetInnerHTML={{
+                                  __html: module.name,
+                                }}
+                              />
+                              {module.coursesec?.length > 0 && (
+                                <ChevronUpIcon
+                                  className={`${
+                                    open ? "transform rotate-180" : ""
+                                  } w-5 h-5`}
+                                />
+                              )}
+                            </Disclosure.Button>
+                            {module.coursesec?.length > 0 && (
+                              <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
+                                <ul className="ml-3">
+                                  {module.coursesec.map((item) => (
+                                    <li
+                                      className="bg-white rounded-lg p-3 mb-1 text-black"
+                                      style={{ listStyle: "disc" }}
+                                      dangerouslySetInnerHTML={{
+                                        __html: item.name,
+                                      }}
+                                    />
+                                  ))}
+                                </ul>
+                              </Disclosure.Panel>
+                            )}
+                          </>
+                        )}
+                      </Disclosure>
+                    ))}
+                </div>
+              )     
+              
+              :modules && (
                 <div className="w-full p-2 mx-auto rounded-lg">
                   {modules.length > 0 &&
                     modules.map((module) => (
