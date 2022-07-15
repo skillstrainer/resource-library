@@ -182,7 +182,10 @@ export default function CourseCard(props) {
           {!isPurchased &&
             (userHasRegisteredDemo ? (
               <button
-                onClick={() => onViewDemoDetails()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onViewDemoDetails();
+                }}
                 className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
               >
                 Show demo class details
@@ -190,7 +193,10 @@ export default function CourseCard(props) {
             ) : (
               isDemoAvailable && (
                 <button
-                  onClick={() => onBookDemo()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onBookDemo();
+                  }}
                   className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
                 >
                   Book a demo

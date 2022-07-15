@@ -159,10 +159,16 @@ function CourseCard(props) {
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
   }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
-    onClick: () => onViewDemoDetails(),
+    onClick: e => {
+      e.stopPropagation();
+      onViewDemoDetails();
+    },
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, "Show demo class details") : isDemoAvailable && /*#__PURE__*/_react.default.createElement("button", {
-    onClick: () => onBookDemo(),
+    onClick: e => {
+      e.stopPropagation();
+      onBookDemo();
+    },
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, "Book a demo")))));
 }
