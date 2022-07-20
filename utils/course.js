@@ -29,7 +29,8 @@ const courseFormatter = obj => ({
   videoUrl: obj.video_url,
   isMoodleCourse: obj.is_moodle_course,
   is_subscription: obj.is_subscription,
-  is_taxable: obj.is_subscription
+  is_taxable: obj.is_subscription,
+  moodleCourseId: obj.moodle_course_id
 });
 
 exports.courseFormatter = courseFormatter;
