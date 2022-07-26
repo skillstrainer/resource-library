@@ -18,6 +18,12 @@ export default function CourseCard(props) {
       nsqf_lvl,
       duration,
       isMoodleCourse,
+
+      // Demo sessions
+      userHasRegisteredDemo,
+      onViewDemoDetails = () => {},
+      isDemoAvailable,
+      onBookDemo = () => {},
     },
     goToDetailPage,
     goToCategoryPage,
@@ -137,10 +143,10 @@ export default function CourseCard(props) {
       </div>
 
       <div className="flex item-center justify-center w-full">
-        <div className="mt-6 bottom-0 mb-4">
+        <div className="mt-6 bottom-0 mb-4 flex gap-3">
           {isPurchased ? (
             <button
-              className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
+              className="text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
               onClick={viewCourse}
             >
               View course
@@ -151,7 +157,7 @@ export default function CourseCard(props) {
                 stopPropagation(e);
                 payNow();
               }}
-              className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+              className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
             >
               <span>Get Enrolled for </span>
               <span className="font-bold">
@@ -164,7 +170,7 @@ export default function CourseCard(props) {
               onClick={stopPropagation}
               target="_blank"
             >
-              <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+              <button className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
                   {cost > 0 ? `₹ ${cost}` : "Free"}
@@ -172,6 +178,31 @@ export default function CourseCard(props) {
               </button>
             </a>
           )}
+          {/* Book demo button */}
+          {!isPurchased &&
+            (userHasRegisteredDemo ? (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onViewDemoDetails();
+                }}
+                className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+              >
+                Show demo class details
+              </button>
+            ) : (
+              isDemoAvailable && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onBookDemo();
+                  }}
+                  className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+                >
+                  Book a demo
+                </button>
+              )
+            ))}
         </div>
       </div>
     </div>
