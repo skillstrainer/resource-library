@@ -175,6 +175,19 @@ function CourseDetailPageStaging(props) {
                       </span>
                     </div>
 
+                    <div className="text-md mb-3">
+                      <span className="font-semibold text-japanese_indigo mr-3 ">
+                        {favorite == "one-time" ? "Price" : "Installment Price"}
+                      </span>
+                      <span>
+                        {favorite == "one-time"
+                          ? `₹ ${cost}`
+                          : favorite == "installment"
+                          ? "₹ 1000/Month upto 3 months"
+                          : ""}
+                      </span>
+                    </div>
+
                     {partners && (
                       <div>
                         <span className="font-semibold text-japanese_indigo mr-3 text-md">

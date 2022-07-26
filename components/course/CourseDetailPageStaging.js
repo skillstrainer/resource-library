@@ -185,7 +185,11 @@ function CourseDetailPageStaging(props) {
     label: "Installment",
     value: favorite === "installment",
     onChange: handleInstallmentChange
-  }))), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+  }))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "text-md mb-3"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-semibold text-japanese_indigo mr-3 "
+  }, favorite == "one-time" ? "Price" : "Installment Price"), /*#__PURE__*/_react.default.createElement("span", null, favorite == "one-time" ? "\u20B9 ".concat(cost) : favorite == "installment" ? "₹ 1000/Month upto 3 months" : "")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
