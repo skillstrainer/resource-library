@@ -43,6 +43,7 @@
     "react-markdown": "^8.0.3",
     "react-select": "^5.3.2",
     "rxjs": "^7.5.5",
+    "styled-components": "^5.3.5",
     "yup": "^0.32.11"
   },
   "devDependencies": {

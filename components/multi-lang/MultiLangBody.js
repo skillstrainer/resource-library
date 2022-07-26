@@ -39,7 +39,7 @@ function MultiLangBody(props) {
     submitSignal,
     isInEditableMode,
     editable,
-    data: allData,
+    data: allData = {},
     setData: setAllData
   } = (0, _react.useContext)(_MultiLangContext.MultiLangContext);
   const subscriptionRef = (0, _react.useRef)();

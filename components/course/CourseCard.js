@@ -55,11 +55,13 @@ function CourseCard(props) {
     onClick: goToDetailPage
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "relative"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "h-56 flex justify-center items-center bg-gray-200"
   }, /*#__PURE__*/_react.default.createElement("img", {
-    className: "h-56 w-full object-cover object-center shadow-xl",
+    className: "max-w-full max-h-full shadow-xl",
     src: courseImg && courseImg.url ? courseImg.url : courseImg,
-    alt: "course-img"
-  }), /*#__PURE__*/_react.default.createElement("div", {
+    alt: displayName
+  })), /*#__PURE__*/_react.default.createElement("div", {
     className: "absolute top-2 left-2"
   }, /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
@@ -142,7 +144,7 @@ function CourseCard(props) {
   }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
     className: "text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
     onClick: viewCourse
-  }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
+  }, "View course") : isMoodleCourse === false ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       (0, _dom.stopPropagation)(e);
       payNow();
