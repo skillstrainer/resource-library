@@ -193,35 +193,6 @@ function CourseDetailPageStaging(props) {
                         </div>
                       </div>
                     )}
-<<<<<<< HEAD
-                    {isPurchased ? (
-                      <button
-                        className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto"
-                        onClick={viewCourse}
-                      >
-                        View course
-                      </button>
-                    ) : isMoodleCourse == false ? (
-                      <button
-                        onClick={(e) => {
-                          stopPropagation(e);
-                          payNow();
-                        }}
-                        className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
-                      >
-                        <span>Get Enrolled for </span>
-                        <span className="font-bold">
-                          {cost > 0 ? `₹ ${cost}` : "Free"}
-                        </span>
-                      </button>
-                    ) : (
-                      <a
-                        href={getCoursePurchaseURL(courseId)}
-                        onClick={stopPropagation}
-                        target="_blank"
-                      >
-                        <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
-=======
                     <div className="flex gap-3">
                       {isPurchased ? (
                         <button
@@ -238,16 +209,11 @@ function CourseDetailPageStaging(props) {
                           }}
                           className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
                         >
->>>>>>> de8909958de019a77a150fe4e1e3430c956700a6
                           <span>Get Enrolled for </span>
                           <span className="font-bold">
                             {cost > 0 ? `₹ ${cost}` : "Free"}
                           </span>
                         </button>
-<<<<<<< HEAD
-                      </a>
-                    )}
-=======
                       ) : (
                         <a
                           href={getCoursePurchaseURL(courseId)}
@@ -281,7 +247,6 @@ function CourseDetailPageStaging(props) {
                           )
                         ))}
                     </div>
->>>>>>> de8909958de019a77a150fe4e1e3430c956700a6
                   </div>
                 </div>
               </div>
