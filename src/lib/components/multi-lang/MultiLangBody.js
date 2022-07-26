@@ -13,7 +13,7 @@ export default function MultiLangBody(props) {
     submitSignal,
     isInEditableMode,
     editable,
-    data: allData,
+    data: allData = {},
     setData: setAllData,
   } = useContext(MultiLangContext);
   const subscriptionRef = useRef();

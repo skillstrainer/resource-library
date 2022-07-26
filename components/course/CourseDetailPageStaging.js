@@ -93,6 +93,8 @@ function CourseDetailPageStaging(props) {
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "w-full"
   }, /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "relative pt-32"
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -199,6 +201,8 @@ function CourseDetailPageStaging(props) {
     src: p.logo,
     className: "h-6"
   }) || null))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "mt-5"
+  }), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex gap-3"
   }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto",
@@ -325,7 +329,7 @@ function CourseDetailPageStaging(props) {
     style: {
       transform: "scale(0.6) translateY(50%)"
     }
-  }, "student of ", /*#__PURE__*/_react.default.createElement("b", null, "XYZ Institute"), " has successfully", /*#__PURE__*/_react.default.createElement("br", null), "cleared the assessment for the job role of", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("b", null, displayName), /*#__PURE__*/_react.default.createElement("br", null), "conforming to National Skills Qualifications Framework Level -", " ", nsqf_lvl || "X")))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
+  }, "student of ", /*#__PURE__*/_react.default.createElement("b", null, "XYZ Institute"), " has successfully", /*#__PURE__*/_react.default.createElement("br", null), "cleared the assessment for the job role of", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("b", null, displayName), /*#__PURE__*/_react.default.createElement("br", null), "conforming to National Skills Qualifications Framework Level - ", nsqf_lvl || "X")))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full md:w-1/2"
@@ -354,7 +358,7 @@ function CourseDetailPageStaging(props) {
     src: _jobs.default,
     name: "jobs",
     alt: "course-img"
-  }))))));
+  })))))));
 }
 
 const RadioButton = _ref3 => {

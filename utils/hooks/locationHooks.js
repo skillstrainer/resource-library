@@ -32,7 +32,9 @@ const useBasePath = () => {
   const params = useParams();
   var pathname = location.pathname;
   if (pathname[pathname.length - 1] === "/") pathname = pathname.substring(0, pathname.length - 1);
-  return Object.values(params).reduce((path, param) => path.replace("/" + param, ""), pathname);
+  const baseURL = Object.values(params).reduce((path, param) => path.replace("/" + param, ""), pathname);
+  console.log(location.pathname, params, baseURL);
+  return baseURL;
 };
 
 exports.useBasePath = useBasePath;

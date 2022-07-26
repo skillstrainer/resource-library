@@ -9,11 +9,11 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Context = require("../../Context");
+var _Context = require("../../../Context");
 
-var _locationHooks = require("../../utils/hooks/locationHooks");
+var _locationHooks = require("../../../utils/hooks/locationHooks");
 
-var _SidebarItem = _interopRequireDefault(require("./Sidebar/SidebarItem"));
+var _SidebarItem = _interopRequireDefault(require("./SidebarItem"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29,6 +29,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 const Sidebar = _ref => {
   let {
+    className,
     setSidebarItems,
     sidebarItems = {
       items: [],
@@ -80,15 +81,15 @@ const Sidebar = _ref => {
     if (!changed) changeCurrentItem(0);
   }, [sidebarActive, sidebarItems.items, history]);
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "w-80"
+    className: "hidden xl:block lg:w-64 shadow-xl left-0 h-screen " + className
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "mt-4"
+    className: "flex flex-col justify-between space-y-0 w-full "
   }, sidebarItems.items.map((item, index) => !item.hidden ? /*#__PURE__*/_react.default.createElement(_SidebarItem.default, {
     name: item.name,
     Icon: item.icon,
     key: index,
     selected: index === sidebarItems.active,
-    className: "m-4",
+    className: "",
     linkTo: "".concat(baseurl, "/").concat(item.url),
     onClick: () => {
       changeCurrentItem(index);

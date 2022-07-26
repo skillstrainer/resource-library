@@ -11,13 +11,15 @@ import sidebardata from "./Testing data/sidebardata";
 import columns from "./Testing data/tabletestingcolumns";
 import selects from "./Testing data/dropdowntestingdata";
 import FormBuilder from "./Testing data/formbuildertesting";
+import Test from "./test";
 
 function App() {
   const [items, setItems] = useState(sidebardata);
 
   return (
     <BrowserRouter>
-      <Switch>
+      <Test />
+      {/* <Switch>
         <div className="container">
           <div className="flex flex-row ">
             <div className="" id="sidenavbar">
@@ -46,7 +48,7 @@ function App() {
             </Route>
           </div>
         </div>
-      </Switch>
+      </Switch> */}
     </BrowserRouter>
   );
 }
