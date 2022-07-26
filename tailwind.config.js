@@ -3,6 +3,12 @@ module.exports = {
   theme: {
     darkMode: false, // or 'media' or 'class'
     extend: {
+      padding: {
+        4.5: "26px",
+      },
+      margin: {
+        4.5: "26px",
+      },
       colors: {
         orange: {
           light: "#FFEAD9",
@@ -16,9 +22,11 @@ module.exports = {
         jungle_green: {
           DEFAULT: "#2A9D8F",
         },
+        gray: { DEFAULT: "#F1F1F1", dark: "#CBCBCB" },
       },
       fontFamily: {
-        Poppins: ["Poppins", "sans-serif"],
+        //Poppins: ["Poppins", "sans-serif"],
+        poppins: ["Poppins"]
       },
     },
   },

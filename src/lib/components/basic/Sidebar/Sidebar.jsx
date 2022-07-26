@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
-import { STRLContext } from "../../Context";
-import { useBasePath } from "../../utils/hooks/locationHooks";
-import SidebarItem from "./Sidebar/SidebarItem";
+import { STRLContext } from "../../../Context";
+import { useBasePath } from "../../../utils/hooks/locationHooks";
+import SidebarItem from "./SidebarItem";
 
 const Sidebar = ({
+  className,
   setSidebarItems,
   sidebarItems = { items: [], active: 0 },
 }) => {
@@ -47,8 +48,12 @@ const Sidebar = ({
   }, [sidebarActive, sidebarItems.items, history]);
 
   return (
-    <div className="w-80">
-      <div className="mt-4">
+    <div
+      className={
+        "hidden xl:block lg:w-64 shadow-xl left-0 h-screen " + className
+      }
+    >
+      <div className="flex flex-col justify-between space-y-0 w-full ">
         {sidebarItems.items.map((item, index) =>
           !item.hidden ? (
             <SidebarItem
@@ -56,7 +61,7 @@ const Sidebar = ({
               Icon={item.icon}
               key={index}
               selected={index === sidebarItems.active}
-              className={"m-4"}
+              className={""}
               linkTo={`${baseurl}/${item.url}`}
               onClick={() => {
                 changeCurrentItem(index);
