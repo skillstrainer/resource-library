@@ -9,7 +9,7 @@ require("core-js/modules/es.symbol.description.js");
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
-var _react2 = _interopRequireWildcard(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _Context = require("../../Context");
 
@@ -23,7 +23,7 @@ var _MultiLangField = _interopRequireDefault(require("../multi-lang/MultiLangFie
 
 var _dom = require("../../utils/dom");
 
-var _react3 = require("@headlessui/react");
+var _react2 = require("@headlessui/react");
 
 var _solid = require("@heroicons/react/solid");
 
@@ -48,7 +48,7 @@ function CourseDetailPageStaging(props) {
     course: {
       getCoursePurchaseURL
     }
-  } = (0, _react2.useContext)(_Context.STRLContext);
+  } = (0, _react.useContext)(_Context.STRLContext);
   const {
     courseData,
     multiLangData,
@@ -80,8 +80,7 @@ function CourseDetailPageStaging(props) {
     isDemoAvailable,
     onBookDemo = () => {}
   } = courseData || {};
-
-  const [favorite, setFavorite] = _react.default.useState("one-time");
+  const [favorite, setFavorite] = (0, _react.useState)("one-time");
 
   const handleOneTimeChange = () => {
     setFavorite("one-time");
@@ -91,55 +90,55 @@ function CourseDetailPageStaging(props) {
     setFavorite("installment");
   };
 
-  return /*#__PURE__*/_react2.default.createElement(_MultiLangBody.default, {
+  return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
-  }, /*#__PURE__*/_react2.default.createElement("section", null, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "relative pt-32"
-  }, /*#__PURE__*/_react2.default.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
     src: _pageTopBg.default,
     className: "absolute top-0",
     alt: "",
     style: {
       zIndex: "-1"
     }
-  }), /*#__PURE__*/_react2.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto bg-white",
     style: {
       zIndex: "1"
     }
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "px-4 py-10 md:px-10 shadow-xl w-full"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex flex-between flex-col gap-5 md:flex-row"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full md:w-2/5"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     class: "relative"
-  }, /*#__PURE__*/_react2.default.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
     class: "w-full object-cover object-center shadow-xl rounded-xl",
     src: courseImg,
     alt: "course-img"
-  }), /*#__PURE__*/_react2.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement("div", {
     class: "absolute top-4 left-2 font-semibold"
-  }, /*#__PURE__*/_react2.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("button", {
     className: "bg-white text-xs font-semibold rounded-md p-1 shadow-lg border",
     onClick: goToCategoryPage
-  }, categoryName)))), /*#__PURE__*/_react2.default.createElement("div", {
+  }, categoryName)))), /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full md:w-3/5"
-  }, /*#__PURE__*/_react2.default.createElement("h2", {
+  }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-2xl font-semibold leading-10 text-japanese_indigo mb-3"
-  }, /*#__PURE__*/_react2.default.createElement(_MultiLangField.default, {
+  }, /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
     name: "display_name"
-  }, displayName)), /*#__PURE__*/_react2.default.createElement("div", {
+  }, displayName)), /*#__PURE__*/_react.default.createElement("div", {
     className: "mb-6 text-sm"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     class: "flex flex-row justify-between"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex items-center"
-  }, /*#__PURE__*/_react2.default.createElement("svg", {
+  }, /*#__PURE__*/_react.default.createElement("svg", {
     stroke: "currentColor",
     fill: "currentColor",
     "stroke-width": "0",
@@ -148,107 +147,107 @@ function CourseDetailPageStaging(props) {
     height: "1.4em",
     width: "1.4em",
     xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/_react2.default.createElement("path", {
+  }, /*#__PURE__*/_react.default.createElement("path", {
     fill: "none",
     d: "M0 0h24v24H0z"
-  }), /*#__PURE__*/_react2.default.createElement("path", {
+  }), /*#__PURE__*/_react.default.createElement("path", {
     "fill-rule": "evenodd",
     d: "M16.67 13.13C18.04 14.06 19 15.32 19 17v3h4v-3c0-2.18-3.57-3.47-6.33-3.87z"
-  }), /*#__PURE__*/_react2.default.createElement("circle", {
+  }), /*#__PURE__*/_react.default.createElement("circle", {
     cx: "9",
     cy: "8",
     r: "4",
     "fill-rule": "evenodd"
-  }), /*#__PURE__*/_react2.default.createElement("path", {
+  }), /*#__PURE__*/_react.default.createElement("path", {
     "fill-rule": "evenodd",
     d: "M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24a5.98 5.98 0 010 7.52c.42.14.86.24 1.33.24zM9 13c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
-  })), /*#__PURE__*/_react2.default.createElement("span", {
+  })), /*#__PURE__*/_react.default.createElement("span", {
     className: "ml-2"
-  }, students_enrolled, " students")), /*#__PURE__*/_react2.default.createElement("a", {
+  }, students_enrolled, " students")), /*#__PURE__*/_react.default.createElement("a", {
     href: "https://www.youtube.com/watch?v=riE-VMMXMHI",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, /*#__PURE__*/_react2.default.createElement("span", {
+  }, /*#__PURE__*/_react.default.createElement("span", {
     className: "red-dark mr-2"
-  }, "NSQF"), /*#__PURE__*/_react2.default.createElement("span", null, nsqf_lvl || "NA")))), /*#__PURE__*/_react2.default.createElement("div", {
+  }, "NSQF"), /*#__PURE__*/_react.default.createElement("span", null, nsqf_lvl || "NA")))), /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
-  }, /*#__PURE__*/_react2.default.createElement("span", {
+  }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course Structure:"), /*#__PURE__*/_react2.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), /*#__PURE__*/_react2.default.createElement("div", {
+  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
-  }, /*#__PURE__*/_react2.default.createElement("span", {
+  }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course Payment type:"), /*#__PURE__*/_react2.default.createElement("span", null, /*#__PURE__*/_react2.default.createElement(RadioButton, {
+  }, "Course Payment type:"), /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(RadioButton, {
     label: "One Time",
     value: favorite === "one-time",
     onChange: handleOneTimeChange
-  }), /*#__PURE__*/_react2.default.createElement(RadioButton, {
+  }), /*#__PURE__*/_react.default.createElement(RadioButton, {
     label: "Installment",
     value: favorite === "installment",
     onChange: handleInstallmentChange
-  }))), partners && /*#__PURE__*/_react2.default.createElement("div", null, /*#__PURE__*/_react2.default.createElement("span", {
+  }))), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
-  }, "Certification Partners:"), /*#__PURE__*/_react2.default.createElement("div", {
+  }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
   }, partners.concat([{
     logo: _newLogo.default
-  }]).map(p => p && p.logo && /*#__PURE__*/_react2.default.createElement("img", {
+  }]).map(p => p && p.logo && /*#__PURE__*/_react.default.createElement("img", {
     src: p.logo,
     className: "h-6"
-  }) || null))), /*#__PURE__*/_react2.default.createElement("div", {
+  }) || null))), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex gap-3"
-  }, isPurchased ? /*#__PURE__*/_react2.default.createElement("button", {
+  }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto",
     onClick: viewCourse
-  }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react2.default.createElement("button", {
+  }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       (0, _dom.stopPropagation)(e);
       payNow();
     },
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
-  }, /*#__PURE__*/_react2.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react2.default.createElement("span", {
+  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react2.default.createElement("a", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"
-  }, /*#__PURE__*/_react2.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("button", {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
-  }, /*#__PURE__*/_react2.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react2.default.createElement("span", {
+  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react2.default.createElement("button", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => onViewDemoDetails(),
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-  }, "Show demo class details") : isDemoAvailable && /*#__PURE__*/_react2.default.createElement("button", {
+  }, "Show demo class details") : isDemoAvailable && /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => onBookDemo(),
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-  }, "Book demo")))))))))), /*#__PURE__*/_react2.default.createElement("section", {
+  }, "Book demo")))))))))), /*#__PURE__*/_react.default.createElement("section", {
     className: "mt-12"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto grid grid-cols-1 lg:grid-cols-2"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "mr-5"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "text-3xl blue-dark2 font-semibold leading-10 text-center mt-3"
-  }, "About the Course"), /*#__PURE__*/_react2.default.createElement("p", null, /*#__PURE__*/_react2.default.createElement(_MultiLangField.default, {
+  }, "About the Course"), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
     name: "description"
-  }, description))), /*#__PURE__*/_react2.default.createElement("div", {
+  }, description))), /*#__PURE__*/_react.default.createElement("div", {
     className: "ml-5"
-  }, /*#__PURE__*/_react2.default.createElement("video", {
+  }, /*#__PURE__*/_react.default.createElement("video", {
     autoPlay: true,
     controls: true,
     width: "100%"
-  }, /*#__PURE__*/_react2.default.createElement("source", {
+  }, /*#__PURE__*/_react.default.createElement("source", {
     src: videoUrl
-  }))))), /*#__PURE__*/_react2.default.createElement("section", null, /*#__PURE__*/_react2.default.createElement("div", {
+  }))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto bg-blue-grad px-4 py-10 md:px-10 mt-20"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "grid grid-cols-1 gap-8 md:grid-cols-2"
-  }, /*#__PURE__*/_react2.default.createElement("div", null, /*#__PURE__*/_react2.default.createElement("h2", {
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-3xl text-center mb-8 blue-dark2 font-semibold"
-  }, "Course Modules"), isMoodleCourse == false ? courseModuleTopic && /*#__PURE__*/_react2.default.createElement("div", {
+  }, "Course Modules"), isMoodleCourse == false ? courseModuleTopic && /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full p-2 mx-auto rounded-lg"
-  }, courseModuleTopic.length > 0 && courseModuleTopic.map(module => /*#__PURE__*/_react2.default.createElement(_react3.Disclosure, {
+  }, courseModuleTopic.length > 0 && courseModuleTopic.map(module => /*#__PURE__*/_react.default.createElement(_react2.Disclosure, {
     as: "div"
   }, _ref => {
     var _module$coursesec, _module$coursesec2;
@@ -256,20 +255,20 @@ function CourseDetailPageStaging(props) {
     let {
       open
     } = _ref;
-    return /*#__PURE__*/_react2.default.createElement(_react2.default.Fragment, null, /*#__PURE__*/_react2.default.createElement(_react3.Disclosure.Button, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Button, {
       className: "flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none"
-    }, /*#__PURE__*/_react2.default.createElement("span", {
+    }, /*#__PURE__*/_react.default.createElement("span", {
       className: "text-japanese_indigo font-semibold",
       dangerouslySetInnerHTML: {
         __html: module.name
       }
-    }), ((_module$coursesec = module.coursesec) === null || _module$coursesec === void 0 ? void 0 : _module$coursesec.length) > 0 && /*#__PURE__*/_react2.default.createElement(_solid.ChevronUpIcon, {
+    }), ((_module$coursesec = module.coursesec) === null || _module$coursesec === void 0 ? void 0 : _module$coursesec.length) > 0 && /*#__PURE__*/_react.default.createElement(_solid.ChevronUpIcon, {
       className: "".concat(open ? "transform rotate-180" : "", " w-5 h-5")
-    })), ((_module$coursesec2 = module.coursesec) === null || _module$coursesec2 === void 0 ? void 0 : _module$coursesec2.length) > 0 && /*#__PURE__*/_react2.default.createElement(_react3.Disclosure.Panel, {
+    })), ((_module$coursesec2 = module.coursesec) === null || _module$coursesec2 === void 0 ? void 0 : _module$coursesec2.length) > 0 && /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Panel, {
       className: "px-2 pt-2 pb-1 text-sm text-gray-500 pr-0"
-    }, /*#__PURE__*/_react2.default.createElement("ul", {
+    }, /*#__PURE__*/_react.default.createElement("ul", {
       className: "ml-3"
-    }, module.coursesec.map(item => /*#__PURE__*/_react2.default.createElement("li", {
+    }, module.coursesec.map(item => /*#__PURE__*/_react.default.createElement("li", {
       className: "bg-white rounded-lg p-3 mb-1 text-black",
       style: {
         listStyle: "disc"
@@ -278,9 +277,9 @@ function CourseDetailPageStaging(props) {
         __html: item.name
       }
     })))));
-  }))) : modules && /*#__PURE__*/_react2.default.createElement("div", {
+  }))) : modules && /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full p-2 mx-auto rounded-lg"
-  }, modules.length > 0 && modules.map(module => /*#__PURE__*/_react2.default.createElement(_react3.Disclosure, {
+  }, modules.length > 0 && modules.map(module => /*#__PURE__*/_react.default.createElement(_react2.Disclosure, {
     as: "div"
   }, _ref2 => {
     var _module$modules, _module$modules2;
@@ -288,20 +287,20 @@ function CourseDetailPageStaging(props) {
     let {
       open
     } = _ref2;
-    return /*#__PURE__*/_react2.default.createElement(_react2.default.Fragment, null, /*#__PURE__*/_react2.default.createElement(_react3.Disclosure.Button, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Button, {
       className: "flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none"
-    }, /*#__PURE__*/_react2.default.createElement("span", {
+    }, /*#__PURE__*/_react.default.createElement("span", {
       className: "text-japanese_indigo font-semibold",
       dangerouslySetInnerHTML: {
         __html: module.name
       }
-    }), ((_module$modules = module.modules) === null || _module$modules === void 0 ? void 0 : _module$modules.length) > 0 && /*#__PURE__*/_react2.default.createElement(_solid.ChevronUpIcon, {
+    }), ((_module$modules = module.modules) === null || _module$modules === void 0 ? void 0 : _module$modules.length) > 0 && /*#__PURE__*/_react.default.createElement(_solid.ChevronUpIcon, {
       className: "".concat(open ? "transform rotate-180" : "", " w-5 h-5")
-    })), ((_module$modules2 = module.modules) === null || _module$modules2 === void 0 ? void 0 : _module$modules2.length) > 0 && /*#__PURE__*/_react2.default.createElement(_react3.Disclosure.Panel, {
+    })), ((_module$modules2 = module.modules) === null || _module$modules2 === void 0 ? void 0 : _module$modules2.length) > 0 && /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Panel, {
       className: "px-2 pt-2 pb-1 text-sm text-gray-500 pr-0"
-    }, /*#__PURE__*/_react2.default.createElement("ul", {
+    }, /*#__PURE__*/_react.default.createElement("ul", {
       className: "ml-3"
-    }, module.modules.map(item => /*#__PURE__*/_react2.default.createElement("li", {
+    }, module.modules.map(item => /*#__PURE__*/_react.default.createElement("li", {
       className: "bg-white rounded-lg p-3 mb-1 text-black",
       style: {
         listStyle: "disc"
@@ -310,27 +309,27 @@ function CourseDetailPageStaging(props) {
         __html: item.name
       }
     })))));
-  })))), /*#__PURE__*/_react2.default.createElement("div", null, /*#__PURE__*/_react2.default.createElement("h2", {
+  })))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-3xl text-center mb-8 blue-dark2 font-semibold"
-  }, "Certificate You Will Get"), /*#__PURE__*/_react2.default.createElement("div", {
+  }, "Certificate You Will Get"), /*#__PURE__*/_react.default.createElement("div", {
     className: "relative"
-  }, /*#__PURE__*/_react2.default.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
     src: _certificate.default,
     className: "w-full h-full"
-  }), /*#__PURE__*/_react2.default.createElement("p", {
+  }), /*#__PURE__*/_react.default.createElement("p", {
     className: "absolute w-full h-full top-0 left-0 text-center text-gray-600",
     style: {
       transform: "scale(0.6) translateY(50%)"
     }
-  }, "student of ", /*#__PURE__*/_react2.default.createElement("b", null, "XYZ Institute"), " has successfully", /*#__PURE__*/_react2.default.createElement("br", null), "cleared the assessment for the job role of", /*#__PURE__*/_react2.default.createElement("br", null), /*#__PURE__*/_react2.default.createElement("b", null, displayName), /*#__PURE__*/_react2.default.createElement("br", null), "conforming to National Skills Qualifications Framework Level -", " ", nsqf_lvl || "X")))))), /*#__PURE__*/_react2.default.createElement("section", null, /*#__PURE__*/_react2.default.createElement("div", {
+  }, "student of ", /*#__PURE__*/_react.default.createElement("b", null, "XYZ Institute"), " has successfully", /*#__PURE__*/_react.default.createElement("br", null), "cleared the assessment for the job role of", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("b", null, displayName), /*#__PURE__*/_react.default.createElement("br", null), "conforming to National Skills Qualifications Framework Level -", " ", nsqf_lvl || "X")))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full md:w-1/2"
-  }, /*#__PURE__*/_react2.default.createElement("h2", {
+  }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-3xl font-semibold text-gray-800 blue-dark2 mb-5"
-  }, "Job / Work Opportunities:"), /*#__PURE__*/_react2.default.createElement("div", {
+  }, "Job / Work Opportunities:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "text-sm"
-  }, /*#__PURE__*/_react2.default.createElement(_MultiLangFieldMd.default, {
+  }, /*#__PURE__*/_react.default.createElement(_MultiLangFieldMd.default, {
     name: "job_opportunities",
     defaultValue: "Jobs and Opportunities are coming your way very soon. Stay tuned!\n",
     editor: {
@@ -339,14 +338,14 @@ function CourseDetailPageStaging(props) {
         height: "calc(100% - 150px)"
       }
     }
-  })), /*#__PURE__*/_react2.default.createElement("button", {
+  })), /*#__PURE__*/_react.default.createElement("button", {
     disabled: true,
     className: "bg-orange opacity-60 text-white font-semibold rounded-md text-sm p-3 mt-10 w-full md:w-auto"
-  }, "View Jobs")), /*#__PURE__*/_react2.default.createElement("div", {
+  }, "View Jobs")), /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full md:w-1/2"
-  }, /*#__PURE__*/_react2.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     class: "relative"
-  }, /*#__PURE__*/_react2.default.createElement(_MultiLangFieldImage.default, {
+  }, /*#__PURE__*/_react.default.createElement(_MultiLangFieldImage.default, {
     className: "w-full object-cover object-center shadow-xl",
     src: _jobs.default,
     name: "jobs",
@@ -360,7 +359,7 @@ const RadioButton = _ref3 => {
     value,
     onChange
   } = _ref3;
-  return /*#__PURE__*/_react2.default.createElement("label", null, /*#__PURE__*/_react2.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "radio",
     checked: value,
     onChange: onChange

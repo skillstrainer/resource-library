@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { STRLContext } from "../../Context";
 import MultiLangBody from "../multi-lang/MultiLangBody";
@@ -56,7 +56,7 @@ function CourseDetailPageStaging(props) {
     onBookDemo = () => {},
   } = courseData || {};
 
-  const [favorite, setFavorite] = _react.default.useState("one-time");
+  const [favorite, setFavorite] = useState("one-time");
 
   const handleOneTimeChange = () => {
     setFavorite("one-time");
