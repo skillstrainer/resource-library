@@ -74,7 +74,7 @@ const FormBuilder = (values) => {
       },
 
       description: {
-        type: "text-field",
+        type: "textarea",
         label: "Description",
         required: true,
       },
