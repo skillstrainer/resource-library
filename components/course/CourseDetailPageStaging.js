@@ -171,27 +171,23 @@ function CourseDetailPageStaging(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), is_subscription && !isPurchased ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
   }, "Course Payment type:"), /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(RadioButton, {
     label: "One Time",
-    value: paymentType === "one-time",
-    onChange: () => handleOneTimeChange()
+    value: favorite === "one-time",
+    onChange: handleOneTimeChange
   }), /*#__PURE__*/_react.default.createElement(RadioButton, {
     label: "Installment",
-    value: paymentType === "installment",
-    onChange: () => handleInstallmentChange()
+    value: favorite === "installment",
+    onChange: handleInstallmentChange
   }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, paymentType == "one-time" ? "Price:" : "Installment Price:"), /*#__PURE__*/_react.default.createElement("span", null, paymentType == "one-time" ? "\u20B9".concat(cost) : paymentType == "installment" ? "\u20B9".concat(subscription_cost, "/Month upto 3 months") : ""))) : /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-md mb-3"
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Price:"), /*#__PURE__*/_react.default.createElement("span", null, "\u20B9".concat(cost))), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+  }, favorite == "one-time" ? "Price" : "Installment Price"), /*#__PURE__*/_react.default.createElement("span", null, favorite == "one-time" ? "\u20B9 ".concat(cost) : favorite == "installment" ? "₹ 1000/Month upto 3 months" : "")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
@@ -215,7 +211,7 @@ function CourseDetailPageStaging(props) {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 && is_subscription && paymentType == "installment" ? "\u20B9 ".concat(subscription_cost) : cost > 0 && !is_subscription && paymentType == "one-time" ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"
