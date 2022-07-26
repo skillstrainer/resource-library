@@ -1,22 +1,13 @@
 import React, { useContext, useState } from "react";
-import CourseCard from "./lib/components/course/CourseCard";
-import { STRLContext } from "./lib/Context";
-import { courses, formBuilders } from "./testing-data";
+import { CourseCard, STRLContext } from "./lib";
 import { courseFormatter } from "./lib/utils/course";
-import { Form } from "./lib";
+import { courses } from "./testing-data";
 
 export default function Test(props) {
-  console.log("Test component");
-  const {
-    dependency: { dependencies },
-  } = useContext(STRLContext);
-  const { useHistory } = dependencies;
-
-  const history = useHistory();
-
   return (
-    <div>
-      <Form formBuilder={formBuilders.Sample} />
+    <div className="grid grid-cols-3 w-4/5 p-3">
+      <CourseCard data={courseFormatter(courses[0])} isDemoAvailable={true} />
+      <CourseCard data={courseFormatter(courses[1])} />
     </div>
   );
 }

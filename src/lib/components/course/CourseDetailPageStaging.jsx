@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { STRLContext } from "../../Context";
 import MultiLangBody from "../multi-lang/MultiLangBody";
 import MultiLangFieldMd from "../multi-lang/MultiLangFieldMd";
 import MultiLangFieldImage from "../multi-lang/MultiLangFieldImage";
 import MultiLangField from "../multi-lang/MultiLangField";
+import { stopPropagation } from "../../utils/dom";
 
 // Icons
 import { Disclosure } from "@headlessui/react";
@@ -25,6 +26,12 @@ function CourseDetailPageStaging(props) {
     multiLangData,
     multiLangKey = "",
     goToCategoryPage = () => {},
+    payNow,
+    courseModuleTopic,
+
+    // If course is purchased
+    isPurchased,
+    viewCourse = () => {},
   } = props;
 
   const {
@@ -40,7 +47,24 @@ function CourseDetailPageStaging(props) {
     modules,
     partners,
     videoUrl,
+    isMoodleCourse,
+
+    // Demo class
+    userHasRegisteredDemo,
+    onViewDemoDetails = () => {},
+    isDemoAvailable,
+    onBookDemo = () => {},
   } = courseData || {};
+
+  const [favorite, setFavorite] = useState("one-time");
+
+  const handleOneTimeChange = () => {
+    setFavorite("one-time");
+  };
+
+  const handleInstallmentChange = () => {
+    setFavorite("installment");
+  };
 
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
@@ -132,6 +156,38 @@ function CourseDetailPageStaging(props) {
                           : "Self Paced Digital Content"}
                       </span>
                     </div>
+
+                    <div className="text-md mb-3">
+                      <span className="font-semibold text-japanese_indigo mr-3 ">
+                        Course Payment type:
+                      </span>
+                      <span>
+                        <RadioButton
+                          label="One Time"
+                          value={favorite === "one-time"}
+                          onChange={handleOneTimeChange}
+                        />
+                        <RadioButton
+                          label="Installment"
+                          value={favorite === "installment"}
+                          onChange={handleInstallmentChange}
+                        />
+                      </span>
+                    </div>
+
+                    <div className="text-md mb-3">
+                      <span className="font-semibold text-japanese_indigo mr-3 ">
+                        {favorite == "one-time" ? "Price" : "Installment Price"}
+                      </span>
+                      <span>
+                        {favorite == "one-time"
+                          ? `₹ ${cost}`
+                          : favorite == "installment"
+                          ? "₹ 1000/Month upto 3 months"
+                          : ""}
+                      </span>
+                    </div>
+
                     {partners && (
                       <div>
                         <span className="font-semibold text-japanese_indigo mr-3 text-md">
@@ -150,11 +206,60 @@ function CourseDetailPageStaging(props) {
                         </div>
                       </div>
                     )}
-                    <a href={getCoursePurchaseURL(courseId)} target="_blank">
-                      <button className="bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-4 w-full md:w-auto">
-                        Get Enrolled for {cost ? `₹${cost} Only` : "Free"}
-                      </button>
-                    </a>
+                    <div className="flex gap-3">
+                      {isPurchased ? (
+                        <button
+                          className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto"
+                          onClick={viewCourse}
+                        >
+                          View course
+                        </button>
+                      ) : isMoodleCourse == false ? (
+                        <button
+                          onClick={(e) => {
+                            stopPropagation(e);
+                            payNow();
+                          }}
+                          className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
+                        >
+                          <span>Get Enrolled for </span>
+                          <span className="font-bold">
+                            {cost > 0 ? `₹ ${cost}` : "Free"}
+                          </span>
+                        </button>
+                      ) : (
+                        <a
+                          href={getCoursePurchaseURL(courseId)}
+                          onClick={stopPropagation}
+                          target="_blank"
+                        >
+                          <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
+                            <span>Get Enrolled for </span>
+                            <span className="font-bold">
+                              {cost > 0 ? `₹ ${cost}` : "Free"}
+                            </span>
+                          </button>
+                        </a>
+                      )}
+                      {!isPurchased &&
+                        (userHasRegisteredDemo ? (
+                          <button
+                            onClick={() => onViewDemoDetails()}
+                            className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+                          >
+                            Show demo class details
+                          </button>
+                        ) : (
+                          isDemoAvailable && (
+                            <button
+                              onClick={() => onBookDemo()}
+                              className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+                            >
+                              Book demo
+                            </button>
+                          )
+                        ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -186,49 +291,93 @@ function CourseDetailPageStaging(props) {
               <h2 className="text-3xl text-center mb-8 blue-dark2 font-semibold">
                 Course Modules
               </h2>
-              {modules && (
-                <div className="w-full p-2 mx-auto rounded-lg">
-                  {modules.length > 0 &&
-                    modules.map((module) => (
-                      <Disclosure as="div">
-                        {({ open }) => (
-                          <>
-                            <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
-                              <span
-                                className="text-japanese_indigo font-semibold"
-                                dangerouslySetInnerHTML={{
-                                  __html: module.name,
-                                }}
-                              />
-                              {module.modules?.length > 0 && (
-                                <ChevronUpIcon
-                                  className={`${
-                                    open ? "transform rotate-180" : ""
-                                  } w-5 h-5`}
-                                />
-                              )}
-                            </Disclosure.Button>
-                            {module.modules?.length > 0 && (
-                              <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
-                                <ul className="ml-3">
-                                  {module.modules.map((item) => (
-                                    <li
-                                      className="bg-white rounded-lg p-3 mb-1 text-black"
-                                      style={{ listStyle: "disc" }}
-                                      dangerouslySetInnerHTML={{
-                                        __html: item.name,
-                                      }}
+              {isMoodleCourse == false
+                ? courseModuleTopic && (
+                    <div className="w-full p-2 mx-auto rounded-lg">
+                      {courseModuleTopic.length > 0 &&
+                        courseModuleTopic.map((module) => (
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
+                                  <span
+                                    className="text-japanese_indigo font-semibold"
+                                    dangerouslySetInnerHTML={{
+                                      __html: module.name,
+                                    }}
+                                  />
+                                  {module.coursesec?.length > 0 && (
+                                    <ChevronUpIcon
+                                      className={`${
+                                        open ? "transform rotate-180" : ""
+                                      } w-5 h-5`}
                                     />
-                                  ))}
-                                </ul>
-                              </Disclosure.Panel>
+                                  )}
+                                </Disclosure.Button>
+                                {module.coursesec?.length > 0 && (
+                                  <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
+                                    <ul className="ml-3">
+                                      {module.coursesec.map((item) => (
+                                        <li
+                                          className="bg-white rounded-lg p-3 mb-1 text-black"
+                                          style={{ listStyle: "disc" }}
+                                          dangerouslySetInnerHTML={{
+                                            __html: item.name,
+                                          }}
+                                        />
+                                      ))}
+                                    </ul>
+                                  </Disclosure.Panel>
+                                )}
+                              </>
                             )}
-                          </>
-                        )}
-                      </Disclosure>
-                    ))}
-                </div>
-              )}
+                          </Disclosure>
+                        ))}
+                    </div>
+                  )
+                : modules && (
+                    <div className="w-full p-2 mx-auto rounded-lg">
+                      {modules.length > 0 &&
+                        modules.map((module) => (
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
+                                  <span
+                                    className="text-japanese_indigo font-semibold"
+                                    dangerouslySetInnerHTML={{
+                                      __html: module.name,
+                                    }}
+                                  />
+                                  {module.modules?.length > 0 && (
+                                    <ChevronUpIcon
+                                      className={`${
+                                        open ? "transform rotate-180" : ""
+                                      } w-5 h-5`}
+                                    />
+                                  )}
+                                </Disclosure.Button>
+                                {module.modules?.length > 0 && (
+                                  <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
+                                    <ul className="ml-3">
+                                      {module.modules.map((item) => (
+                                        <li
+                                          className="bg-white rounded-lg p-3 mb-1 text-black"
+                                          style={{ listStyle: "disc" }}
+                                          dangerouslySetInnerHTML={{
+                                            __html: item.name,
+                                          }}
+                                        />
+                                      ))}
+                                    </ul>
+                                  </Disclosure.Panel>
+                                )}
+                              </>
+                            )}
+                          </Disclosure>
+                        ))}
+                    </div>
+                  )}
             </div>
             <div>
               <h2 className="text-3xl text-center mb-8 blue-dark2 font-semibold">
@@ -298,5 +447,14 @@ function CourseDetailPageStaging(props) {
     </MultiLangBody>
   );
 }
+
+const RadioButton = ({ label, value, onChange }) => {
+  return (
+    <label>
+      <input type="radio" checked={value} onChange={onChange} />
+      {label}
+    </label>
+  );
+};
 
 export default CourseDetailPageStaging;

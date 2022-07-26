@@ -1,13 +1,13 @@
 "use strict";
 
-require("core-js/modules/web.dom-collections.iterator.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
 require("core-js/modules/es.symbol.description.js");
+
+require("core-js/modules/web.dom-collections.iterator.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -20,6 +20,8 @@ var _MultiLangFieldMd = _interopRequireDefault(require("../multi-lang/MultiLangF
 var _MultiLangFieldImage = _interopRequireDefault(require("../multi-lang/MultiLangFieldImage"));
 
 var _MultiLangField = _interopRequireDefault(require("../multi-lang/MultiLangField"));
+
+var _dom = require("../../utils/dom");
 
 var _react2 = require("@headlessui/react");
 
@@ -51,7 +53,12 @@ function CourseDetailPageStaging(props) {
     courseData,
     multiLangData,
     multiLangKey = "",
-    goToCategoryPage = () => {}
+    goToCategoryPage = () => {},
+    payNow,
+    courseModuleTopic,
+    // If course is purchased
+    isPurchased,
+    viewCourse = () => {}
   } = props;
   const {
     courseId,
@@ -65,8 +72,24 @@ function CourseDetailPageStaging(props) {
     nsqf_lvl,
     modules,
     partners,
-    videoUrl
+    videoUrl,
+    isMoodleCourse,
+    // Demo class
+    userHasRegisteredDemo,
+    onViewDemoDetails = () => {},
+    isDemoAvailable,
+    onBookDemo = () => {}
   } = courseData || {};
+  const [favorite, setFavorite] = (0, _react.useState)("one-time");
+
+  const handleOneTimeChange = () => {
+    setFavorite("one-time");
+  };
+
+  const handleInstallmentChange = () => {
+    setFavorite("installment");
+  };
+
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
@@ -150,7 +173,23 @@ function CourseDetailPageStaging(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "text-md mb-3"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-semibold text-japanese_indigo mr-3 "
+  }, "Course Payment type:"), /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(RadioButton, {
+    label: "One Time",
+    value: favorite === "one-time",
+    onChange: handleOneTimeChange
+  }), /*#__PURE__*/_react.default.createElement(RadioButton, {
+    label: "Installment",
+    value: favorite === "installment",
+    onChange: handleInstallmentChange
+  }))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "text-md mb-3"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-semibold text-japanese_indigo mr-3 "
+  }, favorite == "one-time" ? "Price" : "Installment Price"), /*#__PURE__*/_react.default.createElement("span", null, favorite == "one-time" ? "\u20B9 ".concat(cost) : favorite == "installment" ? "₹ 1000/Month upto 3 months" : "")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
@@ -159,12 +198,34 @@ function CourseDetailPageStaging(props) {
   }]).map(p => p && p.logo && /*#__PURE__*/_react.default.createElement("img", {
     src: p.logo,
     className: "h-6"
-  }) || null))), /*#__PURE__*/_react.default.createElement("a", {
+  }) || null))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "flex gap-3"
+  }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto",
+    onClick: viewCourse
+  }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
+    onClick: e => {
+      (0, _dom.stopPropagation)(e);
+      payNow();
+    },
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
+  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-bold"
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
+    onClick: _dom.stopPropagation,
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "bg-orange hover:opacity-90 text-white text-sm font-semibold rounded-lg p-3 mt-4 w-full md:w-auto"
-  }, "Get Enrolled for ", cost ? "\u20B9".concat(cost, " Only") : "Free"))))))))), /*#__PURE__*/_react.default.createElement("section", {
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
+  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-bold"
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
+    onClick: () => onViewDemoDetails(),
+    className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+  }, "Show demo class details") : isDemoAvailable && /*#__PURE__*/_react.default.createElement("button", {
+    onClick: () => onBookDemo(),
+    className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+  }, "Book demo")))))))))), /*#__PURE__*/_react.default.createElement("section", {
     className: "mt-12"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto grid grid-cols-1 lg:grid-cols-2"
@@ -188,16 +249,48 @@ function CourseDetailPageStaging(props) {
     className: "grid grid-cols-1 gap-8 md:grid-cols-2"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-3xl text-center mb-8 blue-dark2 font-semibold"
-  }, "Course Modules"), modules && /*#__PURE__*/_react.default.createElement("div", {
+  }, "Course Modules"), isMoodleCourse == false ? courseModuleTopic && /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full p-2 mx-auto rounded-lg"
-  }, modules.length > 0 && modules.map(module => /*#__PURE__*/_react.default.createElement(_react2.Disclosure, {
+  }, courseModuleTopic.length > 0 && courseModuleTopic.map(module => /*#__PURE__*/_react.default.createElement(_react2.Disclosure, {
     as: "div"
   }, _ref => {
-    var _module$modules, _module$modules2;
+    var _module$coursesec, _module$coursesec2;
 
     let {
       open
     } = _ref;
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Button, {
+      className: "flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "text-japanese_indigo font-semibold",
+      dangerouslySetInnerHTML: {
+        __html: module.name
+      }
+    }), ((_module$coursesec = module.coursesec) === null || _module$coursesec === void 0 ? void 0 : _module$coursesec.length) > 0 && /*#__PURE__*/_react.default.createElement(_solid.ChevronUpIcon, {
+      className: "".concat(open ? "transform rotate-180" : "", " w-5 h-5")
+    })), ((_module$coursesec2 = module.coursesec) === null || _module$coursesec2 === void 0 ? void 0 : _module$coursesec2.length) > 0 && /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Panel, {
+      className: "px-2 pt-2 pb-1 text-sm text-gray-500 pr-0"
+    }, /*#__PURE__*/_react.default.createElement("ul", {
+      className: "ml-3"
+    }, module.coursesec.map(item => /*#__PURE__*/_react.default.createElement("li", {
+      className: "bg-white rounded-lg p-3 mb-1 text-black",
+      style: {
+        listStyle: "disc"
+      },
+      dangerouslySetInnerHTML: {
+        __html: item.name
+      }
+    })))));
+  }))) : modules && /*#__PURE__*/_react.default.createElement("div", {
+    className: "w-full p-2 mx-auto rounded-lg"
+  }, modules.length > 0 && modules.map(module => /*#__PURE__*/_react.default.createElement(_react2.Disclosure, {
+    as: "div"
+  }, _ref2 => {
+    var _module$modules, _module$modules2;
+
+    let {
+      open
+    } = _ref2;
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Button, {
       className: "flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none"
     }, /*#__PURE__*/_react.default.createElement("span", {
@@ -263,6 +356,19 @@ function CourseDetailPageStaging(props) {
     alt: "course-img"
   }))))));
 }
+
+const RadioButton = _ref3 => {
+  let {
+    label,
+    value,
+    onChange
+  } = _ref3;
+  return /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
+    type: "radio",
+    checked: value,
+    onChange: onChange
+  }), label);
+};
 
 var _default = CourseDetailPageStaging;
 exports.default = _default;

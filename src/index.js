@@ -15,7 +15,7 @@ root.render(
   <React.StrictMode>
     <STRLContextProvider
       request={{
-        env: "production",
+        env: "staging",
         jwtToken,
         accessToken,
       }}

@@ -32,28 +32,23 @@ function CourseCard(props) {
       courseImg,
       cost,
       students_enrolled,
-      digitalContentDuration,
-      liveClassDuration,
       isLive,
-      nsqf_lvl
+      nsqf_lvl,
+      duration,
+      isMoodleCourse,
+      // Demo sessions
+      userHasRegisteredDemo,
+      onViewDemoDetails = () => {},
+      isDemoAvailable,
+      onBookDemo = () => {}
     },
     goToDetailPage,
     goToCategoryPage,
+    payNow,
     // If course is purchased
     isPurchased,
     viewCourse = () => {}
   } = props;
-  let course_type = "";
-  let duration = "";
-
-  if (!isLive) {
-    course_type = "Self paced digital content";
-    duration = digitalContentDuration;
-  } else {
-    course_type = "Live classes";
-    duration = liveClassDuration;
-  }
-
   const url = getCoursePurchaseURL(courseId);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2",
@@ -87,7 +82,7 @@ function CourseCard(props) {
     className: "flex flex-row justify-between"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: ""
-  }, course_type), /*#__PURE__*/_react.default.createElement("a", {
+  }, isLive ? "Live Classes" : "Self Paced Digital Content"), /*#__PURE__*/_react.default.createElement("a", {
     href: "https://www.youtube.com/watch?v=riE-VMMXMHI",
     target: "_blank",
     rel: "noopener noreferrer",
@@ -95,15 +90,15 @@ function CourseCard(props) {
   }, "NSQF", " ", /*#__PURE__*/_react.default.createElement("span", {
     className: "text-black"
   }, nsqf_lvl ? nsqf_lvl : "NA")))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex flex-row my-2 justify-between text-sm"
+    className: "flex flex-row my-2 justify-between text-sm h-20"
   }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "flex flex-row items-center justify-center"
+    className: "flex flex-row justify-center"
   }, /*#__PURE__*/_react.default.createElement("svg", {
     stroke: "currentColor",
     fill: "currentColor",
     strokeWidth: "0",
     viewBox: "0 0 24 24",
-    className: "text-orange mx-1",
+    className: "text-orange mx-1 mt-1",
     height: "1em",
     width: "1em",
     xmlns: "http://www.w3.org/2000/svg"
@@ -111,14 +106,14 @@ function CourseCard(props) {
     d: "M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
   }), /*#__PURE__*/_react.default.createElement("path", {
     d: "M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"
-  })), duration, " hours"), /*#__PURE__*/_react.default.createElement("p", {
-    className: "flex flex-row items-center justify-center"
+  })), duration), /*#__PURE__*/_react.default.createElement("p", {
+    className: "flex flex-row justify-center"
   }, /*#__PURE__*/_react.default.createElement("svg", {
     stroke: "currentColor",
     fill: "currentColor",
     strokeWidth: "0",
     viewBox: "0 0 24 24",
-    className: "text-orange mx-1",
+    className: "text-orange mx-1 mt-1",
     height: "1em",
     width: "1em",
     xmlns: "http://www.w3.org/2000/svg"
@@ -137,23 +132,43 @@ function CourseCard(props) {
     fillRule: "evenodd",
     d: "M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24a5.98 5.98 0 010 7.52c.42.14.86.24 1.33.24zM9 13c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
   })), students_enrolled || 0))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "w-full text-right px-2"
+    className: "w-full text-right"
   }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "text-japanese_indigo text-sm"
-  }, "See More Details > ")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "text-japanese_indigo text-sm mx-2"
+  }, "See More Details >", " ")), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex item-center justify-center w-full"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "mt-6 bottom-0 mb-4"
+    className: "mt-6 bottom-0 mb-4 flex gap-3"
   }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
+    className: "text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
     onClick: viewCourse
-  }, "View course") : /*#__PURE__*/_react.default.createElement("a", {
+  }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
+    onClick: e => {
+      (0, _dom.stopPropagation)(e);
+      payNow();
+    },
+    className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-bold"
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+    className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost == 0 ? "Free" : "\u20B9 ".concat(cost || "6,000")))))));
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
+    onClick: e => {
+      e.stopPropagation();
+      onViewDemoDetails();
+    },
+    className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+  }, "Show demo class details") : isDemoAvailable && /*#__PURE__*/_react.default.createElement("button", {
+    onClick: e => {
+      e.stopPropagation();
+      onBookDemo();
+    },
+    className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+  }, "Book a demo")))));
 }

@@ -14,29 +14,25 @@ export default function CourseCard(props) {
       courseImg,
       cost,
       students_enrolled,
-      digitalContentDuration,
-      liveClassDuration,
       isLive,
       nsqf_lvl,
+      duration,
+      isMoodleCourse,
+
+      // Demo sessions
+      userHasRegisteredDemo,
+      onViewDemoDetails = () => {},
+      isDemoAvailable,
+      onBookDemo = () => {},
     },
     goToDetailPage,
     goToCategoryPage,
+    payNow,
 
     // If course is purchased
     isPurchased,
     viewCourse = () => {},
   } = props;
-
-  let course_type = "";
-  let duration = "";
-
-  if (!isLive) {
-    course_type = "Self paced digital content";
-    duration = digitalContentDuration;
-  } else {
-    course_type = "Live classes";
-    duration = liveClassDuration;
-  }
 
   const url = getCoursePurchaseURL(courseId);
 
@@ -80,7 +76,9 @@ export default function CourseCard(props) {
 
         <div className="w-full text-sm mx-auto">
           <div className="flex flex-row justify-between">
-            <p className="">{course_type}</p>
+            <p className="">
+              {isLive ? "Live Classes" : "Self Paced Digital Content"}
+            </p>
             <a
               href="https://www.youtube.com/watch?v=riE-VMMXMHI"
               target="_blank"
@@ -93,14 +91,14 @@ export default function CourseCard(props) {
           </div>
         </div>
 
-        <div className="flex flex-row my-2 justify-between text-sm">
-          <p className="flex flex-row items-center justify-center">
+        <div className="flex flex-row my-2 justify-between text-sm h-20">
+          <p className="flex flex-row justify-center">
             <svg
               stroke="currentColor"
               fill="currentColor"
               strokeWidth="0"
               viewBox="0 0 24 24"
-              className="text-orange mx-1"
+              className="text-orange mx-1 mt-1"
               height="1em"
               width="1em"
               xmlns="http://www.w3.org/2000/svg"
@@ -108,16 +106,16 @@ export default function CourseCard(props) {
               <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
               <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"></path>
             </svg>
-            {duration} hours
+            {duration}
           </p>
 
-          <p className="flex flex-row items-center justify-center">
+          <p className="flex flex-row justify-center">
             <svg
               stroke="currentColor"
               fill="currentColor"
               strokeWidth="0"
               viewBox="0 0 24 24"
-              className="text-orange mx-1"
+              className="text-orange mx-1 mt-1"
               height="1em"
               width="1em"
               xmlns="http://www.w3.org/2000/svg"
@@ -138,18 +136,33 @@ export default function CourseCard(props) {
         </div>
       </div>
 
-      <div className="w-full text-right px-2">
-        <p className="text-japanese_indigo text-sm">See More Details &gt; </p>
+      <div className="w-full text-right">
+        <p className="text-japanese_indigo text-sm mx-2">
+          See More Details &gt;{" "}
+        </p>
       </div>
 
       <div className="flex item-center justify-center w-full">
-        <div className="mt-6 bottom-0 mb-4">
+        <div className="mt-6 bottom-0 mb-4 flex gap-3">
           {isPurchased ? (
             <button
-              className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
+              className="text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
               onClick={viewCourse}
             >
               View course
+            </button>
+          ) : isMoodleCourse == false ? (
+            <button
+              onClick={(e) => {
+                stopPropagation(e);
+                payNow();
+              }}
+              className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+            >
+              <span>Get Enrolled for </span>
+              <span className="font-bold">
+                {cost > 0 ? `₹ ${cost}` : "Free"}
+              </span>
             </button>
           ) : (
             <a
@@ -157,14 +170,39 @@ export default function CourseCard(props) {
               onClick={stopPropagation}
               target="_blank"
             >
-              <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+              <button className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
                 <span className="font-bold">
-                  {cost == 0 ? "Free" : `₹ ${cost || "6,000"}`}
+                  {cost > 0 ? `₹ ${cost}` : "Free"}
                 </span>
               </button>
             </a>
           )}
+          {/* Book demo button */}
+          {!isPurchased &&
+            (userHasRegisteredDemo ? (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onViewDemoDetails();
+                }}
+                className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+              >
+                Show demo class details
+              </button>
+            ) : (
+              isDemoAvailable && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onBookDemo();
+                  }}
+                  className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+                >
+                  Book a demo
+                </button>
+              )
+            ))}
         </div>
       </div>
     </div>

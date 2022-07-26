@@ -10,8 +10,7 @@ export const courseFormatter = (obj) => ({
   courseImg: obj.image_url,
   students_enrolled: obj.students_enrolled || 0,
   isLive: obj.is_live_course,
-  digitalContentDuration: obj.duration,
-  liveClassDuration: obj.live_class_duration || obj.duration,
+  duration: obj.duration,
   nsqf_lvl: obj.nsqf_level,
   redirection_url: obj.moodle_course_url,
   cost: obj.cost,
@@ -19,6 +18,10 @@ export const courseFormatter = (obj) => ({
   modules: obj.modules,
   partners: obj.partners,
   videoUrl: obj.video_url,
+  isMoodleCourse: obj.is_moodle_course,
+  is_subscription: obj.is_subscription,
+  is_taxable: obj.is_subscription,
+  moodleCourseId: obj.moodle_course_id,
 });
 
 export const catFormatter = (obj) => ({

@@ -5,7 +5,7 @@ import * as yup from "yup";
 export const courses = [
   {
     id: 53,
-    full_name: "New course",
+    full_name: "New course sdlhbajlsdg asdbgajhsdgb adbgasdg sdbsadbgjlas dga",
     description: "description",
     start_date: "2022-01-01T00:00:00+00:00",
     end_date: "2025-12-31T00:00:00+00:00",
@@ -34,7 +34,7 @@ export const courses = [
     image_url: null,
     short_name: null,
     moodle_course_id: "123",
-    duration: null,
+    duration: "3 Months with 36 One Hour Online Sessions with Trainer hours",
     is_live_course: false,
     course_partner: null,
     video_url:
