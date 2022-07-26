@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { STRLContext } from "../../Context";
 import MultiLangBody from "../multi-lang/MultiLangBody";
@@ -48,6 +48,13 @@ function CourseDetailPageStaging(props) {
     partners,
     videoUrl,
     isMoodleCourse,
+    subscription_cost,
+    is_subscription,
+    paymentType,
+
+    // Payment Action
+    handleOneTimeChange = () => {},
+    handleInstallmentChange = () => {},
 
     // Demo class
     userHasRegisteredDemo,
@@ -55,16 +62,6 @@ function CourseDetailPageStaging(props) {
     isDemoAvailable,
     onBookDemo = () => {},
   } = courseData || {};
-
-  const [favorite, setFavorite] = useState("one-time");
-
-  const handleOneTimeChange = () => {
-    setFavorite("one-time");
-  };
-
-  const handleInstallmentChange = () => {
-    setFavorite("installment");
-  };
 
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
