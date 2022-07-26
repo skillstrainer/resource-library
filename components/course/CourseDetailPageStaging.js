@@ -1,13 +1,13 @@
 "use strict";
 
-require("core-js/modules/web.dom-collections.iterator.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
 require("core-js/modules/es.symbol.description.js");
+
+require("core-js/modules/web.dom-collections.iterator.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -76,6 +76,17 @@ function CourseDetailPageStaging(props) {
     isMoodleCourse
   } = courseData || {};
   console.log("detsails staging", props);
+
+  const [favorite, setFavorite] = _react.default.useState("one-time");
+
+  const handleOneTimeChange = () => {
+    setFavorite("one-time");
+  };
+
+  const handleInstallmentChange = () => {
+    setFavorite("installment");
+  };
+
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
@@ -159,7 +170,19 @@ function CourseDetailPageStaging(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "text-md mb-3"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-semibold text-japanese_indigo mr-3 "
+  }, "Course Payment type:"), /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(RadioButton, {
+    label: "One Time",
+    value: favorite === "one-time",
+    onChange: handleOneTimeChange
+  }), /*#__PURE__*/_react.default.createElement(RadioButton, {
+    label: "Installment",
+    value: favorite === "installment",
+    onChange: handleInstallmentChange
+  }))), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
@@ -318,6 +341,19 @@ function CourseDetailPageStaging(props) {
     alt: "course-img"
   }))))));
 }
+
+const RadioButton = _ref3 => {
+  let {
+    label,
+    value,
+    onChange
+  } = _ref3;
+  return /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
+    type: "radio",
+    checked: value,
+    onChange: onChange
+  }), label);
+};
 
 var _default = CourseDetailPageStaging;
 exports.default = _default;
