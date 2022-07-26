@@ -154,7 +154,7 @@ function CourseDetailPageStaging(props) {
                       </span>
                     </div>
 
-                    {is_subscription ? (
+                    {is_subscription && !isPurchased ? (
                       <>
                         <div className="text-md mb-3">
                           <span className="font-semibold text-japanese_indigo mr-3 ">
@@ -228,13 +228,17 @@ function CourseDetailPageStaging(props) {
                         <button
                           onClick={(e) => {
                             stopPropagation(e);
-                            payNow(paymentType);
+                            payNow();
                           }}
                           className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
                         >
                           <span>Get Enrolled for </span>
                           <span className="font-bold">
-                            {cost > 0 ? `₹ ${cost}` : "Free"}
+                            {cost > 0 && is_subscription
+                              ? `₹ ${subscription_cost}`
+                              : cost > 0 && !is_subscription
+                              ? `₹ ${cost}`
+                              : "Free"}
                           </span>
                         </button>
                       ) : (

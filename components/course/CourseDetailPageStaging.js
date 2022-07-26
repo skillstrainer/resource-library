@@ -169,7 +169,7 @@ function CourseDetailPageStaging(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), is_subscription ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, liveClassDuration ? "Live Classes" : "Self Paced Digital Content")), is_subscription && !isPurchased ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
@@ -206,12 +206,12 @@ function CourseDetailPageStaging(props) {
   }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       (0, _dom.stopPropagation)(e);
-      payNow(paymentType);
+      payNow();
     },
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
+  }, cost > 0 && is_subscription ? "\u20B9 ".concat(subscription_cost) : cost > 0 && !is_subscription ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"
