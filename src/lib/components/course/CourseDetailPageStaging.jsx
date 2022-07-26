@@ -234,9 +234,13 @@ function CourseDetailPageStaging(props) {
                         >
                           <span>Get Enrolled for </span>
                           <span className="font-bold">
-                            {cost > 0 && is_subscription
+                            {cost > 0 &&
+                            is_subscription &&
+                            paymentType == "installment"
                               ? `₹ ${subscription_cost}`
-                              : cost > 0 && !is_subscription
+                              : cost > 0 &&
+                                !is_subscription &&
+                                paymentType == "one-time"
                               ? `₹ ${cost}`
                               : "Free"}
                           </span>

@@ -211,7 +211,7 @@ function CourseDetailPageStaging(props) {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 && is_subscription ? "\u20B9 ".concat(subscription_cost) : cost > 0 && !is_subscription ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
+  }, cost > 0 && is_subscription && paymentType == "installment" ? "\u20B9 ".concat(subscription_cost) : cost > 0 && !is_subscription && paymentType == "one-time" ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"
