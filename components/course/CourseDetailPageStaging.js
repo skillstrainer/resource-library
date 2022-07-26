@@ -363,8 +363,11 @@ const RadioButton = _ref3 => {
     value,
     onChange
   } = _ref3;
-  return /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("label", {
+    className: "mr-5"
+  }, /*#__PURE__*/_react.default.createElement("input", {
     type: "radio",
+    className: "mr-1",
     checked: value,
     onChange: onChange
   }), label);

@@ -469,8 +469,13 @@ function CourseDetailPageStaging(props) {
 
 const RadioButton = ({ label, value, onChange }) => {
   return (
-    <label>
-      <input type="radio" checked={value} onChange={onChange} />
+    <label className="mr-5">
+      <input
+        type="radio"
+        className="mr-1"
+        checked={value}
+        onChange={onChange}
+      />
       {label}
     </label>
   );
