@@ -238,9 +238,10 @@ function CourseDetailPageStaging(props) {
                             is_subscription &&
                             paymentType == "installment"
                               ? `₹ ${subscription_cost}`
-                              : cost > 0 &&
-                                !is_subscription &&
-                                paymentType == "one-time"
+                              : (cost > 0 &&
+                                  is_subscription &&
+                                  paymentType == "one-time") ||
+                                (cost > 0 && !is_subscription)
                               ? `₹ ${cost}`
                               : "Free"}
                           </span>
