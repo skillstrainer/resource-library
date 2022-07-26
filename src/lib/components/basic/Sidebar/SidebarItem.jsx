@@ -11,37 +11,34 @@ const SidebarItem = ({
   onClick = () => {},
   linkTo = "#",
 }) => {
+  const strlContext = useContext(STRLContext);
   const {
     dependency: { dependencies },
-  } = useContext(STRLContext);
+  } = strlContext;
   const { Link } = dependencies || {};
 
-  if (typeof Link !== "function")
+  if (Link && typeof Link !== "object")
     throw { msg: "Missing required dependency: Link" };
 
   return (
-    <div className="flex">
+    <div className="flex p-0 ">
       <Link
         to={linkTo}
         onClick={onClick}
-        className={`flex no-underline p-3 w-52 pb-5 h-14 ${
-          selected && "bg-gray rounded-lg"
+        className={`flex items-center w-full  rounded-md space-x-4 h-14 ${
+          selected ? "bg-orange-light" : "hover:bg-yellow-50"
         } ${className}`}
       >
-        <Icon
-          className={`text-3xl mx-1 text-gray-dark ${
-            selected && "text-orange"
-          }`}
-        />
+        <Icon className={`flex text-lg ml-4 items-left ${selected && ""}`} />
         <p
-          className={`flex items-center justify-center mt-3 ml-2 font-medium text-sm text-gray-dark ${
-            selected && "text-indigo"
+          className={`flex text-gray-700 font-medium text-sm font-poppins ${
+            selected && ""
           }`}
         >
           {name}
         </p>
       </Link>
-      {selected && <div className="mt-4.5 ml-3 bg-orange w-1.5 h-14" />}
+      <div className={` w-1 h-14 rounded-md ${selected && "bg-orange"}`} />
     </div>
   );
 };
