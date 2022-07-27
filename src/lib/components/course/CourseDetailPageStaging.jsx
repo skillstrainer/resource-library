@@ -47,7 +47,7 @@ function CourseDetailPageStaging(props) {
     modules,
     partners,
     videoUrl,
-    certificate_image_url,
+    certificateImageUrl,
     isMoodleCourse,
     subscription_cost,
     is_subscription,
@@ -406,9 +406,7 @@ function CourseDetailPageStaging(props) {
               <div className="relative">
                 <img
                   src={
-                    certificate_image_url
-                      ? certificate_image_url
-                      : emptyCertificate
+                    certificateImageUrl ? certificateImageUrl : emptyCertificate
                   }
                   className="w-full h-full"
                 />
