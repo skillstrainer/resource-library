@@ -1,13 +1,13 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true,
+  value: true
 });
 exports.courseFormatter = exports.catFormatter = void 0;
 
 require("core-js/modules/es.symbol.description.js");
 
-const courseFormatter = (obj) => ({
+const courseFormatter = obj => ({
   categoryName: obj.course_category.name,
   categoryId: obj.course_category.id,
   category: obj.course_category,
@@ -27,20 +27,19 @@ const courseFormatter = (obj) => ({
   modules: obj.modules,
   partners: obj.partners,
   videoUrl: obj.video_url,
-  certificateImageUrl: obj.certificate_image_url,
   isMoodleCourse: obj.is_moodle_course,
   is_subscription: obj.is_subscription,
   is_taxable: obj.is_subscription,
-  moodleCourseId: obj.moodle_course_id,
+  moodleCourseId: obj.moodle_course_id
 });
 
 exports.courseFormatter = courseFormatter;
 
-const catFormatter = (obj) => ({
+const catFormatter = obj => ({
   numOfCourses: obj.count,
   categoryName: obj.name,
   id: obj.id,
-  image: obj.image_url,
+  image: obj.image_url
 });
 
 exports.catFormatter = catFormatter;

@@ -73,6 +73,7 @@ function CourseDetailPageStaging(props) {
     modules,
     partners,
     videoUrl,
+    certificateImageUrl,
     isMoodleCourse,
     subscription_cost,
     is_subscription,
@@ -318,14 +319,9 @@ function CourseDetailPageStaging(props) {
   }, "Certificate You Will Get"), /*#__PURE__*/_react.default.createElement("div", {
     className: "relative"
   }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _certificate.default,
+    src: certificateImageUrl ? certificateImageUrl : _certificate.default,
     className: "w-full h-full"
-  }), /*#__PURE__*/_react.default.createElement("p", {
-    className: "absolute w-full h-full top-0 left-0 text-center text-gray-600",
-    style: {
-      transform: "scale(0.6) translateY(50%)"
-    }
-  }, "student of ", /*#__PURE__*/_react.default.createElement("b", null, "XYZ Institute"), " has successfully", /*#__PURE__*/_react.default.createElement("br", null), "cleared the assessment for the job role of", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("b", null, displayName), /*#__PURE__*/_react.default.createElement("br", null), "conforming to National Skills Qualifications Framework Level -", " ", nsqf_lvl || "X")))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
+  })))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full md:w-1/2"
