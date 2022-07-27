@@ -410,7 +410,7 @@ function CourseDetailPageStaging(props) {
                   }
                   className="w-full h-full"
                 />
-                <p
+                {/* <p
                   className="absolute w-full h-full top-0 left-0 text-center text-gray-600"
                   style={{
                     transform: "scale(0.6) translateY(50%)",
@@ -424,7 +424,7 @@ function CourseDetailPageStaging(props) {
                   <br />
                   conforming to National Skills Qualifications Framework Level -{" "}
                   {nsqf_lvl || "X"}
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
