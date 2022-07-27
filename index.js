@@ -23,6 +23,12 @@ Object.defineProperty(exports, "CourseModal", {
     return _CourseModal.default;
   }
 });
+Object.defineProperty(exports, "Dropdown", {
+  enumerable: true,
+  get: function get() {
+    return _Dropdown.Dropdown;
+  }
+});
 Object.defineProperty(exports, "Form", {
   enumerable: true,
   get: function get() {
@@ -78,6 +84,18 @@ Object.defineProperty(exports, "STRLContextProvider", {
     return _Context.STRLContextProvider;
   }
 });
+Object.defineProperty(exports, "Sidebar", {
+  enumerable: true,
+  get: function get() {
+    return _Sidebar.default;
+  }
+});
+Object.defineProperty(exports, "Table", {
+  enumerable: true,
+  get: function get() {
+    return _Table.default;
+  }
+});
 Object.defineProperty(exports, "getFormGlobalPlugins", {
   enumerable: true,
   get: function get() {
@@ -118,6 +136,12 @@ Object.defineProperty(exports, "setFormGlobalPreprocessors", {
 var _Modal = _interopRequireDefault(require("./components/shared/Modal"));
 
 var _Context = require("./Context");
+
+var _Dropdown = require("./components/dropdown/Dropdown");
+
+var _Sidebar = _interopRequireDefault(require("./components/basic/Sidebar/Sidebar"));
+
+var _Table = _interopRequireDefault(require("./components/basic/Table/Table"));
 
 var _CourseCard = _interopRequireDefault(require("./components/course/CourseCard"));
 

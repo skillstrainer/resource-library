@@ -18,7 +18,7 @@ echo "Building artifact"
 yarn build
 
 # Deploy
-echo "\n\n\nDeploying to git"
+echo \n\n\n"Deploying to git"
 git add .
 git commit -m "$COMMIT_MESSAGE"
 git push
@@ -26,19 +26,19 @@ git push
 # Update in other repositories
 if [ -d $WEBAPP_PATH ];
   then
-    echo "\n\n\nUpgrading package in Webapp"
+    echo \n\n\n"Upgrading package in Webapp"
     cd $WEBAPP_PATH && yarn upgrade skillstrainer-resource-library    
 fi
 
 if [ -d $ADMIN_PANEL_PATH ];
   then
-    echo "\n\n\nUpgrading package in Admin Client"
+    echo \n\n\n"Upgrading package in Admin Client"
     cd $ADMIN_PANEL_PATH && yarn upgrade skillstrainer-resource-library
 fi
 
 if [ -d $MARKETING_WEBSITE_PATH ];
   then
-    echo "\n\n\nUpgrading pacakge in Marketing website"
+    echo \n\n\n"Upgrading pacakge in Marketing website"
     cd $MARKETING_WEBSITE_PATH && yarn upgrade skillstrainer-resource-library
 fi
 

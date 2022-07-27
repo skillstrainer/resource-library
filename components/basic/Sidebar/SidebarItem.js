@@ -26,29 +26,30 @@ const SidebarItem = _ref => {
     onClick = () => {},
     linkTo = "#"
   } = _ref;
+  const strlContext = (0, _react.useContext)(_Context.STRLContext);
   const {
     dependency: {
       dependencies
     }
-  } = (0, _react.useContext)(_Context.STRLContext);
+  } = strlContext;
   const {
     Link
   } = dependencies || {};
-  if (typeof Link !== "function") throw {
+  if (Link && typeof Link !== "object") throw {
     msg: "Missing required dependency: Link"
   };
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex"
+    className: "flex p-0 "
   }, /*#__PURE__*/_react.default.createElement(Link, {
     to: linkTo,
     onClick: onClick,
-    className: "flex no-underline p-3 w-52 pb-5 h-14 ".concat(selected && "bg-gray rounded-lg", " ").concat(className)
+    className: "flex items-center w-full  rounded-md space-x-4 h-14 ".concat(selected ? "bg-orange-light" : "hover:bg-yellow-50", " ").concat(className)
   }, /*#__PURE__*/_react.default.createElement(Icon, {
-    className: "text-3xl mx-1 text-gray-dark ".concat(selected && "text-orange")
+    className: "flex text-lg ml-4 items-left ".concat(selected && "")
   }), /*#__PURE__*/_react.default.createElement("p", {
-    className: "flex items-center justify-center mt-3 ml-2 font-medium text-sm text-gray-dark ".concat(selected && "text-indigo")
-  }, name)), selected && /*#__PURE__*/_react.default.createElement("div", {
-    className: "mt-4.5 ml-3 bg-orange w-1.5 h-14"
+    className: "flex text-gray-700 font-medium text-sm font-poppins ".concat(selected && "")
+  }, name)), /*#__PURE__*/_react.default.createElement("div", {
+    className: " w-1 h-14 rounded-md ".concat(selected && "bg-orange")
   }));
 };
 

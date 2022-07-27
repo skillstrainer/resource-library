@@ -43,11 +43,13 @@ export default function CourseCard(props) {
     >
       <div>
         <div className="relative">
-          <img
-            className="h-56 w-full object-cover object-center shadow-xl"
-            src={courseImg && courseImg.url ? courseImg.url : courseImg}
-            alt="course-img"
-          />
+          <div className="h-56 flex justify-center items-center bg-gray-200">
+            <img
+              className="max-w-full max-h-full shadow-xl"
+              src={courseImg && courseImg.url ? courseImg.url : courseImg}
+              alt={displayName}
+            />
+          </div>
           <div className="absolute top-2 left-2">
             <button
               onClick={(e) => {
@@ -151,7 +153,7 @@ export default function CourseCard(props) {
             >
               View course
             </button>
-          ) : isMoodleCourse == false ? (
+          ) : isMoodleCourse === false ? (
             <button
               onClick={(e) => {
                 stopPropagation(e);

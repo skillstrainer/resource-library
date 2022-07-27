@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { STRLContext } from "../../Context";
 import MultiLangBody from "../multi-lang/MultiLangBody";
@@ -49,6 +49,13 @@ function CourseDetailPageStaging(props) {
     videoUrl,
     certificate_image_url,
     isMoodleCourse,
+    subscription_cost,
+    is_subscription,
+    paymentType,
+
+    // Payment Action
+    handleOneTimeChange = () => {},
+    handleInstallmentChange = () => {},
 
     // Demo class
     userHasRegisteredDemo,
@@ -56,16 +63,6 @@ function CourseDetailPageStaging(props) {
     isDemoAvailable,
     onBookDemo = () => {},
   } = courseData || {};
-
-  const [favorite, setFavorite] = useState("one-time");
-
-  const handleOneTimeChange = () => {
-    setFavorite("one-time");
-  };
-
-  const handleInstallmentChange = () => {
-    setFavorite("installment");
-  };
 
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
@@ -158,36 +155,49 @@ function CourseDetailPageStaging(props) {
                       </span>
                     </div>
 
-                    <div className="text-md mb-3">
-                      <span className="font-semibold text-japanese_indigo mr-3 ">
-                        Course Payment type:
-                      </span>
-                      <span>
-                        <RadioButton
-                          label="One Time"
-                          value={favorite === "one-time"}
-                          onChange={handleOneTimeChange}
-                        />
-                        <RadioButton
-                          label="Installment"
-                          value={favorite === "installment"}
-                          onChange={handleInstallmentChange}
-                        />
-                      </span>
-                    </div>
+                    {is_subscription && !isPurchased ? (
+                      <>
+                        <div className="text-md mb-3">
+                          <span className="font-semibold text-japanese_indigo mr-3 ">
+                            Course Payment type:
+                          </span>
+                          <span>
+                            <RadioButton
+                              label="One Time"
+                              value={paymentType === "one-time"}
+                              onChange={() => handleOneTimeChange()}
+                            />
+                            <RadioButton
+                              label="Installment"
+                              value={paymentType === "installment"}
+                              onChange={() => handleInstallmentChange()}
+                            />
+                          </span>
+                        </div>
 
-                    <div className="text-md mb-3">
-                      <span className="font-semibold text-japanese_indigo mr-3 ">
-                        {favorite == "one-time" ? "Price" : "Installment Price"}
-                      </span>
-                      <span>
-                        {favorite == "one-time"
-                          ? `₹ ${cost}`
-                          : favorite == "installment"
-                          ? "₹ 1000/Month upto 3 months"
-                          : ""}
-                      </span>
-                    </div>
+                        <div className="text-md mb-3">
+                          <span className="font-semibold text-japanese_indigo mr-3 ">
+                            {paymentType == "one-time"
+                              ? "Price:"
+                              : "Installment Price:"}
+                          </span>
+                          <span>
+                            {paymentType == "one-time"
+                              ? `₹${cost}`
+                              : paymentType == "installment"
+                              ? `₹${subscription_cost}/Month upto 3 months`
+                              : ""}
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-md mb-3">
+                        <span className="font-semibold text-japanese_indigo mr-3 ">
+                          Price:
+                        </span>
+                        <span>{`₹${cost}`}</span>
+                      </div>
+                    )}
 
                     {partners && (
                       <div>
@@ -225,7 +235,16 @@ function CourseDetailPageStaging(props) {
                         >
                           <span>Get Enrolled for </span>
                           <span className="font-bold">
-                            {cost > 0 ? `₹ ${cost}` : "Free"}
+                            {cost > 0 &&
+                            is_subscription &&
+                            paymentType == "installment"
+                              ? `₹ ${subscription_cost}`
+                              : (cost > 0 &&
+                                  is_subscription &&
+                                  paymentType == "one-time") ||
+                                (cost > 0 && !is_subscription)
+                              ? `₹ ${cost}`
+                              : "Free"}
                           </span>
                         </button>
                       ) : (
@@ -458,8 +477,13 @@ function CourseDetailPageStaging(props) {
 
 const RadioButton = ({ label, value, onChange }) => {
   return (
-    <label>
-      <input type="radio" checked={value} onChange={onChange} />
+    <label className="mr-5">
+      <input
+        type="radio"
+        className="mr-1"
+        checked={value}
+        onChange={onChange}
+      />
       {label}
     </label>
   );
