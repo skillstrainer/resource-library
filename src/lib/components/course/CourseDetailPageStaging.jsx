@@ -47,6 +47,7 @@ function CourseDetailPageStaging(props) {
     modules,
     partners,
     videoUrl,
+    certificate_image_url,
     isMoodleCourse,
 
     // Demo class
@@ -384,7 +385,14 @@ function CourseDetailPageStaging(props) {
                 Certificate You Will Get
               </h2>
               <div className="relative">
-                <img src={emptyCertificate} className="w-full h-full" />
+                <img
+                  src={
+                    certificate_image_url
+                      ? certificate_image_url
+                      : emptyCertificate
+                  }
+                  className="w-full h-full"
+                />
                 <p
                   className="absolute w-full h-full top-0 left-0 text-center text-gray-600"
                   style={{
