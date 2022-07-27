@@ -27,6 +27,7 @@ const courseFormatter = obj => ({
   modules: obj.modules,
   partners: obj.partners,
   videoUrl: obj.video_url,
+  certificateImageUrl: obj.certificate_image_url,
   isMoodleCourse: obj.is_moodle_course,
   is_subscription: obj.is_subscription,
   is_taxable: obj.is_subscription,
