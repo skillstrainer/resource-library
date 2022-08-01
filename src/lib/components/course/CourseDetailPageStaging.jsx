@@ -52,6 +52,7 @@ function CourseDetailPageStaging(props) {
     subscription_cost,
     is_subscription,
     paymentType,
+    course_type,
 
     // Payment Action
     handleOneTimeChange = () => {},
@@ -149,8 +150,12 @@ function CourseDetailPageStaging(props) {
                         Course Structure:
                       </span>
                       <span>
-                        {liveClassDuration
-                          ? "Live Classes"
+                        {course_type == 3
+                          ? "Physical Classes + Live Online Classes + Digital Content"
+                          : course_type == 2
+                          ? "Live Online Classes + Digital Content"
+                          : course_type == 1
+                          ? "Digital Content (Self Paced)"
                           : "Self Paced Digital Content"}
                       </span>
                     </div>
