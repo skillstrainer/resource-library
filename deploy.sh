@@ -2,7 +2,7 @@ CURRENT_DIR=$(pwd)
 
 COMMIT_MESSAGE=$1
 
-WEBAPP_PATH='../webapp'
+WEBAPP_PATH='/home/amit/Documents/Amit/skillstrainer_webapp'
 ADMIN_PANEL_PATH='../admin'
 MARKETING_WEBSITE_PATH='../marketing-website/ui'
 

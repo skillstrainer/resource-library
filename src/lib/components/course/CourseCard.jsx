@@ -80,7 +80,13 @@ export default function CourseCard(props) {
         <div className="w-full text-sm mx-auto">
           <div className="flex flex-row justify-between">
             <p className="">
-              {isLive ? "Live Classes" : "Self Paced Digital Content"}
+              {course_type == 3
+                ? "Physical Classes + Live Online Classes + Digital Content"
+                : course_type == 2
+                ? "Live Online Classes + Digital Content"
+                : course_type == 1
+                ? "Digital Content (Self Paced)"
+                : "Self Paced Digital Content"}
             </p>
             <a
               href="https://www.youtube.com/watch?v=riE-VMMXMHI"

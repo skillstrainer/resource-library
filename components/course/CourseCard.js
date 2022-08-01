@@ -85,7 +85,7 @@ function CourseCard(props) {
     className: "flex flex-row justify-between"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: ""
-  }, isLive ? "Live Classes" : "Self Paced Digital Content"), /*#__PURE__*/_react.default.createElement("a", {
+  }, course_type == 3 ? "Physical Classes + Live Online Classes + Digital Content" : course_type == 2 ? "Live Online Classes + Digital Content" : course_type == 1 ? "Digital Content (Self Paced)" : "Self Paced Digital Content"), /*#__PURE__*/_react.default.createElement("a", {
     href: "https://www.youtube.com/watch?v=riE-VMMXMHI",
     target: "_blank",
     rel: "noopener noreferrer",
