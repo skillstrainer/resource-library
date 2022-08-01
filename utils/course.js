@@ -31,7 +31,8 @@ const courseFormatter = obj => ({
   isMoodleCourse: obj.is_moodle_course,
   is_subscription: obj.is_subscription,
   is_taxable: obj.is_subscription,
-  moodleCourseId: obj.moodle_course_id
+  moodleCourseId: obj.moodle_course_id,
+  course_type: obj.course_type
 });
 
 exports.courseFormatter = courseFormatter;

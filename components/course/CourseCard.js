@@ -36,6 +36,7 @@ function CourseCard(props) {
       nsqf_lvl,
       duration,
       isMoodleCourse,
+      course_type,
       // Demo sessions
       userHasRegisteredDemo,
       onViewDemoDetails = () => {},

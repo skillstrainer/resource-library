@@ -23,6 +23,7 @@ export const courseFormatter = (obj) => ({
   is_subscription: obj.is_subscription,
   is_taxable: obj.is_subscription,
   moodleCourseId: obj.moodle_course_id,
+  course_type: obj.course_type,
 });
 
 export const catFormatter = (obj) => ({
