@@ -48,6 +48,7 @@ function CourseDetailPage(props) {
     students_enrolled,
     duration,
     isMoodleCourse,
+    certificateImageUrl,
     isLive,
     nsqf_lvl,
     modules,
@@ -277,8 +278,15 @@ function CourseDetailPage(props) {
                   Certificate You Will Get
                 </h2>
                 <div className="relative">
-                  <img src={emptyCertificate} className="w-full h-full" />
-                  <p
+                  <img
+                    src={
+                      certificateImageUrl
+                        ? certificateImageUrl
+                        : emptyCertificate
+                    }
+                    className="w-full h-full"
+                  />
+                  {/* <p
                     className="absolute w-full h-full top-0 left-0 text-center text-gray-600"
                     style={{
                       transform: "scale(0.6) translateY(50%)",
@@ -292,7 +300,7 @@ function CourseDetailPage(props) {
                     <br />
                     conforming to National Skills Qualifications Framework Level
                     - {nsqf_lvl || "X"}
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
