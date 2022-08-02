@@ -191,7 +191,7 @@ function CourseDetailPageStaging(props) {
                             {paymentType == "one-time"
                               ? `₹${cost}`
                               : paymentType == "installment"
-                              ? `₹${subscription_cost}/Month upto ${interval} months`
+                              ? `₹${subscription_cost}/Month Upto ${interval} Months`
                               : ""}
                           </span>
                         </div>
