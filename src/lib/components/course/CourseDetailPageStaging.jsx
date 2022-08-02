@@ -51,6 +51,7 @@ function CourseDetailPageStaging(props) {
     isMoodleCourse,
     subscription_cost,
     is_subscription,
+    interval,
     paymentType,
     course_type,
 
@@ -190,7 +191,7 @@ function CourseDetailPageStaging(props) {
                             {paymentType == "one-time"
                               ? `₹${cost}`
                               : paymentType == "installment"
-                              ? `₹${subscription_cost}/Month upto 3 months`
+                              ? `₹${subscription_cost}/Month upto ${interval} months`
                               : ""}
                           </span>
                         </div>

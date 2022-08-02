@@ -77,6 +77,7 @@ function CourseDetailPageStaging(props) {
     isMoodleCourse,
     subscription_cost,
     is_subscription,
+    interval,
     paymentType,
     course_type,
     // Payment Action
@@ -187,7 +188,7 @@ function CourseDetailPageStaging(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, paymentType == "one-time" ? "Price:" : "Installment Price:"), /*#__PURE__*/_react.default.createElement("span", null, paymentType == "one-time" ? "\u20B9".concat(cost) : paymentType == "installment" ? "\u20B9".concat(subscription_cost, "/Month upto 3 months") : ""))) : /*#__PURE__*/_react.default.createElement("div", {
+  }, paymentType == "one-time" ? "Price:" : "Installment Price:"), /*#__PURE__*/_react.default.createElement("span", null, paymentType == "one-time" ? "\u20B9".concat(cost) : paymentType == "installment" ? "\u20B9".concat(subscription_cost, "/Month upto ").concat(interval, " months") : ""))) : /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
