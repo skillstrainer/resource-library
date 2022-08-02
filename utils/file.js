@@ -15,6 +15,8 @@ require("core-js/modules/es.array-buffer.slice.js");
 
 require("core-js/modules/es.typed-array.uint8-array.js");
 
+require("core-js/modules/es.typed-array.fill.js");
+
 require("core-js/modules/es.typed-array.set.js");
 
 require("core-js/modules/es.typed-array.sort.js");
