@@ -13,7 +13,7 @@ const consts = {
     adminApiUrl: "https://adminapi.skillstrainer.in/api"
   },
   staging: {
-    webappUrl: "https://develop.dbloj6z6ud8hu.amplifyapp.com/",
+    webappUrl: "https://webapp2.skillsscale.in",
     adminPanelUrl: "https://stageadmin.skillsscale.in",
     marketingUrl: "https://skillstrainer.in",
     apiUrl: "https://webapp.skillsscale.in/api",
