@@ -101,7 +101,8 @@ const FormComponent = (props, ref) => {
   const [attemptedSubmit, setAttemptedSubmit] = (0, _react.useState)(); // Formik function references
 
   const formikSubmitFn = (0, _react.useRef)();
-  const formikSetValuesFn = (0, _react.useRef)(); // resolve validation schema
+  const formikSetValuesFn = (0, _react.useRef)();
+  const formikResetFn = (0, _react.useRef)(); // resolve validation schema
 
   const [validationSchema, setValidationSchema] = (0, _react.useState)(null);
   (0, _react.useEffect)(() => {
@@ -200,7 +201,8 @@ const FormComponent = (props, ref) => {
   (function () {
     if (ref) {
       const refData = {
-        submit: triggerSubmit
+        submit: triggerSubmit,
+        reset: formikResetFn.current
       };
       if (typeof ref === "function") ref(refData);else if (typeof ref === "object") Object.assign(ref, refData);
     }
@@ -219,7 +221,8 @@ const FormComponent = (props, ref) => {
       submitForm,
       setFieldValue,
       validateForm,
-      setValues
+      setValues,
+      resetForm
     } = formProps;
     if (!validateFormFn) setValidateFormFn({
       run: validateForm
@@ -237,6 +240,7 @@ const FormComponent = (props, ref) => {
 
     formikSubmitFn.current = submitForm;
     formikSetValuesFn.current = setValues;
+    formikResetFn.current = resetForm;
     return /*#__PURE__*/_react.default.createElement(_formik.Form, {
       className: "justify-start ".concat(className)
     }, items && !hideForm && /*#__PURE__*/_react.default.createElement(_Section.default, {
