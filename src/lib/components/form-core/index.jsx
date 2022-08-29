@@ -70,6 +70,7 @@ const FormComponent = (props, ref) => {
   // Formik function references
   const formikSubmitFn = useRef();
   const formikSetValuesFn = useRef();
+  const formikResetFn = useRef();
 
   // resolve validation schema
   const [validationSchema, setValidationSchema] = useState(null);
@@ -175,6 +176,7 @@ const FormComponent = (props, ref) => {
     if (ref) {
       const refData = {
         submit: triggerSubmit,
+        reset: formikResetFn.current,
       };
 
       if (typeof ref === "function") ref(refData);
@@ -206,6 +208,7 @@ const FormComponent = (props, ref) => {
               setFieldValue,
               validateForm,
               setValues,
+              resetForm,
             } = formProps;
             if (!validateFormFn) setValidateFormFn({ run: validateForm });
             if (
@@ -225,6 +228,7 @@ const FormComponent = (props, ref) => {
 
             formikSubmitFn.current = submitForm;
             formikSetValuesFn.current = setValues;
+            formikResetFn.current = resetForm;
 
             return (
               <Form className={`justify-start ${className}`}>
