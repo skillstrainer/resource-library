@@ -45,7 +45,7 @@ const MultiSelect = _ref => {
   }, selectProps, {
     isMulti: true,
     options: options,
-    value: options.find(obj => value === obj.value),
+    value: options.filter(obj => Array.isArray(value) && value.indexOf(obj.value) > -1),
     onChange: handleChange,
     className: "basic-multi-select",
     classNamePrefix: "select"
