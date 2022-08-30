@@ -1,6 +1,6 @@
 export const courseFormatter = (obj) => ({
-  categoryName: obj.course_category.name,
-  categoryId: obj.course_category.id,
+  categoryName: obj.course_category?.name,
+  categoryId: obj.course_category?.id,
   category: obj.course_category,
   categoryImg: "",
   courseId: obj.id,
