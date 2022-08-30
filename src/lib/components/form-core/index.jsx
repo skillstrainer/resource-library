@@ -180,7 +180,7 @@ const FormComponent = (props, ref) => {
       };
 
       if (typeof ref === "function") ref(refData);
-      else if (typeof ref === "object") Object.assign(ref, refData);
+      else if (typeof ref === "object") Object.assign(ref.current, refData);
     }
   })();
 
