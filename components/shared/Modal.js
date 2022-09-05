@@ -38,8 +38,7 @@ function Modal(props) {
       alignItems: "center",
       justifyContent: "center",
       fontFamily: "arial",
-      zIndex: "100",
-      borderRadius: "10px"
+      zIndex: "100"
     }
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
@@ -56,7 +55,8 @@ function Modal(props) {
       transform: "translateX(-50%) translateY(-50%)",
       transition: transitionTime + "s",
       maxHeight: "100%",
-      overflow: "auto"
+      overflow: "auto",
+      boderRadius: "10px"
     }, !noBody ? {
       background: "#fff",
       padding: "10px",

@@ -20,7 +20,6 @@ export default function Modal(props) {
         justifyContent: "center",
         fontFamily: "arial",
         zIndex: "100",
-        borderRadius: "10px",
       }}
     >
       <div
@@ -40,6 +39,7 @@ export default function Modal(props) {
           transition: transitionTime + "s",
           maxHeight: "100%",
           overflow: "auto",
+          boderRadius: "10px",
           ...(!noBody
             ? {
                 background: "#fff",
