@@ -39,7 +39,7 @@ export default function Modal(props) {
           transition: transitionTime + "s",
           maxHeight: "100%",
           overflow: "auto",
-          boderRadius: "10px",
+          borderRadius: "10px",
           ...(!noBody
             ? {
                 background: "#fff",
