@@ -20,6 +20,7 @@ export default function Modal(props) {
         justifyContent: "center",
         fontFamily: "arial",
         zIndex: "100",
+        borderRadius: "10px",
       }}
     >
       <div

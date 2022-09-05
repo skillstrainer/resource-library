@@ -38,7 +38,8 @@ function Modal(props) {
       alignItems: "center",
       justifyContent: "center",
       fontFamily: "arial",
-      zIndex: "100"
+      zIndex: "100",
+      borderRadius: "10px"
     }
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
