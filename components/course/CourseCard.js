@@ -20,8 +20,7 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 function CourseCard(props) {
   const {
     course: {
-      getCoursePurchaseURL,
-      toggleCourseModal
+      getCoursePurchaseURL
     }
   } = (0, _react.useContext)(_Context.STRLContext);
   const {
@@ -32,7 +31,7 @@ function CourseCard(props) {
       courseImg,
       cost,
       students_enrolled,
-      isLive,
+      discount,
       nsqf_lvl,
       duration,
       isMoodleCourse,
@@ -152,16 +151,20 @@ function CourseCard(props) {
     },
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-bold ".concat(discount ? "line-through mr-2" : "")
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
+  }, "\u20B9 ", Number(cost) - Number(discount))) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-bold ".concat(discount ? "line-through mr-2" : "")
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
+  }, "\u20B9 ", Number(cost) - Number(discount)))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       e.stopPropagation();
       onViewDemoDetails();

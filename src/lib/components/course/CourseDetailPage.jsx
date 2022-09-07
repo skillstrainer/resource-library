@@ -17,7 +17,7 @@ import emptyCertificate from "../../assets/image/certificate.jpg";
 import jobs from "../../assets/image/jobs.jpg";
 import newLogo from "../../assets/image/newLogo.svg";
 
-function CourseDetailPageStaging(props) {
+function CourseDetailPage(props) {
   const {
     course: { getCoursePurchaseURL },
   } = useContext(STRLContext);
@@ -41,8 +41,8 @@ function CourseDetailPageStaging(props) {
     description,
     courseImg,
     cost,
+    discount,
     students_enrolled,
-    liveClassDuration,
     nsqf_lvl,
     modules,
     partners,
@@ -261,9 +261,18 @@ function CourseDetailPageStaging(props) {
                         >
                           <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
                             <span>Get Enrolled for </span>
-                            <span className="font-bold">
+                            <span
+                              className={`font-bold ${
+                                discount ? "line-through mr-2" : ""
+                              }`}
+                            >
                               {cost > 0 ? `₹ ${cost}` : "Free"}
                             </span>
+                            {discount && (
+                              <span className="font-bold">
+                                ₹ {Number(cost) - Number(discount)}
+                              </span>
+                            )}
                           </button>
                         </a>
                       )}
@@ -493,4 +502,4 @@ const RadioButton = ({ label, value, onChange }) => {
   );
 };
 
-export default CourseDetailPageStaging;
+export default CourseDetailPage;

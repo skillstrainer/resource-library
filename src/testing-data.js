@@ -23,7 +23,7 @@ export const courses = [
     redirection_url:
       "https://lms.skillstrainer.in/moodle/course/view.php?id=19",
     cost: 3600,
-    discount: null,
+    discount: 200,
     modules: [
       {
         id: 180,

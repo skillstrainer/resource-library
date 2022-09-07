@@ -4,7 +4,7 @@ import { STRLContext } from "../../Context";
 
 export default function CourseCard(props) {
   const {
-    course: { getCoursePurchaseURL, toggleCourseModal },
+    course: { getCoursePurchaseURL },
   } = useContext(STRLContext);
   const {
     data: {
@@ -14,7 +14,7 @@ export default function CourseCard(props) {
       courseImg,
       cost,
       students_enrolled,
-      isLive,
+      discount,
       nsqf_lvl,
       duration,
       isMoodleCourse,
@@ -169,9 +169,16 @@ export default function CourseCard(props) {
               className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
             >
               <span>Get Enrolled for </span>
-              <span className="font-bold">
+              <span
+                className={`font-bold ${discount ? "line-through mr-2" : ""}`}
+              >
                 {cost > 0 ? `₹ ${cost}` : "Free"}
               </span>
+              {discount && (
+                <span className="font-bold">
+                  ₹ {Number(cost) - Number(discount)}
+                </span>
+              )}
             </button>
           ) : (
             <a
@@ -181,9 +188,16 @@ export default function CourseCard(props) {
             >
               <button className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
                 <span>Get Enrolled for </span>
-                <span className="font-bold">
+                <span
+                  className={`font-bold ${discount ? "line-through mr-2" : ""}`}
+                >
                   {cost > 0 ? `₹ ${cost}` : "Free"}
                 </span>
+                {discount && (
+                  <span className="font-bold">
+                    ₹ {Number(cost) - Number(discount)}
+                  </span>
+                )}
               </button>
             </a>
           )}

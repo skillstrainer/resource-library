@@ -43,7 +43,7 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 // Icons
 // Images
-function CourseDetailPageStaging(props) {
+function CourseDetailPage(props) {
   const {
     course: {
       getCoursePurchaseURL
@@ -67,8 +67,8 @@ function CourseDetailPageStaging(props) {
     description,
     courseImg,
     cost,
+    discount,
     students_enrolled,
-    liveClassDuration,
     nsqf_lvl,
     modules,
     partners,
@@ -221,8 +221,10 @@ function CourseDetailPageStaging(props) {
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-bold ".concat(discount ? "line-through mr-2" : "")
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
+  }, "\u20B9 ", Number(cost) - Number(discount)))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => onViewDemoDetails(),
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, "Show demo class details") : isDemoAvailable && /*#__PURE__*/_react.default.createElement("button", {
@@ -371,5 +373,5 @@ const RadioButton = _ref3 => {
   }), label);
 };
 
-var _default = CourseDetailPageStaging;
+var _default = CourseDetailPage;
 exports.default = _default;
