@@ -151,6 +151,11 @@ export function AddressField(props) {
               {pincodeRes.city_town}, {pincodeRes.district}, {pincodeRes.state}
             </div>
           )}
+          <div className="hidden">
+            {isPincodeOpen &&
+              pincodeRes &&
+              setTimeout(() => applyPincodeRes(), 500)}
+          </div>
         </div>
         {fields.includes("house_number") && genField("house_number")}
         {fields.includes("location") && genField("location")}
