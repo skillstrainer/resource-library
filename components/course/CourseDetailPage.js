@@ -1,13 +1,13 @@
 "use strict";
 
-require("core-js/modules/web.dom-collections.iterator.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
 require("core-js/modules/es.symbol.description.js");
+
+require("core-js/modules/web.dom-collections.iterator.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -78,17 +78,15 @@ function CourseDetailPage(props) {
     subscription_cost,
     is_subscription,
     interval,
-    paymentType,
     course_type,
-    // Payment Action
-    handleOneTimeChange = () => {},
-    handleInstallmentChange = () => {},
     // Demo class
     userHasRegisteredDemo,
     onViewDemoDetails = () => {},
     isDemoAvailable,
     onBookDemo = () => {}
   } = courseData || {};
+  const [payingBySubscription, setPayingBySubscription] = (0, _react.useState)(false);
+  const [paymentStarted, setPaymentStarted] = (0, _react.useState)(false);
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
@@ -172,27 +170,25 @@ function CourseDetailPage(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, course_type == 3 ? "Physical Classes + Live Online Classes + Digital Content" : course_type == 2 ? "Live Online Classes + Digital Content" : course_type == 1 ? "Digital Content (Self Paced)" : "Self Paced Digital Content")), is_subscription && !isPurchased ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, course_type == 3 ? "Physical Classes + Live Online Classes + Digital Content" : course_type == 2 ? "Live Online Classes + Digital Content" : course_type == 1 ? "Digital Content (Self Paced)" : "Self Paced Digital Content")), is_subscription && !isPurchased && /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
   }, "Course Payment type:"), /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(RadioButton, {
     label: "One Time",
-    value: paymentType === "one-time",
-    onChange: () => handleOneTimeChange()
+    value: !payingBySubscription,
+    onChange: () => setPayingBySubscription(false)
   }), /*#__PURE__*/_react.default.createElement(RadioButton, {
     label: "Installment",
-    value: paymentType === "installment",
-    onChange: () => handleInstallmentChange()
+    value: payingBySubscription,
+    onChange: () => setPayingBySubscription(true)
   }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, paymentType == "one-time" ? "Price:" : "Installment Price:"), /*#__PURE__*/_react.default.createElement("span", null, paymentType == "one-time" ? "\u20B9".concat(cost) : paymentType == "installment" ? "\u20B9".concat(subscription_cost, "/Month Upto ").concat(interval, " Months") : ""))) : /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-md mb-3"
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Price:"), /*#__PURE__*/_react.default.createElement("span", null, "\u20B9".concat(cost))), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+  }, !payingBySubscription ? "Price:" : "Installment Price:"), /*#__PURE__*/_react.default.createElement("span", null, !payingBySubscription ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", {
+    className: discount ? "line-through mr-2" : ""
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", null, "\u20B9 ", Number(cost) - Number(discount))) : payingBySubscription ? "\u20B9".concat(subscription_cost, "/Month Upto ").concat(interval, " Months") : "")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
@@ -209,12 +205,18 @@ function CourseDetailPage(props) {
   }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       (0, _dom.stopPropagation)(e);
-      payNow();
+      setPaymentStarted(true);
+      payNow({
+        payingBySubscription
+      }).catch(() => {}).then(setPaymentStarted);
     },
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
-  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto",
+    disabled: paymentStarted
+  }, paymentStarted ? "Please wait..." : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-bold ".concat(discount ? "line-through mr-2" : "")
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, cost > 0 && is_subscription && paymentType == "installment" ? "\u20B9 ".concat(subscription_cost) : cost > 0 && is_subscription && paymentType == "one-time" || cost > 0 && !is_subscription ? "\u20B9 ".concat(cost) : "Free")) : /*#__PURE__*/_react.default.createElement("a", {
+  }, "\u20B9 ", Number(cost) - Number(discount)))) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"

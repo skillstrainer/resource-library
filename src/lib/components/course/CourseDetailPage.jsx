@@ -16,6 +16,7 @@ import pageTopBg from "../../assets/image/page-top-bg.png";
 import emptyCertificate from "../../assets/image/certificate.jpg";
 import jobs from "../../assets/image/jobs.jpg";
 import newLogo from "../../assets/image/newLogo.svg";
+import { useState } from "react";
 
 function CourseDetailPage(props) {
   const {
@@ -52,12 +53,7 @@ function CourseDetailPage(props) {
     subscription_cost,
     is_subscription,
     interval,
-    paymentType,
     course_type,
-
-    // Payment Action
-    handleOneTimeChange = () => {},
-    handleInstallmentChange = () => {},
 
     // Demo class
     userHasRegisteredDemo,
@@ -65,6 +61,9 @@ function CourseDetailPage(props) {
     isDemoAvailable,
     onBookDemo = () => {},
   } = courseData || {};
+
+  const [payingBySubscription, setPayingBySubscription] = useState(false);
+  const [paymentStarted, setPaymentStarted] = useState(false);
 
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
@@ -161,49 +160,51 @@ function CourseDetailPage(props) {
                       </span>
                     </div>
 
-                    {is_subscription && !isPurchased ? (
-                      <>
-                        <div className="text-md mb-3">
-                          <span className="font-semibold text-japanese_indigo mr-3 ">
-                            Course Payment type:
-                          </span>
-                          <span>
-                            <RadioButton
-                              label="One Time"
-                              value={paymentType === "one-time"}
-                              onChange={() => handleOneTimeChange()}
-                            />
-                            <RadioButton
-                              label="Installment"
-                              value={paymentType === "installment"}
-                              onChange={() => handleInstallmentChange()}
-                            />
-                          </span>
-                        </div>
-
-                        <div className="text-md mb-3">
-                          <span className="font-semibold text-japanese_indigo mr-3 ">
-                            {paymentType == "one-time"
-                              ? "Price:"
-                              : "Installment Price:"}
-                          </span>
-                          <span>
-                            {paymentType == "one-time"
-                              ? `₹${cost}`
-                              : paymentType == "installment"
-                              ? `₹${subscription_cost}/Month Upto ${interval} Months`
-                              : ""}
-                          </span>
-                        </div>
-                      </>
-                    ) : (
+                    {is_subscription && !isPurchased && (
                       <div className="text-md mb-3">
                         <span className="font-semibold text-japanese_indigo mr-3 ">
-                          Price:
+                          Course Payment type:
                         </span>
-                        <span>{`₹${cost}`}</span>
+                        <span>
+                          <RadioButton
+                            label="One Time"
+                            value={!payingBySubscription}
+                            onChange={() => setPayingBySubscription(false)}
+                          />
+                          <RadioButton
+                            label="Installment"
+                            value={payingBySubscription}
+                            onChange={() => setPayingBySubscription(true)}
+                          />
+                        </span>
                       </div>
                     )}
+
+                    <div className="text-md mb-3">
+                      <span className="font-semibold text-japanese_indigo mr-3 ">
+                        {!payingBySubscription
+                          ? "Price:"
+                          : "Installment Price:"}
+                      </span>
+                      <span>
+                        {!payingBySubscription ? (
+                          <>
+                            <span
+                              className={discount ? "line-through mr-2" : ""}
+                            >
+                              {cost > 0 ? `₹ ${cost}` : "Free"}
+                            </span>
+                            {discount && (
+                              <span>₹ {Number(cost) - Number(discount)}</span>
+                            )}
+                          </>
+                        ) : payingBySubscription ? (
+                          `₹${subscription_cost}/Month Upto ${interval} Months`
+                        ) : (
+                          ""
+                        )}
+                      </span>
+                    </div>
 
                     {partners && (
                       <div>
@@ -223,6 +224,7 @@ function CourseDetailPage(props) {
                         </div>
                       </div>
                     )}
+
                     <div className="flex gap-3">
                       {isPurchased ? (
                         <button
@@ -235,23 +237,35 @@ function CourseDetailPage(props) {
                         <button
                           onClick={(e) => {
                             stopPropagation(e);
-                            payNow();
+                            setPaymentStarted(true);
+                            payNow({
+                              payingBySubscription,
+                            })
+                              .catch(() => {})
+                              .then(setPaymentStarted);
                           }}
                           className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
+                          disabled={paymentStarted}
                         >
-                          <span>Get Enrolled for </span>
-                          <span className="font-bold">
-                            {cost > 0 &&
-                            is_subscription &&
-                            paymentType == "installment"
-                              ? `₹ ${subscription_cost}`
-                              : (cost > 0 &&
-                                  is_subscription &&
-                                  paymentType == "one-time") ||
-                                (cost > 0 && !is_subscription)
-                              ? `₹ ${cost}`
-                              : "Free"}
-                          </span>
+                          {paymentStarted ? (
+                            "Please wait..."
+                          ) : (
+                            <>
+                              <span>Get Enrolled for </span>
+                              <span
+                                className={`font-bold ${
+                                  discount ? "line-through mr-2" : ""
+                                }`}
+                              >
+                                {cost > 0 ? `₹ ${cost}` : "Free"}
+                              </span>
+                              {discount && (
+                                <span className="font-bold">
+                                  ₹ {Number(cost) - Number(discount)}
+                                </span>
+                              )}
+                            </>
+                          )}
                         </button>
                       ) : (
                         <a
