@@ -169,12 +169,12 @@ function CourseDetailPage(props) {
                           <span>
                             <RadioButton
                               label="One Time"
-                              value={paymentType === "one-time"}
+                              value={!payingBySubscription}
                               onChange={() => setPayingBySubscription(false)}
                             />
                             <RadioButton
                               label="Installment"
-                              value={paymentType === "installment"}
+                              value={payingBySubscription}
                               onChange={() => setPayingBySubscription(true)}
                             />
                           </span>

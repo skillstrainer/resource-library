@@ -176,11 +176,11 @@ function CourseDetailPage(props) {
     className: "font-semibold text-japanese_indigo mr-3 "
   }, "Course Payment type:"), /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(RadioButton, {
     label: "One Time",
-    value: paymentType === "one-time",
+    value: !payingBySubscription,
     onChange: () => setPayingBySubscription(false)
   }), /*#__PURE__*/_react.default.createElement(RadioButton, {
     label: "Installment",
-    value: paymentType === "installment",
+    value: payingBySubscription,
     onChange: () => setPayingBySubscription(true)
   }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
