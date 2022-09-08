@@ -63,6 +63,7 @@ function CourseDetailPage(props) {
   } = courseData || {};
 
   const [payingBySubscription, setPayingBySubscription] = useState(false);
+  const [paymentStarted, setPaymentStarted] = useState(false);
 
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
@@ -236,24 +237,34 @@ function CourseDetailPage(props) {
                         <button
                           onClick={(e) => {
                             stopPropagation(e);
+                            setPaymentStarted(true);
                             payNow({
                               payingBySubscription,
-                            });
+                            })
+                              .catch(() => {})
+                              .then(setPaymentStarted);
                           }}
                           className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
+                          disabled={paymentStarted}
                         >
-                          <span>Get Enrolled for </span>
-                          <span
-                            className={`font-bold ${
-                              discount ? "line-through mr-2" : ""
-                            }`}
-                          >
-                            {cost > 0 ? `₹ ${cost}` : "Free"}
-                          </span>
-                          {discount && (
-                            <span className="font-bold">
-                              ₹ {Number(cost) - Number(discount)}
-                            </span>
+                          {paymentStarted ? (
+                            "Please wait..."
+                          ) : (
+                            <>
+                              <span>Get Enrolled for </span>
+                              <span
+                                className={`font-bold ${
+                                  discount ? "line-through mr-2" : ""
+                                }`}
+                              >
+                                {cost > 0 ? `₹ ${cost}` : "Free"}
+                              </span>
+                              {discount && (
+                                <span className="font-bold">
+                                  ₹ {Number(cost) - Number(discount)}
+                                </span>
+                              )}
+                            </>
                           )}
                         </button>
                       ) : (
