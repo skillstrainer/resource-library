@@ -249,7 +249,7 @@ function CourseDetailPage(props) {
                         >
                           {paymentStarted ? (
                             "Please wait..."
-                          ) : (
+                          ) : !payingBySubscription ? (
                             <>
                               <span>Get Enrolled for </span>
                               <span
@@ -264,6 +264,13 @@ function CourseDetailPage(props) {
                                   ₹ {Number(cost) - Number(discount)}
                                 </span>
                               )}
+                            </>
+                          ) : (
+                            <>
+                              <span>Get Enrolled for </span>
+                              <span className="font-bold">
+                                {subscription_cost}
+                              </span>
                             </>
                           )}
                         </button>
