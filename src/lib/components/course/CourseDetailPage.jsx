@@ -53,7 +53,6 @@ function CourseDetailPage(props) {
     subscription_cost,
     is_subscription,
     interval,
-    paymentType,
     course_type,
 
     // Demo class
@@ -182,14 +181,14 @@ function CourseDetailPage(props) {
 
                         <div className="text-md mb-3">
                           <span className="font-semibold text-japanese_indigo mr-3 ">
-                            {paymentType == "one-time"
+                            {!payingBySubscription
                               ? "Price:"
                               : "Installment Price:"}
                           </span>
                           <span>
-                            {paymentType == "one-time"
+                            {!payingBySubscription
                               ? `₹${cost}`
-                              : paymentType == "installment"
+                              : payingBySubscription
                               ? `₹${subscription_cost}/Month Upto ${interval} Months`
                               : ""}
                           </span>
@@ -242,13 +241,11 @@ function CourseDetailPage(props) {
                         >
                           <span>Get Enrolled for </span>
                           <span className="font-bold">
-                            {cost > 0 &&
-                            is_subscription &&
-                            paymentType == "installment"
+                            {cost > 0 && is_subscription && payingBySubscription
                               ? `₹ ${subscription_cost}`
                               : (cost > 0 &&
                                   is_subscription &&
-                                  paymentType == "one-time") ||
+                                  !payingBySubscription) ||
                                 (cost > 0 && !is_subscription)
                               ? `₹ ${cost}`
                               : "Free"}
