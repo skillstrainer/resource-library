@@ -199,7 +199,12 @@ function CourseDetailPage(props) {
                         <span className="font-semibold text-japanese_indigo mr-3 ">
                           Price:
                         </span>
-                        <span>{`₹${cost}`}</span>
+                        <span className={discount ? "line-through mr-2" : ""}>
+                          {cost > 0 ? `₹ ${cost}` : "Free"}
+                        </span>
+                        {discount && (
+                          <span>₹ {Number(cost) - Number(discount)}</span>
+                        )}
                       </div>
                     )}
 
@@ -240,16 +245,18 @@ function CourseDetailPage(props) {
                           className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
                         >
                           <span>Get Enrolled for </span>
-                          <span className="font-bold">
-                            {cost > 0 && is_subscription && payingBySubscription
-                              ? `₹ ${subscription_cost}`
-                              : (cost > 0 &&
-                                  is_subscription &&
-                                  !payingBySubscription) ||
-                                (cost > 0 && !is_subscription)
-                              ? `₹ ${cost}`
-                              : "Free"}
+                          <span
+                            className={`font-bold ${
+                              discount ? "line-through mr-2" : ""
+                            }`}
+                          >
+                            {cost > 0 ? `₹ ${cost}` : "Free"}
                           </span>
+                          {discount && (
+                            <span className="font-bold">
+                              ₹ {Number(cost) - Number(discount)}
+                            </span>
+                          )}
                         </button>
                       ) : (
                         <a
