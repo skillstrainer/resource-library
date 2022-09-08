@@ -16,6 +16,7 @@ import pageTopBg from "../../assets/image/page-top-bg.png";
 import emptyCertificate from "../../assets/image/certificate.jpg";
 import jobs from "../../assets/image/jobs.jpg";
 import newLogo from "../../assets/image/newLogo.svg";
+import { useState } from "react";
 
 function CourseDetailPage(props) {
   const {
@@ -55,16 +56,14 @@ function CourseDetailPage(props) {
     paymentType,
     course_type,
 
-    // Payment Action
-    handleOneTimeChange = () => {},
-    handleInstallmentChange = () => {},
-
     // Demo class
     userHasRegisteredDemo,
     onViewDemoDetails = () => {},
     isDemoAvailable,
     onBookDemo = () => {},
   } = courseData || {};
+
+  const [payingBySubscription, setPayingBySubscription] = useState(false);
 
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
@@ -171,12 +170,12 @@ function CourseDetailPage(props) {
                             <RadioButton
                               label="One Time"
                               value={paymentType === "one-time"}
-                              onChange={() => handleOneTimeChange()}
+                              onChange={() => setPayingBySubscription(false)}
                             />
                             <RadioButton
                               label="Installment"
                               value={paymentType === "installment"}
-                              onChange={() => handleInstallmentChange()}
+                              onChange={() => setPayingBySubscription(true)}
                             />
                           </span>
                         </div>
@@ -235,7 +234,9 @@ function CourseDetailPage(props) {
                         <button
                           onClick={(e) => {
                             stopPropagation(e);
-                            payNow();
+                            payNow({
+                              payingBySubscription,
+                            });
                           }}
                           className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
                         >

@@ -1,13 +1,13 @@
 "use strict";
 
-require("core-js/modules/web.dom-collections.iterator.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
 require("core-js/modules/es.symbol.description.js");
+
+require("core-js/modules/web.dom-collections.iterator.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -80,15 +80,13 @@ function CourseDetailPage(props) {
     interval,
     paymentType,
     course_type,
-    // Payment Action
-    handleOneTimeChange = () => {},
-    handleInstallmentChange = () => {},
     // Demo class
     userHasRegisteredDemo,
     onViewDemoDetails = () => {},
     isDemoAvailable,
     onBookDemo = () => {}
   } = courseData || {};
+  const [payingBySubscription, setPayingBySubscription] = (0, _react.useState)(false);
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
@@ -179,11 +177,11 @@ function CourseDetailPage(props) {
   }, "Course Payment type:"), /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(RadioButton, {
     label: "One Time",
     value: paymentType === "one-time",
-    onChange: () => handleOneTimeChange()
+    onChange: () => setPayingBySubscription(false)
   }), /*#__PURE__*/_react.default.createElement(RadioButton, {
     label: "Installment",
     value: paymentType === "installment",
-    onChange: () => handleInstallmentChange()
+    onChange: () => setPayingBySubscription(true)
   }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
@@ -209,7 +207,9 @@ function CourseDetailPage(props) {
   }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       (0, _dom.stopPropagation)(e);
-      payNow();
+      payNow({
+        payingBySubscription
+      });
     },
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
