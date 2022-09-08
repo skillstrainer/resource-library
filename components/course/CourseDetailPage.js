@@ -169,7 +169,7 @@ function CourseDetailPage(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, course_type == 3 ? "Physical Classes + Live Online Classes + Digital Content" : course_type == 2 ? "Live Online Classes + Digital Content" : course_type == 1 ? "Digital Content (Self Paced)" : "Self Paced Digital Content")), is_subscription && !isPurchased ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, course_type == 3 ? "Physical Classes + Live Online Classes + Digital Content" : course_type == 2 ? "Live Online Classes + Digital Content" : course_type == 1 ? "Digital Content (Self Paced)" : "Self Paced Digital Content")), is_subscription && !isPurchased && /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
@@ -185,13 +185,9 @@ function CourseDetailPage(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, !payingBySubscription ? "Price:" : "Installment Price:"), /*#__PURE__*/_react.default.createElement("span", null, !payingBySubscription ? "\u20B9".concat(cost) : payingBySubscription ? "\u20B9".concat(subscription_cost, "/Month Upto ").concat(interval, " Months") : ""))) : /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-md mb-3"
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Price:"), /*#__PURE__*/_react.default.createElement("span", {
+  }, !payingBySubscription ? "Price:" : "Installment Price:"), /*#__PURE__*/_react.default.createElement("span", null, !payingBySubscription ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", {
     className: discount ? "line-through mr-2" : ""
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", null, "\u20B9 ", Number(cost) - Number(discount))), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", null, "\u20B9 ", Number(cost) - Number(discount))) : payingBySubscription ? "\u20B9".concat(subscription_cost, "/Month Upto ").concat(interval, " Months") : "")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"

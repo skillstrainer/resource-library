@@ -159,54 +159,51 @@ function CourseDetailPage(props) {
                       </span>
                     </div>
 
-                    {is_subscription && !isPurchased ? (
-                      <>
-                        <div className="text-md mb-3">
-                          <span className="font-semibold text-japanese_indigo mr-3 ">
-                            Course Payment type:
-                          </span>
-                          <span>
-                            <RadioButton
-                              label="One Time"
-                              value={!payingBySubscription}
-                              onChange={() => setPayingBySubscription(false)}
-                            />
-                            <RadioButton
-                              label="Installment"
-                              value={payingBySubscription}
-                              onChange={() => setPayingBySubscription(true)}
-                            />
-                          </span>
-                        </div>
-
-                        <div className="text-md mb-3">
-                          <span className="font-semibold text-japanese_indigo mr-3 ">
-                            {!payingBySubscription
-                              ? "Price:"
-                              : "Installment Price:"}
-                          </span>
-                          <span>
-                            {!payingBySubscription
-                              ? `₹${cost}`
-                              : payingBySubscription
-                              ? `₹${subscription_cost}/Month Upto ${interval} Months`
-                              : ""}
-                          </span>
-                        </div>
-                      </>
-                    ) : (
+                    {is_subscription && !isPurchased && (
                       <div className="text-md mb-3">
                         <span className="font-semibold text-japanese_indigo mr-3 ">
-                          Price:
+                          Course Payment type:
                         </span>
-                        <span className={discount ? "line-through mr-2" : ""}>
-                          {cost > 0 ? `₹ ${cost}` : "Free"}
+                        <span>
+                          <RadioButton
+                            label="One Time"
+                            value={!payingBySubscription}
+                            onChange={() => setPayingBySubscription(false)}
+                          />
+                          <RadioButton
+                            label="Installment"
+                            value={payingBySubscription}
+                            onChange={() => setPayingBySubscription(true)}
+                          />
                         </span>
-                        {discount && (
-                          <span>₹ {Number(cost) - Number(discount)}</span>
-                        )}
                       </div>
                     )}
+
+                    <div className="text-md mb-3">
+                      <span className="font-semibold text-japanese_indigo mr-3 ">
+                        {!payingBySubscription
+                          ? "Price:"
+                          : "Installment Price:"}
+                      </span>
+                      <span>
+                        {!payingBySubscription ? (
+                          <>
+                            <span
+                              className={discount ? "line-through mr-2" : ""}
+                            >
+                              {cost > 0 ? `₹ ${cost}` : "Free"}
+                            </span>
+                            {discount && (
+                              <span>₹ {Number(cost) - Number(discount)}</span>
+                            )}
+                          </>
+                        ) : payingBySubscription ? (
+                          `₹${subscription_cost}/Month Upto ${interval} Months`
+                        ) : (
+                          ""
+                        )}
+                      </span>
+                    </div>
 
                     {partners && (
                       <div>
@@ -226,6 +223,7 @@ function CourseDetailPage(props) {
                         </div>
                       </div>
                     )}
+
                     <div className="flex gap-3">
                       {isPurchased ? (
                         <button
