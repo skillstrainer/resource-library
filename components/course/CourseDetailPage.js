@@ -218,7 +218,7 @@ function CourseDetailPage(props) {
     className: "font-bold"
   }, "\u20B9 ", Number(cost) - Number(discount))) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, subscription_cost))) : /*#__PURE__*/_react.default.createElement("a", {
+  }, "\u20B9 ", subscription_cost))) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"

@@ -269,7 +269,7 @@ function CourseDetailPage(props) {
                             <>
                               <span>Get Enrolled for </span>
                               <span className="font-bold">
-                                {subscription_cost}
+                                ₹ {subscription_cost}
                               </span>
                             </>
                           )}
