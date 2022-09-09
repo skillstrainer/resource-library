@@ -1,4 +1,4 @@
 import { FileUploaderPlugin } from "./FileUploader";
-// import AddressPlugin from "./Address";
+import AddressPlugin from "./Address";
 
-export { FileUploaderPlugin };
+export { FileUploaderPlugin, AddressPlugin };

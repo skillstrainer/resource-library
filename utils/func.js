@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.convertToPathValuePairs = void 0;
+exports.wireEventValue = exports.convertToPathValuePairs = void 0;
 
 require("core-js/modules/es.json.stringify.js");
 
@@ -41,3 +41,7 @@ const convertToPathValuePairs = inp => {
 };
 
 exports.convertToPathValuePairs = convertToPathValuePairs;
+
+const wireEventValue = f => e => f(e.target.value);
+
+exports.wireEventValue = wireEventValue;

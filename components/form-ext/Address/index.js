@@ -18,9 +18,9 @@ var _lodash = _interopRequireDefault(require("lodash"));
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _func = require("utils/func");
+var _func = require("../../../utils/func");
 
-var _resources = require("utils/resources");
+var _resources = require("../../../utils/resources");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -49,9 +49,10 @@ function AddressField(props) {
 
   const onChange = val => _onChange(_lodash.default.pick(val, fields));
 
-  const updateDetail = detail => val => onChange(_objectSpread(_objectSpread({}, value || {}), {}, {
-    [detail]: val
-  }));
+  const updateDetail = detail => val => {
+    if (value) value[detail] = val;
+    onChange(_objectSpread({}, value || {}));
+  };
 
   const country_iso_code = (_resources.countries.find(c => c.name === value.country) || {}).iso;
   (0, _react.useEffect)(() => {
@@ -102,23 +103,19 @@ function AddressField(props) {
   *
   */
 
-  const [pincodeRes, setPincodeRes] = (0, _react.useState)();
-  const [isPincodeOpen, setIsPincodeOpen] = (0, _react.useState)();
   const lastTimeRef = (0, _react.useRef)();
 
   const handlePincodeChange = pincode => {
     const time = new Date().getTime();
     lastTimeRef.current = time;
+    updateDetail("pincode")(pincode);
     (0, _resources.getDataFromPincode)({
       country: country_iso_code,
       pincode
     }).then(res => {
-      if (lastTimeRef.current === time) setPincodeRes(res);
-    }).catch(() => setPincodeRes(null));
-    updateDetail("pincode")(pincode);
+      if (lastTimeRef.current === time) onChange(_objectSpread(_objectSpread({}, value), res));
+    });
   };
-
-  const applyPincodeRes = () => onChange(_objectSpread(_objectSpread({}, value), pincodeRes));
   /*
    *
    *
@@ -156,19 +153,12 @@ function AddressField(props) {
     placeholder: "Pincode",
     value: (value === null || value === void 0 ? void 0 : value.pincode) || "",
     onChange: (0, _func.wireEventValue)(handlePincodeChange),
-    onFocus: () => setIsPincodeOpen(true),
-    onBlur: () => setIsPincodeOpen(false),
     autoComplete: "off"
-  }), isPincodeOpen && pincodeRes && /*#__PURE__*/_react.default.createElement("div", {
-    className: "absolute top-full w-full left-0 bg-white shadow-md rounded-md hover:bg-gray-200 p-2 z-10 cursor-pointer",
-    onPointerDown: applyPincodeRes
-  }, pincodeRes.city_town, ", ", pincodeRes.district, ", ", pincodeRes.state), /*#__PURE__*/_react.default.createElement("div", {
-    className: "hidden"
-  }, isPincodeOpen && pincodeRes && setTimeout(() => applyPincodeRes(), 500))), fields.includes("house_number") && genField("house_number"), fields.includes("location") && genField("location"), fields.includes("city_town") && genField("city_town"), /*#__PURE__*/_react.default.createElement("div", {
+  })), fields.includes("house_number") && genField("house_number", "House number"), fields.includes("location") && genField("location", "Location"), fields.includes("city_town") && genField("city_town", "City/Town"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 relative rounded-md shadow-sm"
-  }, fields.includes("district") && genField("district")), /*#__PURE__*/_react.default.createElement("div", {
+  }, fields.includes("district") && genField("district", "District")), /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 relative rounded-md shadow-sm"
-  }, fields.includes("state") && genField("state"))));
+  }, fields.includes("state") && genField("state", "State"))));
 }
 
 const AddressPlugin = {

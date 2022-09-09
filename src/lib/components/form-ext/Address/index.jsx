@@ -1,8 +1,8 @@
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
-import { wireEventValue } from "utils/func";
-import { countries, getDataFromPincode } from "utils/resources";
+import { wireEventValue } from "../../../utils/func";
+import { countries, getDataFromPincode } from "../../../utils/resources";
 
 const mandatoryFields = ["country", "pincode"];
 const optionalFields = [
@@ -19,8 +19,10 @@ export function AddressField(props) {
   let [fields, setFields] = useState(mandatoryFields);
   const onChange = (val) => _onChange(_.pick(val, fields));
 
-  const updateDetail = (detail) => (val) =>
-    onChange({ ...(value || {}), [detail]: val });
+  const updateDetail = (detail) => (val) => {
+    if (value) value[detail] = val;
+    onChange({ ...(value || {}) });
+  };
 
   const country_iso_code = (
     countries.find((c) => c.name === value.country) || {}
@@ -82,20 +84,15 @@ export function AddressField(props) {
   *
   *
   */
-  const [pincodeRes, setPincodeRes] = useState();
-  const [isPincodeOpen, setIsPincodeOpen] = useState();
   const lastTimeRef = useRef();
   const handlePincodeChange = (pincode) => {
     const time = new Date().getTime();
     lastTimeRef.current = time;
-    getDataFromPincode({ country: country_iso_code, pincode })
-      .then((res) => {
-        if (lastTimeRef.current === time) setPincodeRes(res);
-      })
-      .catch(() => setPincodeRes(null));
     updateDetail("pincode")(pincode);
+    getDataFromPincode({ country: country_iso_code, pincode }).then((res) => {
+      if (lastTimeRef.current === time) onChange({ ...value, ...res });
+    });
   };
-  const applyPincodeRes = () => onChange({ ...value, ...pincodeRes });
 
   /*
    *
@@ -139,32 +136,18 @@ export function AddressField(props) {
             placeholder="Pincode"
             value={value?.pincode || ""}
             onChange={wireEventValue(handlePincodeChange)}
-            onFocus={() => setIsPincodeOpen(true)}
-            onBlur={() => setIsPincodeOpen(false)}
             autoComplete="off"
           />
-          {isPincodeOpen && pincodeRes && (
-            <div
-              className="absolute top-full w-full left-0 bg-white shadow-md rounded-md hover:bg-gray-200 p-2 z-10 cursor-pointer"
-              onPointerDown={applyPincodeRes}
-            >
-              {pincodeRes.city_town}, {pincodeRes.district}, {pincodeRes.state}
-            </div>
-          )}
-          <div className="hidden">
-            {isPincodeOpen &&
-              pincodeRes &&
-              setTimeout(() => applyPincodeRes(), 500)}
-          </div>
         </div>
-        {fields.includes("house_number") && genField("house_number")}
-        {fields.includes("location") && genField("location")}
-        {fields.includes("city_town") && genField("city_town")}
+        {fields.includes("house_number") &&
+          genField("house_number", "House number")}
+        {fields.includes("location") && genField("location", "Location")}
+        {fields.includes("city_town") && genField("city_town", "City/Town")}
         <div className="mt-1 relative rounded-md shadow-sm">
-          {fields.includes("district") && genField("district")}
+          {fields.includes("district") && genField("district", "District")}
         </div>
         <div className="mt-1 relative rounded-md shadow-sm">
-          {fields.includes("state") && genField("state")}
+          {fields.includes("state") && genField("state", "State")}
         </div>
       </div>
     </>
