@@ -202,7 +202,7 @@ function CourseDetailPage(props) {
   }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto",
     onClick: viewCourse
-  }, "View course") : isMoodleCourse == false ? /*#__PURE__*/_react.default.createElement("button", {
+  }, "View course") : /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       (0, _dom.stopPropagation)(e);
       setPaymentStarted(true);
@@ -218,17 +218,7 @@ function CourseDetailPage(props) {
     className: "font-bold"
   }, "\u20B9 ", Number(cost) - Number(discount))) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, "\u20B9 ", subscription_cost))) : /*#__PURE__*/_react.default.createElement("a", {
-    href: getCoursePurchaseURL(courseId),
-    onClick: _dom.stopPropagation,
-    target: "_blank"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
-  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-bold ".concat(discount ? "line-through mr-2" : "")
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-bold"
-  }, "\u20B9 ", Number(cost) - Number(discount)))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
+  }, "\u20B9 ", subscription_cost))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => onViewDemoDetails(),
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, "Show demo class details") : isDemoAvailable && /*#__PURE__*/_react.default.createElement("button", {

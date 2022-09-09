@@ -233,7 +233,7 @@ function CourseDetailPage(props) {
                         >
                           View course
                         </button>
-                      ) : isMoodleCourse == false ? (
+                      ) : (
                         <button
                           onClick={(e) => {
                             stopPropagation(e);
@@ -274,7 +274,9 @@ function CourseDetailPage(props) {
                             </>
                           )}
                         </button>
-                      ) : (
+                      )}
+
+                      {/* :(
                         <a
                           href={getCoursePurchaseURL(courseId)}
                           onClick={stopPropagation}
@@ -296,7 +298,7 @@ function CourseDetailPage(props) {
                             )}
                           </button>
                         </a>
-                      )}
+                      )} */}
                       {!isPurchased &&
                         (userHasRegisteredDemo ? (
                           <button
