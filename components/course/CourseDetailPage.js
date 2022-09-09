@@ -212,11 +212,13 @@ function CourseDetailPage(props) {
     },
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto",
     disabled: paymentStarted
-  }, paymentStarted ? "Please wait..." : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+  }, paymentStarted ? "Please wait..." : !payingBySubscription ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold ".concat(discount ? "line-through mr-2" : "")
   }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, "\u20B9 ", Number(cost) - Number(discount)))) : /*#__PURE__*/_react.default.createElement("a", {
+  }, "\u20B9 ", Number(cost) - Number(discount))) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-bold"
+  }, "\u20B9 ", subscription_cost))) : /*#__PURE__*/_react.default.createElement("a", {
     href: getCoursePurchaseURL(courseId),
     onClick: _dom.stopPropagation,
     target: "_blank"
