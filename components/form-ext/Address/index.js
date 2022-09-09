@@ -162,7 +162,9 @@ function AddressField(props) {
   }), isPincodeOpen && pincodeRes && /*#__PURE__*/_react.default.createElement("div", {
     className: "absolute top-full w-full left-0 bg-white shadow-md rounded-md hover:bg-gray-200 p-2 z-10 cursor-pointer",
     onPointerDown: applyPincodeRes
-  }, pincodeRes.city_town, ", ", pincodeRes.district, ", ", pincodeRes.state)), fields.includes("house_number") && genField("house_number"), fields.includes("location") && genField("location"), fields.includes("city_town") && genField("city_town"), /*#__PURE__*/_react.default.createElement("div", {
+  }, pincodeRes.city_town, ", ", pincodeRes.district, ", ", pincodeRes.state), /*#__PURE__*/_react.default.createElement("div", {
+    className: "hidden"
+  }, isPincodeOpen && pincodeRes && setTimeout(() => applyPincodeRes(), 500))), fields.includes("house_number") && genField("house_number"), fields.includes("location") && genField("location"), fields.includes("city_town") && genField("city_town"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 relative rounded-md shadow-sm"
   }, fields.includes("district") && genField("district")), /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 relative rounded-md shadow-sm"
