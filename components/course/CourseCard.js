@@ -144,7 +144,7 @@ function CourseCard(props) {
   }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
     className: "text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg",
     onClick: viewCourse
-  }, "View course") : isMoodleCourse === false ? /*#__PURE__*/_react.default.createElement("button", {
+  }, "View course") : /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       (0, _dom.stopPropagation)(e);
       payNow();
@@ -154,17 +154,28 @@ function CourseCard(props) {
     className: "font-bold ".concat(discount ? "line-through mr-2" : "")
   }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, "\u20B9 ", Number(cost) - Number(discount))) : /*#__PURE__*/_react.default.createElement("a", {
-    href: getCoursePurchaseURL(courseId),
-    onClick: _dom.stopPropagation,
-    target: "_blank"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-  }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-bold ".concat(discount ? "line-through mr-2" : "")
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", {
-    className: "font-bold"
-  }, "\u20B9 ", Number(cost) - Number(discount)))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
+  }, "\u20B9 ", Number(cost) - Number(discount))) // : (
+  //   <a
+  //     href={getCoursePurchaseURL(courseId)}
+  //     onClick={stopPropagation}
+  //     target="_blank"
+  //   >
+  //     <button className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+  //       <span>Get Enrolled for </span>
+  //       <span
+  //         className={`font-bold ${discount ? "line-through mr-2" : ""}`}
+  //       >
+  //         {cost > 0 ? `₹ ${cost}` : "Free"}
+  //       </span>
+  //       {discount && (
+  //         <span className="font-bold">
+  //           ₹ {Number(cost) - Number(discount)}
+  //         </span>
+  //       )}
+  //     </button>
+  //   </a>
+  // )
+  , !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       e.stopPropagation();
       onViewDemoDetails();
