@@ -1,15 +1,17 @@
 import "./App.css";
 import "./lib/styles.css";
 import React, { useState } from "react";
-import { CourseCard, CourseDetailPage } from "./lib/index";
 import { courses } from "./testing-data";
 import { MultiSelect } from "./lib/components/form-core/fields/MultiSelect";
+import { FormFields } from "./lib";
 
 function App() {
-  const [select, setSelect] = useState([]);
+  // const [select, setSelect] = useState([]);
+  const [addressValue, setAddressValue] = useState();
+
   return (
     <div className="p-4">
-      <MultiSelect
+      {/* <MultiSelect
         value={select}
         onChange={(value) => setSelect(value)}
         options={courses.map((course) => ({
@@ -17,7 +19,11 @@ function App() {
           value: course.courseId,
         }))}
       />
-      {console.log(select)}
+      {console.log(select)} */}
+      <FormFields.AddressField
+        onChange={setAddressValue}
+        value={addressValue}
+      />
     </div>
   );
 }

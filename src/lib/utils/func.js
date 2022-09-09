@@ -40,3 +40,5 @@ export const convertToPathValuePairs = (inp) => {
 
   return result;
 };
+
+export const wireEventValue = (f) => (e) => f(e.target.value);

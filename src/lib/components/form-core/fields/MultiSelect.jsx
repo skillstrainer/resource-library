@@ -15,18 +15,15 @@ export const MultiSelect = ({
 
   // handle onChange event of the dropdown
   const handleChange = (e) => {
-    if (e[e.length - 1]?.value === "#") {
-      onChange([]);
-      setSelectedAll(false);
-    } else {
-      if (e[0]?.value === "*" || e[e.length - 1]?.value === "*") {
-        onChange(options.map((x) => x.value));
-        setSelectedAll(true);
-      } else onChange(Array.isArray(e) ? e.map((x) => x.value) : []);
-    }
-  };
+    e = e.map((option) => option.value);
 
-  const [selectedAll, setSelectedAll] = useState(false);
+    if (e.length) {
+      if (e[e.length - 1] === "#") e = null;
+      else if (e[e.length - 1] === "*") e = options.map((e) => e.value);
+    } else e = null;
+
+    onChange(e);
+  };
 
   return (
     <div className={`mt-1 col-span-6 sm:col-span-3 ${className}`}>
@@ -35,7 +32,7 @@ export const MultiSelect = ({
         {...selectProps}
         isMulti
         options={
-          selectedAll
+          options.length === (value || []).length
             ? [{ value: "#", label: "Deselect All" }, ...options]
             : [{ value: "*", label: "Select All" }, ...options]
         }

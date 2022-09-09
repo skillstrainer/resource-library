@@ -41,22 +41,15 @@ const MultiSelect = _ref => {
   // set value for default selection
   // handle onChange event of the dropdown
   const handleChange = e => {
-    var _e;
+    e = e.map(option => option.value);
 
-    if (((_e = e[e.length - 1]) === null || _e === void 0 ? void 0 : _e.value) === "#") {
-      onChange([]);
-      setSelectedAll(false);
-    } else {
-      var _e$, _e2;
+    if (e.length) {
+      if (e[e.length - 1] === "#") e = null;else if (e[e.length - 1] === "*") e = options.map(e => e.value);
+    } else e = null;
 
-      if (((_e$ = e[0]) === null || _e$ === void 0 ? void 0 : _e$.value) === "*" || ((_e2 = e[e.length - 1]) === null || _e2 === void 0 ? void 0 : _e2.value) === "*") {
-        onChange(options.map(x => x.value));
-        setSelectedAll(true);
-      } else onChange(Array.isArray(e) ? e.map(x => x.value) : []);
-    }
+    onChange(e);
   };
 
-  const [selectedAll, setSelectedAll] = (0, _react.useState)(false);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 col-span-6 sm:col-span-3 ".concat(className)
   }, /*#__PURE__*/_react.default.createElement(_reactSelect.default, _extends({
@@ -65,7 +58,7 @@ const MultiSelect = _ref => {
     }
   }, selectProps, {
     isMulti: true,
-    options: selectedAll ? [{
+    options: options.length === (value || []).length ? [{
       value: "#",
       label: "Deselect All"
     }, ...options] : [{
