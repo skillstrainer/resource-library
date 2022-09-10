@@ -104,7 +104,7 @@ export function AddressField(props) {
   const genField = (fieldName, placeholder) => (
     <input
       type="text"
-      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+      className="input-primary"
       placeholder={placeholder}
       onChange={wireEventValue(updateDetail(fieldName))}
       value={(value && value[fieldName]) || ""}
@@ -112,45 +112,40 @@ export function AddressField(props) {
   );
 
   return (
-    <>
-      <label className="mx-4 block text-sm font-medium text-gray-700">
-        {label}
-      </label>
-      <div className={`mx-4 ${className}`}>
-        <div className="mt-1 relative rounded-md shadow-sm">
-          <select
-            className="mt-1 block w-full py-2 px-7 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
-            onChange={wireEventValue(handleCountryChange)}
-            value={value.country}
-          >
-            {countries &&
-              countries.map((country) => (
-                <option value={country.name}>{country.name}</option>
-              ))}
-          </select>
-        </div>
-        <div className="mt-1 relative rounded-md shadow-sm">
-          <input
-            type="text"
-            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 group-hover:pr-12 text-sm border-gray-300 rounded-md"
-            placeholder="Pincode"
-            value={value?.pincode || ""}
-            onChange={wireEventValue(handlePincodeChange)}
-            autoComplete="off"
-          />
-        </div>
-        {fields.includes("house_number") &&
-          genField("house_number", "House number")}
-        {fields.includes("location") && genField("location", "Location")}
-        {fields.includes("city_town") && genField("city_town", "City/Town")}
-        <div className="mt-1 relative rounded-md shadow-sm">
-          {fields.includes("district") && genField("district", "District")}
-        </div>
-        <div className="mt-1 relative rounded-md shadow-sm">
-          {fields.includes("state") && genField("state", "State")}
-        </div>
+    <div className={className}>
+      <div className="mt-1 relative rounded-md shadow-sm">
+        <select
+          className="input-primary"
+          onChange={wireEventValue(handleCountryChange)}
+          value={value.country}
+        >
+          {countries &&
+            countries.map((country) => (
+              <option value={country.name}>{country.name}</option>
+            ))}
+        </select>
       </div>
-    </>
+      <div className="mt-1 relative rounded-md shadow-sm">
+        <input
+          type="text"
+          className="input-primary"
+          placeholder="Pincode"
+          value={value?.pincode || ""}
+          onChange={wireEventValue(handlePincodeChange)}
+          autoComplete="off"
+        />
+      </div>
+      {fields.includes("house_number") &&
+        genField("house_number", "House number")}
+      {fields.includes("location") && genField("location", "Location")}
+      {fields.includes("city_town") && genField("city_town", "City/Town")}
+      <div className="mt-1 relative rounded-md shadow-sm">
+        {fields.includes("district") && genField("district", "District")}
+      </div>
+      <div className="mt-1 relative rounded-md shadow-sm">
+        {fields.includes("state") && genField("state", "State")}
+      </div>
+    </div>
   );
 }
 

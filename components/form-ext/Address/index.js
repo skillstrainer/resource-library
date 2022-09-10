@@ -127,20 +127,18 @@ function AddressField(props) {
 
   const genField = (fieldName, placeholder) => /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md",
+    className: "input-primary",
     placeholder: placeholder,
     onChange: (0, _func.wireEventValue)(updateDetail(fieldName)),
     value: value && value[fieldName] || ""
   });
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("label", {
-    className: "mx-4 block text-sm font-medium text-gray-700"
-  }, label), /*#__PURE__*/_react.default.createElement("div", {
-    className: "mx-4 ".concat(className)
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: className
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 relative rounded-md shadow-sm"
   }, /*#__PURE__*/_react.default.createElement("select", {
-    className: "mt-1 block w-full py-2 px-7 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm",
+    className: "input-primary",
     onChange: (0, _func.wireEventValue)(handleCountryChange),
     value: value.country
   }, _resources.countries && _resources.countries.map(country => /*#__PURE__*/_react.default.createElement("option", {
@@ -149,7 +147,7 @@ function AddressField(props) {
     className: "mt-1 relative rounded-md shadow-sm"
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    className: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 group-hover:pr-12 text-sm border-gray-300 rounded-md",
+    className: "input-primary",
     placeholder: "Pincode",
     value: (value === null || value === void 0 ? void 0 : value.pincode) || "",
     onChange: (0, _func.wireEventValue)(handlePincodeChange),
@@ -158,7 +156,7 @@ function AddressField(props) {
     className: "mt-1 relative rounded-md shadow-sm"
   }, fields.includes("district") && genField("district", "District")), /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 relative rounded-md shadow-sm"
-  }, fields.includes("state") && genField("state", "State"))));
+  }, fields.includes("state") && genField("state", "State")));
 }
 
 const AddressPlugin = {

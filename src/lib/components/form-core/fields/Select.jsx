@@ -11,7 +11,7 @@ export const Select = ({ name, options = [], className, ...fieldProps }) => {
         {..._.omit(fieldProps, ["onChange"])}
         as="select"
         name={name}
-        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+        className="input-primary"
       >
         <option>Choose an option</option>
         {options.map((option, i) => (

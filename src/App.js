@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { courses } from "./testing-data";
 import { MultiSelect } from "./lib/components/form-core/fields/MultiSelect";
 import { FormFields } from "./lib";
+import Test from "./test";
 
 function App() {
   // const [select, setSelect] = useState([]);
@@ -11,19 +12,7 @@ function App() {
 
   return (
     <div className="p-4">
-      {/* <MultiSelect
-        value={select}
-        onChange={(value) => setSelect(value)}
-        options={courses.map((course) => ({
-          label: course.displayName,
-          value: course.courseId,
-        }))}
-      />
-      {console.log(select)} */}
-      <FormFields.AddressField
-        onChange={setAddressValue}
-        value={addressValue}
-      />
+      <Test />
     </div>
   );
 }

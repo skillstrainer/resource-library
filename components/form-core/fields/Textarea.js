@@ -39,7 +39,7 @@ const TextArea = _ref => {
     style: {
       boxSizing: "border-box"
     },
-    className: "mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+    className: "input-primary"
   }, _lodash.default.omit(fieldProps, ["onChange"]), {
     name: name,
     as: "textarea"

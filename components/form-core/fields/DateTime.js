@@ -41,7 +41,7 @@ const DateTime = _ref => {
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "relative rounded-md shadow-sm"
   }, /*#__PURE__*/_react.default.createElement(_reactDatepicker.default, _extends({
-    className: "box-border mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm",
+    className: "input-primary",
     showTimeSelect: true,
     dateFormat: "MMMM d, yyyy h:mm a",
     timeFormat: "HH:mm",

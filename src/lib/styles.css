@@ -138,6 +138,10 @@
   @apply my-1;
 }
 
+.input-primary {
+  @apply mt-1 py-2 focus:ring-indigo-500 border focus:border-indigo-500 block shadow-sm box-border w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md;
+}
+
 .btn-primary {
   @apply text-sm bg-orange text-white font-semibold rounded-lg px-4 py-2;
 }
@@ -147,5 +151,5 @@
 }
 
 .heading-primary {
-  @apply text-2xl font-poppins
+  @apply text-2xl font-poppins;
 }
