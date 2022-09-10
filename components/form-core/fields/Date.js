@@ -49,7 +49,6 @@ const DateField = _ref => {
     },
     className: "input-primary",
     dateFormat: dateFormat,
-    minDate: new Date(),
     name: name,
     selected: value ? new Date(value) : new Date(),
     onChange: date => _onChange(date.toISOString()),

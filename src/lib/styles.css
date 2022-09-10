@@ -139,7 +139,7 @@
 }
 
 .input-primary {
-  @apply mt-1 py-2 focus:ring-indigo-500 border focus:border-indigo-500 block shadow-sm box-border w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md;
+  @apply mt-1 px-4 py-2 focus:ring-indigo-500 border focus:border-indigo-500 block shadow-sm box-border w-full sm:text-sm border-gray-300 rounded-md;
 }
 
 .btn-primary {

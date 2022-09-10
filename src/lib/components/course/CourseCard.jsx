@@ -153,40 +153,22 @@ export default function CourseCard(props) {
 
       <div className="flex item-center justify-center w-full">
         <div className="mt-6 bottom-0 mb-4 flex gap-3">
-          {isPurchased ? (
-            <button
-              className="text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
-              onClick={viewCourse}
-            >
-              View course
-            </button>
-          ) : isMoodleCourse === false ? (
-            <button
-              onClick={(e) => {
-                stopPropagation(e);
-                payNow();
-              }}
-              className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-            >
-              <span>Get Enrolled for </span>
-              <span
-                className={`font-bold ${discount ? "line-through mr-2" : ""}`}
+          {
+            isPurchased ? (
+              <button
+                className="text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg"
+                onClick={viewCourse}
               >
-                {cost > 0 ? `₹ ${cost}` : "Free"}
-              </span>
-              {discount && (
-                <span className="font-bold">
-                  ₹ {Number(cost) - Number(discount)}
-                </span>
-              )}
-            </button>
-          ) : (
-            <a
-              href={getCoursePurchaseURL(courseId)}
-              onClick={stopPropagation}
-              target="_blank"
-            >
-              <button className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+                View course
+              </button>
+            ) : (
+              <button
+                onClick={(e) => {
+                  stopPropagation(e);
+                  payNow();
+                }}
+                className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
+              >
                 <span>Get Enrolled for </span>
                 <span
                   className={`font-bold ${discount ? "line-through mr-2" : ""}`}
@@ -199,8 +181,30 @@ export default function CourseCard(props) {
                   </span>
                 )}
               </button>
-            </a>
-          )}
+            )
+
+            // : (
+            //   <a
+            //     href={getCoursePurchaseURL(courseId)}
+            //     onClick={stopPropagation}
+            //     target="_blank"
+            //   >
+            //     <button className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg">
+            //       <span>Get Enrolled for </span>
+            //       <span
+            //         className={`font-bold ${discount ? "line-through mr-2" : ""}`}
+            //       >
+            //         {cost > 0 ? `₹ ${cost}` : "Free"}
+            //       </span>
+            //       {discount && (
+            //         <span className="font-bold">
+            //           ₹ {Number(cost) - Number(discount)}
+            //         </span>
+            //       )}
+            //     </button>
+            //   </a>
+            // )
+          }
           {/* Book demo button */}
           {!isPurchased &&
             (userHasRegisteredDemo ? (

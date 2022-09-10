@@ -21,7 +21,6 @@ export const DateField = ({
           style={{ boxSizing: "border-box" }}
           className="input-primary"
           dateFormat={dateFormat}
-          minDate={new Date()}
           name={name}
           selected={value ? new Date(value) : new Date()}
           onChange={(date) => onChange(date.toISOString())}
