@@ -196,7 +196,7 @@ function CourseDetailPage(props) {
     logo: _newLogo.default
   }]).map(p => p && p.logo && /*#__PURE__*/_react.default.createElement("img", {
     src: p.logo,
-    className: "h-6"
+    className: "mr-3 h-6"
   }) || null))), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex gap-3"
   }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {

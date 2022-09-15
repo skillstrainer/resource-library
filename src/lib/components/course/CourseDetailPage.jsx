@@ -217,7 +217,7 @@ function CourseDetailPage(props) {
                             .map(
                               (p) =>
                                 (p && p.logo && (
-                                  <img src={p.logo} className="h-6" />
+                                  <img src={p.logo} className="mr-3 h-6" />
                                 )) ||
                                 null
                             )}
