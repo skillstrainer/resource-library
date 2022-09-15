@@ -194,7 +194,7 @@ function CourseDetailPage(props) {
                             >
                               {cost > 0 ? `₹ ${cost}` : "Free"}
                             </span>
-                            {discount && (
+                            {discount && discount > 0 && (
                               <span>₹ {Number(cost) - Number(discount)}</span>
                             )}
                           </>
@@ -259,7 +259,7 @@ function CourseDetailPage(props) {
                               >
                                 {cost > 0 ? `₹ ${cost}` : "Free"}
                               </span>
-                              {discount && (
+                              {discount && discount > 0 && (
                                 <span className="font-bold">
                                   ₹ {Number(cost) - Number(discount)}
                                 </span>

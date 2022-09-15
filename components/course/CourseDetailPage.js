@@ -188,7 +188,7 @@ function CourseDetailPage(props) {
     className: "font-semibold text-japanese_indigo mr-3 "
   }, !payingBySubscription ? "Price:" : "Installment Price:"), /*#__PURE__*/_react.default.createElement("span", null, !payingBySubscription ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", {
     className: discount ? "line-through mr-2" : ""
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", null, "\u20B9 ", Number(cost) - Number(discount))) : payingBySubscription ? "\u20B9".concat(subscription_cost, "/Month Upto ").concat(interval, " Months") : "")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && discount > 0 && /*#__PURE__*/_react.default.createElement("span", null, "\u20B9 ", Number(cost) - Number(discount))) : payingBySubscription ? "\u20B9".concat(subscription_cost, "/Month Upto ").concat(interval, " Months") : "")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
@@ -214,7 +214,7 @@ function CourseDetailPage(props) {
     disabled: paymentStarted
   }, paymentStarted ? "Please wait..." : !payingBySubscription ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold ".concat(discount ? "line-through mr-2" : "")
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && discount > 0 && /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
   }, "\u20B9 ", Number(cost) - Number(discount))) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
