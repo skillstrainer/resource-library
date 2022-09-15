@@ -19,11 +19,6 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function CourseCard(props) {
   const {
-    course: {
-      getCoursePurchaseURL
-    }
-  } = (0, _react.useContext)(_Context.STRLContext);
-  const {
     data: {
       courseId,
       displayName,
@@ -49,7 +44,6 @@ function CourseCard(props) {
     isPurchased,
     viewCourse = () => {}
   } = props;
-  const url = getCoursePurchaseURL(courseId);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2",
     onClick: goToDetailPage

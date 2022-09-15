@@ -27,7 +27,7 @@ function CourseDetailPage(props) {
     multiLangData,
     multiLangKey = "",
     goToCategoryPage = () => {},
-    payNow = () => {},
+    payNow,
     courseModuleTopic,
 
     // If course is purchased
@@ -275,30 +275,6 @@ function CourseDetailPage(props) {
                           )}
                         </button>
                       )}
-
-                      {/* :(
-                        <a
-                          href={getCoursePurchaseURL(courseId)}
-                          onClick={stopPropagation}
-                          target="_blank"
-                        >
-                          <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
-                            <span>Get Enrolled for </span>
-                            <span
-                              className={`font-bold ${
-                                discount ? "line-through mr-2" : ""
-                              }`}
-                            >
-                              {cost > 0 ? `₹ ${cost}` : "Free"}
-                            </span>
-                            {discount && (
-                              <span className="font-bold">
-                                ₹ {Number(cost) - Number(discount)}
-                              </span>
-                            )}
-                          </button>
-                        </a>
-                      )} */}
                       {!isPurchased &&
                         (userHasRegisteredDemo ? (
                           <button

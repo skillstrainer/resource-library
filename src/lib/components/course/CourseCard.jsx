@@ -4,9 +4,6 @@ import { STRLContext } from "../../Context";
 
 export default function CourseCard(props) {
   const {
-    course: { getCoursePurchaseURL },
-  } = useContext(STRLContext);
-  const {
     data: {
       courseId,
       displayName,
@@ -34,8 +31,6 @@ export default function CourseCard(props) {
     isPurchased,
     viewCourse = () => {},
   } = props;
-
-  const url = getCoursePurchaseURL(courseId);
 
   return (
     <div
