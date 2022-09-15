@@ -27,7 +27,7 @@ function CourseDetailPage(props) {
     multiLangData,
     multiLangKey = "",
     goToCategoryPage = () => {},
-    payNow,
+    payNow = () => {},
     courseModuleTopic,
 
     // If course is purchased
