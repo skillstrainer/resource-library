@@ -9,6 +9,7 @@ import Table from "./components/basic/Table/Table";
 import CourseCard from "./components/course/CourseCard";
 import CourseModal from "./components/course/CourseModal";
 import CourseDetailPage from "./components/course/CourseDetailPage";
+import CourseOverviewAndPurchaseFragment from "./components/course/CourseOverviewAndPurchaseFragment";
 
 // Multi lang
 import MultiLangContextProvider, {
@@ -51,6 +52,7 @@ export {
   CourseCard,
   CourseModal,
   CourseDetailPage,
+  CourseOverviewAndPurchaseFragment,
   //
   // Multi Lang
   MultiLangContextProvider,

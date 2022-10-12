@@ -23,6 +23,12 @@ Object.defineProperty(exports, "CourseModal", {
     return _CourseModal.default;
   }
 });
+Object.defineProperty(exports, "CourseOverviewAndPurchaseFragment", {
+  enumerable: true,
+  get: function get() {
+    return _CourseOverviewAndPurchaseFragment.default;
+  }
+});
 Object.defineProperty(exports, "Dropdown", {
   enumerable: true,
   get: function get() {
@@ -148,6 +154,8 @@ var _CourseCard = _interopRequireDefault(require("./components/course/CourseCard
 var _CourseModal = _interopRequireDefault(require("./components/course/CourseModal"));
 
 var _CourseDetailPage = _interopRequireDefault(require("./components/course/CourseDetailPage"));
+
+var _CourseOverviewAndPurchaseFragment = _interopRequireDefault(require("./components/course/CourseOverviewAndPurchaseFragment"));
 
 var _MultiLangContext = _interopRequireWildcard(require("./components/multi-lang/MultiLangContext"));
 
