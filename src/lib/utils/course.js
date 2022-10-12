@@ -24,6 +24,15 @@ export const courseFormatter = (obj) => ({
   is_taxable: obj.is_subscription,
   moodleCourseId: obj.moodle_course_id,
   course_type: obj.course_type,
+
+  ...(obj.course_subscription_relation_array
+    ? {
+        plan_id: obj.course_subscription_relation_array[0]?.razorpay_plan_id,
+        subscription_cost:
+          obj.course_subscription_relation_array[0]?.subscription_cost,
+        interval: obj.course_subscription_relation_array[0]?.interval,
+      }
+    : {}),
 });
 
 export const catFormatter = (obj) => ({
