@@ -9,7 +9,7 @@ export default function Test(props) {
         courseData={courses[0]}
         goToCategoryPage={() => console.log("Going to category page")}
         payNow={() => console.log("Making payment") || Promise.resolve(false)}
-        isPurchased={true}
+        isPurchased={false}
         viewCourse={() => console.log("Viewing course")}
       />
     </div>

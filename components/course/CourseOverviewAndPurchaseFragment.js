@@ -42,6 +42,7 @@ function CourseOverviewAndPurchaseFragment(props) {
     is_subscription,
     interval,
     course_type,
+    duration,
     // Demo class
     userHasRegisteredDemo,
     onViewDemoDetails = () => {},
@@ -134,7 +135,11 @@ function CourseOverviewAndPurchaseFragment(props) {
     className: "font-semibold text-japanese_indigo mr-3 "
   }, !payingBySubscription ? "Price:" : "Installment Price:"), /*#__PURE__*/_react.default.createElement("span", null, !payingBySubscription ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", {
     className: discount ? "line-through mr-2" : ""
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && discount > 0 && /*#__PURE__*/_react.default.createElement("span", null, "\u20B9 ", Number(cost) - Number(discount))) : payingBySubscription ? "\u20B9".concat(subscription_cost, "/Month Upto ").concat(interval, " Months") : "")), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && discount > 0 && /*#__PURE__*/_react.default.createElement("span", null, "\u20B9 ", Number(cost) - Number(discount))) : payingBySubscription ? "\u20B9".concat(subscription_cost, "/Month Upto ").concat(interval, " Months") : "")), duration && /*#__PURE__*/_react.default.createElement("div", {
+    className: "text-md mb-3"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "font-semibold text-japanese_indigo mr-3 "
+  }, "Course Duration:"), /*#__PURE__*/_react.default.createElement("span", null, duration)), partners && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
@@ -142,9 +147,9 @@ function CourseOverviewAndPurchaseFragment(props) {
     logo: _newLogo.default
   }]).map(p => p && p.logo && /*#__PURE__*/_react.default.createElement("img", {
     src: p.logo,
-    className: "mr-3 h-6"
+    className: "mr-3 h-9"
   }) || null))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex gap-3"
+    className: "flex gap-3 mt-4"
   }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto",
     onClick: viewCourse
@@ -167,10 +172,10 @@ function CourseOverviewAndPurchaseFragment(props) {
   }, "\u20B9 ", subscription_cost))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => onViewDemoDetails(),
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-  }, "Show demo class details") : isDemoAvailable && /*#__PURE__*/_react.default.createElement("button", {
+  }, "Show Demo Class Details") : isDemoAvailable && /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => onBookDemo(),
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-  }, "Book demo")))))));
+  }, "Book A Free Demo")))))));
 }
 
 const RadioButton = _ref => {

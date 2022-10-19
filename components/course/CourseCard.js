@@ -181,5 +181,5 @@ function CourseCard(props) {
       onBookDemo();
     },
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-  }, "Book a demo")))));
+  }, "Book A Free Demo")))));
 }

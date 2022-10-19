@@ -26,6 +26,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
     is_subscription,
     interval,
     course_type,
+    duration,
 
     // Demo class
     userHasRegisteredDemo,
@@ -154,7 +155,14 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                 )}
               </span>
             </div>
-
+            {duration && (
+              <div className="text-md mb-3">
+                <span className="font-semibold text-japanese_indigo mr-3 ">
+                  Course Duration:
+                </span>
+                <span>{duration}</span>
+              </div>
+            )}
             {partners && (
               <div>
                 <span className="font-semibold text-japanese_indigo mr-3 text-md">
@@ -166,7 +174,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                     .map(
                       (p) =>
                         (p && p.logo && (
-                          <img src={p.logo} className="mr-3 h-6" />
+                          <img src={p.logo} className="mr-3 h-9" />
                         )) ||
                         null
                     )}
@@ -174,7 +182,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
               </div>
             )}
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 mt-4">
               {isPurchased ? (
                 <button
                   className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto"
@@ -228,7 +236,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                     onClick={() => onViewDemoDetails()}
                     className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
                   >
-                    Show demo class details
+                    Show Demo Class Details
                   </button>
                 ) : (
                   isDemoAvailable && (
@@ -236,7 +244,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                       onClick={() => onBookDemo()}
                       className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
                     >
-                      Book demo
+                      Book A Free Demo
                     </button>
                   )
                 ))}

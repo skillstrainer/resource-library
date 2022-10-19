@@ -18,6 +18,7 @@ export const courses = [
       "https://lms.skillstrainer.in/moodle/pluginfile.php/565/course/overviewfiles/english%20star%20logo-final.jpg",
     students_enrolled: "1,305",
     isLive: true,
+    isDemoAvailable: true,
     duration: "3 Months with 36 One Hour Online Sessions with Trainer",
     nsqf_lvl: null,
     redirection_url:
