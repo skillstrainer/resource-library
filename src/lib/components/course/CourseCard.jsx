@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { stopPropagation } from "../../utils/dom";
 import { STRLContext } from "../../Context";
+import { data } from "autoprefixer";
 
 export default function CourseCard(props) {
   const {
@@ -12,6 +13,7 @@ export default function CourseCard(props) {
       cost,
       students_enrolled,
       discount,
+      partners,
       nsqf_lvl,
       duration,
       isMoodleCourse,
@@ -139,8 +141,17 @@ export default function CourseCard(props) {
           </p>
         </div>
       </div>
-
       <div className="w-full text-right">
+        <div className="flex flex-row ml-2 -mb-5">
+          {partners &&
+            partners.map((partner) => (
+              <img
+                src={partner.partner.logo}
+                className={"h-10 mr-4"}
+                alt="Partner Text"
+              />
+            ))}{" "}
+        </div>{" "}
         <p className="text-japanese_indigo text-sm mx-2">
           See More Details &gt;{" "}
         </p>
