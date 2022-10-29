@@ -135,7 +135,7 @@ function CourseCard(props) {
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex flex-row ml-2 -mb-5"
   }, partners && partners.map(partner => /*#__PURE__*/_react.default.createElement("img", {
-    src: partner.partner.logo,
+    src: partner.logo,
     className: "h-10 mr-4",
     alt: "Partner Text"
   })), " "), " ", /*#__PURE__*/_react.default.createElement("p", {
