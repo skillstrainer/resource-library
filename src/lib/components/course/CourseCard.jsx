@@ -146,7 +146,7 @@ export default function CourseCard(props) {
           {partners &&
             partners.map((partner) => (
               <img
-                src={partner.partner.logo}
+                src={partner.logo}
                 className={"h-10 mr-4"}
                 alt="Partner Text"
               />
