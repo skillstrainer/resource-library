@@ -14,6 +14,7 @@ import { ChevronUpIcon } from "@heroicons/react/solid";
 import pageTopBg from "../../assets/image/page-top-bg.png";
 import emptyCertificate from "../../assets/image/certificate.jpg";
 import jobs from "../../assets/image/jobs.jpg";
+import { useMemo } from "react";
 
 function CourseDetailPage(props) {
   const {
@@ -29,13 +30,14 @@ function CourseDetailPage(props) {
     viewCourse = () => {},
   } = props;
 
-  const {
-    description,
-    modules,
-    videoUrl,
-    certificateImageUrl,
-    isMoodleCourse,
-  } = courseData || {};
+  const { description, modules, certificateImageUrl, isMoodleCourse } =
+    courseData || {};
+
+  const videoURL = useMemo(() => {
+    let { videoUrl } = courseData;
+    if (!videoUrl) return "";
+    return "https://www.youtube.com/embed/" + videoUrl.split("watch?v=")[1];
+  }, [courseData.videoUrl]);
 
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
@@ -59,7 +61,14 @@ function CourseDetailPage(props) {
         </div>
       </section>
       <section className="mt-12">
-        <div className="content mx-auto grid grid-cols-1 lg:grid-cols-2">
+        <div
+          className="content mx-auto grid grid-cols-1 lg:grid-cols-2"
+          style={{
+            gridTemplateColumns: videoURL
+              ? "repeat(2, minmax(0, 1fr))"
+              : "repeat(1, minmax(0, 1fr)",
+          }}
+        >
           <div className="mr-5">
             <div className="text-3xl blue-dark2 font-semibold leading-10 text-center mt-3">
               About the Course
@@ -68,11 +77,19 @@ function CourseDetailPage(props) {
               <MultiLangField name="description">{description}</MultiLangField>
             </p>
           </div>
-          <div className="ml-5">
-            <video autoPlay controls width="100%">
-              <source src={videoUrl} />
-            </video>
-          </div>
+          {videoURL && (
+            <div className="ml-5">
+              <iframe
+                width="560"
+                height="315"
+                src={videoURL}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          )}
         </div>
       </section>
       <section>
