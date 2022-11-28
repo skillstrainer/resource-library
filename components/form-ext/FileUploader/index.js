@@ -66,7 +66,7 @@ function FileUploader(props) {
   const fileCountRef = (0, _react.useRef)(1);
   (0, _react.useEffect)(() => {
     setFileList(fileList.map(f => _objectSpread(_objectSpread({}, f), {}, {
-      id: fileCountRef.current++ + ""
+      id: f.id || fileCountRef.current++ + ""
     })));
   }, []);
 

@@ -67,7 +67,7 @@ export const courseCardData = [
     is_taxable: null,
     moodleCourseId: "180",
     course_type: null,
-    videoUrl: "https://www.youtube.com/watch?v=g6fnFALEseI",
+    // videoUrl: "https://www.youtube.com/watch?v=g6fnFALEseI",
   },
 ];
 
