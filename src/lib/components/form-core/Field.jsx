@@ -2,7 +2,7 @@ import React from "react";
 import Section from "./Section";
 import _ from "lodash";
 
-export default (props) => {
+const FormField = (props) => {
   const { formProps, name: key, field } = props;
   const { values, errors, touched, setFieldValue, plugins, attemptedSubmit } =
     formProps;
@@ -45,3 +45,5 @@ export default (props) => {
     </>
   );
 };
+
+export default FormField;

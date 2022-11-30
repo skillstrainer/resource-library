@@ -155,8 +155,7 @@ const FormComponent = (props, ref) => {
       type: "object",
       fields: items
     });else values = {}; // Running values through form processors
-
-    let error; // pre processors
+    // pre processors
 
     const preProcessors = resolvePreprocessors();
 

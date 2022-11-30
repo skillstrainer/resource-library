@@ -125,8 +125,6 @@ const FormComponent = (props, ref) => {
 
     // Running values through form processors
 
-    let error;
-
     // pre processors
     const preProcessors = resolvePreprocessors();
     for (const preProcessor of preProcessors) {
