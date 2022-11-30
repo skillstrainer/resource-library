@@ -91,7 +91,7 @@ const FormSectionUnit = (props) => {
         {insertable && (
           <button
             type="button"
-            className={`button-primary mt-3 mb-3 ${
+            className={`btn-primary mt-3 mb-3 ${
               insertableProps?.button?.className || ""
             }`}
             onClick={() => insert()}
@@ -136,10 +136,10 @@ const FormSectionUnit = (props) => {
             children: (
               <>
                 {field.type !== "hidden" ? (
-                  <>
+                  <div className="form-section">
                     <div className="w-full flex justify-end items-center">
                       <button
-                        className="button danger"
+                        className="btn-danger"
                         style={{
                           padding: "0.25rem 0.5rem",
                         }}
@@ -157,7 +157,7 @@ const FormSectionUnit = (props) => {
                         name={itemName}
                       />
                     </div>
-                  </>
+                  </div>
                 ) : (
                   <Field formProps={formProps} field={field} name={itemName} />
                 )}

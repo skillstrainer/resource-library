@@ -118,7 +118,7 @@ const FormSectionUnit = props => {
 
     content = /*#__PURE__*/_react.default.createElement(_ToggleList.default, null, insertable && /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
-      className: "button-primary mt-3 mb-3 ".concat((insertableProps === null || insertableProps === void 0 ? void 0 : (_insertableProps$butt = insertableProps.button) === null || _insertableProps$butt === void 0 ? void 0 : _insertableProps$butt.className) || ""),
+      className: "btn-primary mt-3 mb-3 ".concat((insertableProps === null || insertableProps === void 0 ? void 0 : (_insertableProps$butt = insertableProps.button) === null || _insertableProps$butt === void 0 ? void 0 : _insertableProps$butt.className) || ""),
       onClick: () => insert()
     }, (insertableProps === null || insertableProps === void 0 ? void 0 : (_insertableProps$butt2 = insertableProps.button) === null || _insertableProps$butt2 === void 0 ? void 0 : _insertableProps$butt2.label) || "Insert"), new Array(repeatLength).fill("").map((_, index) => {
       const itemName = "".concat(key, "[").concat(index, "]");
@@ -144,10 +144,12 @@ const FormSectionUnit = props => {
           }, collapsibleProps.emptyTitle || "Untitled"),
           className: repeatClassName
         } || {},
-        children: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, field.type !== "hidden" ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+        children: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, field.type !== "hidden" ? /*#__PURE__*/_react.default.createElement("div", {
+          className: "form-section"
+        }, /*#__PURE__*/_react.default.createElement("div", {
           className: "w-full flex justify-end items-center"
         }, /*#__PURE__*/_react.default.createElement("button", {
-          className: "button danger",
+          className: "btn-danger",
           style: {
             padding: "0.25rem 0.5rem"
           },
