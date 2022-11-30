@@ -69,6 +69,7 @@ const FormSectionUnit = (props) => {
 
     const remove = (index) => {
       let fieldValue = _.get(values, key).filter((e, idx) => idx !== index);
+      if (!fieldValue.length) fieldValue = null;
       setFieldValue(key, fieldValue);
     };
 
