@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { stopPropagation } from "../../utils/dom";
 import { STRLContext } from "../../Context";
 import { data } from "autoprefixer";
+import { s3Url } from "../../config";
 
 export default function CourseCard(props) {
   const {
@@ -44,7 +45,13 @@ export default function CourseCard(props) {
           <div className="h-56 flex justify-center items-center bg-gray-200">
             <img
               className="max-w-full max-h-full shadow-xl"
-              src={courseImg && courseImg.url ? courseImg.url : courseImg}
+              src={
+                courseImg && courseImg.url
+                  ? isMoodleCourse
+                    ? courseImg.url
+                    : s3Url + "/" + courseImg.url
+                  : courseImg
+              }
               alt={displayName}
             />
           </div>
