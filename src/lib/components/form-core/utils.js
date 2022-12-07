@@ -20,20 +20,23 @@ export const formatObject = ({ data, changeKeys, deleteKeys }) => {
 
 export const getSchema = (field) => {
   let result;
-  if (field.type == "object") {
+  if (field.type === "object") {
     result = {};
-    const f = Object.keys(field.fields).map((_f) => {
+    Object.keys(field.fields).map((_f) => {
       result[_f] = getSchema(field.fields[_f]);
+      return null;
     });
     result = yup.object().shape(result);
   } else {
-    result = field.schema;
-    if (field.required && result && typeof result.required === "function")
-      result = result.required(`${field.label} is required`);
+    result = field.schema || yup.string();
   }
 
-  if (field.repeat) return yup.array().of(result);
-  else return result;
+  if (field.repeat) result = yup.array().of(result);
+
+  if (field.required && result && typeof result.required === "function")
+    result = result.required(`${field.label} is required`);
+
+  return result;
 };
 
 export const formatBySchema = (objField, fieldSchema) => {
