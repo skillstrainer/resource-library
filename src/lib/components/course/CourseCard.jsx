@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { stopPropagation } from "../../utils/dom";
 import { STRLContext } from "../../Context";
-import { data } from "autoprefixer";
-import { s3Url } from "../../config";
 
 export default function CourseCard(props) {
   const {
@@ -35,6 +33,10 @@ export default function CourseCard(props) {
     viewCourse = () => {},
   } = props;
 
+  const {
+    request: { s3Url },
+  } = useContext(STRLContext);
+
   return (
     <div
       className="relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2"
@@ -46,10 +48,10 @@ export default function CourseCard(props) {
             <img
               className="max-w-full max-h-full shadow-xl"
               src={
-                courseImg && courseImg.url
+                courseImg && courseImg
                   ? isMoodleCourse
-                    ? courseImg.url
-                    : s3Url + "/" + courseImg.url
+                    ? courseImg
+                    : s3Url + "/" + courseImg
                   : courseImg
               }
               alt={displayName}

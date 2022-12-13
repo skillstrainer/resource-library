@@ -69,6 +69,11 @@ export const courseCardData = [
     course_type: null,
     // videoUrl: "https://www.youtube.com/watch?v=g6fnFALEseI",
   },
+  {
+    id: 126,
+    full_name: "Rural Agricultural Work Experience (RAWE) - A",
+    image_url: "public-assets/bb06f089-140.png",
+  },
 ];
 
 // Form builders

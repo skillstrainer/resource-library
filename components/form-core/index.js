@@ -212,7 +212,7 @@ const FormComponent = (props, ref) => {
   }, initValuesLoaded.current ? /*#__PURE__*/_react.default.createElement(_formik.Formik, {
     initialValues: formValues,
     validationSchema: validationSchema,
-    onSubmit: values => formikOnSubmit(values).then(res => "Form submitted").catch(err => onSubmitError && onSubmitError(err) || alert((err === null || err === void 0 ? void 0 : err.message) || err))
+    onSubmit: values => formikOnSubmit(values).then(res => "Form submitted").catch(err => onSubmitError && onSubmitError(err) || console.log("Couldn't submit form", (err === null || err === void 0 ? void 0 : err.message) || err))
   }, formProps => {
     const {
       values,

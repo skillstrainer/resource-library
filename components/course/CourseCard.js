@@ -13,10 +13,6 @@ var _dom = require("../../utils/dom");
 
 var _Context = require("../../Context");
 
-var _autoprefixer = require("autoprefixer");
-
-var _config = require("../../config");
-
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -49,6 +45,11 @@ function CourseCard(props) {
     isPurchased,
     viewCourse = () => {}
   } = props;
+  const {
+    request: {
+      s3Url
+    }
+  } = (0, _react.useContext)(_Context.STRLContext);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2",
     onClick: goToDetailPage
@@ -58,7 +59,7 @@ function CourseCard(props) {
     className: "h-56 flex justify-center items-center bg-gray-200"
   }, /*#__PURE__*/_react.default.createElement("img", {
     className: "max-w-full max-h-full shadow-xl",
-    src: courseImg && courseImg.url ? isMoodleCourse ? courseImg.url : _config.s3Url + "/" + courseImg.url : courseImg,
+    src: courseImg && courseImg ? isMoodleCourse ? courseImg : s3Url + "/" + courseImg : courseImg,
     alt: displayName
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "absolute top-2 left-2"

@@ -194,7 +194,7 @@ const FormComponent = (props, ref) => {
               .catch(
                 (err) =>
                   (onSubmitError && onSubmitError(err)) ||
-                  alert(err?.message || err)
+                  console.log("Couldn't submit form", err?.message || err)
               )
           }
         >

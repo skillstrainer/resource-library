@@ -1,16 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "./lib/index";
 import * as yup from "yup";
+import { FileUploaderPlugin } from "./lib/components/form-ext/plugin-list";
+
+FileUploaderPlugin.services = {
+  uploadFn: async (res) => {
+    console.log("Main service #1");
+  },
+};
 
 export default function Test(props) {
   return (
     <div>
-      <Form formBuilder={FormBuilder} onSubmit={console.log} />
+      <Form
+        formBuilder={FormBuilder2}
+        plugins={{
+          file: {
+            services: {
+              uploadFn: (res) => console.log("Main service #2"),
+            },
+          },
+        }}
+        onSubmit={async () => {}}
+      />
     </div>
   );
 }
 
-const FormBuilder = (values) => {
+const FormBuilder1 = (values) => {
   const [schema, setSchema] = useState();
 
   useEffect(() => {
@@ -67,6 +84,24 @@ const FormBuilder = (values) => {
             schema: yup.number().min(0).max(100),
           },
         },
+      },
+    };
+
+    setSchema(schema);
+  }, []);
+
+  return schema;
+};
+
+const FormBuilder2 = (values) => {
+  const [schema, setSchema] = useState({});
+
+  useEffect(() => {
+    const schema = {
+      upload: {
+        type: "file",
+        label: "Upload file",
+        schema: yup.array().of(yup.object().shape({})),
       },
     };
 
