@@ -15,6 +15,8 @@ var _newLogo = _interopRequireDefault(require("../../assets/image/newLogo.svg"))
 
 var _dom = require("../../utils/dom");
 
+var _Context = require("../../Context");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -43,6 +45,7 @@ function CourseOverviewAndPurchaseFragment(props) {
     interval,
     course_type,
     duration,
+    isMoodleCourse,
     // Demo class
     userHasRegisteredDemo,
     onViewDemoDetails = () => {},
@@ -51,6 +54,11 @@ function CourseOverviewAndPurchaseFragment(props) {
   } = courseData || {};
   const [payingBySubscription, setPayingBySubscription] = (0, _react.useState)(false);
   const [paymentStarted, setPaymentStarted] = (0, _react.useState)(false);
+  const {
+    request: {
+      s3Url
+    }
+  } = (0, _react.useContext)(_Context.STRLContext);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -63,7 +71,7 @@ function CourseOverviewAndPurchaseFragment(props) {
     class: "relative"
   }, /*#__PURE__*/_react.default.createElement("img", {
     class: "w-full object-cover object-center shadow-xl rounded-xl",
-    src: courseImg,
+    src: courseImg && courseImg ? isMoodleCourse ? courseImg : s3Url + "/" + courseImg : courseImg,
     alt: "course-img"
   }), /*#__PURE__*/_react.default.createElement("div", {
     class: "absolute top-4 left-2 font-semibold"

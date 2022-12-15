@@ -3,6 +3,8 @@ import { useState } from "react";
 import MultiLangField from "../multi-lang/MultiLangField";
 import newLogo from "../../assets/image/newLogo.svg";
 import { stopPropagation } from "../../utils/dom";
+import { useContext } from "react";
+import { STRLContext } from "../../Context";
 
 export default function CourseOverviewAndPurchaseFragment(props) {
   const {
@@ -27,6 +29,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
     interval,
     course_type,
     duration,
+    isMoodleCourse,
 
     // Demo class
     userHasRegisteredDemo,
@@ -38,6 +41,10 @@ export default function CourseOverviewAndPurchaseFragment(props) {
   const [payingBySubscription, setPayingBySubscription] = useState(false);
   const [paymentStarted, setPaymentStarted] = useState(false);
 
+  const {
+    request: { s3Url },
+  } = useContext(STRLContext);
+
   return (
     <div className="flex justify-center">
       <div className="px-4 py-10 md:px-10 shadow-xl w-full">
@@ -46,7 +53,13 @@ export default function CourseOverviewAndPurchaseFragment(props) {
             <div class="relative">
               <img
                 class="w-full object-cover object-center shadow-xl rounded-xl"
-                src={courseImg}
+                src={
+                  courseImg && courseImg
+                    ? isMoodleCourse
+                      ? courseImg
+                      : s3Url + "/" + courseImg
+                    : courseImg
+                }
                 alt="course-img"
               />
               <div class="absolute top-4 left-2 font-semibold">
