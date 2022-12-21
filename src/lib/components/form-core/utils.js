@@ -35,6 +35,7 @@ export const getSchema = (field) => {
 
   if (field.required && result && typeof result.required === "function")
     result = result.required(`${field.label} is required`);
+  else result = result.nullable();
 
   return result;
 };

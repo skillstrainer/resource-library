@@ -71,7 +71,7 @@ const getSchema = field => {
   }
 
   if (field.repeat) result = yup.array().of(result);
-  if (field.required && result && typeof result.required === "function") result = result.required("".concat(field.label, " is required"));
+  if (field.required && result && typeof result.required === "function") result = result.required("".concat(field.label, " is required"));else result = result.nullable();
   return result;
 };
 
