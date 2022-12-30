@@ -13,7 +13,7 @@ export const Select = ({ name, options = [], className, ...fieldProps }) => {
         name={name}
         className="input-primary"
       >
-        <option>Choose an option</option>
+        <option value="">Choose an option</option>
         {options.map((option, i) => (
           <option className="p-2 font-medium" key={i} value={option.value}>
             {option.label}
