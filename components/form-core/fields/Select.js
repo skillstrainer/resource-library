@@ -44,7 +44,9 @@ const Select = _ref => {
     as: "select",
     name: name,
     className: "input-primary"
-  }), /*#__PURE__*/_react.default.createElement("option", null, "Choose an option"), options.map((option, i) => /*#__PURE__*/_react.default.createElement("option", {
+  }), /*#__PURE__*/_react.default.createElement("option", {
+    value: ""
+  }, "Choose an option"), options.map((option, i) => /*#__PURE__*/_react.default.createElement("option", {
     className: "p-2 font-medium",
     key: i,
     value: option.value
