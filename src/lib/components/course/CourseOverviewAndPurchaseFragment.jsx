@@ -187,7 +187,10 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                     .map(
                       (p) =>
                         (p && p.logo && (
-                          <img src={p.logo} className="mr-3 h-9" />
+                          <img
+                            src={s3Url + "/" + p.logo}
+                            className="mr-3 h-9"
+                          />
                         )) ||
                         null
                     )}

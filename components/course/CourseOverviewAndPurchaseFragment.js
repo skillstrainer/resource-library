@@ -154,7 +154,7 @@ function CourseOverviewAndPurchaseFragment(props) {
   }, partners.concat([{
     logo: _newLogo.default
   }]).map(p => p && p.logo && /*#__PURE__*/_react.default.createElement("img", {
-    src: p.logo,
+    src: s3Url + "/" + p.logo,
     className: "mr-3 h-9"
   }) || null))), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex gap-3 mt-4"
