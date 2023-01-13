@@ -183,14 +183,14 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                 </span>
                 <div className="mx-2 flex flex-wrap mt-3 mb-3">
                   {partners
+                    .map((p) => {
+                      if (p && p.logo) p.logo = s3Url + "/" + p.logo;
+                    })
                     .concat([{ logo: newLogo }])
                     .map(
                       (p) =>
                         (p && p.logo && (
-                          <img
-                            src={s3Url + "/" + p.logo}
-                            className="mr-3 h-9"
-                          />
+                          <img src={p.logo} className="mr-3 h-9" />
                         )) ||
                         null
                     )}

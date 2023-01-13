@@ -151,10 +151,12 @@ function CourseOverviewAndPurchaseFragment(props) {
     className: "font-semibold text-japanese_indigo mr-3 text-md"
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
-  }, partners.concat([{
+  }, partners.map(p => {
+    if (p && p.logo) p.logo = s3Url + "/" + p.logo;
+  }).concat([{
     logo: _newLogo.default
   }]).map(p => p && p.logo && /*#__PURE__*/_react.default.createElement("img", {
-    src: s3Url + "/" + p.logo,
+    src: p.logo,
     className: "mr-3 h-9"
   }) || null))), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex gap-3 mt-4"
