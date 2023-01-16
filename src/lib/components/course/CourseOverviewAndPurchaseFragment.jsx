@@ -184,7 +184,9 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                 <div className="mx-2 flex flex-wrap mt-3 mb-3">
                   {partners
                     .map((p) => {
-                      if (p && p.logo) p.logo = s3Url + "/" + p.logo;
+                      return {
+                        logo: s3Url + "/" + p.logo,
+                      };
                     })
                     .concat([{ logo: newLogo }])
                     .map(
