@@ -7,10 +7,11 @@ export default function FormErrors({ _key: key, formProps }) {
   const fieldErrors = _.get(errors, key) || "";
 
   return (
-    (isFieldTouched || attemptedSubmit) &&
-    fieldErrors &&
-    typeof fieldErrors === "string" && (
-      <div className="errors text-danger text-red-500">{fieldErrors}</div>
-    )
+    ((isFieldTouched || attemptedSubmit) &&
+      fieldErrors &&
+      typeof fieldErrors === "string" && (
+        <div className="errors text-danger text-red-500">{fieldErrors}</div>
+      )) ||
+    null
   );
 }

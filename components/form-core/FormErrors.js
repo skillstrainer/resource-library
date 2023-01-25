@@ -25,5 +25,5 @@ function FormErrors(_ref) {
   const fieldErrors = _lodash.default.get(errors, key) || "";
   return (isFieldTouched || attemptedSubmit) && fieldErrors && typeof fieldErrors === "string" && /*#__PURE__*/React.createElement("div", {
     className: "errors text-danger text-red-500"
-  }, fieldErrors);
+  }, fieldErrors) || null;
 }
