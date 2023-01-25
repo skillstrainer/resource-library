@@ -23,6 +23,8 @@ var _ToggleList = _interopRequireWildcard(require("./ToggleList"));
 
 var _utils = require("./utils");
 
+var _FormErrors = _interopRequireDefault(require("./FormErrors"));
+
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -76,14 +78,18 @@ const FormSectionUnit = props => {
     className,
     label,
     style,
-    type,
     required
   } = (0, _utils.resolveFieldProps)(fieldProto, key, fieldValue);
-  const labelComponent = (0, _react.useMemo)(() => /*#__PURE__*/_react.default.createElement("div", {
-    className: "block text-sm font-medium text-japanese_indigo ".concat(type === "object" ? "mt-3 small-title mb-2" : "")
+
+  const labelComponent = /*#__PURE__*/_react.default.createElement("div", {
+    className: "block text-sm font-medium text-japanese_indigo"
   }, label, " ", required && /*#__PURE__*/_react.default.createElement("span", {
     className: "text-red-600"
-  }, "*")), [label, type, required]);
+  }, "*"), /*#__PURE__*/_react.default.createElement(_FormErrors.default, {
+    _key: key,
+    formProps: formProps
+  }));
+
   if (hide) return null;
   let content;
 
@@ -103,7 +109,7 @@ const FormSectionUnit = props => {
     const remove = index => {
       let fieldValue = _lodash.default.get(values, key).filter((e, idx) => idx !== index);
 
-      if (!fieldValue.length) fieldValue = null;
+      if (!fieldValue.length) fieldValue = undefined;
       setFieldValue(key, fieldValue);
     };
 
@@ -117,7 +123,7 @@ const FormSectionUnit = props => {
     }; // LIST UTILS END
 
 
-    content = /*#__PURE__*/_react.default.createElement(_ToggleList.default, null, insertable && /*#__PURE__*/_react.default.createElement("button", {
+    content = /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_ToggleList.default, null, insertable && /*#__PURE__*/_react.default.createElement("button", {
       type: "button",
       className: "btn-primary mt-3 mb-3 ".concat((insertableProps === null || insertableProps === void 0 ? void 0 : (_insertableProps$butt = insertableProps.button) === null || _insertableProps$butt === void 0 ? void 0 : _insertableProps$butt.className) || ""),
       onClick: () => insert()
@@ -168,13 +174,16 @@ const FormSectionUnit = props => {
           formProps: formProps,
           field: field,
           name: itemName
+        }), /*#__PURE__*/_react.default.createElement(_FormErrors.default, {
+          _key: "".concat(key, ".").concat(index),
+          formProps: formProps
         }))) : /*#__PURE__*/_react.default.createElement(_Field.default, {
           formProps: formProps,
           field: field,
           name: itemName
         }))
       });
-    }));
+    })));
     content = /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, labelComponent, content);
   } else {
     // Field is not a list

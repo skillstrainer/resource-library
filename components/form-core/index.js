@@ -241,6 +241,8 @@ const FormComponent = (props, ref) => {
     formikSetValuesFn.current = setValues;
     formikResetFn.current = resetForm;
     return /*#__PURE__*/_react.default.createElement(_formik.Form, {
+      className: "justify-start"
+    }, /*#__PURE__*/_react.default.createElement("div", {
       className: "justify-start ".concat(className)
     }, items && !hideForm && /*#__PURE__*/_react.default.createElement(_Section.default, {
       fields: items,
@@ -250,8 +252,8 @@ const FormComponent = (props, ref) => {
         plugins: allPlugins,
         attemptedSubmit
       })
-    }), /*#__PURE__*/_react.default.createElement("div", {
-      className: "flex justify-between w-full mt-10"
+    })), /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex justify-between w-full mt-3"
     }, onCancel && /*#__PURE__*/_react.default.createElement("input", {
       type: "button",
       onClick: () => onCancel(),

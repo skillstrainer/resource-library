@@ -58,6 +58,14 @@ exports.formatObject = formatObject;
 
 const getSchema = field => {
   let result;
+  /*
+   *
+   *
+   * Single value validation
+   *
+   *
+   */
+  // Field type validation
 
   if (field.type === "object") {
     result = {};
@@ -68,10 +76,30 @@ const getSchema = field => {
     result = yup.object().shape(result);
   } else {
     result = field.schema || yup.string();
+  } // Field requirement validation
+
+
+  if (field.required && typeof result.required === "function") {
+    result = result.required("".concat(field.label, " is required"));
+  } else result = result.nullable();
+  /*
+   *
+   *
+   * Multi value validation
+   *
+   *
+   */
+
+
+  if (field.repeat) {
+    // Wrap in an array validation
+    result = yup.array().of(result); // Field requirement validation for array
+
+    if (field.required) {
+      result = result.min(1, "".concat(field.label, " is required")).required("".concat(field.label, " is required"));
+    }
   }
 
-  if (field.repeat) result = yup.array().of(result);
-  if (field.required && result && typeof result.required === "function") result = result.required("".concat(field.label, " is required"));else result = result.nullable();
   return result;
 };
 
@@ -90,7 +118,7 @@ const formatBySchema = (objField, fieldSchema) => {
   } else {
     const schema = resolveFieldProps(fieldSchema, "", objField);
 
-    if (schema.type == "object" && objField) {
+    if (schema.type === "object" && objField) {
       result = {};
       const fields = Object.keys(schema.fields);
       fields.map(key => {

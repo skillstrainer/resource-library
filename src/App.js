@@ -4,11 +4,7 @@ import React, { useState } from "react";
 import Test from "./test";
 
 function App() {
-  return (
-    <div className="p-4">
-      <Test />
-    </div>
-  );
+  return <Test />;
 }
 
 export default App;

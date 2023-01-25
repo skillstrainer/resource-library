@@ -1,11 +1,11 @@
 import { AccordionItem } from "../shared/AccordionItem";
 import _ from "lodash";
-import React from "react";
+import React, { useMemo } from "react";
 import Field from "./Field";
 import SerialableListItem from "./Section/SerialableListItem";
 import ToggleList, { ToggleListItem } from "./ToggleList";
 import { resolveFieldProps } from "./utils";
-import { useMemo } from "react";
+import FormErrors from "./FormErrors";
 
 const FormSection = (props) => {
   const { fields } = props;
@@ -35,21 +35,14 @@ const FormSectionUnit = (props) => {
     className,
     label,
     style,
-    type,
     required,
   } = resolveFieldProps(fieldProto, key, fieldValue);
 
-  const labelComponent = useMemo(
-    () => (
-      <div
-        className={`block text-sm font-medium text-japanese_indigo ${
-          type === "object" ? "mt-3 small-title mb-2" : ""
-        }`}
-      >
-        {label} {required && <span className="text-red-600">*</span>}
-      </div>
-    ),
-    [label, type, required]
+  const labelComponent = (
+    <div className={`block text-sm font-medium text-japanese_indigo`}>
+      {label} {required && <span className="text-red-600">*</span>}
+      <FormErrors _key={key} formProps={formProps} />
+    </div>
   );
 
   if (hide) return null;
@@ -69,7 +62,7 @@ const FormSectionUnit = (props) => {
 
     const remove = (index) => {
       let fieldValue = _.get(values, key).filter((e, idx) => idx !== index);
-      if (!fieldValue.length) fieldValue = null;
+      if (!fieldValue.length) fieldValue = undefined;
       setFieldValue(key, fieldValue);
     };
 
@@ -87,86 +80,97 @@ const FormSectionUnit = (props) => {
     // LIST UTILS END
 
     content = (
-      <ToggleList>
-        {/* Insert button */}
-        {insertable && (
-          <button
-            type="button"
-            className={`btn-primary mt-3 mb-3 ${
-              insertableProps?.button?.className || ""
-            }`}
-            onClick={() => insert()}
-          >
-            {insertableProps?.button?.label || "Insert"}
-          </button>
-        )}
+      <>
+        {}
+        <ToggleList>
+          {/* Insert button */}
+          {insertable && (
+            <button
+              type="button"
+              className={`btn-primary mt-3 mb-3 ${
+                insertableProps?.button?.className || ""
+              }`}
+              onClick={() => insert()}
+            >
+              {insertableProps?.button?.label || "Insert"}
+            </button>
+          )}
 
-        {/* List items */}
-        {new Array(repeatLength).fill("").map((_, index) => {
-          const itemName = `${key}[${index}]`;
-          const field = resolveFieldProps(
-            fieldProto,
-            itemName,
-            fieldValue && fieldValue[index]
-          );
-          const { repeatClassName, repeatableStyle } = field;
+          {/* List items */}
+          {new Array(repeatLength).fill("").map((_, index) => {
+            const itemName = `${key}[${index}]`;
+            const field = resolveFieldProps(
+              fieldProto,
+              itemName,
+              fieldValue && fieldValue[index]
+            );
+            const { repeatClassName, repeatableStyle } = field;
 
-          // wrapListItem formats the list items based on the list configuration
-          return wrapListItem({
-            key: index + "",
-            serialable,
-            seriableItemProps: {
-              index,
-              moveFn: move,
-              className: repeatClassName,
-              style: repeatableStyle || {},
-            },
-            collapsible,
-            collapsibleItemProps:
-              (collapsible && {
-                title: (fieldValue &&
-                  fieldValue[index] &&
-                  collapsibleProps.title(fieldValue[index])) || (
-                  <span className="i text-gray-500">
-                    {collapsibleProps.emptyTitle || "Untitled"}
-                  </span>
-                ),
+            // wrapListItem formats the list items based on the list configuration
+            return wrapListItem({
+              key: index + "",
+              serialable,
+              seriableItemProps: {
+                index,
+                moveFn: move,
                 className: repeatClassName,
-              }) ||
-              {},
-            children: (
-              <>
-                {field.type !== "hidden" ? (
-                  <div className="form-section">
-                    <div className="w-full flex justify-end items-center">
-                      <button
-                        className="btn-danger"
-                        style={{
-                          padding: "0.25rem 0.5rem",
-                        }}
-                        onClick={() => remove(index)}
-                        type={"button"}
-                      >
-                        <box-icon name="trash" color="#fff" size="sm" />{" "}
-                        <span className="ml-1">Remove</span>
-                      </button>
+                style: repeatableStyle || {},
+              },
+              collapsible,
+              collapsibleItemProps:
+                (collapsible && {
+                  title: (fieldValue &&
+                    fieldValue[index] &&
+                    collapsibleProps.title(fieldValue[index])) || (
+                    <span className="i text-gray-500">
+                      {collapsibleProps.emptyTitle || "Untitled"}
+                    </span>
+                  ),
+                  className: repeatClassName,
+                }) ||
+                {},
+              children: (
+                <>
+                  {field.type !== "hidden" ? (
+                    <div className="form-section">
+                      <div className="w-full flex justify-end items-center">
+                        <button
+                          className="btn-danger"
+                          style={{
+                            padding: "0.25rem 0.5rem",
+                          }}
+                          onClick={() => remove(index)}
+                          type={"button"}
+                        >
+                          <box-icon name="trash" color="#fff" size="sm" />{" "}
+                          <span className="ml-1">Remove</span>
+                        </button>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <Field
+                          formProps={formProps}
+                          field={field}
+                          name={itemName}
+                        />
+                        <FormErrors
+                          _key={`${key}.${index}`}
+                          formProps={formProps}
+                        />
+                      </div>
                     </div>
-                    <div className="flex flex-col w-full">
-                      <Field
-                        formProps={formProps}
-                        field={field}
-                        name={itemName}
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <Field formProps={formProps} field={field} name={itemName} />
-                )}
-              </>
-            ),
-          });
-        })}
-      </ToggleList>
+                  ) : (
+                    <Field
+                      formProps={formProps}
+                      field={field}
+                      name={itemName}
+                    />
+                  )}
+                </>
+              ),
+            });
+          })}
+        </ToggleList>
+      </>
     );
 
     content = (

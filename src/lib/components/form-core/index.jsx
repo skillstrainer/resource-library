@@ -229,21 +229,23 @@ const FormComponent = (props, ref) => {
             formikResetFn.current = resetForm;
 
             return (
-              <Form className={`justify-start ${className}`}>
-                {items && !hideForm && (
-                  <FormSection
-                    fields={items}
-                    formProps={{
-                      ...formProps,
-                      errors: { ...formErrors, ...errors },
-                      formName,
-                      plugins: allPlugins,
-                      attemptedSubmit,
-                    }}
-                  />
-                )}
+              <Form className="justify-start">
+                <div className={`justify-start ${className}`}>
+                  {items && !hideForm && (
+                    <FormSection
+                      fields={items}
+                      formProps={{
+                        ...formProps,
+                        errors: { ...formErrors, ...errors },
+                        formName,
+                        plugins: allPlugins,
+                        attemptedSubmit,
+                      }}
+                    />
+                  )}
+                </div>
 
-                <div className="flex justify-between w-full mt-10">
+                <div className="flex justify-between w-full mt-3">
                   {onCancel && (
                     <input
                       type="button"
