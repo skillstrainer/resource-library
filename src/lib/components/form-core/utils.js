@@ -60,6 +60,8 @@ export const getSchema = (field) => {
       result = result
         .min(1, `${field.label} is required`)
         .required(`${field.label} is required`);
+    } else {
+      result = result.nullable();
     }
   }
 

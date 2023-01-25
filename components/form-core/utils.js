@@ -97,6 +97,8 @@ const getSchema = field => {
 
     if (field.required) {
       result = result.min(1, "".concat(field.label, " is required")).required("".concat(field.label, " is required"));
+    } else {
+      result = result.nullable();
     }
   }
 
