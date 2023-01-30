@@ -27,8 +27,6 @@ const FormField = props => {
   } = props;
   const {
     values,
-    errors,
-    touched,
     setFieldValue,
     plugins,
     attemptedSubmit
@@ -38,8 +36,7 @@ const FormField = props => {
     type
   } = field;
   const plugin = type !== "object" && (plugins[type] || plugins.input);
-  const fieldErrors = _lodash.default.get(errors, key) || "";
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full"
   }, plugin && plugin.Component ? /*#__PURE__*/_react.default.createElement(plugin.Component, _extends({
     name: key,
@@ -55,9 +52,7 @@ const FormField = props => {
     formProps: formProps,
     prefix: key,
     className: "input w-full"
-  }) : null), (touched[key] || attemptedSubmit) && fieldErrors && typeof fieldErrors === "string" && /*#__PURE__*/_react.default.createElement("div", {
-    className: "errors text-danger text-red-500"
-  }, fieldErrors));
+  }) : null);
 };
 
 var _default = FormField;

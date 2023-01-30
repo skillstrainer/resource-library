@@ -33,17 +33,23 @@ const Select = _ref => {
   } = _ref,
       fieldProps = _objectWithoutProperties(_ref, _excluded);
 
+  const {
+    formProps
+  } = fieldProps;
   return /*#__PURE__*/_react.default.createElement("div", {
     key: name,
     className: "col-span-6 sm:col-span-3 ".concat(className)
-  }, /*#__PURE__*/_react.default.createElement(_formik.Field, _extends({
+  }, /*#__PURE__*/_react.default.createElement("select", _extends({
     style: {
       boxSizing: "border-box"
     }
   }, _lodash.default.omit(fieldProps, ["onChange"]), {
-    as: "select",
     name: name,
-    className: "input-primary"
+    className: "input-primary",
+    onChange: function onChange(e) {
+      const value = e.target.value === "" ? null : e.target.value;
+      formProps.setFieldValue(name, value);
+    }
   }), /*#__PURE__*/_react.default.createElement("option", {
     value: ""
   }, "Choose an option"), options.map((option, i) => /*#__PURE__*/_react.default.createElement("option", {
