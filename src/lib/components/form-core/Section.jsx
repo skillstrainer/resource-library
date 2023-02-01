@@ -1,6 +1,6 @@
 import { AccordionItem } from "../shared/AccordionItem";
 import _ from "lodash";
-import React, { useMemo } from "react";
+import React from "react";
 import Field from "./Field";
 import SerialableListItem from "./Section/SerialableListItem";
 import ToggleList, { ToggleListItem } from "./ToggleList";
@@ -81,7 +81,6 @@ const FormSectionUnit = (props) => {
 
     content = (
       <>
-        {}
         <ToggleList>
           {/* Insert button */}
           {insertable && (
@@ -104,6 +103,7 @@ const FormSectionUnit = (props) => {
               itemName,
               fieldValue && fieldValue[index]
             );
+
             const { repeatClassName, repeatableStyle } = field;
 
             // wrapListItem formats the list items based on the list configuration

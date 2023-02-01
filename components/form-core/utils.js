@@ -1,11 +1,9 @@
 "use strict";
 
-require("core-js/modules/web.dom-collections.iterator.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.selectOption = exports.resolveFieldProps = exports.mergePlugins = exports.getSchema = exports.formatObject = exports.formatBySchema = exports.eventify = exports.deepMapObj = exports.createPlugin = exports.checkPlugins = exports.checkPlugin = void 0;
+exports.selectOption = exports.resolveFieldProps = exports.mergePlugins = exports.getObjectSchema = exports.formatObject = exports.formatBySchema = exports.eventify = exports.deepMapObj = exports.createPlugin = exports.checkPlugins = exports.checkPlugin = void 0;
 
 require("core-js/modules/es.array.includes.js");
 
@@ -13,7 +11,13 @@ require("core-js/modules/es.string.includes.js");
 
 require("core-js/modules/es.array.reduce.js");
 
+require("core-js/modules/web.dom-collections.iterator.js");
+
 require("core-js/modules/es.object.assign.js");
+
+require("core-js/modules/es.regexp.exec.js");
+
+require("core-js/modules/es.string.split.js");
 
 var yup = _interopRequireWildcard(require("yup"));
 
@@ -56,56 +60,72 @@ const formatObject = _ref => {
 
 exports.formatObject = formatObject;
 
-const getSchema = field => {
-  let result;
-  /*
-   *
-   *
-   * Single value validation
-   *
-   *
-   */
-  // Field type validation
-
-  if (field.type === "object") {
-    result = {};
-    Object.keys(field.fields).map(_f => {
-      result[_f] = getSchema(field.fields[_f]);
-      return null;
-    });
-    result = yup.object().shape(result);
-  } else {
-    result = field.schema || yup.string();
-  } // Field requirement validation
-
-
-  if (field.required && typeof result.required === "function") {
-    result = result.required("".concat(field.label, " is required"));
-  } else result = result.nullable();
-  /*
-   *
-   *
-   * Multi value validation
-   *
-   *
-   */
-
-
-  if (field.repeat) {
-    // Wrap in an array validation
-    result = yup.array().of(result); // Field requirement validation for array
+const getObjectSchema = (field, fieldValue) => {
+  const resolveSingleFieldSchema = (field, fieldValue) => {
+    let schema;
+    if (field.type === "object") schema = getObjectSchema(field, fieldValue);else schema = field.schema || yup.string();
 
     if (field.required) {
-      result = result.min(1, "".concat(field.label, " is required")).required("".concat(field.label, " is required"));
-    } else {
-      result = result.nullable();
-    }
-  }
+      if (typeof schema.required === "function") schema = schema.required(field.label + " is required");
+    } else schema = schema.nullable();
 
-  return result;
+    return schema;
+  };
+
+  return yup.object().shape(Object.keys(field.fields).reduce((fieldSchema, subFieldName) => {
+    const subfield = field.fields[subFieldName];
+    const subFieldLabel = subfield.label;
+    const subfieldValue = fieldValue && fieldValue[subFieldName];
+
+    if (subfield.repeat) {
+      // Subfield is repeatable
+      fieldSchema[subFieldName] = yup.array();
+
+      if (subfield.type === "object" && typeof subfield.fields === "function" || subfield.type !== "object" && typeof subfield.schema == "function") {
+        // Subfield schema requires resolution
+        const subFieldSchemaList = [];
+
+        for (const [subfieldValueItemIndex, subfieldValueItem] of (subfieldValue || []).entries()) {
+          const singleField = {};
+          if (subfield.type === "object") Object.assign(singleField, _objectSpread(_objectSpread({}, subfield), {}, {
+            repeat: false,
+            fields: subfield.fields({
+              value: subfieldValueItem
+            })
+          }));else Object.assign(singleField, _objectSpread(_objectSpread({}, subfield), {}, {
+            repeat: false,
+            schema: subfield.schema({
+              value: subfieldValueItem
+            })
+          }));
+          const subfieldChildSchema = resolveSingleFieldSchema(singleField, subfieldValueItem);
+          subFieldSchemaList.push(subfieldChildSchema);
+        }
+
+        fieldSchema[subFieldName] = fieldSchema[subFieldName].of(yup.lazy((_, opts) => {
+          const index = Number(opts.path.split("[").slice(-1)[0].split("]")[0]);
+          return subFieldSchemaList[index];
+        }));
+      } else {
+        // Subfield schema doesn't require resolution
+        const subfieldSchema = resolveSingleFieldSchema(_objectSpread(_objectSpread({}, subfield), {}, {
+          repeat: false
+        }), subfieldValue);
+        fieldSchema[subFieldName] = fieldSchema[subFieldName].of(subfieldSchema);
+      } // Handling requirement
+
+
+      if (subfield.required) fieldSchema[subFieldName] = fieldSchema[subFieldName].min(1, subFieldLabel + " is required").required(subFieldLabel + " is required");else fieldSchema[subFieldName] = fieldSchema[subFieldName].nullable();
+    } else {
+      const subfieldSchema = resolveSingleFieldSchema(subfield, subfieldValue);
+      fieldSchema[subFieldName] = subfieldSchema;
+    }
+
+    return fieldSchema;
+  }, {}));
 };
 
-exports.getSchema = getSchema;
+exports.getObjectSchema = getObjectSchema;
 
 const formatBySchema = (objField, fieldSchema) => {
   let result;

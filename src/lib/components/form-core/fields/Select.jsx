@@ -1,4 +1,3 @@
-import { Field } from "formik";
 import _ from "lodash";
 import React from "react";
 import { createPlugin } from "../utils";
@@ -13,7 +12,7 @@ export const Select = ({ name, options = [], className, ...fieldProps }) => {
         name={name}
         className="input-primary"
         onChange={function (e) {
-          const value = e.target.value === "" ? null : e.target.value;
+          const value = e.target.value === "" ? undefined : e.target.value;
           formProps.setFieldValue(name, value);
         }}
       >

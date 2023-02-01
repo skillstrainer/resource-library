@@ -33,7 +33,8 @@ const FormField = props => {
   } = formProps;
   let value = _lodash.default.get(values, key) || "";
   const {
-    type
+    type,
+    label
   } = field;
   const plugin = type !== "object" && (plugins[type] || plugins.input);
   return /*#__PURE__*/_react.default.createElement("div", {

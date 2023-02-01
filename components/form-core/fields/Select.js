@@ -7,8 +7,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.Select = void 0;
 
-var _formik = require("formik");
-
 var _lodash = _interopRequireDefault(require("lodash"));
 
 var _react = _interopRequireDefault(require("react"));
@@ -47,7 +45,7 @@ const Select = _ref => {
     name: name,
     className: "input-primary",
     onChange: function onChange(e) {
-      const value = e.target.value === "" ? null : e.target.value;
+      const value = e.target.value === "" ? undefined : e.target.value;
       formProps.setFieldValue(name, value);
     }
   }), /*#__PURE__*/_react.default.createElement("option", {
