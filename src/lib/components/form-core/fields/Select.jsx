@@ -4,22 +4,26 @@ import React from "react";
 import { createPlugin } from "../utils";
 
 export const Select = ({ name, options = [], className, ...fieldProps }) => {
+  const { formProps } = fieldProps;
   return (
     <div key={name} className={`col-span-6 sm:col-span-3 ${className}`}>
-      <Field
+      <select
         style={{ boxSizing: "border-box" }}
         {..._.omit(fieldProps, ["onChange"])}
-        as="select"
         name={name}
-        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+        className="input-primary"
+        onChange={function (e) {
+          const value = e.target.value === "" ? null : e.target.value;
+          formProps.setFieldValue(name, value);
+        }}
       >
-        <option>Choose an option</option>
+        <option value="">Choose an option</option>
         {options.map((option, i) => (
           <option className="p-2 font-medium" key={i} value={option.value}>
             {option.label}
           </option>
         ))}
-      </Field>
+      </select>
     </div>
   );
 };

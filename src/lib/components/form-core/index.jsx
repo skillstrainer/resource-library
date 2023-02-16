@@ -125,8 +125,6 @@ const FormComponent = (props, ref) => {
 
     // Running values through form processors
 
-    let error;
-
     // pre processors
     const preProcessors = resolvePreprocessors();
     for (const preProcessor of preProcessors) {
@@ -196,7 +194,7 @@ const FormComponent = (props, ref) => {
               .catch(
                 (err) =>
                   (onSubmitError && onSubmitError(err)) ||
-                  alert(err?.message || err)
+                  console.log("Couldn't submit form", err?.message || err)
               )
           }
         >
@@ -231,21 +229,23 @@ const FormComponent = (props, ref) => {
             formikResetFn.current = resetForm;
 
             return (
-              <Form className={`justify-start ${className}`}>
-                {items && !hideForm && (
-                  <FormSection
-                    fields={items}
-                    formProps={{
-                      ...formProps,
-                      errors: { ...formErrors, ...errors },
-                      formName,
-                      plugins: allPlugins,
-                      attemptedSubmit,
-                    }}
-                  />
-                )}
+              <Form className="justify-start">
+                <div className={`justify-start ${className}`}>
+                  {items && !hideForm && (
+                    <FormSection
+                      fields={items}
+                      formProps={{
+                        ...formProps,
+                        errors: { ...formErrors, ...errors },
+                        formName,
+                        plugins: allPlugins,
+                        attemptedSubmit,
+                      }}
+                    />
+                  )}
+                </div>
 
-                <div className="flex justify-between w-full mt-10">
+                <div className="flex justify-between w-full mt-3">
                   {onCancel && (
                     <input
                       type="button"

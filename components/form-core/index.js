@@ -155,8 +155,7 @@ const FormComponent = (props, ref) => {
       type: "object",
       fields: items
     });else values = {}; // Running values through form processors
-
-    let error; // pre processors
+    // pre processors
 
     const preProcessors = resolvePreprocessors();
 
@@ -213,7 +212,7 @@ const FormComponent = (props, ref) => {
   }, initValuesLoaded.current ? /*#__PURE__*/_react.default.createElement(_formik.Formik, {
     initialValues: formValues,
     validationSchema: validationSchema,
-    onSubmit: values => formikOnSubmit(values).then(res => "Form submitted").catch(err => onSubmitError && onSubmitError(err) || alert((err === null || err === void 0 ? void 0 : err.message) || err))
+    onSubmit: values => formikOnSubmit(values).then(res => "Form submitted").catch(err => onSubmitError && onSubmitError(err) || console.log("Couldn't submit form", (err === null || err === void 0 ? void 0 : err.message) || err))
   }, formProps => {
     const {
       values,
@@ -242,6 +241,8 @@ const FormComponent = (props, ref) => {
     formikSetValuesFn.current = setValues;
     formikResetFn.current = resetForm;
     return /*#__PURE__*/_react.default.createElement(_formik.Form, {
+      className: "justify-start"
+    }, /*#__PURE__*/_react.default.createElement("div", {
       className: "justify-start ".concat(className)
     }, items && !hideForm && /*#__PURE__*/_react.default.createElement(_Section.default, {
       fields: items,
@@ -251,8 +252,8 @@ const FormComponent = (props, ref) => {
         plugins: allPlugins,
         attemptedSubmit
       })
-    }), /*#__PURE__*/_react.default.createElement("div", {
-      className: "flex justify-between w-full mt-10"
+    })), /*#__PURE__*/_react.default.createElement("div", {
+      className: "flex justify-between w-full mt-3"
     }, onCancel && /*#__PURE__*/_react.default.createElement("input", {
       type: "button",
       onClick: () => onCancel(),

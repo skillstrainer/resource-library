@@ -47,9 +47,8 @@ const DateField = _ref => {
     style: {
       boxSizing: "border-box"
     },
-    className: "box-border mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm",
+    className: "input-primary",
     dateFormat: dateFormat,
-    minDate: new Date(),
     name: name,
     selected: value ? new Date(value) : new Date(),
     onChange: date => _onChange(date.toISOString()),

@@ -4,9 +4,6 @@ import { STRLContext } from "../../Context";
 
 export default function CourseCard(props) {
   const {
-    course: { getCoursePurchaseURL },
-  } = useContext(STRLContext);
-  const {
     data: {
       courseId,
       displayName,
@@ -15,6 +12,7 @@ export default function CourseCard(props) {
       cost,
       students_enrolled,
       discount,
+      partners,
       nsqf_lvl,
       duration,
       isMoodleCourse,
@@ -35,7 +33,9 @@ export default function CourseCard(props) {
     viewCourse = () => {},
   } = props;
 
-  const url = getCoursePurchaseURL(courseId);
+  const {
+    request: { s3Url },
+  } = useContext(STRLContext);
 
   return (
     <div
@@ -47,7 +47,13 @@ export default function CourseCard(props) {
           <div className="h-56 flex justify-center items-center bg-gray-200">
             <img
               className="max-w-full max-h-full shadow-xl"
-              src={courseImg && courseImg.url ? courseImg.url : courseImg}
+              src={
+                courseImg && courseImg
+                  ? isMoodleCourse
+                    ? courseImg
+                    : s3Url + "/" + courseImg
+                  : courseImg
+              }
               alt={displayName}
             />
           </div>
@@ -144,8 +150,17 @@ export default function CourseCard(props) {
           </p>
         </div>
       </div>
-
       <div className="w-full text-right">
+        <div className="flex flex-row ml-2 -mb-5">
+          {partners &&
+            partners.map((partner) => (
+              <img
+                src={partner.logo}
+                className={"h-10 mr-4"}
+                alt="Partner Text"
+              />
+            ))}{" "}
+        </div>{" "}
         <p className="text-japanese_indigo text-sm mx-2">
           See More Details &gt;{" "}
         </p>
@@ -226,7 +241,7 @@ export default function CourseCard(props) {
                   }}
                   className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
                 >
-                  Book a demo
+                  Book A Free Demo
                 </button>
               )
             ))}

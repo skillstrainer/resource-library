@@ -19,11 +19,6 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function CourseCard(props) {
   const {
-    course: {
-      getCoursePurchaseURL
-    }
-  } = (0, _react.useContext)(_Context.STRLContext);
-  const {
     data: {
       courseId,
       displayName,
@@ -32,6 +27,7 @@ function CourseCard(props) {
       cost,
       students_enrolled,
       discount,
+      partners,
       nsqf_lvl,
       duration,
       isMoodleCourse,
@@ -49,7 +45,11 @@ function CourseCard(props) {
     isPurchased,
     viewCourse = () => {}
   } = props;
-  const url = getCoursePurchaseURL(courseId);
+  const {
+    request: {
+      s3Url
+    }
+  } = (0, _react.useContext)(_Context.STRLContext);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "relative flex flex-col rounded-lg shadow-lg overflow-hidden cursor-pointer mx-2",
     onClick: goToDetailPage
@@ -59,7 +59,7 @@ function CourseCard(props) {
     className: "h-56 flex justify-center items-center bg-gray-200"
   }, /*#__PURE__*/_react.default.createElement("img", {
     className: "max-w-full max-h-full shadow-xl",
-    src: courseImg && courseImg.url ? courseImg.url : courseImg,
+    src: courseImg && courseImg ? isMoodleCourse ? courseImg : s3Url + "/" + courseImg : courseImg,
     alt: displayName
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "absolute top-2 left-2"
@@ -135,7 +135,13 @@ function CourseCard(props) {
     d: "M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24a5.98 5.98 0 010 7.52c.42.14.86.24 1.33.24zM9 13c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
   })), students_enrolled || 0))), /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full text-right"
-  }, /*#__PURE__*/_react.default.createElement("p", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "flex flex-row ml-2 -mb-5"
+  }, partners && partners.map(partner => /*#__PURE__*/_react.default.createElement("img", {
+    src: partner.logo,
+    className: "h-10 mr-4",
+    alt: "Partner Text"
+  })), " "), " ", /*#__PURE__*/_react.default.createElement("p", {
     className: "text-japanese_indigo text-sm mx-2"
   }, "See More Details >", " ")), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex item-center justify-center w-full"
@@ -187,5 +193,5 @@ function CourseCard(props) {
       onBookDemo();
     },
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-  }, "Book a demo")))));
+  }, "Book A Free Demo")))));
 }

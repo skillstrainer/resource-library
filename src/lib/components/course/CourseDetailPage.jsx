@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { STRLContext } from "../../Context";
 import MultiLangBody from "../multi-lang/MultiLangBody";
 import MultiLangFieldMd from "../multi-lang/MultiLangFieldMd";
 import MultiLangFieldImage from "../multi-lang/MultiLangFieldImage";
 import MultiLangField from "../multi-lang/MultiLangField";
-import { stopPropagation } from "../../utils/dom";
+import CourseOverviewAndPurchaseFragment from "./CourseOverviewAndPurchaseFragment";
 
 // Icons
 import { Disclosure } from "@headlessui/react";
@@ -15,13 +14,9 @@ import { ChevronUpIcon } from "@heroicons/react/solid";
 import pageTopBg from "../../assets/image/page-top-bg.png";
 import emptyCertificate from "../../assets/image/certificate.jpg";
 import jobs from "../../assets/image/jobs.jpg";
-import newLogo from "../../assets/image/newLogo.svg";
-import { useState } from "react";
+import { useMemo } from "react";
 
 function CourseDetailPage(props) {
-  const {
-    course: { getCoursePurchaseURL },
-  } = useContext(STRLContext);
   const {
     courseData,
     multiLangData,
@@ -35,35 +30,14 @@ function CourseDetailPage(props) {
     viewCourse = () => {},
   } = props;
 
-  const {
-    courseId,
-    displayName,
-    categoryName,
-    description,
-    courseImg,
-    cost,
-    discount,
-    students_enrolled,
-    nsqf_lvl,
-    modules,
-    partners,
-    videoUrl,
-    certificateImageUrl,
-    isMoodleCourse,
-    subscription_cost,
-    is_subscription,
-    interval,
-    course_type,
+  const { description, modules, certificateImageUrl, isMoodleCourse } =
+    courseData || {};
 
-    // Demo class
-    userHasRegisteredDemo,
-    onViewDemoDetails = () => {},
-    isDemoAvailable,
-    onBookDemo = () => {},
-  } = courseData || {};
-
-  const [payingBySubscription, setPayingBySubscription] = useState(false);
-  const [paymentStarted, setPaymentStarted] = useState(false);
+  const videoURL = useMemo(() => {
+    let { videoUrl } = courseData;
+    if (!videoUrl) return "";
+    return "https://www.youtube.com/embed/" + videoUrl.split("watch?v=")[1];
+  }, [courseData.videoUrl]);
 
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
@@ -76,257 +50,25 @@ function CourseDetailPage(props) {
             style={{ zIndex: "-1" }}
           />
           <div className="content mx-auto bg-white" style={{ zIndex: "1" }}>
-            <div className="flex justify-center">
-              <div className="px-4 py-10 md:px-10 shadow-xl w-full">
-                <div className="flex flex-between flex-col gap-5 md:flex-row">
-                  <div className="w-full md:w-2/5">
-                    <div class="relative">
-                      <img
-                        class="w-full object-cover object-center shadow-xl rounded-xl"
-                        src={courseImg}
-                        alt="course-img"
-                      />
-                      <div class="absolute top-4 left-2 font-semibold">
-                        <button
-                          className="bg-white text-xs font-semibold rounded-md p-1 shadow-lg border"
-                          onClick={goToCategoryPage}
-                        >
-                          {categoryName}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full md:w-3/5">
-                    <h2 className="text-2xl font-semibold leading-10 text-japanese_indigo mb-3">
-                      <MultiLangField name="display_name">
-                        {displayName}
-                      </MultiLangField>
-                    </h2>
-                    <div className="mb-6 text-sm">
-                      <div class="flex flex-row justify-between">
-                        <div className="flex items-center">
-                          <svg
-                            stroke="currentColor"
-                            fill="currentColor"
-                            stroke-width="0"
-                            viewBox="0 0 24 24"
-                            class="text-orange mx-1"
-                            height="1.4em"
-                            width="1.4em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path
-                              fill-rule="evenodd"
-                              d="M16.67 13.13C18.04 14.06 19 15.32 19 17v3h4v-3c0-2.18-3.57-3.47-6.33-3.87z"
-                            ></path>
-                            <circle
-                              cx="9"
-                              cy="8"
-                              r="4"
-                              fill-rule="evenodd"
-                            ></circle>
-                            <path
-                              fill-rule="evenodd"
-                              d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24a5.98 5.98 0 010 7.52c.42.14.86.24 1.33.24zM9 13c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
-                            ></path>
-                          </svg>
-                          <span className="ml-2">
-                            {students_enrolled} students
-                          </span>
-                        </div>
-                        <a
-                          href="https://www.youtube.com/watch?v=riE-VMMXMHI"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <span className="red-dark mr-2">NSQF</span>
-                          <span>{nsqf_lvl || "NA"}</span>
-                        </a>
-                      </div>
-                    </div>
-                    <div className="text-md mb-3">
-                      <span className="font-semibold text-japanese_indigo mr-3 ">
-                        Course Structure:
-                      </span>
-                      <span>
-                        {course_type == 3
-                          ? "Physical Classes + Live Online Classes + Digital Content"
-                          : course_type == 2
-                          ? "Live Online Classes + Digital Content"
-                          : course_type == 1
-                          ? "Digital Content (Self Paced)"
-                          : "Self Paced Digital Content"}
-                      </span>
-                    </div>
-
-                    {is_subscription && !isPurchased && (
-                      <div className="text-md mb-3">
-                        <span className="font-semibold text-japanese_indigo mr-3 ">
-                          Course Payment type:
-                        </span>
-                        <span>
-                          <RadioButton
-                            label="One Time"
-                            value={!payingBySubscription}
-                            onChange={() => setPayingBySubscription(false)}
-                          />
-                          <RadioButton
-                            label="Installment"
-                            value={payingBySubscription}
-                            onChange={() => setPayingBySubscription(true)}
-                          />
-                        </span>
-                      </div>
-                    )}
-
-                    <div className="text-md mb-3">
-                      <span className="font-semibold text-japanese_indigo mr-3 ">
-                        {!payingBySubscription
-                          ? "Price:"
-                          : "Installment Price:"}
-                      </span>
-                      <span>
-                        {!payingBySubscription ? (
-                          <>
-                            <span
-                              className={discount ? "line-through mr-2" : ""}
-                            >
-                              {cost > 0 ? `₹ ${cost}` : "Free"}
-                            </span>
-                            {discount && (
-                              <span>₹ {Number(cost) - Number(discount)}</span>
-                            )}
-                          </>
-                        ) : payingBySubscription ? (
-                          `₹${subscription_cost}/Month Upto ${interval} Months`
-                        ) : (
-                          ""
-                        )}
-                      </span>
-                    </div>
-
-                    {partners && (
-                      <div>
-                        <span className="font-semibold text-japanese_indigo mr-3 text-md">
-                          Certification Partners:
-                        </span>
-                        <div className="mx-2 flex flex-wrap mt-3 mb-3">
-                          {partners
-                            .concat([{ logo: newLogo }])
-                            .map(
-                              (p) =>
-                                (p && p.logo && (
-                                  <img src={p.logo} className="h-6" />
-                                )) ||
-                                null
-                            )}
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="flex gap-3">
-                      {isPurchased ? (
-                        <button
-                          className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto"
-                          onClick={viewCourse}
-                        >
-                          View course
-                        </button>
-                      ) : (
-                        <button
-                          onClick={(e) => {
-                            stopPropagation(e);
-                            setPaymentStarted(true);
-                            payNow({
-                              payingBySubscription,
-                            })
-                              .catch(() => {})
-                              .then(setPaymentStarted);
-                          }}
-                          className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
-                          disabled={paymentStarted}
-                        >
-                          {paymentStarted ? (
-                            "Please wait..."
-                          ) : !payingBySubscription ? (
-                            <>
-                              <span>Get Enrolled for </span>
-                              <span
-                                className={`font-bold ${
-                                  discount ? "line-through mr-2" : ""
-                                }`}
-                              >
-                                {cost > 0 ? `₹ ${cost}` : "Free"}
-                              </span>
-                              {discount && (
-                                <span className="font-bold">
-                                  ₹ {Number(cost) - Number(discount)}
-                                </span>
-                              )}
-                            </>
-                          ) : (
-                            <>
-                              <span>Get Enrolled for </span>
-                              <span className="font-bold">
-                                ₹ {subscription_cost}
-                              </span>
-                            </>
-                          )}
-                        </button>
-                      )}
-
-                      {/* :(
-                        <a
-                          href={getCoursePurchaseURL(courseId)}
-                          onClick={stopPropagation}
-                          target="_blank"
-                        >
-                          <button className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto">
-                            <span>Get Enrolled for </span>
-                            <span
-                              className={`font-bold ${
-                                discount ? "line-through mr-2" : ""
-                              }`}
-                            >
-                              {cost > 0 ? `₹ ${cost}` : "Free"}
-                            </span>
-                            {discount && (
-                              <span className="font-bold">
-                                ₹ {Number(cost) - Number(discount)}
-                              </span>
-                            )}
-                          </button>
-                        </a>
-                      )} */}
-                      {!isPurchased &&
-                        (userHasRegisteredDemo ? (
-                          <button
-                            onClick={() => onViewDemoDetails()}
-                            className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-                          >
-                            Show demo class details
-                          </button>
-                        ) : (
-                          isDemoAvailable && (
-                            <button
-                              onClick={() => onBookDemo()}
-                              className="text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-                            >
-                              Book demo
-                            </button>
-                          )
-                        ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <CourseOverviewAndPurchaseFragment
+              courseData={courseData}
+              onPaymentStarted={payNow}
+              viewCourse={viewCourse}
+              goToCategoryPage={goToCategoryPage}
+              isPurchased={isPurchased}
+            />
           </div>
         </div>
       </section>
       <section className="mt-12">
-        <div className="content mx-auto grid grid-cols-1 lg:grid-cols-2">
+        <div
+          className="content mx-auto grid grid-cols-1 lg:grid-cols-2"
+          style={{
+            gridTemplateColumns: videoURL
+              ? "repeat(2, minmax(0, 1fr))"
+              : "repeat(1, minmax(0, 1fr)",
+          }}
+        >
           <div className="mr-5">
             <div className="text-3xl blue-dark2 font-semibold leading-10 text-center mt-3">
               About the Course
@@ -342,11 +84,19 @@ function CourseDetailPage(props) {
               </MultiLangField>
             </p>
           </div>
-          <div className="ml-5">
-            <video autoPlay controls width="100%">
-              <source src={videoUrl} />
-            </video>
-          </div>
+          {videoURL && (
+            <div className="ml-5">
+              <iframe
+                width="560"
+                height="315"
+                src={videoURL}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          )}
         </div>
       </section>
       <section>
@@ -455,21 +205,6 @@ function CourseDetailPage(props) {
                   }
                   className="w-full h-full"
                 />
-                {/* <p
-                  className="absolute w-full h-full top-0 left-0 text-center text-gray-600"
-                  style={{
-                    transform: "scale(0.6) translateY(50%)",
-                  }}
-                >
-                  student of <b>XYZ Institute</b> has successfully
-                  <br />
-                  cleared the assessment for the job role of
-                  <br />
-                  <b>{displayName}</b>
-                  <br />
-                  conforming to National Skills Qualifications Framework Level -{" "}
-                  {nsqf_lvl || "X"}
-                </p> */}
               </div>
             </div>
           </div>
@@ -517,19 +252,5 @@ function CourseDetailPage(props) {
     </MultiLangBody>
   );
 }
-
-const RadioButton = ({ label, value, onChange }) => {
-  return (
-    <label className="mr-5">
-      <input
-        type="radio"
-        className="mr-1"
-        checked={value}
-        onChange={onChange}
-      />
-      {label}
-    </label>
-  );
-};
 
 export default CourseDetailPage;

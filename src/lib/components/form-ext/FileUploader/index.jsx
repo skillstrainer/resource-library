@@ -28,7 +28,7 @@ export default function FileUploader(props) {
   const fileCountRef = useRef(1);
   useEffect(() => {
     setFileList(
-      fileList.map((f) => ({ ...f, id: fileCountRef.current++ + "" }))
+      fileList.map((f) => ({ ...f, id: f.id || fileCountRef.current++ + "" }))
     );
   }, []);
 
