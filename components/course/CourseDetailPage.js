@@ -106,9 +106,9 @@ function CourseDetailPage(props) {
     className: "text-3xl blue-dark2 font-semibold leading-10 text-center mt-3"
   }, "About the Course"), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
     name: "description"
-  }, " ", /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     dangerouslySetInnerHTML: {
-      __html: description.replace(/\n/g, "<br />")
+      __html: description === null || description === void 0 ? void 0 : description.replace(/\n/g, "<br />")
     }
   })))), videoURL && /*#__PURE__*/_react.default.createElement("div", {
     className: "ml-5"
