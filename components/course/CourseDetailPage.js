@@ -9,6 +9,10 @@ require("core-js/modules/es.symbol.description.js");
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
+require("core-js/modules/es.regexp.exec.js");
+
+require("core-js/modules/es.string.replace.js");
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _Context = require("../../Context");
@@ -234,7 +238,11 @@ function CourseDetailPage(props) {
     className: "text-3xl blue-dark2 font-semibold leading-10 text-center mt-3"
   }, "About the Course"), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
     name: "description"
-  }, description))), /*#__PURE__*/_react.default.createElement("div", {
+  }, " ", /*#__PURE__*/_react.default.createElement("div", {
+    dangerouslySetInnerHTML: {
+      __html: description.replace(/\n/g, "<br />")
+    }
+  })))), /*#__PURE__*/_react.default.createElement("div", {
     className: "ml-5"
   }, /*#__PURE__*/_react.default.createElement("video", {
     autoPlay: true,

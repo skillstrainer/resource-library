@@ -332,7 +332,14 @@ function CourseDetailPage(props) {
               About the Course
             </div>
             <p>
-              <MultiLangField name="description">{description}</MultiLangField>
+              <MultiLangField name="description">
+                {" "}
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: description.replace(/\n/g, "<br />"),
+                  }}
+                />
+              </MultiLangField>
             </p>
           </div>
           <div className="ml-5">
