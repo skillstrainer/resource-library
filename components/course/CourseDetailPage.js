@@ -13,6 +13,8 @@ require("core-js/modules/es.regexp.exec.js");
 
 require("core-js/modules/es.string.split.js");
 
+require("core-js/modules/es.string.replace.js");
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _MultiLangBody = _interopRequireDefault(require("../multi-lang/MultiLangBody"));
@@ -31,7 +33,7 @@ var _solid = require("@heroicons/react/solid");
 
 var _pageTopBg = _interopRequireDefault(require("../../assets/image/page-top-bg.png"));
 
-var _certificate = _interopRequireDefault(require("../../assets/image/certificate.jpg"));
+var _commonCertificate = _interopRequireDefault(require("../../assets/image/common-certificate.png"));
 
 var _jobs = _interopRequireDefault(require("../../assets/image/jobs.jpg"));
 
@@ -104,7 +106,11 @@ function CourseDetailPage(props) {
     className: "text-3xl blue-dark2 font-semibold leading-10 text-center mt-3"
   }, "About the Course"), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
     name: "description"
-  }, description))), videoURL && /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    dangerouslySetInnerHTML: {
+      __html: description === null || description === void 0 ? void 0 : description.replace(/\n/g, "<br />")
+    }
+  })))), videoURL && /*#__PURE__*/_react.default.createElement("div", {
     className: "ml-5"
   }, /*#__PURE__*/_react.default.createElement("iframe", {
     width: "560",
@@ -189,7 +195,7 @@ function CourseDetailPage(props) {
   }, "Certificate You Will Get"), /*#__PURE__*/_react.default.createElement("div", {
     className: "relative"
   }, /*#__PURE__*/_react.default.createElement("img", {
-    src: certificateImageUrl ? certificateImageUrl : _certificate.default,
+    src: certificateImageUrl ? certificateImageUrl : _commonCertificate.default,
     className: "w-full h-full"
   })))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full"

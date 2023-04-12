@@ -1,7 +1,7 @@
 export const consts = {
   production: {
     s3Url: "https://adminskillstrainerprod.s3.ap-south-1.amazonaws.com",
-    webappUrl: "https://webapp.skillstrainer.in",
+    webappUrl: "https://www.webapp.skillstrainer.in",
     adminPanelUrl: "https://admin.skillstrainer.in",
     marketingUrl: "https://skillstrainer.in",
     apiUrl: "https://webappapi.skillstrainer.in/api",

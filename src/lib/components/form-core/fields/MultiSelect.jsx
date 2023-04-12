@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import ReactSelect from "react-select";
 import { createPlugin } from "../utils";
 
