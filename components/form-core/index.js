@@ -1,77 +1,52 @@
 "use strict";
 
+require("core-js/modules/es.symbol.description.js");
+require("core-js/modules/es.weak-map.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.setFormGlobalPreprocessors = exports.setFormGlobalPostprocessors = exports.setFormGlobalPlugins = exports.getFormGlobalPreprocessors = exports.getFormGlobalPostprocessors = exports.getFormGlobalPlugins = exports.default = void 0;
-
 require("core-js/modules/web.dom-collections.iterator.js");
-
 require("core-js/modules/es.promise.js");
-
 require("core-js/modules/es.object.assign.js");
-
 require("core-js/modules/es.json.stringify.js");
-
 var _react = _interopRequireWildcard(require("react"));
-
 var _lodash = _interopRequireDefault(require("lodash"));
-
 var _formik = require("formik");
-
 var _utils = require("./utils");
-
 var _Section = _interopRequireDefault(require("./Section"));
-
 var _config = require("./config");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 // Form processors
 let globalPreprocessors = [..._config.defaultPreprocessors];
-
 const getFormGlobalPreprocessors = () => globalPreprocessors;
-
 exports.getFormGlobalPreprocessors = getFormGlobalPreprocessors;
-
 const setFormGlobalPostprocessors = pp => globalPostprocessors = [..._config.defaultPostprocessors, ...pp];
-
 exports.setFormGlobalPostprocessors = setFormGlobalPostprocessors;
 let globalPostprocessors = [..._config.defaultPostprocessors];
-
 const getFormGlobalPostprocessors = () => globalPostprocessors;
-
 exports.getFormGlobalPostprocessors = getFormGlobalPostprocessors;
+const setFormGlobalPreprocessors = pp => globalPreprocessors = [..._config.defaultPreprocessors, ...pp];
 
-const setFormGlobalPreprocessors = pp => globalPreprocessors = [..._config.defaultPreprocessors, ...pp]; // Form plugins
-
-
+// Form plugins
 exports.setFormGlobalPreprocessors = setFormGlobalPreprocessors;
-
 let globalPlugins = _objectSpread({}, _config.defaultPlugins);
-
 const getFormGlobalPlugins = () => globalPlugins;
-
 exports.getFormGlobalPlugins = getFormGlobalPlugins;
-
 const setFormGlobalPlugins = plugins => {
   (0, _utils.checkPlugins)(plugins);
   globalPlugins = (0, _utils.mergePlugins)(_config.defaultPlugins, plugins);
-}; // Main component
+};
 
-
+// Main component
 exports.setFormGlobalPlugins = setFormGlobalPlugins;
-
 const FormComponent = (props, ref) => {
   const {
     name,
@@ -85,8 +60,8 @@ const FormComponent = (props, ref) => {
     hideForm,
     hideSubmit,
     className,
-    preProcessors = globalPreprocessors // postProcessors = globalPostprocessors,
-
+    preProcessors = globalPreprocessors
+    // postProcessors = globalPostprocessors,
   } = props;
   const plugins = (0, _react.useMemo)(() => props.plugins || {}, [props.plugins]);
   const formName = name || "unnamed";
@@ -98,26 +73,28 @@ const FormComponent = (props, ref) => {
     return result;
   }, [plugins, globalPlugins]);
   const setFieldValueFn = (0, _react.useRef)();
-  const [attemptedSubmit, setAttemptedSubmit] = (0, _react.useState)(); // Formik function references
+  const [attemptedSubmit, setAttemptedSubmit] = (0, _react.useState)();
 
+  // Formik function references
   const formikSubmitFn = (0, _react.useRef)();
   const formikSetValuesFn = (0, _react.useRef)();
-  const formikResetFn = (0, _react.useRef)(); // resolve validation schema
+  const formikResetFn = (0, _react.useRef)();
 
+  // resolve validation schema
   const [validationSchema, setValidationSchema] = (0, _react.useState)(null);
   (0, _react.useEffect)(() => {
     if (items && !hideForm) setValidationSchema((0, _utils.getSchema)({
       type: "object",
       fields: items
     }));
-  }, [items]); // Resolvers
+  }, [items]);
 
+  // Resolvers
   const resolvePlugins = () => {
     const activePlugins = {};
     (0, _utils.deepMapObj)(items, (item, meta) => {
       if (meta.type === "obj") {
         const p = allPlugins[item.type];
-
         if (p) {
           activePlugins[item.type] = p;
         }
@@ -125,7 +102,6 @@ const FormComponent = (props, ref) => {
     });
     return activePlugins;
   };
-
   const resolvePreprocessors = () => {
     const plugins = resolvePlugins();
     const pluginPreprocessors = Object.values(plugins).map(plugin => {
@@ -133,45 +109,45 @@ const FormComponent = (props, ref) => {
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
           args[_key] = arguments[_key];
         }
-
         return plugin.preprocessor(...args, plugin);
       };
     }).filter(e => e);
     return [...pluginPreprocessors, ...preProcessors];
-  }; // Submission trigger
+  };
 
-
+  // Submission trigger
   const triggerSubmit = async () => {
     setAttemptedSubmit(true);
     return await formikSubmitFn.current();
-  }; // Submission logic
-
-
+  };
+  // Submission logic
   const formikOnSubmit = async values => {
-    setAttemptedSubmit(true); // Allowing only the key value pairs that are defined in form builder
-    // let values;
+    setAttemptedSubmit(true);
 
+    // Allowing only the key value pairs that are defined in form builder
+    // let values;
     if (!hideForm) values = (0, _utils.formatBySchema)(values, {
       type: "object",
       fields: items
-    });else values = {}; // Running values through form processors
+    });else values = {};
+
+    // Running values through form processors
+
     // pre processors
-
     const preProcessors = resolvePreprocessors();
-
     for (const preProcessor of preProcessors) {
       if (typeof preProcessor === "function") {
         values = await preProcessor(values);
       }
-    } // submitting values
+    }
 
-
+    // submitting values
     onSubmit(_objectSpread({}, values), setFieldValueFn.current);
     setFormValues(values);
     formikSetValuesFn.current(values);
-  }; // load initial values
+  };
 
-
+  // load initial values
   const initValuesLoaded = (0, _react.useRef)();
   const [initValuesError, setInitValuesError] = (0, _react.useState)();
   (0, _react.useEffect)(() => {
@@ -185,18 +161,19 @@ const FormComponent = (props, ref) => {
       initValuesLoaded.current = true;
     }
   }, []);
+
   /*
     Handle form validation on validationSchema change:
     Added this feature because when the user had invalid default values,
     clicking on proceed only showed there was a problem in submitting the form
     but not exactly where the bad input was
   */
-
   const [validateFormFn, setValidateFormFn] = (0, _react.useState)();
   (0, _react.useEffect)(() => {
     if (validationSchema && validateFormFn) validateFormFn.run();
-  }, [validationSchema, !!validateFormFn]); // Defining ref
+  }, [validationSchema, !!validateFormFn]);
 
+  // Defining ref
   (function () {
     if (ref) {
       const refData = {
@@ -206,7 +183,6 @@ const FormComponent = (props, ref) => {
       if (typeof ref === "function") ref(refData);else if (typeof ref === "object") Object.assign(ref.current, refData);
     }
   })();
-
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full"
   }, initValuesLoaded.current ? /*#__PURE__*/_react.default.createElement(_formik.Formik, {
@@ -226,7 +202,6 @@ const FormComponent = (props, ref) => {
     if (!validateFormFn) setValidateFormFn({
       run: validateForm
     });
-
     if (JSON.stringify(values) !== JSON.stringify(formValues) || JSON.stringify(errors) !== JSON.stringify(formErrors)) {
       setFieldValueFn.current = setFieldValue;
       setFormValues(_objectSpread({}, values));
@@ -236,7 +211,6 @@ const FormComponent = (props, ref) => {
         errors
       });
     }
-
     formikSubmitFn.current = submitForm;
     formikSetValuesFn.current = setValues;
     formikResetFn.current = resetForm;
@@ -267,7 +241,5 @@ const FormComponent = (props, ref) => {
     })));
   }) : initValuesError ? /*#__PURE__*/_react.default.createElement("div", null, "An error occured") : /*#__PURE__*/_react.default.createElement("div", null, "Loading..."));
 };
-
 var _default = /*#__PURE__*/_react.default.forwardRef(FormComponent);
-
 exports.default = _default;

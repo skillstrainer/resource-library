@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useMemo } from "react";
 import MultiLangBody from "../multi-lang/MultiLangBody";
 import MultiLangFieldMd from "../multi-lang/MultiLangFieldMd";
 import MultiLangFieldImage from "../multi-lang/MultiLangFieldImage";
@@ -12,9 +11,8 @@ import { ChevronUpIcon } from "@heroicons/react/solid";
 
 // Images
 import pageTopBg from "../../assets/image/page-top-bg.png";
-import emptyCertificate from "../../assets/image/certificate.jpg";
+import emptyCertificate from "../../assets/image/common-certificate.png";
 import jobs from "../../assets/image/jobs.jpg";
-import { useMemo } from "react";
 
 function CourseDetailPage(props) {
   const {

@@ -1,20 +1,15 @@
 "use strict";
 
+require("core-js/modules/es.weak-map.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Dropdown = Dropdown;
-
 require("core-js/modules/web.dom-collections.iterator.js");
-
 var _react = _interopRequireWildcard(require("react"));
-
 var _Context = require("../../Context");
-
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function Dropdown(props) {
   const strlContext = (0, _react.useContext)(_Context.STRLContext);
   const {
@@ -27,18 +22,15 @@ function Dropdown(props) {
   } = dependencies || {};
   const [isActive, setIsActive] = (0, _react.useState)(false);
   const dropdownRef = (0, _react.useRef)(null);
-
   const onClick = () => {
     setIsActive(!isActive);
   };
-
   (0, _react.useEffect)(() => {
     const pageClickEvent = e => {
       if (dropdownRef.current !== null && !dropdownRef.current.contains(e.target)) {
         setIsActive(!isActive);
       }
     };
-
     if (isActive) {
       window.addEventListener("click", pageClickEvent);
     } else {
