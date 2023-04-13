@@ -2,9 +2,13 @@ CURRENT_DIR=$(pwd)
 
 COMMIT_MESSAGE=$1
 
-WEBAPP_PATH='../webapp'
-ADMIN_PANEL_PATH='../admin'
-MARKETING_WEBSITE_PATH='../marketing-website/ui'
+# Create a file with the name "deploy_context.sh" in the same folder as this file
+# Add the following code and replace with suitable values:
+  # export WEBAPP_PATH='<PATH_TO_WEBAPP_LOCAL_REPO>'
+  # export ADMIN_PANEL_PATH='<PATH_TO_ADMIN_LOCAL_REPO>'
+  # export MARKETING_WEBSITE_PATH='<PATH_TO_MARKETING_WEBSITE_LOCAL_REPO>'
+
+source "./deploy_context.sh"
 
 if [ -z "$COMMIT_MESSAGE" ];
   then
