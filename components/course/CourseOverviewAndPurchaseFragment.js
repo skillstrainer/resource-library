@@ -52,6 +52,7 @@ function CourseOverviewAndPurchaseFragment(props) {
     isDemoAvailable,
     onBookDemo = () => {}
   } = courseData || {};
+  console.log("courseData===", courseData);
   const [payingBySubscription, setPayingBySubscription] = (0, _react.useState)(false);
   const [paymentStarted, setPaymentStarted] = (0, _react.useState)(false);
   const {
@@ -59,6 +60,7 @@ function CourseOverviewAndPurchaseFragment(props) {
       s3Url
     }
   } = (0, _react.useContext)(_Context.STRLContext);
+  console.log("hey==", s3Url);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -152,6 +154,7 @@ function CourseOverviewAndPurchaseFragment(props) {
   }, "Certification Partners:"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mx-2 flex flex-wrap mt-3 mb-3"
   }, partners.map(p => {
+    console.log("p==", p);
     return {
       logo: s3Url + "/" + p.logo
     };

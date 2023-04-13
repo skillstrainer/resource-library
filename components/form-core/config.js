@@ -19,6 +19,8 @@ var _Select = _interopRequireDefault(require("./fields/Select"));
 
 var _Textarea = _interopRequireDefault(require("./fields/Textarea"));
 
+var _RichText = _interopRequireDefault(require("./fields/RichText"));
+
 var _Address = _interopRequireDefault(require("../form-ext/Address"));
 
 var _FileUploader = require("../form-ext/FileUploader");
@@ -38,6 +40,7 @@ const defaultPlugins = {
   boolean: _Boolean.default,
   "multi-select": _MultiSelect.default,
   input: _Input.default,
+  "rich-text": _RichText.default,
   // Ext fields
   file: _FileUploader.FileUploaderPlugin,
   address: _Address.default

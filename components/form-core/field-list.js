@@ -9,6 +9,12 @@ Object.defineProperty(exports, "Boolean", {
     return _Boolean.Boolean;
   }
 });
+Object.defineProperty(exports, "CKEditorInput", {
+  enumerable: true,
+  get: function get() {
+    return _RichText.CKEditorInput;
+  }
+});
 Object.defineProperty(exports, "DateField", {
   enumerable: true,
   get: function get() {
@@ -59,3 +65,5 @@ var _MultiSelect = require("./fields/MultiSelect");
 var _Select = require("./fields/Select");
 
 var _Textarea = require("./fields/Textarea");
+
+var _RichText = require("./fields/RichText");
