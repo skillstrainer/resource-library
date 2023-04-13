@@ -50,12 +50,18 @@ export default function TestApp(props) {
   };
 
   return (
-    <CourseDetailPage courseData={courseData} />
-    // <Form
-    //   formBuilder={FormBuilder}
-    //   onSubmit={handleSubmit}
-    //   className="grid grid-cols-3 gap-2"
-    // />
+    // <CourseDetailPage courseData={courseData} />
+    <Form
+      formBuilder={FormBuilder}
+      initValues={{ nameText: "<b>Something</b>" }}
+      onSubmit={handleSubmit}
+      className="grid grid-cols-3 gap-2"
+      submitButton={{
+        text: "Save",
+        className:
+          "btn-primary bg-orange text-sm font-semibold text-white rounded-md px-6",
+      }}
+    />
   );
 }
 
@@ -83,37 +89,45 @@ const FormBuilder = (values) => {
         label: "Name",
         required: true,
       },
-      courses: {
-        type: "object",
-        label: "Courses and Revenue Split",
-        repeat: true,
-        insertable: true,
-        fields: {
-          id: {
-            type: "hidden",
-            schema: yup.string(),
-          },
-          partner_id: {
-            type: "hidden",
-            schema: yup.string(),
-          },
-          course_id: {
-            label: "Course",
-            type: "select",
-            required: true,
-            options: courses.map((course) => ({
-              value: course.id,
-              label: course.full_name,
-            })),
-            schema: yup.string(),
-          },
-          commission: {
-            label: "Partner Commission (%)",
-            type: "number",
-            schema: yup.number().min(0).max(100),
-          },
-        },
+      nameText: {
+        label: "Name",
+        type: "rich-text",
       },
+      select: {
+        label: "Name",
+        required: true,
+      },
+      // courses: {
+      //   type: "object",
+      //   label: "Courses and Revenue Split",
+      //   repeat: true,
+      //   insertable: true,
+      //   fields: {
+      //     id: {
+      //       type: "hidden",
+      //       schema: yup.string(),
+      //     },
+      //     partner_id: {
+      //       type: "hidden",
+      //       schema: yup.string(),
+      //     },
+      //     course_id: {
+      //       label: "Course",
+      //       type: "select",
+      //       required: true,
+      //       options: courses.map((course) => ({
+      //         value: course.id,
+      //         label: course.full_name,
+      //       })),
+      //       schema: yup.string(),
+      //     },
+      //     commission: {
+      //       label: "Partner Commission (%)",
+      //       type: "number",
+      //       schema: yup.number().min(0).max(100),
+      //     },
+      //   },
+      // },
     };
 
     setSchema(schema);

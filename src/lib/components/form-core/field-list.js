@@ -5,5 +5,15 @@ import { DateTime } from "./fields/DateTime";
 import { MultiSelect } from "./fields/MultiSelect";
 import { Select } from "./fields/Select";
 import { TextArea } from "./fields/Textarea";
+import { CKEditorInput } from "./fields/RichText";
 
-export { Input, Boolean, DateField, DateTime, MultiSelect, Select, TextArea };
+export {
+  Input,
+  Boolean,
+  DateField,
+  DateTime,
+  MultiSelect,
+  Select,
+  TextArea,
+  CKEditorInput,
+};
