@@ -106,10 +106,13 @@ const FormComponent = (props, ref) => {
 
   const [validationSchema, setValidationSchema] = (0, _react.useState)(null);
   (0, _react.useEffect)(() => {
-    if (items && !hideForm) setValidationSchema((0, _utils.getSchema)({
-      type: "object",
-      fields: items
-    }));
+    if (items && !hideForm) {
+      const newSchema = (0, _utils.getObjectSchema)({
+        type: "object",
+        fields: items
+      }, formValues);
+      setValidationSchema(newSchema);
+    }
   }, [items]); // Resolvers
 
   const resolvePlugins = () => {
@@ -245,6 +248,7 @@ const FormComponent = (props, ref) => {
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "justify-start ".concat(className)
     }, items && !hideForm && /*#__PURE__*/_react.default.createElement(_Section.default, {
+      key: name,
       fields: items,
       formProps: _objectSpread(_objectSpread({}, formProps), {}, {
         errors: _objectSpread(_objectSpread({}, formErrors), errors),

@@ -18,54 +18,105 @@ export const formatObject = ({ data, changeKeys, deleteKeys }) => {
   return data;
 };
 
-export const getSchema = (field) => {
-  let result;
-  /*
-   *
-   *
-   * Single value validation
-   *
-   *
-   */
-  // Field type validation
-  if (field.type === "object") {
-    result = {};
-    Object.keys(field.fields).map((_f) => {
-      result[_f] = getSchema(field.fields[_f]);
-      return null;
-    });
-    result = yup.object().shape(result);
-  } else {
-    result = field.schema || yup.string();
-  }
+export const getObjectSchema = (field, fieldValue) => {
+  const resolveSingleFieldSchema = (field, fieldValue) => {
+    let schema;
 
-  // Field requirement validation
-  if (field.required && typeof result.required === "function") {
-    result = result.required(`${field.label} is required`);
-  } else result = result.nullable();
+    if (field.type === "object") schema = getObjectSchema(field, fieldValue);
+    else schema = field.schema || yup.string();
 
-  /*
-   *
-   *
-   * Multi value validation
-   *
-   *
-   */
-  if (field.repeat) {
-    // Wrap in an array validation
-    result = yup.array().of(result);
-
-    // Field requirement validation for array
     if (field.required) {
-      result = result
-        .min(1, `${field.label} is required`)
-        .required(`${field.label} is required`);
-    } else {
-      result = result.nullable();
-    }
-  }
+      if (typeof schema.required === "function")
+        schema = schema.required(field.label + " is required");
+    } else schema = schema.nullable();
 
-  return result;
+    return schema;
+  };
+
+  return yup.object().shape(
+    Object.keys(field.fields).reduce((fieldSchema, subFieldName) => {
+      const subfield = field.fields[subFieldName];
+      const subFieldLabel = subfield.label;
+      const subfieldValue = fieldValue && fieldValue[subFieldName];
+
+      if (subfield.repeat) {
+        // Subfield is repeatable
+        fieldSchema[subFieldName] = yup.array();
+
+        if (
+          (subfield.type === "object" &&
+            typeof subfield.fields === "function") ||
+          (subfield.type !== "object" && typeof subfield.schema == "function")
+        ) {
+          // Subfield schema requires resolution
+          const subFieldSchemaList = [];
+
+          for (const [subfieldValueItemIndex, subfieldValueItem] of (
+            subfieldValue || []
+          ).entries()) {
+            const singleField = {};
+
+            if (subfield.type === "object")
+              Object.assign(singleField, {
+                ...subfield,
+                repeat: false,
+                fields: subfield.fields({ value: subfieldValueItem }),
+              });
+            else
+              Object.assign(singleField, {
+                ...subfield,
+                repeat: false,
+                schema: subfield.schema({ value: subfieldValueItem }),
+              });
+
+            const subfieldChildSchema = resolveSingleFieldSchema(
+              singleField,
+              subfieldValueItem
+            );
+
+            subFieldSchemaList.push(subfieldChildSchema);
+          }
+
+          fieldSchema[subFieldName] = fieldSchema[subFieldName].of(
+            yup.lazy((_, opts) => {
+              const index = Number(
+                opts.path.split("[").slice(-1)[0].split("]")[0]
+              );
+              return subFieldSchemaList[index];
+            })
+          );
+        } else {
+          // Subfield schema doesn't require resolution
+          const subfieldSchema = resolveSingleFieldSchema(
+            {
+              ...subfield,
+              repeat: false,
+            },
+            subfieldValue
+          );
+
+          fieldSchema[subFieldName] =
+            fieldSchema[subFieldName].of(subfieldSchema);
+        }
+
+        // Handling requirement
+        if (subfield.required)
+          fieldSchema[subFieldName] = fieldSchema[subFieldName]
+            .min(1, subFieldLabel + " is required")
+            .required(subFieldLabel + " is required");
+        else fieldSchema[subFieldName] = fieldSchema[subFieldName].nullable();
+      } else {
+        const subfieldSchema = resolveSingleFieldSchema(
+          subfield,
+          subfieldValue
+        );
+
+        fieldSchema[subFieldName] = subfieldSchema;
+      }
+
+      return fieldSchema;
+    }, {})
+  );
 };
 
 export const formatBySchema = (objField, fieldSchema) => {

@@ -8,7 +8,8 @@ const FormField = (props) => {
 
   let value = _.get(values, key) || "";
 
-  const { type } = field;
+  const { type, label } = field;
+
   const plugin = type !== "object" && (plugins[type] || plugins.input);
 
   return (

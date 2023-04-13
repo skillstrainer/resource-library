@@ -33,7 +33,7 @@ var _solid = require("@heroicons/react/solid");
 
 var _pageTopBg = _interopRequireDefault(require("../../assets/image/page-top-bg.png"));
 
-var _certificate = _interopRequireDefault(require("../../assets/image/certificate.jpg"));
+var _commonCertificate = _interopRequireDefault(require("../../assets/image/common-certificate.png"));
 
 var _jobs = _interopRequireDefault(require("../../assets/image/jobs.jpg"));
 
@@ -195,7 +195,7 @@ function CourseDetailPage(props) {
   }, "Certificate You Will Get"), /*#__PURE__*/_react.default.createElement("div", {
     className: "relative"
   }, /*#__PURE__*/_react.default.createElement("img", {
-    src: certificateImageUrl ? certificateImageUrl : _certificate.default,
+    src: certificateImageUrl ? certificateImageUrl : _commonCertificate.default,
     className: "w-full h-full"
   })))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full"

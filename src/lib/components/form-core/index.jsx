@@ -6,7 +6,7 @@ import {
   checkPlugins,
   deepMapObj,
   formatBySchema,
-  getSchema,
+  getObjectSchema,
   mergePlugins,
 } from "./utils";
 import FormSection from "./Section";
@@ -75,8 +75,13 @@ const FormComponent = (props, ref) => {
   // resolve validation schema
   const [validationSchema, setValidationSchema] = useState(null);
   useEffect(() => {
-    if (items && !hideForm)
-      setValidationSchema(getSchema({ type: "object", fields: items }));
+    if (items && !hideForm) {
+      const newSchema = getObjectSchema(
+        { type: "object", fields: items },
+        formValues
+      );
+      setValidationSchema(newSchema);
+    }
   }, [items]);
 
   // Resolvers
@@ -233,6 +238,7 @@ const FormComponent = (props, ref) => {
                 <div className={`justify-start ${className}`}>
                   {items && !hideForm && (
                     <FormSection
+                      key={name}
                       fields={items}
                       formProps={{
                         ...formProps,

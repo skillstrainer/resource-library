@@ -13,7 +13,7 @@ var _AccordionItem = require("../shared/AccordionItem");
 
 var _lodash = _interopRequireDefault(require("lodash"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _Field = _interopRequireDefault(require("./Field"));
 

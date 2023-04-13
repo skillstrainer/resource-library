@@ -1,9 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import MultiLangField from "../multi-lang/MultiLangField";
 import newLogo from "../../assets/image/newLogo.svg";
 import { stopPropagation } from "../../utils/dom";
-import { useContext } from "react";
 import { STRLContext } from "../../Context";
 
 export default function CourseOverviewAndPurchaseFragment(props) {
