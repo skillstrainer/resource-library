@@ -4,29 +4,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.defaultPreprocessors = exports.defaultPostprocessors = exports.defaultPlugins = void 0;
-
 var _Boolean = _interopRequireDefault(require("./fields/Boolean"));
-
 var _Date = _interopRequireDefault(require("./fields/Date"));
-
 var _DateTime = _interopRequireDefault(require("./fields/DateTime"));
-
 var _Input = _interopRequireDefault(require("./fields/Input"));
-
 var _MultiSelect = _interopRequireDefault(require("./fields/MultiSelect"));
-
 var _Select = _interopRequireDefault(require("./fields/Select"));
-
 var _Textarea = _interopRequireDefault(require("./fields/Textarea"));
-
 var _RichText = _interopRequireDefault(require("./fields/RichText"));
-
 var _Address = _interopRequireDefault(require("../form-ext/Address"));
-
 var _FileUploader = require("../form-ext/FileUploader");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 const defaultPreprocessors = [];
 exports.defaultPreprocessors = defaultPreprocessors;
 const defaultPostprocessors = [];

@@ -1,45 +1,31 @@
 "use strict";
 
+require("core-js/modules/es.symbol.description.js");
 require("core-js/modules/es.object.assign.js");
-
+require("core-js/modules/es.weak-map.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.FileUploaderPlugin = void 0;
 exports.default = FileUploader;
-
 require("core-js/modules/es.promise.js");
-
 require("core-js/modules/web.dom-collections.iterator.js");
-
 var _react = _interopRequireWildcard(require("react"));
-
 var _lodash = _interopRequireDefault(require("lodash"));
-
 var _file = require("../../../utils/file");
-
 var _Modal = _interopRequireDefault(require("../../shared/Modal"));
-
 var _CapturePhoto = _interopRequireDefault(require("./CapturePhoto"));
-
 var _EditableText = _interopRequireDefault(require("./EditableText"));
-
 var _FilePreview = _interopRequireDefault(require("./FilePreview"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function FileUploader(props) {
   const {
     value,
@@ -55,21 +41,18 @@ function FileUploader(props) {
     } = {}
   } = props;
   const fileInputRef = (0, _react.useRef)();
+  const getUrl = (services === null || services === void 0 ? void 0 : services.getUrl) || (async val => val);
 
-  const getUrl = (services === null || services === void 0 ? void 0 : services.getUrl) || (async val => val); // State management resources
-
-
+  // State management resources
   const fileList = value || [],
-        setFileList = fileList => onChange(fileList); // todo: reconsider the setting of id
-
-
+    setFileList = fileList => onChange(fileList);
+  // todo: reconsider the setting of id
   const fileCountRef = (0, _react.useRef)(1);
   (0, _react.useEffect)(() => {
     setFileList(fileList.map(f => _objectSpread(_objectSpread({}, f), {}, {
       id: f.id || fileCountRef.current++ + ""
     })));
   }, []);
-
   const updateValueList = filesArr => {
     setFileList(filesArr.map(file => ({
       ___file_uploader_component: true,
@@ -78,24 +61,18 @@ function FileUploader(props) {
       fileData: file
     })));
   };
-
   const updateFileItem = (itemId, prop) => value => setFileList(fileList.map(item => {
     if (item.id === itemId) item[prop] = value;
     return item;
   }));
-
   const removeFileItem = fileId => setFileList(fileList.filter(f => f.id !== fileId));
-
   const clearList = () => setFileList([]);
+  const [previewData, setPreviewData] = (0, _react.useState)();
 
-  const [previewData, setPreviewData] = (0, _react.useState)(); // Photo capture
-
+  // Photo capture
   const [isCaptureWindowOpen, setIsCaptureWindowOpen] = (0, _react.useState)();
-
   const capturePhoto = () => setIsCaptureWindowOpen(true);
-
   const endCapturePhoto = () => setIsCaptureWindowOpen(false);
-
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "mb-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -112,7 +89,8 @@ function FileUploader(props) {
     onChange: e => {
       if (e.target.files.length > 0) {
         // logic seems flawed
-        updateValueList([...(fileFieldProps.multiple ? fileList : []), // if only single file is allowed, then list should be replaced and not appended
+        updateValueList([...(fileFieldProps.multiple ? fileList : []),
+        // if only single file is allowed, then list should be replaced and not appended
         ...Array.from(e.target.files)]);
       }
     }
@@ -181,8 +159,8 @@ function FileUploader(props) {
     onClose: endCapturePhoto
   }, isCaptureWindowOpen && /*#__PURE__*/_react.default.createElement(_CapturePhoto.default, {
     onFinish: images => {
-      const filename = "snapshot-" + fileCountRef.current; // should there by a fieldProps.multiple check to prevent multiple images from being uploaded
-
+      const filename = "snapshot-" + fileCountRef.current;
+      // should there by a fieldProps.multiple check to prevent multiple images from being uploaded
       setFileList([...fileList, ...images.map(imageDataBase64 => ({
         ___file_uploader_component: true,
         id: fileCountRef.current++ + "",
@@ -193,31 +171,26 @@ function FileUploader(props) {
     }
   })));
 }
-
 const preprocessor = (values, pluginContext) => new Promise((resolve, reject) => {
   let registered = 0;
   let completed = 0;
   const {
     uploadFn
   } = (pluginContext === null || pluginContext === void 0 ? void 0 : pluginContext.services) || {};
-
   if (!uploadFn) {
     reject({
       message: "There is no upload function provided"
     });
     return;
   }
-
   const next = ok => {
     if (ok) {
       completed++;
       if (completed === registered) resolve(values);
     } else reject();
   };
-
   const rec = item => {
     if (!item) return;
-
     if (item.___file_uploader_component) {
       if (!item.url) {
         registered++;
@@ -235,11 +208,9 @@ const preprocessor = (values, pluginContext) => new Promise((resolve, reject) =>
       if (Array.isArray(item)) item.map(rec);else if (item && typeof item === "object") Object.values(item).map(rec);
     }
   };
-
   rec(values);
   if (registered === 0) resolve(values);
 });
-
 const FileUploaderPlugin = {
   Component: FileUploader,
   preprocessor

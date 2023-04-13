@@ -1,50 +1,32 @@
 "use strict";
 
+require("core-js/modules/es.weak-map.js");
 require("core-js/modules/web.dom-collections.iterator.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-
 require("core-js/modules/es.symbol.description.js");
-
 require("core-js/modules/es.regexp.exec.js");
-
-require("core-js/modules/es.string.split.js");
-
 require("core-js/modules/es.string.replace.js");
-
 var _react = _interopRequireWildcard(require("react"));
-
 var _MultiLangBody = _interopRequireDefault(require("../multi-lang/MultiLangBody"));
-
 var _MultiLangFieldMd = _interopRequireDefault(require("../multi-lang/MultiLangFieldMd"));
-
 var _MultiLangFieldImage = _interopRequireDefault(require("../multi-lang/MultiLangFieldImage"));
-
 var _MultiLangField = _interopRequireDefault(require("../multi-lang/MultiLangField"));
-
 var _CourseOverviewAndPurchaseFragment = _interopRequireDefault(require("./CourseOverviewAndPurchaseFragment"));
-
 var _react2 = require("@headlessui/react");
-
 var _solid = require("@heroicons/react/solid");
-
 var _pageTopBg = _interopRequireDefault(require("../../assets/image/page-top-bg.png"));
-
 var _commonCertificate = _interopRequireDefault(require("../../assets/image/common-certificate.png"));
-
 var _jobs = _interopRequireDefault(require("../../assets/image/jobs.jpg"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 // Icons
+
 // Images
+
 function CourseDetailPage(props) {
   const {
     courseData,
@@ -132,7 +114,6 @@ function CourseDetailPage(props) {
     as: "div"
   }, _ref => {
     var _module$coursesec, _module$coursesec2;
-
     let {
       open
     } = _ref;
@@ -164,7 +145,6 @@ function CourseDetailPage(props) {
     as: "div"
   }, _ref2 => {
     var _module$modules, _module$modules2;
-
     let {
       open
     } = _ref2;
@@ -228,6 +208,5 @@ function CourseDetailPage(props) {
     alt: "course-img"
   }))))));
 }
-
 var _default = CourseDetailPage;
 exports.default = _default;

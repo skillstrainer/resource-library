@@ -4,17 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useBasePath = void 0;
-
 require("core-js/modules/es.array.reduce.js");
-
 require("core-js/modules/es.regexp.exec.js");
-
 require("core-js/modules/es.string.replace.js");
-
 var _react = require("react");
-
 var _Context = require("../../Context");
-
 const useBasePath = () => {
   const {
     dependency: {
@@ -36,5 +30,4 @@ const useBasePath = () => {
   console.log(location.pathname, params, baseURL);
   return baseURL;
 };
-
 exports.useBasePath = useBasePath;

@@ -51,19 +51,11 @@ Object.defineProperty(exports, "TextArea", {
     return _Textarea.TextArea;
   }
 });
-
 var _Input = require("./fields/Input");
-
 var _Boolean = require("./fields/Boolean");
-
 var _Date = require("./fields/Date");
-
 var _DateTime = require("./fields/DateTime");
-
 var _MultiSelect = require("./fields/MultiSelect");
-
 var _Select = require("./fields/Select");
-
 var _Textarea = require("./fields/Textarea");
-
 var _RichText = require("./fields/RichText");

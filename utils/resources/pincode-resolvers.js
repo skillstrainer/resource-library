@@ -4,15 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.resolvers = void 0;
-
 require("core-js/modules/web.dom-collections.iterator.js");
-
 var _axios2 = _interopRequireDefault(require("axios"));
-
 var _lodash = _interopRequireDefault(require("lodash"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 const _axios = function _axios() {
   return (0, _axios2.default)(...arguments).then(_ref => {
     let {
@@ -21,7 +16,6 @@ const _axios = function _axios() {
     return data;
   });
 };
-
 const resolvers = {
   IND: pincode => {
     return _axios({
