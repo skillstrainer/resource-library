@@ -50,12 +50,18 @@ export default function TestApp(props) {
   };
 
   return (
-    <CourseDetailPage courseData={courseData} />
-    // <Form
-    //   formBuilder={FormBuilder}
-    //   onSubmit={handleSubmit}
-    //   className="grid grid-cols-3 gap-2"
-    // />
+    // <CourseDetailPage courseData={courseData} />
+    <Form
+      formBuilder={FormBuilder}
+      initValues={{ nameText: "<b>Something</b>" }}
+      onSubmit={handleSubmit}
+      className="grid grid-cols-3 gap-2"
+      submitButton={{
+        text: "Save",
+        className:
+          "btn-primary bg-orange text-sm font-semibold text-white rounded-md px-6",
+      }}
+    />
   );
 }
 

@@ -37,12 +37,16 @@ export default function CourseOverviewAndPurchaseFragment(props) {
     onBookDemo = () => {},
   } = courseData || {};
 
+  console.log("courseData===", courseData);
+
   const [payingBySubscription, setPayingBySubscription] = useState(false);
   const [paymentStarted, setPaymentStarted] = useState(false);
 
   const {
     request: { s3Url },
   } = useContext(STRLContext);
+
+  console.log("hey==", s3Url);
 
   return (
     <div className="flex justify-center">
@@ -183,6 +187,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                 <div className="mx-2 flex flex-wrap mt-3 mb-3">
                   {partners
                     .map((p) => {
+                      console.log("p==", p);
                       return {
                         logo: s3Url + "/" + p.logo,
                       };
