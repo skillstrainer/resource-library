@@ -1,8 +1,13 @@
-import React, { useState } from "react";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import React from "react";
 import _ from "lodash";
 import { createPlugin } from "../utils";
+
+const { CKEditor } =
+  typeof window !== "undefined" ? require("@ckeditor/ckeditor5-react") : {};
+const ClassicEditor =
+  typeof window !== "undefined"
+    ? require("@ckeditor/ckeditor5-build-classic")
+    : undefined;
 
 export const CKEditorInput = ({ name, className, onChange, value }) => {
   const handleChange = (data) => {
