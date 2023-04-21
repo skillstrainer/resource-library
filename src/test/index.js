@@ -38,8 +38,7 @@ export default function TestApp(props) {
 }
 
 const FormBuilder = (values) => {
-  const [schema, setSchema] = useState({});
-
+  const [schema, setSchema] = useState();
   useEffect(() => {
     const schema = {
       fileField: {
@@ -54,9 +53,7 @@ const FormBuilder = (values) => {
         ),
       },
     };
-
     setSchema(schema);
   }, []);
-
   return schema;
 };
