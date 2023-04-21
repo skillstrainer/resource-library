@@ -186,6 +186,9 @@ export const checkPlugins = (plugins) => {
 };
 
 export const mergePlugins = (lowPCollection, highPCollection) => {
+  lowPCollection = _.cloneDeep(lowPCollection);
+  highPCollection = _.cloneDeep(highPCollection);
+
   const all = { ...lowPCollection };
   Object.keys(highPCollection).map((pluginKey) => {
     if (all[pluginKey])
