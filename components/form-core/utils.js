@@ -181,6 +181,8 @@ const checkPlugins = plugins => {
 };
 exports.checkPlugins = checkPlugins;
 const mergePlugins = (lowPCollection, highPCollection) => {
+  lowPCollection = _lodash.default.cloneDeep(lowPCollection);
+  highPCollection = _lodash.default.cloneDeep(highPCollection);
   const all = _objectSpread({}, lowPCollection);
   Object.keys(highPCollection).map(pluginKey => {
     if (all[pluginKey]) Object.assign(all[pluginKey], highPCollection[pluginKey]);else all[pluginKey] = highPCollection[pluginKey];
