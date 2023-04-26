@@ -93,7 +93,6 @@ const FormComponent = (props, ref) => {
       { type: "object", fields: items },
       formValues
     );
-    console.log("All types", allTypes);
 
     for (const type of allTypes) {
       const p = allPlugins[type];
