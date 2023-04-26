@@ -245,7 +245,7 @@ const FormComponent = (props, ref) => {
       onClick: triggerSubmit,
       className: "button-primary ".concat((submitButton === null || submitButton === void 0 ? void 0 : submitButton.className) || ""),
       value: (submitButton === null || submitButton === void 0 ? void 0 : submitButton.text) || "Proceed",
-      disabled: submitButton.disabled
+      disabled: submitButton === null || submitButton === void 0 ? void 0 : submitButton.disabled
     })));
   }) : initValuesError ? /*#__PURE__*/_react.default.createElement("div", null, "An error occured") : /*#__PURE__*/_react.default.createElement("div", null, "Loading..."));
 };

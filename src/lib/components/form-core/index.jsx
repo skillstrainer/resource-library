@@ -275,7 +275,7 @@ const FormComponent = (props, ref) => {
                         submitButton?.className || ""
                       }`}
                       value={submitButton?.text || "Proceed"}
-                      disabled={submitButton.disabled}
+                      disabled={submitButton?.disabled}
                     />
                   )}
                 </div>
