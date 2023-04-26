@@ -12,23 +12,12 @@ export default function TestApp(props) {
       <Form
         onSubmit={handleSubmit}
         formBuilder={FormBuilder}
+        submitButton={{ text: "save", disabled: true }}
         plugins={{
           file: {
             services: {
               uploadFn: (value) =>
-                console.log("Getting file for upload 1", value),
-            },
-          },
-        }}
-      />
-      <Form
-        onSubmit={handleSubmit}
-        formBuilder={FormBuilder}
-        plugins={{
-          file: {
-            services: {
-              uploadFn: (value) =>
-                console.log("Getting file for upload 2", value),
+                console.log("Getting file for upload", value),
             },
           },
         }}
@@ -41,16 +30,8 @@ const FormBuilder = (values) => {
   const [schema, setSchema] = useState();
   useEffect(() => {
     const schema = {
-      fileField: {
-        type: "file",
-        label: "Upload",
-        schema: yup.array().of(
-          yup.object().shape({
-            url: yup.string(),
-            name: yup.string(),
-            id: yup.string().nullable(),
-          })
-        ),
+      file_items: {
+        type: "text",
       },
     };
     setSchema(schema);

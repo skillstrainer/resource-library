@@ -95,14 +95,17 @@ const FormComponent = (props, ref) => {
   // Resolvers
   const resolvePlugins = () => {
     const activePlugins = {};
-    (0, _utils.deepMapObj)(items, (item, meta) => {
-      if (meta.type === "obj") {
-        const p = allPlugins[item.type];
-        if (p) {
-          activePlugins[item.type] = p;
-        }
+    const allTypes = (0, _utils.getTypesFromItems)({
+      type: "object",
+      fields: items
+    }, formValues);
+    console.log("All types", allTypes);
+    for (const type of allTypes) {
+      const p = allPlugins[type];
+      if (p) {
+        activePlugins[type] = p;
       }
-    });
+    }
     return activePlugins;
   };
   const resolvePreprocessors = () => {
@@ -241,7 +244,8 @@ const FormComponent = (props, ref) => {
       type: "button",
       onClick: triggerSubmit,
       className: "button-primary ".concat((submitButton === null || submitButton === void 0 ? void 0 : submitButton.className) || ""),
-      value: (submitButton === null || submitButton === void 0 ? void 0 : submitButton.text) || "Proceed"
+      value: (submitButton === null || submitButton === void 0 ? void 0 : submitButton.text) || "Proceed",
+      disabled: submitButton.disabled
     })));
   }) : initValuesError ? /*#__PURE__*/_react.default.createElement("div", null, "An error occured") : /*#__PURE__*/_react.default.createElement("div", null, "Loading..."));
 };

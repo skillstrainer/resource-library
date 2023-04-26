@@ -79,9 +79,11 @@ export const getObjectSchema = (field, fieldValue) => {
 
           fieldSchema[subFieldName] = fieldSchema[subFieldName].of(
             yup.lazy((_, opts) => {
+              console.log(opts.path);
               const index = Number(
                 opts.path.split("[").slice(-1)[0].split("]")[0]
               );
+              console.log(subFieldSchemaList, index);
               return subFieldSchemaList[index];
             })
           );
@@ -117,6 +119,36 @@ export const getObjectSchema = (field, fieldValue) => {
       return fieldSchema;
     }, {})
   );
+};
+
+export const getTypesFromItems = (rootField, rootValue) => {
+  const types = {};
+
+  const rec = (field, value) => {
+    console.log(field, value);
+    if (field.type === "object") {
+      const iterateOverFieldsInstance = (fieldsInstance, value) => {
+        Object.keys(fieldsInstance).forEach((subFieldKey) => {
+          rec(fieldsInstance[subFieldKey], value[subFieldKey]);
+        });
+      };
+
+      if (typeof field.fields === "function") {
+        value.forEach((v) => {
+          const fieldsInstance = field.fields(v);
+          iterateOverFieldsInstance(fieldsInstance, v);
+        });
+      } else {
+        iterateOverFieldsInstance(field.fields, value);
+      }
+    } else {
+      types[field.type] = true;
+    }
+  };
+
+  rec(rootField, rootValue);
+
+  return Object.keys(types);
 };
 
 export const formatBySchema = (objField, fieldSchema) => {

@@ -5,7 +5,7 @@ require("core-js/modules/es.weak-map.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.selectOption = exports.resolveFieldProps = exports.mergePlugins = exports.getObjectSchema = exports.formatObject = exports.formatBySchema = exports.eventify = exports.deepMapObj = exports.createPlugin = exports.checkPlugins = exports.checkPlugin = void 0;
+exports.selectOption = exports.resolveFieldProps = exports.mergePlugins = exports.getTypesFromItems = exports.getObjectSchema = exports.formatObject = exports.formatBySchema = exports.eventify = exports.deepMapObj = exports.createPlugin = exports.checkPlugins = exports.checkPlugin = void 0;
 require("core-js/modules/es.array.includes.js");
 require("core-js/modules/es.string.includes.js");
 require("core-js/modules/es.array.reduce.js");
@@ -78,7 +78,9 @@ const getObjectSchema = (field, fieldValue) => {
           subFieldSchemaList.push(subfieldChildSchema);
         }
         fieldSchema[subFieldName] = fieldSchema[subFieldName].of(yup.lazy((_, opts) => {
+          console.log(opts.path);
           const index = Number(opts.path.split("[").slice(-1)[0].split("]")[0]);
+          console.log(subFieldSchemaList, index);
           return subFieldSchemaList[index];
         }));
       } else {
@@ -99,6 +101,32 @@ const getObjectSchema = (field, fieldValue) => {
   }, {}));
 };
 exports.getObjectSchema = getObjectSchema;
+const getTypesFromItems = (rootField, rootValue) => {
+  const types = {};
+  const rec = (field, value) => {
+    console.log(field, value);
+    if (field.type === "object") {
+      const iterateOverFieldsInstance = (fieldsInstance, value) => {
+        Object.keys(fieldsInstance).forEach(subFieldKey => {
+          rec(fieldsInstance[subFieldKey], value[subFieldKey]);
+        });
+      };
+      if (typeof field.fields === "function") {
+        value.forEach(v => {
+          const fieldsInstance = field.fields(v);
+          iterateOverFieldsInstance(fieldsInstance, v);
+        });
+      } else {
+        iterateOverFieldsInstance(field.fields, value);
+      }
+    } else {
+      types[field.type] = true;
+    }
+  };
+  rec(rootField, rootValue);
+  return Object.keys(types);
+};
+exports.getTypesFromItems = getTypesFromItems;
 const formatBySchema = (objField, fieldSchema) => {
   let result;
   if (fieldSchema.repeat && Array.isArray(objField)) {
