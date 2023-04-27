@@ -21,7 +21,7 @@ export const defaultPlugins = {
   "date-time": DateTimePlugin,
   boolean: BooleanPlugin,
   "multi-select": MultiSelectPlugin,
-  inputt: InputPlugin,
+  input: InputPlugin,
   "rich-text": RichTextPlugin,
   time: TimePlugin,
 

@@ -28,7 +28,7 @@ const defaultPlugins = {
   "date-time": _DateTime.default,
   boolean: _Boolean.default,
   "multi-select": _MultiSelect.default,
-  inputt: _Input.default,
+  input: _Input.default,
   "rich-text": _RichText.default,
   time: _Time.default,
   // Ext fields
