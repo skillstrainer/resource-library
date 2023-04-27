@@ -8,6 +8,7 @@ var _Boolean = _interopRequireDefault(require("./fields/Boolean"));
 var _Date = _interopRequireDefault(require("./fields/Date"));
 var _DateTime = _interopRequireDefault(require("./fields/DateTime"));
 var _Input = _interopRequireDefault(require("./fields/Input"));
+var _Time = _interopRequireDefault(require("./fields/Time"));
 var _MultiSelect = _interopRequireDefault(require("./fields/MultiSelect"));
 var _Select = _interopRequireDefault(require("./fields/Select"));
 var _Textarea = _interopRequireDefault(require("./fields/Textarea"));
@@ -27,8 +28,9 @@ const defaultPlugins = {
   "date-time": _DateTime.default,
   boolean: _Boolean.default,
   "multi-select": _MultiSelect.default,
-  input: _Input.default,
+  inputt: _Input.default,
   "rich-text": _RichText.default,
+  time: _Time.default,
   // Ext fields
   file: _FileUploader.FileUploaderPlugin,
   address: _Address.default

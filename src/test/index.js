@@ -12,15 +12,7 @@ export default function TestApp(props) {
       <Form
         onSubmit={handleSubmit}
         formBuilder={FormBuilder}
-        submitButton={{ text: "save", disabled: true }}
-        plugins={{
-          file: {
-            services: {
-              uploadFn: (value) =>
-                console.log("Getting file for upload", value),
-            },
-          },
-        }}
+        submitButton={{ text: "save" }}
       />
     </div>
   );
@@ -31,7 +23,7 @@ const FormBuilder = (values) => {
   useEffect(() => {
     const schema = {
       file_items: {
-        type: "text",
+        type: "time",
       },
     };
     setSchema(schema);

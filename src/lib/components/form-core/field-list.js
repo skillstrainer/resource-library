@@ -6,6 +6,7 @@ import { MultiSelect } from "./fields/MultiSelect";
 import { Select } from "./fields/Select";
 import { TextArea } from "./fields/Textarea";
 import { CKEditorInput } from "./fields/RichText";
+import { TimeInput } from "./fields/Time";
 
 export {
   Input,
@@ -16,4 +17,5 @@ export {
   Select,
   TextArea,
   CKEditorInput,
+  TimeInput,
 };
