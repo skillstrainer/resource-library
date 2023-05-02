@@ -72,16 +72,14 @@ function CourseDetailPage(props) {
             <div className="text-3xl blue-dark2 font-semibold leading-10 text-center mt-3">
               About the Course
             </div>
-            <p>
-              <MultiLangField name="description">
-                <div
-                  className="list-wrapper"
-                  dangerouslySetInnerHTML={{
-                    __html: description?.replace(/\n/g, "<br />"),
-                  }}
-                />
-              </MultiLangField>
-            </p>
+            <MultiLangField name="description">
+              <div
+                className="list-wrapper"
+                dangerouslySetInnerHTML={{
+                  __html: description?.replace(/\n/g, "<br />"),
+                }}
+              />
+            </MultiLangField>
           </div>
           {videoURL && (
             <div className="ml-5">
