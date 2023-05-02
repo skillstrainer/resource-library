@@ -52,6 +52,7 @@ function CourseDetailPage(props) {
     if (!videoUrl) return "";
     return "https://www.youtube.com/embed/" + videoUrl.split("watch?v=")[1];
   }, [courseData.videoUrl]);
+  console.log("courseData details page=====", courseData);
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
@@ -89,6 +90,7 @@ function CourseDetailPage(props) {
   }, "About the Course"), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
     name: "description"
   }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "list-wrapper",
     dangerouslySetInnerHTML: {
       __html: description === null || description === void 0 ? void 0 : description.replace(/\n/g, "<br />")
     }
@@ -170,7 +172,7 @@ function CourseDetailPage(props) {
         __html: item.name
       }
     })))));
-  })))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
+  })))), courseData.has_certificate === true && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-3xl text-center mb-8 blue-dark2 font-semibold"
   }, "Certificate You Will Get"), /*#__PURE__*/_react.default.createElement("div", {
     className: "relative"

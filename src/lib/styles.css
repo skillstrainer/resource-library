@@ -159,5 +159,9 @@
 }
 
 .form-section {
-  @apply pt-4 border-t-2
+  @apply pt-4 border-t-2;
+}
+
+.list-wrapper ul {
+  list-style-type: disc;
 }

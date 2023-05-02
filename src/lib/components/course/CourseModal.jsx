@@ -20,6 +20,8 @@ const CourseModal = (props) => {
     cost,
   } = course || {};
 
+  console.log("course======", course);
+
   return (
     <Modal
       isOpen={isOpen}

@@ -20,7 +20,7 @@ export const courseCardData = [
         course: {
           __typename: "courses_course",
           id: 112,
-          full_name: "ESSCI - In-Store Promoter",
+          full_name: "fullname ESSCI - In-Store Promoter",
         },
         partner: {
           __typename: "courses_partner",
@@ -37,7 +37,7 @@ export const courseCardData = [
         course: {
           __typename: "courses_course",
           id: 112,
-          full_name: "ESSCI - In-Store Promoter",
+          full_name: "nancy ESSCI - In-Store Promoter",
         },
         partner: {
           __typename: "courses_partner",
@@ -49,9 +49,10 @@ export const courseCardData = [
     ],
     categoryImg: "",
     courseId: 112,
-    shortName: "ESSCI - In-Store Promoter",
-    displayName: "ESSCI - In-Store Promoter",
-    description: "ESSCI - In-Store Promoter",
+    shortName: "short ESSCI - In-Store Promoter",
+    displayName: "dispay ESSCI - In-Store Promoter",
+    description:
+      "<ul><li>blh blah blah blah</li><li>hey Testing blahh</li><li><strong>Oh yes</strong></li></ul><p><strong>lets try something </strong><i><strong>else</strong></i></p>",
     courseImg:
       "https://lms.skillstrainer.in/moodle/pluginfile.php/1595900/course/overviewfiles/ISP.png",
     students_enrolled: 0,
@@ -67,6 +68,7 @@ export const courseCardData = [
     is_taxable: null,
     moodleCourseId: "180",
     course_type: null,
+    has_certificate: false,
     // videoUrl: "https://www.youtube.com/watch?v=g6fnFALEseI",
   },
   {
