@@ -8,13 +8,14 @@ function handleSubmit(values) {
 
 export default function TestApp(props) {
   return (
-    <div>
-      <Form
-        onSubmit={handleSubmit}
-        formBuilder={FormBuilder}
-        submitButton={{ text: "save" }}
-      />
-    </div>
+    // <div>
+    //   <Form
+    //     onSubmit={handleSubmit}
+    //     formBuilder={FormBuilder}
+    //     submitButton={{ text: "save" }}
+    //   />
+    // </div>
+    <CourseDetailPage />
   );
 }
 

@@ -62,7 +62,7 @@ export const courseCardData = [
     redirection_url:
       "https://lms.skillstrainer.in/moodle/course/view.php?id=180",
     cost: 999,
-    discount: null,
+    discount: 0,
     isMoodleCourse: true,
     is_subscription: null,
     is_taxable: null,
