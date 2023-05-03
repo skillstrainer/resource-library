@@ -138,7 +138,7 @@ export default function FileUploader(props) {
               <button
                 type="button"
                 className="px-2 flex-center"
-                onClick={previewFile}
+                onClick={() => previewFile(fileItem)}
               >
                 <box-icon name="show" color="gray" className="h-8" />
               </button>

@@ -144,7 +144,7 @@ function FileUploader(props) {
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     className: "px-2 flex-center",
-    onClick: previewFile
+    onClick: () => previewFile(fileItem)
   }, /*#__PURE__*/_react.default.createElement("box-icon", {
     name: "show",
     color: "gray",
