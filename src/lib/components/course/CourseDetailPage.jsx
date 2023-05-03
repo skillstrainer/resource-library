@@ -37,6 +37,7 @@ function CourseDetailPage(props) {
     return "https://www.youtube.com/embed/" + videoUrl.split("watch?v=")[1];
   }, [courseData.videoUrl]);
 
+  console.log("courseData details page=====", courseData);
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
       <section>
@@ -71,15 +72,14 @@ function CourseDetailPage(props) {
             <div className="text-3xl blue-dark2 font-semibold leading-10 text-center mt-3">
               About the Course
             </div>
-            <p>
-              <MultiLangField name="description">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: description?.replace(/\n/g, "<br />"),
-                  }}
-                />
-              </MultiLangField>
-            </p>
+            <MultiLangField name="description">
+              <div
+                className="list-wrapper"
+                dangerouslySetInnerHTML={{
+                  __html: description?.replace(/\n/g, "<br />"),
+                }}
+              />
+            </MultiLangField>
           </div>
           {videoURL && (
             <div className="ml-5">
@@ -191,19 +191,25 @@ function CourseDetailPage(props) {
                     </div>
                   )}
             </div>
-            <div>
-              <h2 className="text-3xl text-center mb-8 blue-dark2 font-semibold">
-                Certificate You Will Get
-              </h2>
-              <div className="relative">
-                <img
-                  src={
-                    certificateImageUrl ? certificateImageUrl : emptyCertificate
-                  }
-                  className="w-full h-full"
-                />
+
+            {courseData.has_certificate === true && (
+              <div>
+                <h2 className="text-3xl text-center mb-8 blue-dark2 font-semibold">
+                  Certificate You Will Get
+                </h2>
+
+                <div className="relative">
+                  <img
+                    src={
+                      certificateImageUrl
+                        ? certificateImageUrl
+                        : emptyCertificate
+                    }
+                    className="w-full h-full"
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

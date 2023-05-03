@@ -38,6 +38,7 @@ const CourseModal = props => {
     nsqf_lvl,
     cost
   } = course || {};
+  console.log("course======", course);
   return /*#__PURE__*/_react.default.createElement(_Modal.default, {
     isOpen: isOpen,
     onClose: onClose,

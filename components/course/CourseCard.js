@@ -152,7 +152,7 @@ function CourseCard(props) {
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold ".concat(discount ? "line-through mr-2" : "")
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), discount && /*#__PURE__*/_react.default.createElement("span", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), Boolean(discount) && /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
   }, "\u20B9 ", Number(cost) - Number(discount)))
 

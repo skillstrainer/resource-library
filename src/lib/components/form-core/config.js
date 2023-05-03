@@ -2,6 +2,7 @@ import BooleanPlugin from "./fields/Boolean";
 import DatePlugin from "./fields/Date";
 import DateTimePlugin from "./fields/DateTime";
 import InputPlugin from "./fields/Input";
+import TimePlugin from "./fields/Time";
 import MultiSelectPlugin from "./fields/MultiSelect";
 import SelectPlugin from "./fields/Select";
 import TextareaPlugin from "./fields/Textarea";
@@ -22,6 +23,7 @@ export const defaultPlugins = {
   "multi-select": MultiSelectPlugin,
   input: InputPlugin,
   "rich-text": RichTextPlugin,
+  time: TimePlugin,
 
   // Ext fields
   file: FileUploaderPlugin,

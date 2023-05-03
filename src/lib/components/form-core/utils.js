@@ -82,6 +82,7 @@ export const getObjectSchema = (field, fieldValue) => {
               const index = Number(
                 opts.path.split("[").slice(-1)[0].split("]")[0]
               );
+              console.log(subFieldSchemaList, index);
               return subFieldSchemaList[index];
             })
           );
@@ -117,6 +118,35 @@ export const getObjectSchema = (field, fieldValue) => {
       return fieldSchema;
     }, {})
   );
+};
+
+export const getTypesFromItems = (rootField, rootValue) => {
+  const types = {};
+
+  const rec = (field, value) => {
+    if (field.type === "object") {
+      const iterateOverFieldsInstance = (fieldsInstance, value) => {
+        Object.keys(fieldsInstance).forEach((subFieldKey) => {
+          rec(fieldsInstance[subFieldKey], value[subFieldKey]);
+        });
+      };
+
+      if (typeof field.fields === "function") {
+        value.forEach((v) => {
+          const fieldsInstance = field.fields(v);
+          iterateOverFieldsInstance(fieldsInstance, v);
+        });
+      } else {
+        iterateOverFieldsInstance(field.fields, value);
+      }
+    } else {
+      types[field.type] = true;
+    }
+  };
+
+  rec(rootField, rootValue);
+
+  return Object.keys(types);
 };
 
 export const formatBySchema = (objField, fieldSchema) => {
@@ -186,6 +216,9 @@ export const checkPlugins = (plugins) => {
 };
 
 export const mergePlugins = (lowPCollection, highPCollection) => {
+  lowPCollection = _.cloneDeep(lowPCollection);
+  highPCollection = _.cloneDeep(highPCollection);
+
   const all = { ...lowPCollection };
   Object.keys(highPCollection).map((pluginKey) => {
     if (all[pluginKey])

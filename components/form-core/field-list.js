@@ -51,6 +51,12 @@ Object.defineProperty(exports, "TextArea", {
     return _Textarea.TextArea;
   }
 });
+Object.defineProperty(exports, "TimeInput", {
+  enumerable: true,
+  get: function get() {
+    return _Time.TimeInput;
+  }
+});
 var _Input = require("./fields/Input");
 var _Boolean = require("./fields/Boolean");
 var _Date = require("./fields/Date");
@@ -59,3 +65,4 @@ var _MultiSelect = require("./fields/MultiSelect");
 var _Select = require("./fields/Select");
 var _Textarea = require("./fields/Textarea");
 var _RichText = require("./fields/RichText");
+var _Time = require("./fields/Time");

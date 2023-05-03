@@ -160,7 +160,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                     <span className={discount ? "line-through mr-2" : ""}>
                       {cost > 0 ? `₹ ${cost}` : "Free"}
                     </span>
-                    {discount && discount > 0 && (
+                    {Boolean(discount) && discount > 0 && (
                       <span>₹ {Number(cost) - Number(discount)}</span>
                     )}
                   </>
@@ -238,7 +238,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                       >
                         {cost > 0 ? `₹ ${cost}` : "Free"}
                       </span>
-                      {discount && discount > 0 && (
+                      {Boolean(discount) && discount > 0 && (
                         <span className="font-bold">
                           ₹ {Number(cost) - Number(discount)}
                         </span>

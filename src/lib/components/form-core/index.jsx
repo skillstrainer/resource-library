@@ -7,7 +7,9 @@ import {
   deepMapObj,
   formatBySchema,
   getObjectSchema,
+  getTypesFromItems,
   mergePlugins,
+  resolveFieldProps,
 } from "./utils";
 import FormSection from "./Section";
 import {
@@ -87,14 +89,17 @@ const FormComponent = (props, ref) => {
   // Resolvers
   const resolvePlugins = () => {
     const activePlugins = {};
-    deepMapObj(items, (item, meta) => {
-      if (meta.type === "obj") {
-        const p = allPlugins[item.type];
-        if (p) {
-          activePlugins[item.type] = p;
-        }
+    const allTypes = getTypesFromItems(
+      { type: "object", fields: items },
+      formValues
+    );
+
+    for (const type of allTypes) {
+      const p = allPlugins[type];
+      if (p) {
+        activePlugins[type] = p;
       }
-    });
+    }
     return activePlugins;
   };
   const resolvePreprocessors = () => {
@@ -269,6 +274,7 @@ const FormComponent = (props, ref) => {
                         submitButton?.className || ""
                       }`}
                       value={submitButton?.text || "Proceed"}
+                      disabled={submitButton?.disabled}
                     />
                   )}
                 </div>
