@@ -190,7 +190,7 @@ export default function CourseCard(props) {
                 >
                   {cost > 0 ? `₹ ${cost}` : "Free"}
                 </span>
-                {discount && (
+                {Boolean(discount) && (
                   <span className="font-bold">
                     ₹ {Number(cost) - Number(discount)}
                   </span>
