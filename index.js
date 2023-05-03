@@ -102,6 +102,12 @@ Object.defineProperty(exports, "Table", {
     return _Table.default;
   }
 });
+Object.defineProperty(exports, "Toast", {
+  enumerable: true,
+  get: function get() {
+    return _toast.Toast;
+  }
+});
 Object.defineProperty(exports, "getFormGlobalPlugins", {
   enumerable: true,
   get: function get() {
@@ -144,6 +150,7 @@ var _Context = require("./Context");
 var _Dropdown = require("./components/dropdown/Dropdown");
 var _Sidebar = _interopRequireDefault(require("./components/basic/Sidebar/Sidebar"));
 var _Table = _interopRequireDefault(require("./components/basic/Table/Table"));
+var _toast = require("./services/toast");
 var _CourseCard = _interopRequireDefault(require("./components/course/CourseCard"));
 var _CourseModal = _interopRequireDefault(require("./components/course/CourseModal"));
 var _CourseDetailPage = _interopRequireDefault(require("./components/course/CourseDetailPage"));
