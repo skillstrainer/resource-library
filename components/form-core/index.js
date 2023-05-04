@@ -9,6 +9,7 @@ exports.setFormGlobalPreprocessors = exports.setFormGlobalPostprocessors = expor
 require("core-js/modules/web.dom-collections.iterator.js");
 require("core-js/modules/es.promise.js");
 require("core-js/modules/es.object.assign.js");
+require("core-js/modules/es.promise.finally.js");
 require("core-js/modules/es.json.stringify.js");
 var _react = _interopRequireWildcard(require("react"));
 var _lodash = _interopRequireDefault(require("lodash"));
@@ -72,6 +73,7 @@ const FormComponent = (props, ref) => {
     const result = (0, _utils.mergePlugins)(globalPlugins, plugins);
     return result;
   }, [plugins, globalPlugins]);
+  const [isSubmitting, setIsSubmitting] = (0, _react.useState)();
   const setFieldValueFn = (0, _react.useRef)();
   const [attemptedSubmit, setAttemptedSubmit] = (0, _react.useState)();
 
@@ -147,9 +149,9 @@ const FormComponent = (props, ref) => {
     }
 
     // submitting values
-    onSubmit(_objectSpread({}, values), setFieldValueFn.current);
     setFormValues(values);
     formikSetValuesFn.current(values);
+    return onSubmit(_objectSpread({}, values), setFieldValueFn.current);
   };
 
   // load initial values
@@ -193,7 +195,10 @@ const FormComponent = (props, ref) => {
   }, initValuesLoaded.current ? /*#__PURE__*/_react.default.createElement(_formik.Formik, {
     initialValues: formValues,
     validationSchema: validationSchema,
-    onSubmit: values => formikOnSubmit(values).then(res => "Form submitted").catch(err => onSubmitError && onSubmitError(err) || console.log("Couldn't submit form", (err === null || err === void 0 ? void 0 : err.message) || err))
+    onSubmit: values => {
+      setIsSubmitting(true);
+      return formikOnSubmit(values).then(res => "Form submitted").catch(err => onSubmitError && onSubmitError(err) || console.log("Couldn't submit form", (err === null || err === void 0 ? void 0 : err.message) || err)).finally(() => setIsSubmitting(false));
+    }
   }, formProps => {
     const {
       values,
@@ -243,8 +248,8 @@ const FormComponent = (props, ref) => {
       type: "button",
       onClick: triggerSubmit,
       className: "button-primary ".concat((submitButton === null || submitButton === void 0 ? void 0 : submitButton.className) || ""),
-      value: (submitButton === null || submitButton === void 0 ? void 0 : submitButton.text) || "Proceed",
-      disabled: submitButton === null || submitButton === void 0 ? void 0 : submitButton.disabled
+      value: isSubmitting ? "Please wait..." : (submitButton === null || submitButton === void 0 ? void 0 : submitButton.text) || "Proceed",
+      disabled: isSubmitting || (submitButton === null || submitButton === void 0 ? void 0 : submitButton.disabled)
     })));
   }) : initValuesError ? /*#__PURE__*/_react.default.createElement("div", null, "An error occured") : /*#__PURE__*/_react.default.createElement("div", null, "Loading..."));
 };

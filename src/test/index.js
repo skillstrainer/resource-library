@@ -1,9 +1,8 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "../lib";
-import * as yup from "yup";
-import { STRLContext } from "../lib/Context";
 
-function handleSubmit(values) {
+async function handleSubmit(values) {
+  await new Promise((res) => setTimeout(res, 1000));
   console.log(values);
 }
 
@@ -12,11 +11,8 @@ const FormBuilder = (values) => {
 
   useEffect(() => {
     const schema = {
-      file_upload: {
-        type: "file",
-        showCaptureButton: true,
-        label: "Upload file",
-        schema: yup.array().of(yup.object()).required(),
+      name: {
+        label: "Name",
       },
     };
     setSchema(schema);
@@ -24,39 +20,10 @@ const FormBuilder = (values) => {
   return schema;
 };
 
-export default function TestApp(props) {
-  const { toast } = useContext(STRLContext);
-
-  const openFormModal = useCallback(async () => {
-    const formValues = await toast.prompt(ModalForm, {});
-    console.log(formValues);
-  }, [toast]);
-
+export default function ModalForm() {
   return (
     <div>
-      <button onClick={openFormModal} className="btn-primary">
-        Open form modal
-      </button>
-    </div>
-  );
-}
-
-function ModalForm() {
-  return (
-    <div>
-      <Form
-        formBuilder={FormBuilder}
-        plugins={{
-          file: {
-            services: {
-              uploadFn: (file) =>
-                console.log("Uploading file") ||
-                Promise.resolve(file.name + ".jpg"),
-            },
-          },
-        }}
-        onSubmit={handleSubmit}
-      />
+      <Form formBuilder={FormBuilder} onSubmit={handleSubmit} />
     </div>
   );
 }
