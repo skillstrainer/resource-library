@@ -43,7 +43,6 @@ function CourseOverviewAndPurchaseFragment(props) {
     isDemoAvailable,
     onBookDemo = () => {}
   } = courseData || {};
-  console.log("courseData===", courseData);
   const [payingBySubscription, setPayingBySubscription] = (0, _react.useState)(false);
   const [paymentStarted, setPaymentStarted] = (0, _react.useState)(false);
   const {

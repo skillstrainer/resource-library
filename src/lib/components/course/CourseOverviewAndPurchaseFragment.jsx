@@ -37,8 +37,6 @@ export default function CourseOverviewAndPurchaseFragment(props) {
     onBookDemo = () => {},
   } = courseData || {};
 
-  console.log("courseData===", courseData);
-
   const [payingBySubscription, setPayingBySubscription] = useState(false);
   const [paymentStarted, setPaymentStarted] = useState(false);
 
