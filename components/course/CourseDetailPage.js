@@ -52,7 +52,6 @@ function CourseDetailPage(props) {
     if (!videoUrl) return "";
     return "https://www.youtube.com/embed/" + videoUrl.split("watch?v=")[1];
   }, [courseData.videoUrl]);
-  console.log("courseData details page=====", courseData);
   return /*#__PURE__*/_react.default.createElement(_MultiLangBody.default, {
     _key: multiLangKey,
     data: multiLangData
@@ -103,7 +102,7 @@ function CourseDetailPage(props) {
     title: "YouTube video player",
     frameborder: "0",
     allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-    allowfullscreen: true
+    allowFullScreen: true
   })))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "content mx-auto bg-blue-grad px-4 py-10 md:px-10 mt-20"
   }, /*#__PURE__*/_react.default.createElement("div", {
