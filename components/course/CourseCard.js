@@ -145,7 +145,7 @@ function CourseCard(props) {
   })), duration))), /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full text-right"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex flex-row ml-2 -mb-5"
+    className: "flex flex-row ml-2 -mb-5 mt-4"
   }, partners && partners.map(partner => /*#__PURE__*/_react.default.createElement("img", {
     src: partner.logo,
     className: "h-10 mr-4",

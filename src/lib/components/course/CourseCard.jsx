@@ -166,7 +166,7 @@ export default function CourseCard(props) {
         </div>
       </div>
       <div className="w-full text-right">
-        <div className="flex flex-row ml-2 -mb-5">
+        <div className="flex flex-row ml-2 -mb-5 mt-4">
           {partners &&
             partners.map((partner) => (
               <img
