@@ -129,7 +129,7 @@ function CourseCard(props) {
     className: "flex flex-row  justify-between text-sm h-8 "
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "flex flex-row justify-center"
-  }, /*#__PURE__*/_react.default.createElement("svg", {
+  }, duration && /*#__PURE__*/_react.default.createElement("svg", {
     stroke: "currentColor",
     fill: "currentColor",
     strokeWidth: "0",
