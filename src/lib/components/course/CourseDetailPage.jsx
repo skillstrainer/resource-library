@@ -37,7 +37,6 @@ function CourseDetailPage(props) {
     return "https://www.youtube.com/embed/" + videoUrl.split("watch?v=")[1];
   }, [courseData.videoUrl]);
 
-  console.log("courseData details page=====", courseData);
   return (
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
       <section>
@@ -90,7 +89,7 @@ function CourseDetailPage(props) {
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             </div>
           )}

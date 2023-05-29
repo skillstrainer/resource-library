@@ -37,8 +37,6 @@ export default function CourseOverviewAndPurchaseFragment(props) {
     onBookDemo = () => {},
   } = courseData || {};
 
-  console.log("courseData===", courseData);
-
   const [payingBySubscription, setPayingBySubscription] = useState(false);
   const [paymentStarted, setPaymentStarted] = useState(false);
 
@@ -160,7 +158,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                     <span className={discount ? "line-through mr-2" : ""}>
                       {cost > 0 ? `₹ ${cost}` : "Free"}
                     </span>
-                    {discount && discount > 0 && (
+                    {Boolean(discount) && discount > 0 && (
                       <span>₹ {Number(cost) - Number(discount)}</span>
                     )}
                   </>
@@ -238,7 +236,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                       >
                         {cost > 0 ? `₹ ${cost}` : "Free"}
                       </span>
-                      {discount && discount > 0 && (
+                      {Boolean(discount) && discount > 0 && (
                         <span className="font-bold">
                           ₹ {Number(cost) - Number(discount)}
                         </span>

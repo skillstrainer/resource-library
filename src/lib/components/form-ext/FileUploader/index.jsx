@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import _ from "lodash";
 import { dataURLtoFile } from "../../../utils/file";
-import Modal from "../../shared/Modal";
 import CapturePhoto from "./CapturePhoto";
 import EditableText from "./EditableText";
 import FilePreview from "./FilePreview";
+import { Toast } from "../../../services/toast";
 
 export default function FileUploader(props) {
   const {
@@ -18,12 +18,19 @@ export default function FileUploader(props) {
     fileFieldProps = {},
     pluginContext: { services = {} } = {},
   } = props;
+
   const fileInputRef = useRef();
   const getUrl = services?.getUrl || (async (val) => val);
 
-  // State management resources
-  const fileList = value || [],
-    setFileList = (fileList) => onChange(fileList);
+  /*
+   *
+   *
+   * File list management
+   *
+   *
+   */
+  const fileList = useMemo(() => value || [], [value]),
+    setFileList = useCallback((fileList) => onChange(fileList), [onChange]);
   // todo: reconsider the setting of id
   const fileCountRef = useRef(1);
   useEffect(() => {
@@ -55,12 +62,45 @@ export default function FileUploader(props) {
 
   const clearList = () => setFileList([]);
 
-  const [previewData, setPreviewData] = useState();
+  /*
+   *
+   *
+   * File preview
+   *
+   *
+   */
+  const previewFile = async (fileItem) => {
+    const source = fileItem.fileData ? "file" : "url";
+    const data = fileItem.fileData || (await getUrl(fileItem.url));
+    const previewData = { source, data };
 
-  // Photo capture
-  const [isCaptureWindowOpen, setIsCaptureWindowOpen] = useState();
-  const capturePhoto = () => setIsCaptureWindowOpen(true);
-  const endCapturePhoto = () => setIsCaptureWindowOpen(false);
+    await Toast.prompt(FilePreview, {
+      ...previewData,
+      onError: (msg) => alert("Error: " + msg),
+    });
+  };
+
+  /*
+   *
+   *
+   * Photo capture
+   *
+   *
+   */
+  const capturePhoto = useCallback(async () => {
+    const capturedFiles = await Toast.prompt(CapturePhotoModalContent, {});
+    capturedFiles.forEach((f) => {
+      const filename = "snapshot-" + fileCountRef.current;
+      Object.assign(f, {
+        id: fileCountRef.current + "",
+        name: filename,
+      });
+      fileCountRef.current++;
+    });
+
+    fileList.splice(fileList.length, 0, ...capturedFiles);
+    setFileList([...fileList]);
+  }, [fileList, fileCountRef, setFileList]);
 
   return (
     <div className="mb-2">
@@ -98,12 +138,7 @@ export default function FileUploader(props) {
               <button
                 type="button"
                 className="px-2 flex-center"
-                onClick={async () => {
-                  const source = fileItem.fileData ? "file" : "url";
-                  const data =
-                    fileItem.fileData || (await getUrl(fileItem.url));
-                  setPreviewData({ source, data });
-                }}
+                onClick={() => previewFile(fileItem)}
               >
                 <box-icon name="show" color="gray" className="h-8" />
               </button>
@@ -176,36 +211,27 @@ export default function FileUploader(props) {
           </button>
         )}
       </div>
-      <Modal isOpen={previewData} onClose={() => setPreviewData(null)}>
-        <FilePreview
-          {...previewData}
-          onError={(msg) => alert("Error: " + msg)}
-        />
-      </Modal>
-
-      <Modal isOpen={isCaptureWindowOpen} onClose={endCapturePhoto}>
-        {isCaptureWindowOpen && (
-          <CapturePhoto
-            onFinish={(images) => {
-              const filename = "snapshot-" + fileCountRef.current;
-              // should there by a fieldProps.multiple check to prevent multiple images from being uploaded
-              setFileList([
-                ...fileList,
-                ...images.map((imageDataBase64) => ({
-                  ___file_uploader_component: true,
-                  id: fileCountRef.current++ + "",
-                  name: filename,
-                  fileData: dataURLtoFile(imageDataBase64, filename),
-                })),
-              ]);
-              endCapturePhoto();
-            }}
-          />
-        )}
-      </Modal>
     </div>
   );
 }
+
+const CapturePhotoModalContent = (props) => {
+  const { resolveFn } = props;
+
+  return (
+    <CapturePhoto
+      onFinish={(images) => {
+        // should there by a fieldProps.multiple check to prevent multiple images from being uploaded
+        resolveFn(
+          images.map((imageDataBase64, index) => ({
+            ___file_uploader_component: true,
+            fileData: dataURLtoFile(imageDataBase64, index + ""),
+          }))
+        );
+      }}
+    />
+  );
+};
 
 const preprocessor = (values, pluginContext) =>
   new Promise((resolve, reject) => {

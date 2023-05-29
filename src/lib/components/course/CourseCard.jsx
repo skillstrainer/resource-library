@@ -83,17 +83,33 @@ export default function CourseCard(props) {
           </h1>
         </div>
 
-        <div className="w-full text-sm mx-auto">
+        <div className="w-full text-sm mx-auto ">
           <div className="flex flex-row justify-between">
-            <p className="">
-              {course_type == 3
-                ? "Physical Classes + Live Online Classes + Digital Content"
-                : course_type == 2
-                ? "Live Online Classes + Digital Content"
-                : course_type == 1
-                ? "Digital Content (Self Paced)"
-                : "Self Paced Digital Content"}
+            <p className="flex flex-row justify-center">
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 24 24"
+                className="text-orange mx-1 mt-1"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path
+                  fillRule="evenodd"
+                  d="M16.67 13.13C18.04 14.06 19 15.32 19 17v3h4v-3c0-2.18-3.57-3.47-6.33-3.87z"
+                ></path>
+                <circle cx="9" cy="8" r="4" fillRule="evenodd"></circle>
+                <path
+                  fillRule="evenodd"
+                  d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24a5.98 5.98 0 010 7.52c.42.14.86.24 1.33.24zM9 13c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
+                ></path>
+              </svg>
+              {students_enrolled || 0}
             </p>
+
             <a
               href="https://www.youtube.com/watch?v=riE-VMMXMHI"
               target="_blank"
@@ -106,7 +122,31 @@ export default function CourseCard(props) {
           </div>
         </div>
 
-        <div className="flex flex-row my-2 justify-between text-sm h-20">
+        <div className="flex flex-row mt-2 justify-between text-sm h-8 ">
+          <p className="flex flex-row justify-center">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 24 24"
+              className="text-orange mx-1 mt-1"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+              <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"></path>
+            </svg>
+            {course_type == 3
+              ? "Physical Classes + Live Online Classes + Digital Content"
+              : course_type == 2
+              ? "Live Online Classes + Digital Content"
+              : course_type == 1
+              ? "Digital Content (Self Paced)"
+              : "Self Paced Digital Content"}
+          </p>
+        </div>
+        <div className="flex flex-row  justify-between text-sm h-8 ">
           <p className="flex flex-row justify-center">
             <svg
               stroke="currentColor"
@@ -123,35 +163,10 @@ export default function CourseCard(props) {
             </svg>
             {duration}
           </p>
-
-          <p className="flex flex-row justify-center">
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth="0"
-              viewBox="0 0 24 24"
-              className="text-orange mx-1 mt-1"
-              height="1em"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path fill="none" d="M0 0h24v24H0z"></path>
-              <path
-                fillRule="evenodd"
-                d="M16.67 13.13C18.04 14.06 19 15.32 19 17v3h4v-3c0-2.18-3.57-3.47-6.33-3.87z"
-              ></path>
-              <circle cx="9" cy="8" r="4" fillRule="evenodd"></circle>
-              <path
-                fillRule="evenodd"
-                d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24a5.98 5.98 0 010 7.52c.42.14.86.24 1.33.24zM9 13c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
-              ></path>
-            </svg>
-            {students_enrolled || 0}
-          </p>
         </div>
       </div>
       <div className="w-full text-right">
-        <div className="flex flex-row ml-2 -mb-5">
+        <div className="flex flex-row ml-2 -mb-5 mt-4">
           {partners &&
             partners.map((partner) => (
               <img
@@ -190,7 +205,7 @@ export default function CourseCard(props) {
                 >
                   {cost > 0 ? `₹ ${cost}` : "Free"}
                 </span>
-                {discount && (
+                {Boolean(discount) && (
                   <span className="font-bold">
                     ₹ {Number(cost) - Number(discount)}
                   </span>

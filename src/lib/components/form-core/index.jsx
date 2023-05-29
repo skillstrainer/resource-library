@@ -66,6 +66,8 @@ const FormComponent = (props, ref) => {
     return result;
   }, [plugins, globalPlugins]);
 
+  const [isSubmitting, setIsSubmitting] = useState();
+
   const setFieldValueFn = useRef();
   const [attemptedSubmit, setAttemptedSubmit] = useState();
 
@@ -144,9 +146,9 @@ const FormComponent = (props, ref) => {
     }
 
     // submitting values
-    onSubmit({ ...values }, setFieldValueFn.current);
     setFormValues(values);
     formikSetValuesFn.current(values);
+    return onSubmit({ ...values }, setFieldValueFn.current);
   };
 
   // load initial values
@@ -198,15 +200,17 @@ const FormComponent = (props, ref) => {
         <Formik
           initialValues={formValues}
           validationSchema={validationSchema}
-          onSubmit={(values) =>
-            formikOnSubmit(values)
+          onSubmit={(values) => {
+            setIsSubmitting(true);
+            return formikOnSubmit(values)
               .then((res) => "Form submitted")
               .catch(
                 (err) =>
                   (onSubmitError && onSubmitError(err)) ||
                   console.log("Couldn't submit form", err?.message || err)
               )
-          }
+              .finally(() => setIsSubmitting(false));
+          }}
         >
           {(formProps) => {
             const {
@@ -273,8 +277,12 @@ const FormComponent = (props, ref) => {
                       className={`button-primary ${
                         submitButton?.className || ""
                       }`}
-                      value={submitButton?.text || "Proceed"}
-                      disabled={submitButton?.disabled}
+                      value={
+                        isSubmitting
+                          ? "Please wait..."
+                          : submitButton?.text || "Proceed"
+                      }
+                      disabled={isSubmitting || submitButton?.disabled}
                     />
                   )}
                 </div>

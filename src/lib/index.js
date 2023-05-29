@@ -4,6 +4,7 @@ import { STRLContextProvider } from "./Context";
 import { Dropdown } from "./components/dropdown/Dropdown";
 import Sidebar from "./components/basic/Sidebar/Sidebar";
 import Table from "./components/basic/Table/Table";
+import { Toast } from "./services/toast";
 
 // Course
 import CourseCard from "./components/course/CourseCard";
@@ -47,6 +48,7 @@ export {
   Dropdown,
   Sidebar,
   Table,
+  Toast,
   //
   // Course
   CourseCard,

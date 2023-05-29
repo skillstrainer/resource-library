@@ -145,13 +145,22 @@
 .btn-primary {
   @apply text-sm bg-orange text-white font-semibold rounded-lg px-4 py-2;
 }
+.btn-primary:disabled {
+  @apply bg-gray-500;
+}
 
 .btn-secondary {
   @apply text-sm bg-japanese_indigo text-white font-semibold rounded-lg px-4 py-2;
 }
+.btn-secondary:disabled {
+  @apply bg-gray-700;
+}
 
 .btn-danger {
   @apply text-sm bg-red-600 text-white font-semibold rounded-lg px-4 py-2;
+}
+.btn-danger:disabled {
+  @apply bg-gray-900;
 }
 
 .heading-primary {

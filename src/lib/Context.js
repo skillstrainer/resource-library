@@ -4,6 +4,7 @@ import useCourseService from "./services/course";
 import useDependencyService from "./services/dependency";
 import useMultiLangService from "./services/mutli-lang";
 import useRequestService from "./services/request";
+import useToastService from "./services/toast";
 
 export const STRLContext = createContext();
 
@@ -33,7 +34,11 @@ export function STRLContextProvider(props) {
   const [multiLangServices, multiLangElements] = useMultiLangService(config);
   config.multiLang = multiLangServices;
 
-  const elements = [...courseElements, ...multiLangElements];
+  // Toast services
+  const [toastServices, toastElements] = useToastService(config);
+  config.toast = toastServices;
+
+  const elements = [...courseElements, ...multiLangElements, ...toastElements];
 
   return (
     <STRLContext.Provider
