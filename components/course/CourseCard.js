@@ -26,6 +26,7 @@ function CourseCard(props) {
       duration,
       isMoodleCourse,
       course_type,
+      is_subscription,
       // Demo sessions
       userHasRegisteredDemo,
       onViewDemoDetails = () => {},
@@ -153,6 +154,12 @@ function CourseCard(props) {
   })), " "), " ", /*#__PURE__*/_react.default.createElement("p", {
     className: "text-japanese_indigo text-sm mx-2"
   }, "See More Details >", " ")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "w-full text-right"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "flex flex-row ml-2 -mb-5 mt-4"
+  }, is_subscription && /*#__PURE__*/_react.default.createElement("p", {
+    className: "text-japanese_indigo text-sm mx-2"
+  }, "EMI Is Available"))), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex item-center justify-center w-full"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-6 bottom-0 mb-4 flex gap-3"
