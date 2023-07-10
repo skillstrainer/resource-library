@@ -42,7 +42,7 @@ export const courseCardData = [
     cost: 999,
     discount: 0,
     isMoodleCourse: true,
-    is_subscription: null,
+    is_subscription: true,
     is_taxable: null,
     moodleCourseId: "180",
     course_type: null,

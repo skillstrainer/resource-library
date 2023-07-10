@@ -17,6 +17,7 @@ export default function CourseCard(props) {
       duration,
       isMoodleCourse,
       course_type,
+      is_subscription,
 
       // Demo sessions
       userHasRegisteredDemo,
@@ -181,6 +182,16 @@ export default function CourseCard(props) {
         <p className="text-japanese_indigo text-sm mx-2">
           See More Details &gt;{" "}
         </p>
+      </div>
+
+      <div className="w-full text-right">
+        <div className="flex flex-row ml-2 -mb-5 mt-4">
+          {is_subscription && (
+            <p className="text-japanese_indigo text-sm mx-2">
+              EMI Is Available
+            </p>
+          )}
+        </div>
       </div>
 
       <div className="flex item-center justify-center w-full">
