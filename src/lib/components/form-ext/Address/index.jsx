@@ -33,6 +33,9 @@ export function AddressField(props) {
     // Resolving keys
     let finalFields = _.clone(mandatoryFields);
 
+    if (keys?.addressDetails) {
+      setAddressDetails(true);
+    }
     if (keys?.action && keys?.keys && Array.isArray(keys?.keys)) {
       if (keys.action === "include")
         finalFields = finalFields.concat(
@@ -42,12 +45,6 @@ export function AddressField(props) {
         finalFields = finalFields.concat(
           optionalFields.filter((f) => !keys.keys.includes(f))
         );
-      else if (keys.action === "address-details") {
-        finalFields = finalFields.concat(
-          optionalFields.filter((f) => keys.keys.includes(f))
-        );
-        setAddressDetails(true);
-      }
     } else {
       finalFields = finalFields.concat(optionalFields);
     }

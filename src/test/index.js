@@ -19,8 +19,9 @@ const FormBuilder = (values) => {
         label: "Address",
         type: "address",
         keys: {
-          action: "address-details",
-          keys: ["house_number", "location", "district", "city_town", "state"],
+          action: "include",
+          addressDetails: true,
+          keys: ["house_number"],
         },
       },
     };

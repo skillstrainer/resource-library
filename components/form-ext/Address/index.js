@@ -44,11 +44,11 @@ function AddressField(props) {
   (0, _react.useEffect)(() => {
     // Resolving keys
     let finalFields = _lodash.default.clone(mandatoryFields);
+    if (keys !== null && keys !== void 0 && keys.addressDetails) {
+      setAddressDetails(true);
+    }
     if (keys !== null && keys !== void 0 && keys.action && keys !== null && keys !== void 0 && keys.keys && Array.isArray(keys === null || keys === void 0 ? void 0 : keys.keys)) {
-      if (keys.action === "include") finalFields = finalFields.concat(optionalFields.filter(f => keys.keys.includes(f)));else if (keys.action === "exclude") finalFields = finalFields.concat(optionalFields.filter(f => !keys.keys.includes(f)));else if (keys.action === "address-details") {
-        finalFields = finalFields.concat(optionalFields.filter(f => keys.keys.includes(f)));
-        setAddressDetails(true);
-      }
+      if (keys.action === "include") finalFields = finalFields.concat(optionalFields.filter(f => keys.keys.includes(f)));else if (keys.action === "exclude") finalFields = finalFields.concat(optionalFields.filter(f => !keys.keys.includes(f)));
     } else {
       finalFields = finalFields.concat(optionalFields);
     }
