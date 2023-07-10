@@ -12,8 +12,16 @@ const FormBuilder = (values) => {
 
   useEffect(() => {
     const schema = {
-      name: {
-        label: "Name",
+      // name: {
+      //   label: "Name",
+      // },
+      address: {
+        label: "Address",
+        type: "address",
+        keys: {
+          action: "address-details",
+          keys: ["house_number", "location", "district", "city_town", "state"],
+        },
       },
     };
     setSchema(schema);
@@ -24,7 +32,8 @@ const FormBuilder = (values) => {
 export default function ModalForm() {
   return (
     <div>
-      <CourseCard data={courseCardData[0]} />
+      {/* <CourseCard data={courseCardData[0]} /> */}
+      <Form formBuilder={FormBuilder} />
     </div>
   );
 }

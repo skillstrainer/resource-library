@@ -34,6 +34,7 @@ function AddressField(props) {
     keys
   } = props;
   let [fields, setFields] = (0, _react.useState)(mandatoryFields);
+  const [addressDetails, setAddressDetails] = (0, _react.useState)(false);
   const onChange = val => _onChange(_lodash.default.pick(val, fields));
   const updateDetail = detail => val => {
     if (value) value[detail] = val;
@@ -44,7 +45,10 @@ function AddressField(props) {
     // Resolving keys
     let finalFields = _lodash.default.clone(mandatoryFields);
     if (keys !== null && keys !== void 0 && keys.action && keys !== null && keys !== void 0 && keys.keys && Array.isArray(keys === null || keys === void 0 ? void 0 : keys.keys)) {
-      if (keys.action === "include") finalFields = finalFields.concat(optionalFields.filter(f => keys.keys.includes(f)));else if (keys.action === "exclude") finalFields = finalFields.concat(optionalFields.filter(f => !keys.keys.includes(f)));
+      if (keys.action === "include") finalFields = finalFields.concat(optionalFields.filter(f => keys.keys.includes(f)));else if (keys.action === "exclude") finalFields = finalFields.concat(optionalFields.filter(f => !keys.keys.includes(f)));else if (keys.action === "address-details") {
+        finalFields = finalFields.concat(optionalFields.filter(f => keys.keys.includes(f)));
+        setAddressDetails(true);
+      }
     } else {
       finalFields = finalFields.concat(optionalFields);
     }
@@ -130,7 +134,9 @@ function AddressField(props) {
     value: (value === null || value === void 0 ? void 0 : value.pincode) || "",
     onChange: (0, _func.wireEventValue)(handlePincodeChange),
     autoComplete: "off"
-  })), fields.includes("house_number") && genField("house_number", "House number"), fields.includes("location") && genField("location", "Location"), fields.includes("city_town") && genField("city_town", "City/Town"), /*#__PURE__*/_react.default.createElement("div", {
+  })), addressDetails && /*#__PURE__*/_react.default.createElement("span", {
+    className: "block text-sm font-medium text-japanese_indigo my-2 "
+  }, "Address Details"), fields.includes("house_number") && genField("house_number", "House number"), fields.includes("location") && genField("location", "Location"), fields.includes("city_town") && genField("city_town", "City/Town"), /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 relative rounded-md shadow-sm"
   }, fields.includes("district") && genField("district", "District")), /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 relative rounded-md shadow-sm"

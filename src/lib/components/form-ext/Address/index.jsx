@@ -17,6 +17,7 @@ const optionalFields = [
 export function AddressField(props) {
   const { label, value = {}, onChange: _onChange, className, keys } = props;
   let [fields, setFields] = useState(mandatoryFields);
+  const [addressDetails, setAddressDetails] = useState(false);
   const onChange = (val) => _onChange(_.pick(val, fields));
 
   const updateDetail = (detail) => (val) => {
@@ -41,6 +42,12 @@ export function AddressField(props) {
         finalFields = finalFields.concat(
           optionalFields.filter((f) => !keys.keys.includes(f))
         );
+      else if (keys.action === "address-details") {
+        finalFields = finalFields.concat(
+          optionalFields.filter((f) => keys.keys.includes(f))
+        );
+        setAddressDetails(true);
+      }
     } else {
       finalFields = finalFields.concat(optionalFields);
     }
@@ -135,6 +142,11 @@ export function AddressField(props) {
           autoComplete="off"
         />
       </div>
+      {addressDetails && (
+        <span className="block text-sm font-medium text-japanese_indigo my-2 ">
+          Address Details
+        </span>
+      )}
       {fields.includes("house_number") &&
         genField("house_number", "House number")}
       {fields.includes("location") && genField("location", "Location")}
