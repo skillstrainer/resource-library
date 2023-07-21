@@ -217,10 +217,12 @@ export default function CourseCard(props) {
                   className={`font-bold ${discount ? "line-through mr-2" : ""}`}
                 >
                   {cost > 0 ? `₹ ${cost}` : "Free"}
+                  {cost > 0 && !discount ? " + GST " : ""}
                 </span>
                 {Boolean(discount) && (
                   <span className="font-bold">
                     ₹ {Number(cost) - Number(discount)}
+                    {Number(cost) - Number(discount) > 0 ? " + GST" : ""}
                   </span>
                 )}
               </button>

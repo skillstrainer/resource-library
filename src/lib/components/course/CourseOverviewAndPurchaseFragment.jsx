@@ -235,10 +235,12 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                         }`}
                       >
                         {cost > 0 ? `₹ ${cost}` : "Free"}
+                        {cost > 0 && !discount ? " + GST " : ""}
                       </span>
                       {Boolean(discount) && discount > 0 && (
                         <span className="font-bold">
                           ₹ {Number(cost) - Number(discount)}
+                          {Number(cost) - Number(discount) > 0 ? " + GST" : ""}
                         </span>
                       )}
                     </>

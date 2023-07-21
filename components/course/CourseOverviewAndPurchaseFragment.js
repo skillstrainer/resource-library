@@ -170,9 +170,9 @@ function CourseOverviewAndPurchaseFragment(props) {
     disabled: paymentStarted
   }, paymentStarted ? "Please wait..." : !payingBySubscription ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold ".concat(discount ? "line-through mr-2" : "")
-  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free"), Boolean(discount) && discount > 0 && /*#__PURE__*/_react.default.createElement("span", {
+  }, cost > 0 ? "\u20B9 ".concat(cost) : "Free", cost > 0 && !discount ? " + GST " : ""), Boolean(discount) && discount > 0 && /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
-  }, "\u20B9 ", Number(cost) - Number(discount))) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
+  }, "\u20B9 ", Number(cost) - Number(discount), Number(cost) - Number(discount) > 0 ? " + GST" : "")) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
     className: "font-bold"
   }, "\u20B9 ", subscription_cost))), !isPurchased && (userHasRegisteredDemo ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => onViewDemoDetails(),
