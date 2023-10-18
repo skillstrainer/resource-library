@@ -14,7 +14,7 @@ export const courseCardData = [
     partners: [
       {
         __typename: "courses_course_partner_certification",
-        id: 59,
+        id: 120,
         course_id: 112,
         partner_id: 23,
         course: {
