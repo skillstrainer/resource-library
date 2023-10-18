@@ -28,8 +28,15 @@ function CourseDetailPage(props) {
     viewCourse = () => {},
   } = props;
 
-  const { description, modules, certificateImageUrl, isMoodleCourse } =
-    courseData || {};
+  const {
+    description,
+    modules,
+    certificateImageUrl,
+    isMoodleCourse,
+    partners,
+  } = courseData || {};
+
+  console.log("partners==", partners);
 
   const videoURL = useMemo(() => {
     let { videoUrl } = courseData;
@@ -212,45 +219,53 @@ function CourseDetailPage(props) {
           </div>
         </div>
       </section>
-      <section>
-        <div className="content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full">
-          <div className="w-full md:w-1/2">
-            <h2 className="text-3xl font-semibold text-gray-800 blue-dark2 mb-5">
-              Job / Work Opportunities:
-            </h2>
-            <div className="text-sm">
-              <MultiLangFieldMd
-                name="job_opportunities"
-                defaultValue={
-                  "Jobs and Opportunities are coming your way very soon. Stay tuned!\n"
-                }
-                editor={{
-                  dims: {
-                    width: "calc(100% - 20px)",
-                    height: "calc(100% - 150px)",
-                  },
-                }}
-              />
-            </div>
-            <button
-              disabled={true}
-              className="bg-orange opacity-60 text-white font-semibold rounded-md text-sm p-3 mt-10 w-full md:w-auto"
-            >
-              View Jobs
-            </button>
-          </div>
-          <div className="w-full md:w-1/2">
-            <div class="relative">
-              <MultiLangFieldImage
-                className="w-full object-cover object-center shadow-xl"
-                src={jobs}
-                name="jobs"
-                alt="course-img"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {partners.map((partnerId) => {
+        if (partnerId.id !== 59) {
+          return (
+            <>
+              <section>
+                <div className="content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full">
+                  <div className="w-full md:w-1/2">
+                    <h2 className="text-3xl font-semibold text-gray-800 blue-dark2 mb-5">
+                      Job / Work Opportunities:
+                    </h2>
+                    <div className="text-sm">
+                      <MultiLangFieldMd
+                        name="job_opportunities"
+                        defaultValue={
+                          "Jobs and Opportunities are coming your way very soon. Stay tuned!\n"
+                        }
+                        editor={{
+                          dims: {
+                            width: "calc(100% - 20px)",
+                            height: "calc(100% - 150px)",
+                          },
+                        }}
+                      />
+                    </div>
+                    <button
+                      disabled={true}
+                      className="bg-orange opacity-60 text-white font-semibold rounded-md text-sm p-3 mt-10 w-full md:w-auto"
+                    >
+                      View Jobs
+                    </button>
+                  </div>
+                  <div className="w-full md:w-1/2">
+                    <div class="relative">
+                      <MultiLangFieldImage
+                        className="w-full object-cover object-center shadow-xl"
+                        src={jobs}
+                        name="jobs"
+                        alt="course-img"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </>
+          );
+        }
+      })}
     </MultiLangBody>
   );
 }

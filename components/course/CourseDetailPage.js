@@ -43,8 +43,10 @@ function CourseDetailPage(props) {
     description,
     modules,
     certificateImageUrl,
-    isMoodleCourse
+    isMoodleCourse,
+    partners
   } = courseData || {};
+  console.log("partners==", partners);
   const videoURL = (0, _react.useMemo)(() => {
     let {
       videoUrl
@@ -178,36 +180,40 @@ function CourseDetailPage(props) {
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: certificateImageUrl ? certificateImageUrl : _commonCertificate.default,
     className: "w-full h-full"
-  })))))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "w-full md:w-1/2"
-  }, /*#__PURE__*/_react.default.createElement("h2", {
-    className: "text-3xl font-semibold text-gray-800 blue-dark2 mb-5"
-  }, "Job / Work Opportunities:"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-sm"
-  }, /*#__PURE__*/_react.default.createElement(_MultiLangFieldMd.default, {
-    name: "job_opportunities",
-    defaultValue: "Jobs and Opportunities are coming your way very soon. Stay tuned!\n",
-    editor: {
-      dims: {
-        width: "calc(100% - 20px)",
-        height: "calc(100% - 150px)"
-      }
+  })))))), partners.map(partnerId => {
+    if (partnerId.id !== 59) {
+      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
+        className: "content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full"
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "w-full md:w-1/2"
+      }, /*#__PURE__*/_react.default.createElement("h2", {
+        className: "text-3xl font-semibold text-gray-800 blue-dark2 mb-5"
+      }, "Job / Work Opportunities:"), /*#__PURE__*/_react.default.createElement("div", {
+        className: "text-sm"
+      }, /*#__PURE__*/_react.default.createElement(_MultiLangFieldMd.default, {
+        name: "job_opportunities",
+        defaultValue: "Jobs and Opportunities are coming your way very soon. Stay tuned!\n",
+        editor: {
+          dims: {
+            width: "calc(100% - 20px)",
+            height: "calc(100% - 150px)"
+          }
+        }
+      })), /*#__PURE__*/_react.default.createElement("button", {
+        disabled: true,
+        className: "bg-orange opacity-60 text-white font-semibold rounded-md text-sm p-3 mt-10 w-full md:w-auto"
+      }, "View Jobs")), /*#__PURE__*/_react.default.createElement("div", {
+        className: "w-full md:w-1/2"
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        class: "relative"
+      }, /*#__PURE__*/_react.default.createElement(_MultiLangFieldImage.default, {
+        className: "w-full object-cover object-center shadow-xl",
+        src: _jobs.default,
+        name: "jobs",
+        alt: "course-img"
+      }))))));
     }
-  })), /*#__PURE__*/_react.default.createElement("button", {
-    disabled: true,
-    className: "bg-orange opacity-60 text-white font-semibold rounded-md text-sm p-3 mt-10 w-full md:w-auto"
-  }, "View Jobs")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "w-full md:w-1/2"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    class: "relative"
-  }, /*#__PURE__*/_react.default.createElement(_MultiLangFieldImage.default, {
-    className: "w-full object-cover object-center shadow-xl",
-    src: _jobs.default,
-    name: "jobs",
-    alt: "course-img"
-  }))))));
+  }));
 }
 var _default = CourseDetailPage;
 exports.default = _default;
