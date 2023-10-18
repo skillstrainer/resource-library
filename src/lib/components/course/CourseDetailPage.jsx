@@ -80,7 +80,7 @@ function CourseDetailPage(props) {
         >
           <div className="mr-5">
             <div className="text-3xl blue-dark2 font-semibold leading-10 text-center mt-3">
-              About the Course jj
+              About the Course
             </div>
             <MultiLangField name="description">
               <div

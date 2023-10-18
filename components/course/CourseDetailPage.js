@@ -91,7 +91,7 @@ function CourseDetailPage(props) {
     className: "mr-5"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "text-3xl blue-dark2 font-semibold leading-10 text-center mt-3"
-  }, "About the Course jj"), /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
+  }, "About the Course"), /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
     name: "description"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "list-wrapper",
