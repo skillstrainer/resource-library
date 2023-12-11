@@ -53,6 +53,7 @@ const FormComponent = (props, ref) => {
     className,
     preProcessors = globalPreprocessors,
     // postProcessors = globalPostprocessors,
+    style = {},
   } = props;
 
   const plugins = useMemo(() => props.plugins || {}, [props.plugins]);
@@ -244,7 +245,7 @@ const FormComponent = (props, ref) => {
 
             return (
               <Form className="justify-start">
-                <div className={`justify-start ${className}`}>
+                <div className={`justify-start ${className}`} style={style}>
                   {items && !hideForm && (
                     <FormSection
                       key={name}
