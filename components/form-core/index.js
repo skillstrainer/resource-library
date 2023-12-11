@@ -61,8 +61,9 @@ const FormComponent = (props, ref) => {
     hideForm,
     hideSubmit,
     className,
-    preProcessors = globalPreprocessors
+    preProcessors = globalPreprocessors,
     // postProcessors = globalPostprocessors,
+    style = {}
   } = props;
   const plugins = (0, _react.useMemo)(() => props.plugins || {}, [props.plugins]);
   const formName = name || "unnamed";
@@ -227,7 +228,8 @@ const FormComponent = (props, ref) => {
     return /*#__PURE__*/_react.default.createElement(_formik.Form, {
       className: "justify-start"
     }, /*#__PURE__*/_react.default.createElement("div", {
-      className: "justify-start ".concat(className)
+      className: "justify-start ".concat(className),
+      style: style
     }, items && !hideForm && /*#__PURE__*/_react.default.createElement(_Section.default, {
       key: name,
       fields: items,
