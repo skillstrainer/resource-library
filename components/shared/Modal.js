@@ -24,8 +24,6 @@ function Modal(props) {
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
       position: "fixed",
-      height: "100vh",
-      width: "100vw",
       top: "0",
       left: "0",
       transition: transitionTime + "s",
@@ -36,7 +34,8 @@ function Modal(props) {
       justifyContent: "center",
       fontFamily: "arial",
       zIndex: "100"
-    }
+    },
+    className: "w-screen h-screen"
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
       height: "100%",

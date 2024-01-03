@@ -8,8 +8,7 @@ export default function Modal(props) {
     <div
       style={{
         position: "fixed",
-        height: "100vh",
-        width: "100vw",
+
         top: "0",
         left: "0",
         transition: transitionTime + "s",
@@ -21,6 +20,7 @@ export default function Modal(props) {
         fontFamily: "arial",
         zIndex: "100",
       }}
+      className="w-screen h-screen"
     >
       <div
         style={{
