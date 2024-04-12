@@ -40,7 +40,6 @@ function CourseCard(props) {
     isPurchased,
     viewCourse = () => {}
   } = props;
-  console.log("🚀 ~ CourseCard ~ data:", displayName, courseImg);
   const {
     request: {
       s3Url
@@ -55,7 +54,7 @@ function CourseCard(props) {
     className: "h-56 flex justify-center items-center bg-gray-200"
   }, /*#__PURE__*/_react.default.createElement("img", {
     className: "max-w-full max-h-full shadow-xl",
-    src: courseImg ? isMoodleCourse ? courseImg : "".concat(s3Url, "/").concat(courseImg) : "",
+    src: courseImg && courseImg ? isMoodleCourse ? courseImg : s3Url + "/" + courseImg : courseImg,
     alt: displayName
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "absolute top-2 left-2"
