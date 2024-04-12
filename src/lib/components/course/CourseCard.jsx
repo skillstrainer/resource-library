@@ -49,11 +49,11 @@ export default function CourseCard(props) {
             <img
               className="max-w-full max-h-full shadow-xl"
               src={
-                courseImg && courseImg
+                courseImg
                   ? isMoodleCourse
                     ? courseImg
-                    : s3Url + "/" + courseImg
-                  : courseImg
+                    : `${s3Url}/${courseImg}`
+                  : ""
               }
               alt={displayName}
             />
