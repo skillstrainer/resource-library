@@ -33,7 +33,6 @@ export default function CourseCard(props) {
     isPurchased,
     viewCourse = () => {},
   } = props;
-  console.log("🚀 ~ CourseCard ~ data:", displayName, courseImg);
 
   const {
     request: { s3Url },
