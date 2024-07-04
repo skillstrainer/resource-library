@@ -18,7 +18,7 @@ export const DateField = ({
     <div key={name} className={`${className}`}>
       <div className="relative rounded-md shadow-sm">
         <DatePicker
-          style={{ boxSizing: "border-box" }}
+          style={{ boxSizing: "border-box", width: "100%" }}
           className="input-primary"
           dateFormat={dateFormat}
           name={name}
