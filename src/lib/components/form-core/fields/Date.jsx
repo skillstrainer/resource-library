@@ -21,6 +21,7 @@ export const DateField = ({
           style={{ boxSizing: "border-box", width: "100%" }}
           className="input-primary"
           dateFormat={dateFormat}
+          placeholderText="Please select a date"
           name={name}
           selected={value ? new Date(value) : new Date()}
           onChange={(date) => onChange(date.toISOString())}
