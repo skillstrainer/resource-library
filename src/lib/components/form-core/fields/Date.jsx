@@ -12,6 +12,7 @@ export const DateField = ({
   timeFormat,
   timeCaption,
   columnName,
+  showDefaultEmpty,
   ...dateProps
 }) => {
   return (
