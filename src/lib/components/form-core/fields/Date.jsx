@@ -12,6 +12,7 @@ export const DateField = ({
   timeFormat,
   timeCaption,
   columnName,
+  showDefaultEmpty,
   ...dateProps
 }) => {
   return (
@@ -23,7 +24,9 @@ export const DateField = ({
           dateFormat={dateFormat}
           placeholderText="Please select a date"
           name={name}
-          selected={value ? new Date(value) : new Date()}
+          selected={
+            value ? new Date(value) : showDefaultEmpty ? "" : new Date()
+          }
           onChange={(date) => onChange(date.toISOString())}
           timeFormat={timeFormat}
           timeCaption={timeCaption}
