@@ -117,7 +117,7 @@ function CourseOverviewAndPurchaseFragment(props) {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
-  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, course_type == 3 ? "Physical Classes + Live Online Classes + Digital Content" : course_type == 2 ? "Live Online Classes + Digital Content" : course_type == 1 ? "Digital Content (Self Paced)" : "Self Paced Digital Content")), is_subscription && !isPurchased && /*#__PURE__*/_react.default.createElement("div", {
+  }, "Course Structure:"), /*#__PURE__*/_react.default.createElement("span", null, course_type == 4 ? "External course" : course_type == 3 ? "Physical Classes + Live Online Classes + Digital Content" : course_type == 2 ? "Live Online Classes + Digital Content" : course_type == 1 ? "Digital Content (Self Paced)" : "Self Paced Digital Content")), is_subscription && !isPurchased && /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "
