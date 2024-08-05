@@ -118,7 +118,9 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                 Course Structure:
               </span>
               <span>
-                {course_type == 3
+                {course_type == 4
+                  ? "External course"
+                  : course_type == 3
                   ? "Physical Classes + Live Online Classes + Digital Content"
                   : course_type == 2
                   ? "Live Online Classes + Digital Content"
