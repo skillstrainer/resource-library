@@ -71,7 +71,7 @@ function CourseOverviewAndPurchaseFragment(props) {
     className: "bg-white text-xs font-semibold rounded-md p-1 shadow-lg border",
     onClick: goToCategoryPage
   }, categoryName)))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "w-full md:w-3/5"
+    className: "w-full md:w-3/5 bg-white p-4 pl-8"
   }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "text-2xl font-semibold leading-10 text-japanese_indigo mb-3"
   }, /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {

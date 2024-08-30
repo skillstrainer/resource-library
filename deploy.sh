@@ -4,9 +4,9 @@ COMMIT_MESSAGE=$1
 
 # Create a file with the name "deploy_context.sh" in the same folder as this file
 # Add the following code and replace with suitable values:
-  export WEBAPP_PATH='/home/nancy/unifiers/skillstrainer_webapp'
-  export ADMIN_PANEL_PATH='/home/nancy/unifiers/skillstrainer_admin_client'
-  export MARKETING_WEBSITE_PATH='/home/nancy/unifiers/skillstrainer-website'
+  # export WEBAPP_PATH='/home/nancy/unifiers/skillstrainer_webapp'
+  # export ADMIN_PANEL_PATH='/home/nancy/unifiers/skillstrainer_admin_client'
+  # export MARKETING_WEBSITE_PATH='/home/nancy/unifiers/skillstrainer-website'
 
 source "./deploy_context.sh"
 

@@ -67,7 +67,6 @@ function CourseDetailPage(props) {
       zIndex: "-1"
     }
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "bg-white",
     style: {
       zIndex: "1"
     }

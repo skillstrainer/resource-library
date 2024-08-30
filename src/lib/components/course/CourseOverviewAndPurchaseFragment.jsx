@@ -73,7 +73,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-3/5">
+          <div className="w-full md:w-3/5 bg-white p-4 pl-8">
             <h2 className="text-2xl font-semibold leading-10 text-japanese_indigo mb-3">
               <MultiLangField name="display_name">{displayName}</MultiLangField>
             </h2>

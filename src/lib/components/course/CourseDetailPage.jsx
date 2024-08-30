@@ -53,7 +53,7 @@ function CourseDetailPage(props) {
             alt=""
             style={{ zIndex: "-1" }}
           />
-          <div className="bg-white" style={{ zIndex: "1" }}>
+          <div style={{ zIndex: "1" }}>
             <CourseOverviewAndPurchaseFragment
               courseData={courseData}
               onPaymentStarted={payNow}
