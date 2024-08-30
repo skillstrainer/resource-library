@@ -66,7 +66,7 @@ function CourseDetailPage(props) {
       </section>
       <section className="mt-12">
         <div
-          className="content mx-auto grid grid-cols-1 lg:grid-cols-2"
+          className="grid grid-cols-1 lg:grid-cols-2"
           style={{
             gridTemplateColumns: videoURL
               ? "repeat(2, minmax(0, 1fr))"
@@ -102,7 +102,7 @@ function CourseDetailPage(props) {
         </div>
       </section>
       <section>
-        <div className="content mx-auto bg-blue-grad px-4 py-10 md:px-10 mt-20">
+        <div className="bg-blue-grad mt-20">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div>
               <h2 className="text-3xl mb-8 blue-dark2 font-semibold">
@@ -116,7 +116,7 @@ function CourseDetailPage(props) {
                           <Disclosure as="div">
                             {({ open }) => (
                               <>
-                                <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
+                                <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 rounded-lg focus:outline-none">
                                   <span
                                     className="text-japanese_indigo font-semibold"
                                     dangerouslySetInnerHTML={{
@@ -132,11 +132,11 @@ function CourseDetailPage(props) {
                                   )}
                                 </Disclosure.Button>
                                 {module.coursesec?.length > 0 && (
-                                  <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
+                                  <Disclosure.Panel className="ml-6 px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
                                     <ul className="ml-3">
                                       {module.coursesec.map((item) => (
                                         <li
-                                          className="bg-white rounded-lg p-3 mb-1 text-black"
+                                          className="rounded-lg p-3 mb-1 text-black"
                                           style={{ listStyle: "disc" }}
                                           dangerouslySetInnerHTML={{
                                             __html: item.name,
@@ -159,7 +159,7 @@ function CourseDetailPage(props) {
                           <Disclosure as="div">
                             {({ open }) => (
                               <>
-                                <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none">
+                                <Disclosure.Button className="flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 rounded-lg focus:outline-none">
                                   <span
                                     className="text-japanese_indigo font-semibold"
                                     dangerouslySetInnerHTML={{
@@ -175,11 +175,11 @@ function CourseDetailPage(props) {
                                   )}
                                 </Disclosure.Button>
                                 {module.modules?.length > 0 && (
-                                  <Disclosure.Panel className="px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
+                                  <Disclosure.Panel className="ml-6 px-2 pt-2 pb-1 text-sm text-gray-500 pr-0">
                                     <ul className="ml-3">
                                       {module.modules.map((item) => (
                                         <li
-                                          className="bg-white rounded-lg p-3 mb-1 text-black"
+                                          className="rounded-lg p-3 mb-1 text-black"
                                           style={{ listStyle: "disc" }}
                                           dangerouslySetInnerHTML={{
                                             __html: item.name,

@@ -54,7 +54,7 @@ function CourseOverviewAndPurchaseFragment(props) {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "px-4 py-10 md:px-10 w-full"
+    className: "w-full"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex flex-between flex-col gap-5 md:flex-row"
   }, /*#__PURE__*/_react.default.createElement("div", {

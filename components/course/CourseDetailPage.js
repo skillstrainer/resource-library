@@ -79,7 +79,7 @@ function CourseDetailPage(props) {
   })))), /*#__PURE__*/_react.default.createElement("section", {
     className: "mt-12"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "content mx-auto grid grid-cols-1 lg:grid-cols-2",
+    className: "grid grid-cols-1 lg:grid-cols-2",
     style: {
       gridTemplateColumns: videoURL ? "repeat(2, minmax(0, 1fr))" : "repeat(1, minmax(0, 1fr)"
     }
@@ -105,7 +105,7 @@ function CourseDetailPage(props) {
     allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
     allowFullScreen: true
   })))), /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "content mx-auto bg-blue-grad px-4 py-10 md:px-10 mt-20"
+    className: "bg-blue-grad mt-20"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "grid grid-cols-1 gap-8 md:grid-cols-2"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
@@ -120,7 +120,7 @@ function CourseDetailPage(props) {
       open
     } = _ref;
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Button, {
-      className: "flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none"
+      className: "flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 rounded-lg focus:outline-none"
     }, /*#__PURE__*/_react.default.createElement("span", {
       className: "text-japanese_indigo font-semibold",
       dangerouslySetInnerHTML: {
@@ -129,11 +129,11 @@ function CourseDetailPage(props) {
     }), ((_module$coursesec = module.coursesec) === null || _module$coursesec === void 0 ? void 0 : _module$coursesec.length) > 0 && /*#__PURE__*/_react.default.createElement(_solid.ChevronUpIcon, {
       className: "".concat(open ? "transform rotate-180" : "", " w-5 h-5")
     })), ((_module$coursesec2 = module.coursesec) === null || _module$coursesec2 === void 0 ? void 0 : _module$coursesec2.length) > 0 && /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Panel, {
-      className: "px-2 pt-2 pb-1 text-sm text-gray-500 pr-0"
+      className: "ml-6 px-2 pt-2 pb-1 text-sm text-gray-500 pr-0"
     }, /*#__PURE__*/_react.default.createElement("ul", {
       className: "ml-3"
     }, module.coursesec.map(item => /*#__PURE__*/_react.default.createElement("li", {
-      className: "bg-white rounded-lg p-3 mb-1 text-black",
+      className: "rounded-lg p-3 mb-1 text-black",
       style: {
         listStyle: "disc"
       },
@@ -151,7 +151,7 @@ function CourseDetailPage(props) {
       open
     } = _ref2;
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Button, {
-      className: "flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 bg-white rounded-lg focus:outline-none"
+      className: "flex justify-between w-full p-3 text-sm font-medium text-left blue-dark2 rounded-lg focus:outline-none"
     }, /*#__PURE__*/_react.default.createElement("span", {
       className: "text-japanese_indigo font-semibold",
       dangerouslySetInnerHTML: {
@@ -160,11 +160,11 @@ function CourseDetailPage(props) {
     }), ((_module$modules = module.modules) === null || _module$modules === void 0 ? void 0 : _module$modules.length) > 0 && /*#__PURE__*/_react.default.createElement(_solid.ChevronUpIcon, {
       className: "".concat(open ? "transform rotate-180" : "", " w-5 h-5")
     })), ((_module$modules2 = module.modules) === null || _module$modules2 === void 0 ? void 0 : _module$modules2.length) > 0 && /*#__PURE__*/_react.default.createElement(_react2.Disclosure.Panel, {
-      className: "px-2 pt-2 pb-1 text-sm text-gray-500 pr-0"
+      className: "ml-6 px-2 pt-2 pb-1 text-sm text-gray-500 pr-0"
     }, /*#__PURE__*/_react.default.createElement("ul", {
       className: "ml-3"
     }, module.modules.map(item => /*#__PURE__*/_react.default.createElement("li", {
-      className: "bg-white rounded-lg p-3 mb-1 text-black",
+      className: "rounded-lg p-3 mb-1 text-black",
       style: {
         listStyle: "disc"
       },

@@ -48,7 +48,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
 
   return (
     <div className="flex justify-center">
-      <div className="px-4 py-10 md:px-10 w-full">
+      <div className="w-full">
         <div className="flex flex-between flex-col gap-5 md:flex-row">
           <div className="w-full md:w-2/5">
             <div class="relative">
