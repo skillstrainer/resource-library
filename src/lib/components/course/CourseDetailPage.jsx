@@ -47,12 +47,12 @@ function CourseDetailPage(props) {
     <MultiLangBody _key={multiLangKey} data={multiLangData}>
       <section>
         <div className="relative pt-32">
-          <img
+          {/* <img
             src={pageTopBg}
             className="absolute top-0"
             alt=""
             style={{ zIndex: "-1" }}
-          />
+          /> */}
           <div style={{ zIndex: "1" }}>
             <CourseOverviewAndPurchaseFragment
               courseData={courseData}

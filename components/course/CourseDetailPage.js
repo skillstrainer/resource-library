@@ -59,14 +59,7 @@ function CourseDetailPage(props) {
     data: multiLangData
   }, /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "relative pt-32"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _pageTopBg.default,
-    className: "absolute top-0",
-    alt: "",
-    style: {
-      zIndex: "-1"
-    }
-  }), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
       zIndex: "1"
     }
