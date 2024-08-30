@@ -15,7 +15,7 @@ const getAllParents = target => {
   return parents;
 };
 exports.getAllParents = getAllParents;
-const disableParents = function disableParents(e) {
+const disableParents = exports.disableParents = function disableParents(e) {
   const target = e.currentTarget;
   const parents = getAllParents(target);
   for (const parent of parents) {
@@ -43,4 +43,3 @@ const disableParents = function disableParents(e) {
   window.addEventListener("pointerup", enableParents);
   window.addEventListener("keyup", enableParents);
 };
-exports.disableParents = disableParents;

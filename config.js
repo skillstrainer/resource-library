@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.consts = void 0;
-const consts = {
+const consts = exports.consts = {
   production: {
     s3Url: "https://adminskillstrainerprod.s3.ap-south-1.amazonaws.com",
     webappUrl: "https://www.webapp.skillstrainer.in",
@@ -30,4 +30,3 @@ const consts = {
     adminApiUrl: "https://admin.skillsscale.in/api"
   }
 };
-exports.consts = consts;

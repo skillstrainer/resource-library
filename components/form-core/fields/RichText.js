@@ -7,7 +7,7 @@ exports.default = exports.CKEditorInput = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _lodash = _interopRequireDefault(require("lodash"));
 var _utils = require("../utils");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 const {
   CKEditor
 } = typeof window !== "undefined" ? require("@ckeditor/ckeditor5-react") : {};
@@ -37,7 +37,6 @@ const CKEditorInput = _ref => {
   }));
 };
 exports.CKEditorInput = CKEditorInput;
-var _default = (0, _utils.createPlugin)({
+var _default = exports.default = (0, _utils.createPlugin)({
   Component: CKEditorInput
 });
-exports.default = _default;

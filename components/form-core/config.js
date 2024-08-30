@@ -15,12 +15,10 @@ var _Textarea = _interopRequireDefault(require("./fields/Textarea"));
 var _RichText = _interopRequireDefault(require("./fields/RichText"));
 var _Address = _interopRequireDefault(require("../form-ext/Address"));
 var _FileUploader = require("../form-ext/FileUploader");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const defaultPreprocessors = [];
-exports.defaultPreprocessors = defaultPreprocessors;
-const defaultPostprocessors = [];
-exports.defaultPostprocessors = defaultPostprocessors;
-const defaultPlugins = {
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+const defaultPreprocessors = exports.defaultPreprocessors = [];
+const defaultPostprocessors = exports.defaultPostprocessors = [];
+const defaultPlugins = exports.defaultPlugins = {
   // Core fields
   select: _Select.default,
   textarea: _Textarea.default,
@@ -35,4 +33,3 @@ const defaultPlugins = {
   file: _FileUploader.FileUploaderPlugin,
   address: _Address.default
 };
-exports.defaultPlugins = defaultPlugins;

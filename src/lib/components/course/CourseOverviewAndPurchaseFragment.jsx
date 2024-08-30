@@ -48,12 +48,12 @@ export default function CourseOverviewAndPurchaseFragment(props) {
 
   return (
     <div className="flex justify-center">
-      <div className="px-4 py-10 md:px-10 shadow-xl w-full">
+      <div className="px-4 py-10 md:px-10 w-full">
         <div className="flex flex-between flex-col gap-5 md:flex-row">
           <div className="w-full md:w-2/5">
             <div class="relative">
               <img
-                class="w-full object-cover object-center shadow-xl rounded-xl"
+                class="w-full object-cover object-center rounded-xl"
                 src={
                   courseImg && courseImg
                     ? isMoodleCourse
@@ -102,15 +102,16 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                     ></path>
                   </svg>
                   <span className="ml-2">{students_enrolled} students</span>
+                  <a
+                    className="ml-6"
+                    href="https://www.youtube.com/watch?v=riE-VMMXMHI"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="red-dark mr-2">NSQF</span>
+                    <span>{nsqf_lvl || "NA"}</span>
+                  </a>
                 </div>
-                <a
-                  href="https://www.youtube.com/watch?v=riE-VMMXMHI"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="red-dark mr-2">NSQF</span>
-                  <span>{nsqf_lvl || "NA"}</span>
-                </a>
               </div>
             </div>
             <div className="text-md mb-3">

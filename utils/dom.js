@@ -19,7 +19,6 @@ const clickByPriority = (callback, priority) => element => {
 exports.clickByPriority = clickByPriority;
 const stopPropagation = e => e.stopPropagation();
 exports.stopPropagation = stopPropagation;
-let appContainer;
-exports.appContainer = appContainer;
+let appContainer = exports.appContainer = void 0;
 const setAppContainer = e => exports.appContainer = appContainer = e;
 exports.setAppContainer = setAppContainer;

@@ -17,4 +17,4 @@ Object.defineProperty(exports, "FileUploader", {
 });
 var _Address = require("./Address");
 var _FileUploader = _interopRequireDefault(require("./FileUploader"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }

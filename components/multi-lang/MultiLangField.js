@@ -9,8 +9,8 @@ var _react = _interopRequireDefault(require("react"));
 var _lodash = _interopRequireDefault(require("lodash"));
 var _useField = _interopRequireDefault(require("./utils/useField"));
 var _events = require("./utils/events");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 const MultiLangField = props => {
   const {
     editable,
@@ -30,5 +30,4 @@ const MultiLangField = props => {
     onKeyDown: _events.disableParents
   } : {}), value || defaultValue || (editable ? "_" : ""));
 };
-var _default = MultiLangField;
-exports.default = _default;
+var _default = exports.default = MultiLangField;

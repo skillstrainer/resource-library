@@ -4,9 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.dataURLtoFile = void 0;
+require("core-js/modules/es.array-buffer.constructor.js");
+require("core-js/modules/es.array-buffer.slice.js");
 require("core-js/modules/es.regexp.exec.js");
 require("core-js/modules/es.string.match.js");
-require("core-js/modules/es.array-buffer.slice.js");
 require("core-js/modules/es.typed-array.uint8-array.js");
 require("core-js/modules/es.typed-array.fill.js");
 require("core-js/modules/es.typed-array.set.js");

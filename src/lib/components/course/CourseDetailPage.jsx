@@ -15,8 +15,6 @@ import emptyCertificate from "../../assets/image/common-certificate.png";
 import jobs from "../../assets/image/jobs.jpg";
 
 function CourseDetailPage(props) {
-  console.log("props==== course detail pages hey==", props);
-
   const {
     courseData,
     data,
@@ -30,9 +28,6 @@ function CourseDetailPage(props) {
     isPurchased,
     viewCourse = () => {},
   } = props;
-
-  console.log("props==== course detail Data", data);
-  console.log("props==== course detail courseData", courseData);
 
   const {
     description,
@@ -58,7 +53,7 @@ function CourseDetailPage(props) {
             alt=""
             style={{ zIndex: "-1" }}
           />
-          <div className="content mx-auto bg-white" style={{ zIndex: "1" }}>
+          <div className="bg-white" style={{ zIndex: "1" }}>
             <CourseOverviewAndPurchaseFragment
               courseData={courseData}
               onPaymentStarted={payNow}
@@ -79,12 +74,12 @@ function CourseDetailPage(props) {
           }}
         >
           <div className="mr-5">
-            <div className="text-3xl blue-dark2 font-semibold leading-10 text-center mt-3">
+            <div className="text-3xl blue-dark2 font-semibold leading-10  mt-3">
               About the Course
             </div>
             <MultiLangField name="description">
               <div
-                className="list-wrapper"
+                className="list-wrapper mt-4"
                 dangerouslySetInnerHTML={{
                   __html: description?.replace(/\n/g, "<br />"),
                 }}
@@ -110,7 +105,7 @@ function CourseDetailPage(props) {
         <div className="content mx-auto bg-blue-grad px-4 py-10 md:px-10 mt-20">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div>
-              <h2 className="text-3xl text-center mb-8 blue-dark2 font-semibold">
+              <h2 className="text-3xl mb-8 blue-dark2 font-semibold">
                 Course Modules
               </h2>
               {isMoodleCourse == false
@@ -228,7 +223,7 @@ function CourseDetailPage(props) {
           return (
             <>
               <section>
-                <div className="content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full">
+                <div className="content mx-auto px-3 py-12 pt-20 md:px-16 flex justify-content w-full">
                   <div className="w-full md:w-1/2">
                     <h2 className="text-3xl font-semibold text-gray-800 blue-dark2 mb-5">
                       Job / Work Opportunities:

@@ -11,9 +11,9 @@ var _MultiLangField = _interopRequireDefault(require("../multi-lang/MultiLangFie
 var _newLogo = _interopRequireDefault(require("../../assets/image/newLogo.svg"));
 var _dom = require("../../utils/dom");
 var _Context = require("../../Context");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function CourseOverviewAndPurchaseFragment(props) {
   const {
     courseData,
@@ -54,7 +54,7 @@ function CourseOverviewAndPurchaseFragment(props) {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "px-4 py-10 md:px-10 shadow-xl w-full"
+    className: "px-4 py-10 md:px-10 w-full"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex flex-between flex-col gap-5 md:flex-row"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -62,7 +62,7 @@ function CourseOverviewAndPurchaseFragment(props) {
   }, /*#__PURE__*/_react.default.createElement("div", {
     class: "relative"
   }, /*#__PURE__*/_react.default.createElement("img", {
-    class: "w-full object-cover object-center shadow-xl rounded-xl",
+    class: "w-full object-cover object-center rounded-xl",
     src: courseImg && courseImg ? isMoodleCourse ? courseImg : s3Url + "/" + courseImg : courseImg,
     alt: "course-img"
   }), /*#__PURE__*/_react.default.createElement("div", {
@@ -107,13 +107,14 @@ function CourseOverviewAndPurchaseFragment(props) {
     d: "M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24a5.98 5.98 0 010 7.52c.42.14.86.24 1.33.24zM9 13c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
   })), /*#__PURE__*/_react.default.createElement("span", {
     className: "ml-2"
-  }, students_enrolled, " students")), /*#__PURE__*/_react.default.createElement("a", {
+  }, students_enrolled, " students"), /*#__PURE__*/_react.default.createElement("a", {
+    className: "ml-6",
     href: "https://www.youtube.com/watch?v=riE-VMMXMHI",
     target: "_blank",
     rel: "noopener noreferrer"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "red-dark mr-2"
-  }, "NSQF"), /*#__PURE__*/_react.default.createElement("span", null, nsqf_lvl || "NA")))), /*#__PURE__*/_react.default.createElement("div", {
+  }, "NSQF"), /*#__PURE__*/_react.default.createElement("span", null, nsqf_lvl || "NA"))))), /*#__PURE__*/_react.default.createElement("div", {
     className: "text-md mb-3"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: "font-semibold text-japanese_indigo mr-3 "

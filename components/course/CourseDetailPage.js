@@ -20,15 +20,14 @@ var _solid = require("@heroicons/react/solid");
 var _pageTopBg = _interopRequireDefault(require("../../assets/image/page-top-bg.png"));
 var _commonCertificate = _interopRequireDefault(require("../../assets/image/common-certificate.png"));
 var _jobs = _interopRequireDefault(require("../../assets/image/jobs.jpg"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 // Icons
 
 // Images
 
 function CourseDetailPage(props) {
-  console.log("props==== course detail pages hey==", props);
   const {
     courseData,
     data,
@@ -41,8 +40,6 @@ function CourseDetailPage(props) {
     isPurchased,
     viewCourse = () => {}
   } = props;
-  console.log("props==== course detail Data", data);
-  console.log("props==== course detail courseData", courseData);
   const {
     description,
     modules,
@@ -70,7 +67,7 @@ function CourseDetailPage(props) {
       zIndex: "-1"
     }
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "content mx-auto bg-white",
+    className: "bg-white",
     style: {
       zIndex: "1"
     }
@@ -90,11 +87,11 @@ function CourseDetailPage(props) {
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "mr-5"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-3xl blue-dark2 font-semibold leading-10 text-center mt-3"
+    className: "text-3xl blue-dark2 font-semibold leading-10  mt-3"
   }, "About the Course"), /*#__PURE__*/_react.default.createElement(_MultiLangField.default, {
     name: "description"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "list-wrapper",
+    className: "list-wrapper mt-4",
     dangerouslySetInnerHTML: {
       __html: description === null || description === void 0 ? void 0 : description.replace(/\n/g, "<br />")
     }
@@ -113,7 +110,7 @@ function CourseDetailPage(props) {
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "grid grid-cols-1 gap-8 md:grid-cols-2"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
-    className: "text-3xl text-center mb-8 blue-dark2 font-semibold"
+    className: "text-3xl mb-8 blue-dark2 font-semibold"
   }, "Course Modules"), isMoodleCourse == false ? courseModuleTopic && /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full p-2 mx-auto rounded-lg"
   }, courseModuleTopic.length > 0 && courseModuleTopic.map(module => /*#__PURE__*/_react.default.createElement(_react2.Disclosure, {
@@ -186,7 +183,7 @@ function CourseDetailPage(props) {
   })))))), partners.map(partnerId => {
     if (partnerId.id !== 59) {
       return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("div", {
-        className: "content mx-auto px-3 py-12 pt-20 md:px-16 shadow-2xl flex justify-content w-full"
+        className: "content mx-auto px-3 py-12 pt-20 md:px-16 flex justify-content w-full"
       }, /*#__PURE__*/_react.default.createElement("div", {
         className: "w-full md:w-1/2"
       }, /*#__PURE__*/_react.default.createElement("h2", {
@@ -218,5 +215,4 @@ function CourseDetailPage(props) {
     }
   }));
 }
-var _default = CourseDetailPage;
-exports.default = _default;
+var _default = exports.default = CourseDetailPage;
