@@ -15,7 +15,14 @@ const optionalFields = [
 ];
 
 export function AddressField(props) {
-  const { label, value = {}, onChange: _onChange, className, keys } = props;
+  const {
+    label,
+    value = {},
+    onChange: _onChange,
+    className,
+    keys,
+    disabled,
+  } = props;
   let [fields, setFields] = useState(mandatoryFields);
   const [addressDetails, setAddressDetails] = useState(false);
   const onChange = (val) => _onChange(_.pick(val, fields));
@@ -107,6 +114,7 @@ export function AddressField(props) {
    */
   const genField = (fieldName, placeholder) => (
     <input
+      disabled={disabled}
       type="text"
       className="input-primary"
       placeholder={placeholder}
@@ -119,6 +127,7 @@ export function AddressField(props) {
     <div className={className}>
       <div className="mt-1 relative rounded-md shadow-sm">
         <select
+          disabled={disabled}
           className="input-primary"
           onChange={wireEventValue(handleCountryChange)}
           value={value.country}
@@ -131,6 +140,7 @@ export function AddressField(props) {
       </div>
       <div className="mt-1 relative rounded-md shadow-sm">
         <input
+          disabled={disabled}
           type="text"
           className="input-primary"
           placeholder="Pincode"

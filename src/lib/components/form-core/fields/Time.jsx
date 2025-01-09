@@ -2,11 +2,19 @@ import React from "react";
 
 import { createPlugin } from "../utils";
 
-export const TimeInput = ({ name, className, onChange, value, ...props }) => {
+export const TimeInput = ({
+  disabled,
+  name,
+  className,
+  onChange,
+  value,
+  ...props
+}) => {
   return (
     <div key={name} className={className}>
       <div className="mt-1 relative rounded-md shadow-sm">
         <input
+          disabled={disabled}
           style={{ boxSizing: "border-box" }}
           className="input-primary"
           type="time"

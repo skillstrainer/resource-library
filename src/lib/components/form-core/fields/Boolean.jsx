@@ -2,6 +2,7 @@ import React from "react";
 import { createPlugin } from "../utils";
 
 export const Boolean = ({
+  disabled,
   name,
   value,
   onChange,
@@ -17,6 +18,7 @@ export const Boolean = ({
           className="h-7 w-7 text-orange focus:ring-0 focus:ring-offset-0 focus:border-0 rounded"
           onChange={(e) => onChange(e.target.checked)}
           checked={value}
+          disabled={disabled}
         />
         <label
           htmlFor="comments"

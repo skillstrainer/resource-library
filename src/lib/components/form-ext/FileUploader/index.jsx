@@ -16,6 +16,7 @@ export default function FileUploader(props) {
     showCaptureButton,
     renderCaptureButton,
     fileFieldProps = {},
+    disabled,
     pluginContext: { services = {} } = {},
   } = props;
 
@@ -114,6 +115,7 @@ export default function FileUploader(props) {
         }}
       >
         <input
+          disabled={disabled}
           type="file"
           ref={fileInputRef}
           onChange={(e) => {

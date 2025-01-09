@@ -3,7 +3,7 @@ import _ from "lodash";
 import React from "react";
 import { createPlugin } from "../utils";
 
-export const Input = ({ type, name, className, ...fieldProps }) => {
+export const Input = ({ type, name, disabled, className, ...fieldProps }) => {
   return (
     <div key={name} className={`${className}`}>
       <div className="relative rounded-md shadow-sm">
@@ -12,6 +12,7 @@ export const Input = ({ type, name, className, ...fieldProps }) => {
           {..._.omit(fieldProps, ["onChange"])}
           name={name}
           type={type}
+          disabled={disabled}
           autoComplete="new-password"
           className="input-primary"
         />

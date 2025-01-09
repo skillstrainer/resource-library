@@ -3,6 +3,7 @@ import ReactSelect from "react-select";
 import { createPlugin } from "../utils";
 
 export const MultiSelect = ({
+  disabled,
   options = [],
   value,
   onChange,
@@ -27,6 +28,7 @@ export const MultiSelect = ({
   return (
     <div className={`mt-1 col-span-6 sm:col-span-3 ${className}`}>
       <ReactSelect
+        isDisabled={disabled}
         style={{ boxSizing: "border-box" }}
         {...selectProps}
         isMulti

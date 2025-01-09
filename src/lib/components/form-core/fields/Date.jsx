@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { createPlugin } from "../utils";
 
 export const DateField = ({
+  disabled,
   name,
   value,
   onChange,
@@ -19,6 +20,7 @@ export const DateField = ({
     <div key={name} className={`${className}`}>
       <div className="relative rounded-md shadow-sm">
         <DatePicker
+          disabled={disabled}
           style={{ boxSizing: "border-box", width: "100%" }}
           className="input-primary"
           dateFormat={dateFormat}

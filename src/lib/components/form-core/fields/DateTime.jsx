@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const DateTime = ({
+  disabled,
   name,
   onChange,
   placeholder,
@@ -15,6 +16,7 @@ export const DateTime = ({
     <div key={name} className={`${className}`}>
       <div className="relative rounded-md shadow-sm">
         <DatePicker
+          disabled={disabled}
           className="input-primary"
           showTimeSelect
           dateFormat="MMMM d, yyyy h:mm a"

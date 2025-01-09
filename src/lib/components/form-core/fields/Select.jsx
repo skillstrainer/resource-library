@@ -2,11 +2,18 @@ import _ from "lodash";
 import React from "react";
 import { createPlugin } from "../utils";
 
-export const Select = ({ name, options = [], className, ...fieldProps }) => {
+export const Select = ({
+  disabled,
+  name,
+  options = [],
+  className,
+  ...fieldProps
+}) => {
   const { formProps } = fieldProps;
   return (
     <div key={name} className={`col-span-6 sm:col-span-3 ${className}`}>
       <select
+        disabled={disabled}
         style={{ boxSizing: "border-box" }}
         {..._.omit(fieldProps, ["onChange"])}
         name={name}
