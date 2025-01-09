@@ -10,13 +10,14 @@ exports.default = exports.Select = void 0;
 var _lodash = _interopRequireDefault(require("lodash"));
 var _react = _interopRequireDefault(require("react"));
 var _utils = require("../utils");
-const _excluded = ["name", "options", "className"];
+const _excluded = ["disabled", "name", "options", "className"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var s = Object.getOwnPropertySymbols(e); for (r = 0; r < s.length; r++) o = s[r], t.includes(o) || {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (e.includes(n)) continue; t[n] = r[n]; } return t; }
 const Select = _ref => {
   let {
+      disabled,
       name,
       options = [],
       className
@@ -29,6 +30,7 @@ const Select = _ref => {
     key: name,
     className: "col-span-6 sm:col-span-3 ".concat(className)
   }, /*#__PURE__*/_react.default.createElement("select", _extends({
+    disabled: disabled,
     style: {
       boxSizing: "border-box"
     }

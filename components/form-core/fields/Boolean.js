@@ -9,6 +9,7 @@ var _utils = require("../utils");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 const Boolean = _ref => {
   let {
+    disabled,
     name,
     value,
     onChange: _onChange,
@@ -25,7 +26,8 @@ const Boolean = _ref => {
     type: "checkbox",
     className: "h-7 w-7 text-orange focus:ring-0 focus:ring-offset-0 focus:border-0 rounded",
     onChange: e => _onChange(e.target.checked),
-    checked: value
+    checked: value,
+    disabled: disabled
   }), /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "comments",
     className: "ml-3 text-sm font-medium text-japanese_indigo"

@@ -11,13 +11,14 @@ var _react = _interopRequireDefault(require("react"));
 var _utils = require("../utils");
 var _reactDatepicker = _interopRequireDefault(require("react-datepicker"));
 require("react-datepicker/dist/react-datepicker.css");
-const _excluded = ["name", "onChange", "placeholder", "className", "value"];
+const _excluded = ["disabled", "name", "onChange", "placeholder", "className", "value"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var s = Object.getOwnPropertySymbols(e); for (r = 0; r < s.length; r++) o = s[r], t.includes(o) || {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (e.includes(n)) continue; t[n] = r[n]; } return t; }
 const DateTime = _ref => {
   let {
+      disabled,
       name,
       onChange: _onChange,
       placeholder,
@@ -31,6 +32,7 @@ const DateTime = _ref => {
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "relative rounded-md shadow-sm"
   }, /*#__PURE__*/_react.default.createElement(_reactDatepicker.default, _extends({
+    disabled: disabled,
     className: "input-primary",
     showTimeSelect: true,
     dateFormat: "MMMM d, yyyy h:mm a",

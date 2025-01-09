@@ -14,7 +14,20 @@ async function handleSubmit(values) {
 
 const FormBuilder = (values) => {
   const [schema, setSchema] = useState();
+  // // Core fields
+  // select: SelectPlugin,
+  // textarea: TextareaPlugin,
+  // date: DatePlugin,
+  // "date-time": DateTimePlugin,
+  // boolean: BooleanPlugin,
+  // "multi-select": MultiSelectPlugin,
+  // input: InputPlugin,
+  // "rich-text": RichTextPlugin,
+  // time: TimePlugin,
 
+  // // Ext fields
+  // file: FileUploaderPlugin,
+  // address: AddressPlugin,
   useEffect(() => {
     const schema = {
       // name: {
@@ -22,7 +35,8 @@ const FormBuilder = (values) => {
       // },
       address: {
         label: "Address",
-        type: "address",
+        type: "rich-text",
+        disabled: true,
         keys: {
           action: "include",
           addressDetails: true,
@@ -39,7 +53,7 @@ export default function ModalForm() {
   return (
     <div>
       {/* <CourseCard data={courseCardData[0]} /> */}
-      {/* <Form formBuilder={FormBuilder} /> */}
+      <Form formBuilder={FormBuilder} />
       {/* <CourseOverviewAndPurchaseFragment courseData={courseCardData[0]} /> */}
     </div>
   );

@@ -35,6 +35,7 @@ function FileUploader(props) {
     showCaptureButton,
     renderCaptureButton,
     fileFieldProps = {},
+    disabled,
     pluginContext: {
       services = {}
     } = {}
@@ -123,6 +124,7 @@ function FileUploader(props) {
       overflow: "hidden"
     }
   }, /*#__PURE__*/_react.default.createElement("input", _extends({
+    disabled: disabled,
     type: "file",
     ref: fileInputRef,
     onChange: e => {

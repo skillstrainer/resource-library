@@ -9,10 +9,10 @@ import { CourseOverviewAndPurchaseFragment } from "./lib";
 export default function Test(props) {
   return (
     <div>
-      <CourseCard data={courseCardData[0]} />
+      {/* <CourseCard data={courseCardData[0]} /> */}
       {/* <CourseOverviewAndPurchaseFragment courseData={courseCardData[0]} /> */}
-      <CourseDetail />
-      {/* <ModalForm /> */}
+      {/* <CourseDetail /> */}
+      <ModalForm />
     </div>
   );
 }

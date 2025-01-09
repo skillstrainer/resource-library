@@ -11,7 +11,7 @@ var _formik = require("formik");
 var _lodash = _interopRequireDefault(require("lodash"));
 var _react = _interopRequireDefault(require("react"));
 var _utils = require("../utils");
-const _excluded = ["type", "name", "className"];
+const _excluded = ["type", "name", "disabled", "className"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var s = Object.getOwnPropertySymbols(e); for (r = 0; r < s.length; r++) o = s[r], t.includes(o) || {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
@@ -20,6 +20,7 @@ const Input = _ref => {
   let {
       type,
       name,
+      disabled,
       className
     } = _ref,
     fieldProps = _objectWithoutProperties(_ref, _excluded);
@@ -35,6 +36,7 @@ const Input = _ref => {
   }, _lodash.default.omit(fieldProps, ["onChange"]), {
     name: name,
     type: type,
+    disabled: disabled,
     autoComplete: "new-password",
     className: "input-primary"
   }))));

@@ -11,13 +11,14 @@ require("core-js/modules/web.dom-collections.iterator.js");
 var _react = _interopRequireDefault(require("react"));
 var _reactSelect = _interopRequireDefault(require("react-select"));
 var _utils = require("../utils");
-const _excluded = ["options", "value", "onChange", "className"];
+const _excluded = ["disabled", "options", "value", "onChange", "className"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var s = Object.getOwnPropertySymbols(e); for (r = 0; r < s.length; r++) o = s[r], t.includes(o) || {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (e.includes(n)) continue; t[n] = r[n]; } return t; }
 const MultiSelect = _ref => {
   let {
+      disabled,
       options = [],
       value,
       onChange,
@@ -37,6 +38,7 @@ const MultiSelect = _ref => {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 col-span-6 sm:col-span-3 ".concat(className)
   }, /*#__PURE__*/_react.default.createElement(_reactSelect.default, _extends({
+    isDisabled: disabled,
     style: {
       boxSizing: "border-box"
     }

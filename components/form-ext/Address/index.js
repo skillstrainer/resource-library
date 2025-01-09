@@ -30,7 +30,8 @@ function AddressField(props) {
     value = {},
     onChange: _onChange,
     className,
-    keys
+    keys,
+    disabled
   } = props;
   let [fields, setFields] = (0, _react.useState)(mandatoryFields);
   const [addressDetails, setAddressDetails] = (0, _react.useState)(false);
@@ -108,6 +109,7 @@ function AddressField(props) {
    *
    */
   const genField = (fieldName, placeholder) => /*#__PURE__*/_react.default.createElement("input", {
+    disabled: disabled,
     type: "text",
     className: "input-primary",
     placeholder: placeholder,
@@ -119,6 +121,7 @@ function AddressField(props) {
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 relative rounded-md shadow-sm"
   }, /*#__PURE__*/_react.default.createElement("select", {
+    disabled: disabled,
     className: "input-primary",
     onChange: (0, _func.wireEventValue)(handleCountryChange),
     value: value.country
@@ -127,6 +130,7 @@ function AddressField(props) {
   }, country.name)))), /*#__PURE__*/_react.default.createElement("div", {
     className: "mt-1 relative rounded-md shadow-sm"
   }, /*#__PURE__*/_react.default.createElement("input", {
+    disabled: disabled,
     type: "text",
     className: "input-primary",
     placeholder: "Pincode",
