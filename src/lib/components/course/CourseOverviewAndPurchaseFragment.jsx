@@ -12,8 +12,9 @@ export default function CourseOverviewAndPurchaseFragment(props) {
     viewCourse,
     goToCategoryPage,
     isPurchased,
+    reAttemptPaymentDone,
   } = props;
-
+  console.log("courseData@", courseData);
   const {
     displayName,
     categoryName,
@@ -39,6 +40,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
 
   const [payingBySubscription, setPayingBySubscription] = useState(false);
   const [paymentStarted, setPaymentStarted] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const {
     request: { s3Url },
@@ -130,7 +132,6 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                   : "Self Paced Digital Content"}
               </span>
             </div>
-
             {is_subscription && !isPurchased && (
               <div className="text-md mb-3">
                 <span className="font-semibold text-japanese_indigo mr-3 ">
@@ -150,7 +151,6 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                 </span>
               </div>
             )}
-
             <div className="text-md mb-3">
               <span className="font-semibold text-japanese_indigo mr-3 ">
                 {!payingBySubscription ? "Price:" : "Installment Price:"}
@@ -204,15 +204,94 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                 </div>
               </div>
             )}
-
-            <div className="flex gap-3 mt-4">
+            <div className="flex flex-col gap-3 mt-4">
               {isPurchased ? (
-                <button
-                  className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto"
-                  onClick={viewCourse}
-                >
-                  View course
-                </button>
+                <>
+                  <button
+                    className="w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-1/4"
+                    onClick={viewCourse}
+                  >
+                    View course
+                  </button>
+
+                  {courseData.modulesWithGrades &&
+                    courseData.modulesWithGrades.length > 0 && (
+                      <div className="pt-2">
+                        <div className="">
+                          <table className="min-w-full bg-gray-100 text-sm rounded-lg">
+                            <thead>
+                              <tr className="text-left text-japanese_indigo">
+                                <th className="px-4 py-3 font-semibold border-b">
+                                  Modules
+                                </th>
+                                <th className="px-4 py-3 font-semibold border-b">
+                                  Grade
+                                </th>
+                                <th className="px-4 py-3 font-semibold border-b">
+                                  Score
+                                </th>
+                                <th className="px-4 py-3 font-semibold border-b">
+                                  Action
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {courseData.modulesWithGrades.map((mod) => (
+                                <tr key={mod.id} className="border-b">
+                                  <td className="px-4 py-3">{mod.name}</td>
+                                  <td className="px-4 py-3">
+                                    <span
+                                      className={`font-bold ${
+                                        mod.grade === "Pass"
+                                          ? "text-green-600"
+                                          : mod.grade === "Fail"
+                                          ? "text-red-600"
+                                          : "text-gray-500"
+                                      }`}
+                                    >
+                                      {mod.grade}
+                                    </span>
+                                  </td>
+                                  <td className="px-4 py-3">
+                                    {mod.score ?? "-"}
+                                  </td>
+                                  <td className="px-4 py-3">
+                                    {mod.grade === "Fail" &&
+                                      mod.canReattempt && (
+                                        <>
+                                          {reAttemptPaymentDone ? (
+                                            <button
+                                              onClick={() =>
+                                                setShowSuccessPopup(true)
+                                              }
+                                              className="text-green-600 border border-green-600 font-semibold px-3 py-1 rounded-md hover:bg-green-50"
+                                            >
+                                              Take Test
+                                            </button>
+                                          ) : (
+                                            <button
+                                              onClick={() =>
+                                                console.log(
+                                                  "Redirect to payment"
+                                                )
+                                              }
+                                              className="text-red-600 border border-red-600 font-semibold px-3 py-1 rounded-md hover:bg-red-50"
+                                            >
+                                              Re-Attempt with ₹
+                                              {mod.reattemptCost || 1200}
+                                            </button>
+                                          )}
+                                        </>
+                                      )}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    )}
+                </>
               ) : (
                 <button
                   onClick={(e) => {
@@ -276,6 +355,28 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                   )
                 ))}
             </div>
+            {showSuccessPopup && (
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30"
+                onClick={() => setShowSuccessPopup(false)}
+              >
+                <div className="bg-white p-6 rounded-xl shadow-xl text-center w-80 animate-fade-in">
+                  <h2 className="text-xl font-bold text-japanese_indigo mb-2">
+                    Take the test Now!
+                  </h2>
+
+                  <p className="text-sm text-gray-600 mb-4">
+                    You’ll be redirected to the ESOL dashboard. <br />
+                  </p>
+                  <button
+                    onClick={viewCourse}
+                    className="bg-red-dark text-white font-semibold px-4 py-2 rounded-md w-2/3"
+                  >
+                    Go To ESOL Dashboard
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

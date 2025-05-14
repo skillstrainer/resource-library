@@ -26,9 +26,10 @@ function CourseDetailPage(props) {
 
     // If course is purchased
     isPurchased,
+    reAttemptPaymentDone,
     viewCourse = () => {},
   } = props;
-
+  console.log("CourseDetails", courseData);
   const {
     description,
     modules,
@@ -59,7 +60,8 @@ function CourseDetailPage(props) {
               onPaymentStarted={payNow}
               viewCourse={viewCourse}
               goToCategoryPage={goToCategoryPage}
-              isPurchased={isPurchased}
+              isPurchased={true}
+              reAttemptPaymentDone={true}
             />
           </div>
         </div>
