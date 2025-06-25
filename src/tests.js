@@ -12,7 +12,8 @@ export default function Test(props) {
       {/* <CourseCard data={courseCardData[0]} /> */}
       {/* <CourseOverviewAndPurchaseFragment courseData={courseCardData[0]} /> */}
       {/* <CourseDetail /> */}
-      <ModalForm />
+      {/* <ModalForm /> */}
+      <CourseDetailPage courseData={courseCardData[0]} />
     </div>
   );
 }

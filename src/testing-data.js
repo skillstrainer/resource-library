@@ -25,6 +25,34 @@ export const courseCardData = [
         partner: {},
       },
     ],
+    modulesWithGrades: [
+      {
+        id: 1,
+        name: "Reading",
+        grade: "Pass",
+        canReattempt: false,
+        score: 2,
+      },
+      {
+        id: 2,
+        name: "Learning",
+        grade: "Fail",
+        canReattempt: true,
+        score: 2,
+      },
+      {
+        id: 3,
+        name: "Speaking",
+        grade: "-",
+        canReattempt: false,
+      },
+      {
+        id: 3,
+        name: "Writing",
+        grade: "-",
+        canReattempt: false,
+      },
+    ],
     categoryImg: "",
     courseId: 112,
     shortName: "short ESSCI - In-Store Promoter",
@@ -80,6 +108,7 @@ export const coursePageData = [
           partner: {},
         },
       ],
+
       categoryImg: "",
       courseId: 112,
       shortName: "short ESSCI - In-Store Promoter",
