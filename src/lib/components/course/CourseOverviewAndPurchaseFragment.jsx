@@ -12,7 +12,6 @@ export default function CourseOverviewAndPurchaseFragment(props) {
     viewCourse,
     goToCategoryPage,
     isPurchased,
-    reAttemptPaymentDone,
   } = props;
   console.log("courseData@", courseData);
   const {
@@ -215,6 +214,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                   </button>
 
                   {courseData.modulesWithGrades &&
+                    courseData.isNocnCourse &&
                     courseData.modulesWithGrades.length > 0 && (
                       <div className="pt-2">
                         <div className="">
@@ -256,33 +256,49 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                                     {mod.score ?? "-"}
                                   </td>
                                   <td className="px-4 py-3">
-                                    {mod.grade === "Fail" &&
-                                      mod.canReattempt && (
-                                        <>
-                                          {reAttemptPaymentDone ? (
-                                            <button
-                                              onClick={() =>
-                                                setShowSuccessPopup(true)
-                                              }
-                                              className="text-green-600 border border-green-600 font-semibold px-3 py-1 rounded-md hover:bg-green-50"
-                                            >
-                                              Take Test
-                                            </button>
-                                          ) : (
-                                            <button
-                                              onClick={() =>
-                                                console.log(
-                                                  "Redirect to payment"
-                                                )
-                                              }
-                                              className="text-red-600 border border-red-600 font-semibold px-3 py-1 rounded-md hover:bg-red-50"
-                                            >
-                                              Re-Attempt with ₹
-                                              {mod.reattemptCost || 1200}
-                                            </button>
-                                          )}
-                                        </>
-                                      )}
+                                    {mod.canReattempt && (
+                                      <>
+                                        {courseData?.reAttemptPaymentDone ? (
+                                          <button
+                                            onClick={() =>
+                                              setShowSuccessPopup(true)
+                                            }
+                                            className="text-green-600 border border-green-600 font-semibold px-3 py-1 rounded-md hover:bg-green-50"
+                                          >
+                                            Take Test
+                                          </button>
+                                        ) : (
+                                          <button
+                                            onClick={() => {
+                                              const searchParams =
+                                                new URLSearchParams(
+                                                  window.location.search
+                                                );
+                                              searchParams.set(
+                                                "module_id",
+                                                mod.id
+                                              );
+
+                                              const newUrl = `${
+                                                window.location.pathname
+                                              }?${searchParams.toString()}`;
+                                              window.history.replaceState(
+                                                null,
+                                                "",
+                                                newUrl
+                                              );
+
+                                              onPaymentStarted({
+                                                payingBySubscription: false,
+                                              });
+                                            }}
+                                            className="text-red-600 border border-red-600 font-semibold px-3 py-1 rounded-md hover:bg-red-50"
+                                          >
+                                            Payment for Re-attempt
+                                          </button>
+                                        )}
+                                      </>
+                                    )}
                                   </td>
                                 </tr>
                               ))}
