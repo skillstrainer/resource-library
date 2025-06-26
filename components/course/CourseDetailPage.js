@@ -40,6 +40,7 @@ function CourseDetailPage(props) {
     isPurchased,
     viewCourse = () => {}
   } = props;
+  console.log("CourseDetails", courseData);
   const {
     description,
     modules,

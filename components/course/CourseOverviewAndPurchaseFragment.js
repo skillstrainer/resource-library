@@ -5,7 +5,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = CourseOverviewAndPurchaseFragment;
+require("core-js/modules/es.regexp.exec.js");
+require("core-js/modules/es.regexp.to-string.js");
+require("core-js/modules/es.string.search.js");
 require("core-js/modules/web.dom-collections.iterator.js");
+require("core-js/modules/web.url-search-params.js");
 var _react = _interopRequireWildcard(require("react"));
 var _MultiLangField = _interopRequireDefault(require("../multi-lang/MultiLangField"));
 var _newLogo = _interopRequireDefault(require("../../assets/image/newLogo.svg"));
@@ -22,6 +26,7 @@ function CourseOverviewAndPurchaseFragment(props) {
     goToCategoryPage,
     isPurchased
   } = props;
+  console.log("courseData@", courseData);
   const {
     displayName,
     categoryName,
@@ -45,6 +50,7 @@ function CourseOverviewAndPurchaseFragment(props) {
   } = courseData || {};
   const [payingBySubscription, setPayingBySubscription] = (0, _react.useState)(false);
   const [paymentStarted, setPaymentStarted] = (0, _react.useState)(false);
+  const [showSuccessPopup, setShowSuccessPopup] = (0, _react.useState)(false);
   const {
     request: {
       s3Url
@@ -155,11 +161,57 @@ function CourseOverviewAndPurchaseFragment(props) {
     src: p.logo,
     className: "mr-3 h-9"
   }) || null))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex gap-3 mt-4"
-  }, isPurchased ? /*#__PURE__*/_react.default.createElement("button", {
-    className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-auto",
+    className: "flex flex-col gap-3 mt-4"
+  }, isPurchased ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
+    className: "w-full text-sm bg-red-dark hover:opacity-90 px-6 py-3 text-white rounded-lg md:w-1/4",
     onClick: viewCourse
-  }, "View course") : /*#__PURE__*/_react.default.createElement("button", {
+  }, "View course"), courseData.modulesWithGrades && courseData.isNocnCourse && courseData.modulesWithGrades.length > 0 && /*#__PURE__*/_react.default.createElement("div", {
+    className: "pt-2"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: ""
+  }, /*#__PURE__*/_react.default.createElement("table", {
+    className: "min-w-full bg-gray-100 text-sm rounded-lg"
+  }, /*#__PURE__*/_react.default.createElement("thead", null, /*#__PURE__*/_react.default.createElement("tr", {
+    className: "text-left text-japanese_indigo"
+  }, /*#__PURE__*/_react.default.createElement("th", {
+    className: "px-4 py-3 font-semibold border-b"
+  }, "Modules"), /*#__PURE__*/_react.default.createElement("th", {
+    className: "px-4 py-3 font-semibold border-b"
+  }, "Grade"), /*#__PURE__*/_react.default.createElement("th", {
+    className: "px-4 py-3 font-semibold border-b"
+  }, "Score"), /*#__PURE__*/_react.default.createElement("th", {
+    className: "px-4 py-3 font-semibold border-b"
+  }, "Action"))), /*#__PURE__*/_react.default.createElement("tbody", null, courseData.modulesWithGrades.map(mod => {
+    var _mod$score;
+    return /*#__PURE__*/_react.default.createElement("tr", {
+      key: mod.id,
+      className: "border-b"
+    }, /*#__PURE__*/_react.default.createElement("td", {
+      className: "px-4 py-3"
+    }, mod.name), /*#__PURE__*/_react.default.createElement("td", {
+      className: "px-4 py-3"
+    }, /*#__PURE__*/_react.default.createElement("span", {
+      className: "font-bold ".concat(mod.grade === "Pass" ? "text-green-600" : mod.grade === "Fail" ? "text-red-600" : "text-gray-500")
+    }, mod.grade)), /*#__PURE__*/_react.default.createElement("td", {
+      className: "px-4 py-3"
+    }, (_mod$score = mod.score) !== null && _mod$score !== void 0 ? _mod$score : "-"), /*#__PURE__*/_react.default.createElement("td", {
+      className: "px-4 py-3"
+    }, mod.canReattempt && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, courseData !== null && courseData !== void 0 && courseData.reAttemptPaymentDone ? /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => setShowSuccessPopup(true),
+      className: "text-green-600 border border-green-600 font-semibold px-3 py-1 rounded-md hover:bg-green-50"
+    }, "Take Test") : /*#__PURE__*/_react.default.createElement("button", {
+      onClick: () => {
+        const searchParams = new URLSearchParams(window.location.search);
+        searchParams.set("module_id", mod.id);
+        const newUrl = "".concat(window.location.pathname, "?").concat(searchParams.toString());
+        window.history.replaceState(null, "", newUrl);
+        onPaymentStarted({
+          payingBySubscription: false
+        });
+      },
+      className: "text-red-600 border border-red-600 font-semibold px-3 py-1 rounded-md hover:bg-red-50"
+    }, "Payment for Re-attempt"))));
+  })))))) : /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       (0, _dom.stopPropagation)(e);
       setPaymentStarted(true);
@@ -181,7 +233,19 @@ function CourseOverviewAndPurchaseFragment(props) {
   }, "Show Demo Class Details") : isDemoAvailable && /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => onBookDemo(),
     className: "text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg"
-  }, "Book A Free Demo")))))));
+  }, "Book A Free Demo"))), showSuccessPopup && /*#__PURE__*/_react.default.createElement("div", {
+    className: "fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30",
+    onClick: () => setShowSuccessPopup(false)
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "bg-white p-6 rounded-xl shadow-xl text-center w-80 animate-fade-in"
+  }, /*#__PURE__*/_react.default.createElement("h2", {
+    className: "text-xl font-bold text-japanese_indigo mb-2"
+  }, "Take the test Now!"), /*#__PURE__*/_react.default.createElement("p", {
+    className: "text-sm text-gray-600 mb-4"
+  }, "You\u2019ll be redirected to the ESOL dashboard. ", /*#__PURE__*/_react.default.createElement("br", null)), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: viewCourse,
+    className: "bg-red-dark text-white font-semibold px-4 py-2 rounded-md w-2/3"
+  }, "Go To ESOL Dashboard")))))));
 }
 const RadioButton = _ref => {
   let {
