@@ -46,6 +46,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
   } = useContext(STRLContext);
 
   console.log("hey==", s3Url);
+  console.log("courseData", courseData);
 
   return (
     <div className="flex justify-center">

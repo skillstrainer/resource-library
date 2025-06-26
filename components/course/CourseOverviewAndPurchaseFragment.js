@@ -57,6 +57,7 @@ function CourseOverviewAndPurchaseFragment(props) {
     }
   } = (0, _react.useContext)(_Context.STRLContext);
   console.log("hey==", s3Url);
+  console.log("courseData", courseData);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
