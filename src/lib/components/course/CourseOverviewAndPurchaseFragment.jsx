@@ -257,7 +257,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                                     {mod.score ?? "-"}
                                   </td>
                                   <td className="px-4 py-3">
-                                    {mod.canReattempt && (
+                                    {/* {mod.canReattempt && (
                                       <>
                                         {courseData?.reAttemptPaymentDone ? (
                                           <button
@@ -299,7 +299,8 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                                           </button>
                                         )}
                                       </>
-                                    )}
+                                    )} */}
+                                    "-"
                                   </td>
                                 </tr>
                               ))}
