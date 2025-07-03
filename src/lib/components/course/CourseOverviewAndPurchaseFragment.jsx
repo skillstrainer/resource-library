@@ -257,13 +257,11 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                                     {mod.score ?? "-"}
                                   </td>
                                   <td className="px-4 py-3">
-                                    {/* {mod.canReattempt && (
+                                    {mod.canReattempt && (
                                       <>
-                                        {courseData?.reAttemptPaymentDone ? (
+                                        {mod?.reAttemptPaymentDone ? (
                                           <button
                                             onClick={() =>
-
-                                              
                                               setShowSuccessPopup(true)
                                             }
                                             className="text-green-600 border border-green-600 font-semibold px-3 py-1 rounded-md hover:bg-green-50"
@@ -301,7 +299,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                                           </button>
                                         )}
                                       </>
-                                    )} */}
+                                    )}
                                     "-"
                                   </td>
                                 </tr>

@@ -102,7 +102,6 @@ const courseFormatter = (obj) => {
       moodleCourseId: obj.moodle_course_id,
       course_type: obj.course_type,
       modulesWithGrades: obj.modulesWithGrades || [],
-      reAttemptPaymentDone: obj.reAttemptPaymentDone || false,
       isNocnCourse: obj.isNocnCourse || false,
     },
     obj.course_subscription_relation_array
