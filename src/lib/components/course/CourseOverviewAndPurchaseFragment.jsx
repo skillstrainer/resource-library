@@ -262,6 +262,8 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                                         {courseData?.reAttemptPaymentDone ? (
                                           <button
                                             onClick={() =>
+
+                                              
                                               setShowSuccessPopup(true)
                                             }
                                             className="text-green-600 border border-green-600 font-semibold px-3 py-1 rounded-md hover:bg-green-50"
