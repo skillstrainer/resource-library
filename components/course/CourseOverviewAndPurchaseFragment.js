@@ -184,6 +184,7 @@ function CourseOverviewAndPurchaseFragment(props) {
     className: "px-4 py-3 font-semibold border-b"
   }, "Action"))), /*#__PURE__*/_react.default.createElement("tbody", null, courseData.modulesWithGrades.map(mod => {
     var _mod$score;
+    console.log("RENDER LOG:", mod);
     return /*#__PURE__*/_react.default.createElement("tr", {
       key: mod.id,
       className: "border-b"
@@ -197,7 +198,7 @@ function CourseOverviewAndPurchaseFragment(props) {
       className: "px-4 py-3"
     }, (_mod$score = mod.score) !== null && _mod$score !== void 0 ? _mod$score : "-"), /*#__PURE__*/_react.default.createElement("td", {
       className: "px-4 py-3"
-    }, mod.canReattempt && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, courseData !== null && courseData !== void 0 && courseData.reAttemptPaymentDone ? /*#__PURE__*/_react.default.createElement("button", {
+    }, mod.canReattempt ? mod.reAttemptPaymentDone ? /*#__PURE__*/_react.default.createElement("button", {
       onClick: () => setShowSuccessPopup(true),
       className: "text-green-600 border border-green-600 font-semibold px-3 py-1 rounded-md hover:bg-green-50"
     }, "Take Test") : /*#__PURE__*/_react.default.createElement("button", {
@@ -211,7 +212,7 @@ function CourseOverviewAndPurchaseFragment(props) {
         });
       },
       className: "text-red-600 border border-red-600 font-semibold px-3 py-1 rounded-md hover:bg-red-50"
-    }, "Payment for Re-attempt"))));
+    }, "Payment for Re-attempt") : "-"));
   })))))) : /*#__PURE__*/_react.default.createElement("button", {
     onClick: e => {
       (0, _dom.stopPropagation)(e);
