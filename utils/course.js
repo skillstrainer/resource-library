@@ -38,7 +38,9 @@ const courseFormatter = obj => {
     is_subscription: obj.is_subscription,
     is_taxable: obj.is_subscription,
     moodleCourseId: obj.moodle_course_id,
-    course_type: obj.course_type
+    course_type: obj.course_type,
+    modulesWithGrades: obj.modulesWithGrades || [],
+    isNocnCourse: obj.isNocnCourse || false
   }, obj.course_subscription_relation_array ? {
     plan_id: (_obj$course_subscript = obj.course_subscription_relation_array[0]) === null || _obj$course_subscript === void 0 ? void 0 : _obj$course_subscript.razorpay_plan_id,
     subscription_cost: (_obj$course_subscript2 = obj.course_subscription_relation_array[0]) === null || _obj$course_subscript2 === void 0 ? void 0 : _obj$course_subscript2.subscription_cost,

@@ -25,6 +25,8 @@ export const courseFormatter = (obj) => ({
   is_taxable: obj.is_subscription,
   moodleCourseId: obj.moodle_course_id,
   course_type: obj.course_type,
+  modulesWithGrades: obj.modulesWithGrades || [],
+  isNocnCourse: obj.isNocnCourse || false,
 
   ...(obj.course_subscription_relation_array
     ? {
