@@ -259,7 +259,8 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                                   <td className="px-4 py-3">
                                     {mod.canReattempt && (
                                       <>
-                                        {mod?.reAttemptPaymentDone ? (
+                                        {console.log("RENDER LOG:", mod)}
+                                        {mod.reAttemptPaymentDone ? (
                                           <button
                                             onClick={() =>
                                               setShowSuccessPopup(true)

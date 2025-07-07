@@ -101,7 +101,16 @@ const courseFormatter = (obj) => {
       is_taxable: obj.is_subscription,
       moodleCourseId: obj.moodle_course_id,
       course_type: obj.course_type,
-      modulesWithGrades: obj.modulesWithGrades || [],
+      modulesWithGrades: Array.isArray(obj.modulesWithGrades)
+        ? obj.modulesWithGrades.map((mod) => ({
+            id: mod.id,
+            name: mod.name,
+            grade: mod.grade,
+            score: mod.score,
+            canReattempt: mod.canReattempt,
+            reAttemptPaymentDone: mod.reAttemptPaymentDone ?? false,
+          }))
+        : [],
       isNocnCourse: obj.isNocnCourse || false,
     },
     obj.course_subscription_relation_array
