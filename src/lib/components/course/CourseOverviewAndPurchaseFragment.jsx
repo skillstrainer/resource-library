@@ -237,30 +237,30 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                               </tr>
                             </thead>
                             <tbody>
-                              {courseData.modulesWithGrades.map((mod) => (
-                                <tr key={mod.id} className="border-b">
-                                  <td className="px-4 py-3">{mod.name}</td>
-                                  <td className="px-4 py-3">
-                                    <span
-                                      className={`font-bold ${
-                                        mod.grade === "Pass"
-                                          ? "text-green-600"
-                                          : mod.grade === "Fail"
-                                          ? "text-red-600"
-                                          : "text-gray-500"
-                                      }`}
-                                    >
-                                      {mod.grade}
-                                    </span>
-                                  </td>
-                                  <td className="px-4 py-3">
-                                    {mod.score ?? "-"}
-                                  </td>
-                                  <td className="px-4 py-3">
-                                    {mod.canReattempt && (
-                                      <>
-                                        {console.log("RENDER LOG:", mod)}
-                                        {mod.reAttemptPaymentDone ? (
+                              {courseData.modulesWithGrades.map((mod) => {
+                                console.log("RENDER LOG:", mod);
+                                return (
+                                  <tr key={mod.id} className="border-b">
+                                    <td className="px-4 py-3">{mod.name}</td>
+                                    <td className="px-4 py-3">
+                                      <span
+                                        className={`font-bold ${
+                                          mod.grade === "Pass"
+                                            ? "text-green-600"
+                                            : mod.grade === "Fail"
+                                            ? "text-red-600"
+                                            : "text-gray-500"
+                                        }`}
+                                      >
+                                        {mod.grade}
+                                      </span>
+                                    </td>
+                                    <td className="px-4 py-3">
+                                      {mod.score ?? "-"}
+                                    </td>
+                                    <td className="px-4 py-3">
+                                      {mod.canReattempt ? (
+                                        mod.reAttemptPaymentDone ? (
                                           <button
                                             onClick={() =>
                                               setShowSuccessPopup(true)
@@ -298,13 +298,14 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                                           >
                                             Payment for Re-attempt
                                           </button>
-                                        )}
-                                      </>
-                                    )}
-                                    "-"
-                                  </td>
-                                </tr>
-                              ))}
+                                        )
+                                      ) : (
+                                        "-"
+                                      )}
+                                    </td>
+                                  </tr>
+                                );
+                              })}
                             </tbody>
                           </table>
                         </div>
