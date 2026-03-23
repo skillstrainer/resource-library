@@ -55,7 +55,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
       courseData?.courseId ?? courseData?.course_id ?? courseData?.id;
 
     if (String(normalizedCourseId) === "250") {
-      window.location.assign("https://monikahalan.skillstrainer.in/");
+      window.open("https://monikahalan.skillstrainer.in/", "_blank", "noopener,noreferrer");
       return;
     }
 

@@ -63,7 +63,7 @@ function CourseOverviewAndPurchaseFragment(props) {
     (0, _dom.stopPropagation)(e);
     const normalizedCourseId = (_ref = (_courseData$courseId = courseData === null || courseData === void 0 ? void 0 : courseData.courseId) !== null && _courseData$courseId !== void 0 ? _courseData$courseId : courseData === null || courseData === void 0 ? void 0 : courseData.course_id) !== null && _ref !== void 0 ? _ref : courseData === null || courseData === void 0 ? void 0 : courseData.id;
     if (String(normalizedCourseId) === "250") {
-      window.location.assign("https://monikahalan.skillstrainer.in/");
+      window.open("https://monikahalan.skillstrainer.in/", "_blank", "noopener,noreferrer");
       return;
     }
     setPaymentStarted(true);
