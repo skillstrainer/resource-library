@@ -48,6 +48,25 @@ export default function CourseOverviewAndPurchaseFragment(props) {
   console.log("hey==", s3Url);
   console.log("courseData", courseData);
 
+  const handleEnrollmentClick = (e) => {
+    stopPropagation(e);
+
+    const normalizedCourseId =
+      courseData?.courseId ?? courseData?.course_id ?? courseData?.id;
+
+    if (String(normalizedCourseId) === "250") {
+      window.location.assign("https://monikahalan.skillstrainer.in/");
+      return;
+    }
+
+    setPaymentStarted(true);
+    onPaymentStarted({
+      payingBySubscription,
+    })
+      .catch(() => {})
+      .then(setPaymentStarted);
+  };
+
   return (
     <div className="flex justify-center">
       <div className="w-full">
@@ -314,15 +333,7 @@ export default function CourseOverviewAndPurchaseFragment(props) {
                 </>
               ) : (
                 <button
-                  onClick={(e) => {
-                    stopPropagation(e);
-                    setPaymentStarted(true);
-                    onPaymentStarted({
-                      payingBySubscription,
-                    })
-                      .catch(() => {})
-                      .then(setPaymentStarted);
-                  }}
+                  onClick={handleEnrollmentClick}
                   className="w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto"
                   disabled={paymentStarted}
                 >

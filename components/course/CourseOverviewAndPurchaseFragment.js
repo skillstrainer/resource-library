@@ -58,6 +58,19 @@ function CourseOverviewAndPurchaseFragment(props) {
   } = (0, _react.useContext)(_Context.STRLContext);
   console.log("hey==", s3Url);
   console.log("courseData", courseData);
+  const handleEnrollmentClick = e => {
+    var _ref, _courseData$courseId;
+    (0, _dom.stopPropagation)(e);
+    const normalizedCourseId = (_ref = (_courseData$courseId = courseData === null || courseData === void 0 ? void 0 : courseData.courseId) !== null && _courseData$courseId !== void 0 ? _courseData$courseId : courseData === null || courseData === void 0 ? void 0 : courseData.course_id) !== null && _ref !== void 0 ? _ref : courseData === null || courseData === void 0 ? void 0 : courseData.id;
+    if (String(normalizedCourseId) === "250") {
+      window.location.assign("https://monikahalan.skillstrainer.in/");
+      return;
+    }
+    setPaymentStarted(true);
+    onPaymentStarted({
+      payingBySubscription
+    }).catch(() => {}).then(setPaymentStarted);
+  };
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -214,13 +227,7 @@ function CourseOverviewAndPurchaseFragment(props) {
       className: "text-red-600 border border-red-600 font-semibold px-3 py-1 rounded-md hover:bg-red-50"
     }, "Payment for Re-attempt") : "-"));
   })))))) : /*#__PURE__*/_react.default.createElement("button", {
-    onClick: e => {
-      (0, _dom.stopPropagation)(e);
-      setPaymentStarted(true);
-      onPaymentStarted({
-        payingBySubscription
-      }).catch(() => {}).then(setPaymentStarted);
-    },
+    onClick: handleEnrollmentClick,
     className: "w-full text-sm bg-red-dark hover:opacity-90 px-4 py-2 text-white rounded-lg md:w-auto",
     disabled: paymentStarted
   }, paymentStarted ? "Please wait..." : !payingBySubscription ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", null, "Get Enrolled for "), /*#__PURE__*/_react.default.createElement("span", {
@@ -249,12 +256,12 @@ function CourseOverviewAndPurchaseFragment(props) {
     className: "bg-red-dark text-white font-semibold px-4 py-2 rounded-md w-2/3"
   }, "Go To ESOL Dashboard")))))));
 }
-const RadioButton = _ref => {
+const RadioButton = _ref2 => {
   let {
     label,
     value,
     onChange
-  } = _ref;
+  } = _ref2;
   return /*#__PURE__*/_react.default.createElement("label", {
     className: "mr-5"
   }, /*#__PURE__*/_react.default.createElement("input", {
